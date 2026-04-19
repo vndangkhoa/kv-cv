@@ -16,7 +16,7 @@ const PERSONAL_INFO = {
   email: "vonguyendangkhoa@gmail.com",
   location: "Ho Chi Minh City, Vietnam",
   linkedin: "https://www.linkedin.com/in/khoa-vo-76291236/",
-  portfolio: "https://cv.khoavo.myds.me/",
+  portfolio: "https://khoavo.myds.me/",
   github: "https://git.khoavo.myds.me/vndangkhoa"
 };
 
@@ -36,54 +36,54 @@ const CREATIVE_DATA = {
       id: 1, 
       title: "The Language of Poetry & Literature", 
       category: "AI Generated Art",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2025/08/i2i_1756355661_62547902.png",
+      image: "https://khoavo.myds.me/wp-content/uploads/2025/08/i2i_1756355661_62547902.png",
       description: "Exploring the ethereal boundary between reality and imagination through AI-generated visuals. Created with Stable Diffusion, ComfyUI, and custom LoRA training to capture the intangible essence of poetic imagery.",
-      link: "https://portfolio.khoavo.myds.me/2025/08/28/the-language-of-poetry-and-literature/",
+      link: "https://khoavo.myds.me/2025/08/28/the-language-of-poetry-and-literature/",
       year: "2025"
     },
     {
       id: 2, 
       title: "Delux Perfume – Fineline 2025 Launch", 
       category: "AI Branding & Video",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2025/08/Delux-Perfume_red.png",
+      image: "https://khoavo.myds.me/wp-content/uploads/2025/08/Delux-Perfume_red.png",
       description: "End-to-end creative strategy and art direction for premium perfume launch. From AI-generated mood boards and product visuals to cinematic video production, creating a cohesive brand narrative for Southeast Asia market.",
-      link: "https://portfolio.khoavo.myds.me/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
+      link: "https://khoavo.myds.me/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
       year: "2025"
     },
     {
       id: 3, 
       title: "AI Studio Photography", 
       category: "AI-Generated Branding",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2025/07/img_0317.jpg",
+      image: "https://khoavo.myds.me/wp-content/uploads/2025/07/img_0317.jpg",
       description: "Revolutionary approach to professional studio photography using AI. ComfyUI workflows with custom LoRA to generate studio-quality product and portrait images, reducing production costs by 70%.",
-      link: "https://portfolio.khoavo.myds.me/2025/07/27/%F0%9F%A7%A0%F0%9F%93%B8-ai-studio-i-can-do-that-too/",
+      link: "https://khoavo.myds.me/2025/07/27/%F0%9F%A7%A0%F0%9F%93%B8-ai-studio-i-can-do-that-too/",
       year: "2025"
     },
     {
       id: 4, 
       title: "NAVIGATOR – ASIAMARINE Magazine", 
       category: "Editorial Design",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2020/10/navigator-vol1_page_001.webp",
+      image: "https://khoavo.myds.me/wp-content/uploads/2020/10/navigator-vol1_page_001.webp",
       description: "Complete editorial design for Vietnam's premier yacht market publication. Art direction, layout design, and visual storytelling for a luxury marine sector brand reaching high-net-worth readers across Asia.",
-      link: "https://portfolio.khoavo.myds.me/2020/10/20/navigator/",
+      link: "https://khoavo.myds.me/2020/10/20/navigator/",
       year: "2020"
     },
     {
       id: 5, 
       title: "PetroVietnam – PCT Corporate Identity", 
       category: "Brand Identity & 3D",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2017/04/cip_mockup2.png",
+      image: "https://khoavo.myds.me/wp-content/uploads/2017/04/cip_mockup2.png",
       description: "Comprehensive corporate identity for PetroVietnam Transportation. 3D vehicle visualization, logo design, stationery system, and POSM materials creating a cohesive national brand presence.",
-      link: "https://portfolio.khoavo.myds.me/2017/04/10/petrovietnam-pct/",
+      link: "https://khoavo.myds.me/2017/04/10/petrovietnam-pct/",
       year: "2017"
     },
     {
       id: 6, 
       title: "Skyxx – Animated Poster Series", 
       category: "Motion Graphics",
-      image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2019/04/aash-3-scaled.jpg",
+      image: "https://khoavo.myds.me/wp-content/uploads/2019/04/aash-3-scaled.jpg",
       description: "Award-winning weekly animated poster series for entertainment events. Dynamic motion graphics with 3D elements, pushing creative boundaries under tight deadlines while maintaining exceptional quality.",
-      link: "https://portfolio.khoavo.myds.me/2019/02/17/skyxx-poster-animation/",
+      link: "https://khoavo.myds.me/2019/02/17/skyxx-poster-animation/",
       year: "2019"
     }
   ],

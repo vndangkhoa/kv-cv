@@ -11,7 +11,7 @@ const PERSONAL_INFO = {
   email: "vonguyendangkhoa@gmail.com",
   location: "Ho Chi Minh City, Vietnam",
   linkedin: "linkedin.com/in/khoavo",
-  portfolio: "cv.khoavo.myds.me",
+  portfolio: "khoavo.myds.me",
   github: "git.khoavo.myds.me/vndangkhoa",
   summary: "Highly accomplished Creative Leader bridging the gap between artistic direction and high-performance software engineering. With over 9+ years managing brand strategies and digital design, I evaluate and execute technology-driven projects from concept to production. Specialized in merging traditional creative direction with cutting-edge generative AI workflows (ComfyUI, FLUX) and full-stack development (Go, React)."
 };
