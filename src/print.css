@@ -1,0 +1,332 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #020617;
+}
+
+/* ============================================
+   PRINT STYLES - A4 Portfolio PDF
+   ============================================ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Hide the main UI components, only show print portfolio */
+  body > * {
+    display: none !important;
+  }
+  
+  #root {
+    display: block !important;
+  }
+  
+  #root > *:not(.print-portfolio) {
+    display: none !important;
+  }
+
+  .print-portfolio {
+    display: block !important;
+    width: 210mm;
+    margin: 0 auto;
+  }
+
+  /* Clear out legacy rigid page formats */
+  .page, .page-content, .cover-page, .contact-page, .portfolio-grid {
+    display: none;
+  }
+
+  .cover-content {
+    text-align: center;
+    color: #ffffff;
+    padding: 40mm;
+  }
+
+  .cover-name {
+    font-size: 38pt;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px 0;
+    color: #000000;
+  }
+
+  .cover-title {
+    font-size: 16pt;
+    font-weight: 500;
+    color: #666666;
+    margin: 0 0 30px 0;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .cover-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px 20px;
+    font-size: 9pt;
+    color: #333333;
+  }
+
+  .cover-contact span {
+    white-space: nowrap;
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 8mm;
+  }
+
+  .section-title {
+    font-size: 16pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 6mm 0;
+    padding-bottom: 3mm;
+    border-bottom: 2px solid #000000;
+  }
+
+  /* SUMMARY */
+  .summary-section {
+    background: #f8fafc;
+    padding: 6mm;
+    border-radius: 4mm;
+    border-left: 4px solid #000000;
+  }
+
+  .summary-text {
+    font-size: 10pt;
+    line-height: 1.7;
+    color: #333333;
+    margin: 0;
+  }
+
+  /* EXPERIENCE */
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+  }
+
+  .experience-item {
+    padding-bottom: 5mm;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .experience-item:last-child {
+    border-bottom: none;
+  }
+
+  .experience-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2mm;
+  }
+
+  .experience-role {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .experience-company {
+    font-size: 9pt;
+    color: #333333;
+    margin: 2px 0 0 0;
+    font-weight: 500;
+  }
+
+  .experience-period {
+    font-size: 8pt;
+    color: #64748b;
+    white-space: nowrap;
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 3px;
+    border: 1px solid #e2e8f0;
+  }
+
+  .experience-highlights {
+    margin: 3mm 0 0 0;
+    padding-left: 5mm;
+  }
+
+  .experience-highlights li {
+    font-size: 9pt;
+    line-height: 1.6;
+    color: #475569;
+    margin-bottom: 2mm;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+  }
+
+  .skill-category {
+    background: #f8fafc;
+    padding: 4mm;
+    border-radius: 3mm;
+    border-left: 3px solid #000000;
+  }
+
+  .skill-category h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2mm 0;
+  }
+
+  .skill-category p {
+    font-size: 8.5pt;
+    color: #475569;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* PORTFOLIO */
+  .portfolio-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5mm;
+  }
+
+  .portfolio-item {
+    display: flex;
+    gap: 4mm;
+    background: #f8fafc;
+    border-radius: 3mm;
+    overflow: hidden;
+    border: 1px solid #e2e8f0;
+  }
+
+  .portfolio-image {
+    width: 45mm;
+    height: 35mm;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .portfolio-info {
+    padding: 3mm 4mm 3mm 0;
+    flex: 1;
+  }
+
+  .portfolio-category {
+    font-size: 7pt;
+    font-weight: 600;
+    color: #333333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .portfolio-title {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #000000;
+    margin: 1mm 0 2mm 0;
+  }
+
+  .portfolio-description {
+    font-size: 8pt;
+    color: #475569;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* CONTACT PAGE */
+  .contact-page {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .contact-content {
+    text-align: center;
+    color: #000000;
+    padding: 40mm;
+  }
+
+  .contact-title {
+    font-size: 32pt;
+    font-weight: 800;
+    margin: 0 0 6mm 0;
+    color: #000000;
+  }
+
+  .contact-subtitle {
+    font-size: 10pt;
+    color: #666666;
+    margin: 0 0 12mm 0;
+  }
+
+  .contact-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    text-align: left;
+  }
+
+  .contact-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4mm;
+    border-radius: 3mm;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .contact-item strong {
+    display: block;
+    font-size: 7pt;
+    color: #22d3ee;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2mm;
+  }
+
+  .contact-item span {
+    font-size: 9pt;
+    color: #cbd5e1;
+    word-break: break-all;
+  }
+}
+
+/* Screen preview styles */
+.print-portfolio {
+  display: none;
+}
+
+.print-portfolio.show-preview {
+  display: block;
+  background: #1e293b;
+  padding: 20px;
+}
+
+.print-portfolio.show-preview .page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  page-break-after: auto;
+  break-after: auto;
+}

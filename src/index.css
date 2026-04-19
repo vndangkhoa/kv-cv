@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #FAFAFA;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+}
+
+/* Screen: hide print-only version */
+.print-only-version {
+  display: none !important;
+}
+
+/* Screen: show preview when toggled */
+.print-portfolio.show-preview {
+  display: block !important;
+  background: #1e293b;
+  padding: 20px;
+}
+
+.print-portfolio.show-preview .pdf-content {
+  display: block !important;
+}
+
+.print-portfolio.show-preview .page {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  display: block !important;
+  background: #ffffff !important;
+}
+
+/* Screen: ensure inner pdf-content div is visible in preview */
+.pdf-content {
+  display: block !important;
+}
+
+/* Print: hide everything except print version */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+    color: black !important;
+  }
+
+  /* Hide the main interactive portfolio */
+  .app-main {
+    display: none !important;
+  }
+
+  /* Hide the preview overlay */
+  .fixed.inset-0 {
+    display: none !important;
+  }
+
+  /* Show only the print version */
+  .print-only-version {
+    display: block !important;
+    visibility: visible !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    background: white !important;
+  }
+
+  .pdf-content {
+    display: block !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 210mm !important;
+  }
+
+  .pdf-content .page {
+    width: 210mm !important;
+    height: 297mm !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    position: relative !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+  }
+
+  .pdf-content .page:last-child {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  .pdf-content .page-content {
+    padding: 18mm 16mm !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Cover Page */
+  .pdf-content .cover-page {
+    background: #111827 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .pdf-content .cover-content {
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 35mm 30mm !important;
+  }
+
+  .pdf-content .cover-name {
+    font-size: 38pt !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    color: #ffffff !important;
+  }
+
+  .pdf-content .cover-accent {
+    font-size: 38pt !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 !important;
+    color: #60a5fa !important;
+  }
+
+  .pdf-content .cover-divider {
+    width: 60px !important;
+    height: 3px !important;
+    background: #60a5fa !important;
+    margin: 0 auto 35px auto !important;
+  }
+
+  .pdf-content .cover-title {
+    font-size: 16pt !important;
+    font-weight: 500 !important;
+    color: #9ca3af !important;
+    margin: 0 0 35px 0 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+  }
+
+  .pdf-content .cover-contact {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px 18px !important;
+    font-size: 9pt !important;
+    color: #9ca3af !important;
+  }
+
+  .pdf-content .cover-contact span {
+    white-space: nowrap !important;
+  }
+
+  /* Sections */
+  .pdf-content .section {
+    margin-bottom: 7mm !important;
+  }
+
+  .pdf-content .section-title {
+    font-size: 15pt !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 5mm 0 !important;
+    padding-bottom: 2.5mm !important;
+    border-bottom: 2px solid #1e40af !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  /* Summary */
+  .pdf-content .summary-section {
+    background: #f9fafb !important;
+    padding: 5mm !important;
+    border-left: 3px solid #1e40af !important;
+  }
+
+  .pdf-content .summary-text {
+    font-size: 9.5pt !important;
+    line-height: 1.7 !important;
+    color: #374151 !important;
+    margin: 0 !important;
+  }
+
+  /* Experience */
+  .pdf-content .experience-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4mm !important;
+  }
+
+  .pdf-content .experience-item {
+    padding-bottom: 4mm !important;
+    border-bottom: 1px solid #d1d5db !important;
+  }
+
+  .pdf-content .experience-item:last-child {
+    border-bottom: none !important;
+  }
+
+  .pdf-content .experience-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    margin-bottom: 2mm !important;
+  }
+
+  .pdf-content .experience-role {
+    font-size: 11pt !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 !important;
+  }
+
+  .pdf-content .experience-company {
+    font-size: 9pt !important;
+    color: #1e40af !important;
+    margin: 1px 0 0 0 !important;
+    font-weight: 600 !important;
+  }
+
+  .pdf-content .experience-period {
+    font-size: 8pt !important;
+    color: #6b7280 !important;
+    white-space: nowrap !important;
+    background: #f9fafb !important;
+    padding: 2px 8px !important;
+    border-radius: 3px !important;
+    border: 1px solid #d1d5db !important;
+  }
+
+  .pdf-content .experience-highlights {
+    margin: 2.5mm 0 0 0 !important;
+    padding-left: 5mm !important;
+  }
+
+  .pdf-content .experience-highlights li {
+    font-size: 8.5pt !important;
+    line-height: 1.6 !important;
+    color: #374151 !important;
+    margin-bottom: 1.5mm !important;
+  }
+
+  /* Skills */
+  .pdf-content .skills-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 3.5mm !important;
+  }
+
+  .pdf-content .skill-category {
+    background: #f9fafb !important;
+    padding: 3.5mm !important;
+    border-left: 3px solid #1e40af !important;
+  }
+
+  .pdf-content .skill-category h3 {
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 1.5mm 0 !important;
+  }
+
+  .pdf-content .skill-category p {
+    font-size: 8pt !important;
+    color: #374151 !important;
+    margin: 0 !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Portfolio */
+  .pdf-content .portfolio-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4mm !important;
+  }
+
+  .pdf-content .portfolio-item {
+    display: flex !important;
+    gap: 4mm !important;
+    background: #ffffff !important;
+    border-radius: 2mm !important;
+    overflow: hidden !important;
+    border: 1px solid #d1d5db !important;
+  }
+
+  .pdf-content .portfolio-image {
+    width: 50mm !important;
+    height: 38mm !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+    display: block !important;
+  }
+
+  .pdf-content .portfolio-info {
+    padding: 2.5mm 3mm 2.5mm 0 !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+  }
+
+  .pdf-content .portfolio-category {
+    font-size: 7pt !important;
+    font-weight: 600 !important;
+    color: #1e40af !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: 1mm !important;
+  }
+
+  .pdf-content .portfolio-title {
+    font-size: 10.5pt !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    margin: 0 0 1.5mm 0 !important;
+    line-height: 1.3 !important;
+  }
+
+  .pdf-content .portfolio-description {
+    font-size: 7.5pt !important;
+    color: #374151 !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+
+  /* Contact Page */
+  .pdf-content .contact-page {
+    background: #111827 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .pdf-content .contact-content {
+    text-align: center !important;
+    color: #ffffff !important;
+    padding: 35mm 30mm !important;
+  }
+
+  .pdf-content .contact-title {
+    font-size: 28pt !important;
+    font-weight: 800 !important;
+    margin: 0 0 5mm 0 !important;
+    color: #ffffff !important;
+  }
+
+  .pdf-content .contact-divider {
+    width: 50px !important;
+    height: 3px !important;
+    background: #60a5fa !important;
+    margin: 0 auto 10mm auto !important;
+  }
+
+  .pdf-content .contact-subtitle {
+    font-size: 10pt !important;
+    color: #9ca3af !important;
+    margin: 0 0 10mm 0 !important;
+  }
+
+  .pdf-content .contact-details {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 4mm !important;
+    text-align: left !important;
+  }
+
+  .pdf-content .contact-item {
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 3.5mm !important;
+    border-radius: 2mm !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .pdf-content .contact-item strong {
+    display: block !important;
+    font-size: 7pt !important;
+    color: #60a5fa !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    margin-bottom: 1.5mm !important;
+    font-weight: 600 !important;
+  }
+
+  .pdf-content .contact-item span {
+    font-size: 9pt !important;
+    color: #d1d5db !important;
+    word-break: break-all !important;
+  }
+}
+
+/* Custom scrollbar for terminal */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #00FF94;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00D9FF;
+}

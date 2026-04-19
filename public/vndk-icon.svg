@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    .vn { stroke: #1A1A1A; }
+    .dk { stroke: #00FF94; }
+    @media (prefers-color-scheme: dark) {
+      .vn { stroke: #FFFFFF; }
+    }
+  </style>
+  <path class="vn" d="M 15 25 L 30 45 L 45 25" />
+  <path class="vn" d="M 55 45 L 55 25 L 85 45 L 85 25" />
+  <path class="dk" d="M 15 55 L 30 55 A 10 10 0 0 1 30 75 L 15 75 Z" />
+  <path class="dk" d="M 55 55 L 55 75 M 85 55 L 55 65 L 85 75" />
+</svg>
