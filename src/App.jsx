@@ -22,7 +22,7 @@ const PERSONAL_INFO = {
 
 // --- CREATIVE PERSONA DATA ---
 const CREATIVE_DATA = {
-  title: "AI Creative Lead & Motion Designer",
+  title: "Creative Manager & AI Innovation Lead",
   summary: "Visionary Creative Leader with 9+ years of expertise bridging brand strategy, digital design, motion graphics, and cutting-edge generative AI. Currently pioneering AI-augmented creative workflows at Phibious, merging traditional art direction with ComfyUI, Stable Diffusion, and FLUX to redefine what's possible in visual storytelling. Previously led eCommerce design at P&G, shaping digital experiences for millions of consumers across Southeast Asia.",
   tagline: "Where Design Meets Intelligence",
   skills: [
@@ -94,10 +94,10 @@ const CREATIVE_DATA = {
       period: "2025 - Present",
       location: "Ho Chi Minh City",
       highlights: [
-        "Spearhead the integration of generative AI (ComfyUI, Stable Diffusion, FLUX) into creative workflows, reducing production time by 50%",
-        "Lead cross-functional teams of designers, copywriters, and data analysts to deliver technology-driven creative campaigns",
-        "Developed proprietary AI tools for mood boarding, concept visualization, and rapid prototyping",
-        "Created AI-augmented design concepts for digital and physical platforms serving Fortune 500 clients"
+        "Spearheaded the transformation of video production workflows via AI and automation, achieving a 60% measurable gain in output volume",
+        "Acted as a creative multiplier, leading regional stakeholders and cross-functional teams to automate end-to-end content lifecycles",
+        "Designed and deployed Agentic AI systems and custom frameworks for rapid concept-to-video prototyping, serving global Fortune 500 brands",
+        "Drove Regional Enablement by establishing SOPs and mentoring 20+ producers on prompt engineering, AI ethics, and workflow standardization"
       ]
     },
     { 
@@ -284,7 +284,7 @@ const LandingPage = ({ onSelect }) => {
               transition={{ duration: 0.8, delay: 1 }}
               className="text-[10px] font-bold tracking-[0.4em] text-[#1A1A1A]/30 uppercase mb-10 md:mb-12"
             >
-              AI Creative Lead & Motion Designer
+              Creative Manager & AI Innovation Lead
             </motion.p>
             
             {/* Enter Button (Desktop only) */}
