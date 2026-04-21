@@ -1,6 +1,6 @@
 # Portfolio
 
-My personal portfolio website built with React, Vite, and Tailwind CSS. Features dual-mode navigation - a creative editorial design view and a developer terminal interface.
+My personal portfolio website built with React, Vite, and Tailwind CSS. Features dual-mode navigation - a creative editorial design view and a developer terminal interface, along with a specialized Print-Ready A4 CV crafted in a high-contrast editorial aesthetic.
 
 ## Live Site
 
