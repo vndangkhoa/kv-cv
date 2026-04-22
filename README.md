@@ -38,6 +38,13 @@ npm run preview
 
 Deployed on Synology NAS via Docker.
 
+## AI Agent Optimization (AIO)
+
+This portfolio is heavily optimized for Agentic SEO. It includes:
+- **JSON-LD Structured Data**: Explicitly defining `Person`, `jobTitle`, `knowsAbout`, and `seeks` (seeking job opportunity) metadata injected securely into `<head>`. 
+- **AI-Friendly `robots.txt`**: Access explicitly granted to major LLM scrapers such as `GPTBot`, `PerplexityBot`, `ClaudeBot`, and `Google-Extended`.
+- **`llms.txt` Endpoint**: Available directly at `/llms.txt`, exposing an exact markdown-structured context endpoint purely for LLM ingestors to natively understand my professional profile.
+
 ## License
 
 MIT
