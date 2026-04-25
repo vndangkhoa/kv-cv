@@ -1,11 +1,33 @@
-# Portfolio
+# KHOA.VO Portfolio
 
-My personal portfolio website built with React, Vite, and Tailwind CSS. Features dual-mode navigation - a creative editorial design view and a developer terminal interface, along with a specialized Print-Ready A4 CV crafted in a high-contrast editorial aesthetic.
+Personal portfolio website featuring dual personas (Creative & IT), inspired by Simmonds Ltd design aesthetics.
 
 ## Live Site
 
 - **Main**: https://khoavo.myds.me
-- **Creative Works**: https://portfolio.khoavo.myds.me
+- **Creative Works**: https://portfolio.khoavo.myds.me (redirects to main)
+
+## Features
+
+### Creative Side
+- **Three viewing modes**: Grid, List, Minimal
+- **Image effects**: Grayscale + pixelated + blur → Full color on hover
+- **Enhanced project modal**: Keyboard navigation (ESC, Arrow keys)
+- **Professional Journey**: Longer, more detailed for HR/readability
+
+### IT Side  
+- **Retro desktop UI**: Draggable windows
+- **CRT screen effects**: Scanlines, vignette
+- **Idle screensaver**: 5s timeout with animated logo
+
+### Design
+- **Simmonds Ltd inspired**: Dark/light theme, grid patterns, phosphor green accents
+- **Typography**: Syne (display) + IBM Plex Mono
+- **Default theme**: Light
+
+### Print CV
+- Separate print-optimized A4 format
+- Concise professional journey
 
 ## Tech Stack
 
@@ -28,22 +50,9 @@ npm run dev
 npm run build
 ```
 
-## Preview
+## Print CV
 
-```bash
-npm run preview
-```
-
-## Deployment
-
-Deployed on Synology NAS via Docker.
-
-## AI Agent Optimization (AIO)
-
-This portfolio is heavily optimized for Agentic SEO. It includes:
-- **JSON-LD Structured Data**: Explicitly defining `Person`, `jobTitle`, `knowsAbout`, and `seeks` (seeking job opportunity) metadata injected securely into `<head>`. 
-- **AI-Friendly `robots.txt`**: Access explicitly granted to major LLM scrapers such as `GPTBot`, `PerplexityBot`, `ClaudeBot`, and `Google-Extended`.
-- **`llms.txt` Endpoint**: Available directly at `/llms.txt`, exposing an exact markdown-structured context endpoint purely for LLM ingestors to natively understand my professional profile.
+Press the "Download CV" button or use `window.print()` to generate the PDF CV.
 
 ## License
 
