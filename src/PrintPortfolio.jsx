@@ -2,14 +2,14 @@ import React from 'react';
 
 const PRINT_PERSONAL_INFO = {
   name: "Khoa.vo",
-  title: "CREATIVE MANAGER & AI INNOVATION LEAD",
+  title: "CREATIVE MANAGER & AI-POWERED DEVELOPER",
   location: "Ho Chi Minh City, Vietnam",
   phone: "0398300340",
   email: "vonguyendangkhoa@gmail.com",
-  linkedin: "linkedin.com/in/khoavo",
+  linkedin: "linkedin.com/in/khoavo93",
   portfolio: "khoavo.myds.me",
-  summaryHeadline: "Visionary Creative Leader merging Brand Strategy with Generative AI.",
-  summaryBody: "With 9+ years of expertise at global firms like P&G and Phibious, I bridge the gap between artistic direction and high-performance automation. I specialize in designing scalable AI video production workflows and agentic systems that serve Fortune 500 brands while driving measurable growth and operational excellence.\n\nBeyond traditional creative direction, my recent evolution into an AI-Powered Developer enables me to architect custom web applications and full-stack deployment pipelines (React, Go, Docker). By unifying deep brand-building experience with hands-on coding and machine learning integration, I transform creative conceptualization into quantifiable, automated, and highly scalable digital realities."
+  summaryHeadline: "Creative Leader | AI Innovation | Full-Stack Developer",
+  summaryBody: "With 9+ years at P&G and Phibious, I bridge creative direction with AI automation—building scalable video production workflows for Fortune 500 brands.\n\nAs an AI-Powered Developer, I also build production apps: video streaming platforms (Go, Docker), AI image generators, and Android TV apps."
 };
 
 const PRINT_EDUCATION = [
@@ -42,7 +42,7 @@ const PRINT_EXPERIENCES = [
   },
   {
     role: "eCOM Design Lead", 
-    company: "Procter & Gamble", 
+    company: "Procter & Gamble (P&G)", 
     period: "Sep 2023 - Jun 2025",
     highlights: [
       "Directed visual strategies for P&G's Hair Care portfolio across SEA, impacting millions of consumers effectively.",
@@ -62,24 +62,81 @@ const PRINT_EXPERIENCES = [
   },
   {
     role: "Production Creative Lead", 
-    company: "Inn Saigon", 
+    company: "INN SaiGon", 
     period: "Dec 2019 - Nov 2020",
     highlights: [
-      "Directed a multi-disciplinary team of photographers and retouchers for high-profile hospitality clients.",
+      "Directed photography production for food, product, and event projects with 30+ client accounts across hospitality, F&B, and luxury retail sectors.",
       "Managed production budgets and resource allocation for 30+ simultaneous client accounts.",
       "Implemented quality control frameworks that reduced post-production errors by 40%."
+    ]
+  },
+  {
+    role: "Regional Head of Design", 
+    company: "ASIAMARINE", 
+    period: "2018 - 2019",
+    highlights: [
+      "Led design team creating digital marketing assets, web graphics, and editorial content for Vietnam's premier luxury yacht brand.",
+      "Delegated projects to junior designers while maintaining quality control and brand consistency across all touchpoints.",
+      "Developed the visual identity system that defined ASIAMARINE's premium positioning in the regional marine lifestyle sector."
+    ]
+  },
+  {
+    role: "Senior Graphic Designer", 
+    company: "EMG - Element Management Group", 
+    period: "2017 - 2018",
+    highlights: [
+      "Created impactful designs for print and digital campaigns for global luxury and lifestyle brands.",
+      "Expert in photo sourcing, advanced image retouching, and brand identity development.",
+      "Developed production-ready artwork for offset and digital print, ensuring color accuracy across media."
+    ]
+  },
+  {
+    role: "Graphic Artist", 
+    company: "Le Meridien Saigon", 
+    period: "2016 - 2017",
+    highlights: [
+      "Created visual materials for hotel marketing campaigns and guest communications.",
+      "Designed menus, promotional materials, and digital signage for the hotel.",
+      "Collaborated with marketing team to maintain brand standards across all touchpoints."
+    ]
+  },
+  {
+    role: "Animation Designer", 
+    company: "Adidas Sourcing", 
+    period: "2015 - 2016",
+    highlights: [
+      "Designed animations for product showcases and marketing presentations.",
+      "Created motion graphics for internal and external communications.",
+      "Worked with design team to develop visual content for Adidas products."
     ]
   }
 ];
 
 const PRINT_STRATEGIC_TECH = [
-  { name: "KV-Tube", tech: "Go, Next.js, Docker", desc: "Enterprise-grade HLS video streaming platform with custom NAS deployment architecture." },
-  { name: "APIx GenAI", tech: "TypeScript, LLM APIs", desc: "A custom AI image generation portal integrating multiple LLM and Diffusion providers." }
+  { name: "KV-Tube", tech: "Go, Next.js, Docker, HLS", desc: "Enterprise-grade HLS video streaming platform deployed on Synology NAS. Features: user management, watch history, playlists, PWA support." },
+  { name: "APIx GenAI", tech: "TypeScript, Multi-LLM APIs", desc: "AI image generation portal integrating Google Whisk, Meta AI, Grok. Multi-provider support with prompt library and history." },
+  { name: "KV-Netflix", tech: "Kotlin, Compose Multiplatform", desc: "Full-featured Netflix clone for Android TV + Web. Movie streaming with trailer preview, custom playlists, offline downloads." },
+  { name: "Spotify Clone", tech: "React, Rust (Axum), YouTube API", desc: "Music player with YouTube Music integration, real-time lyrics, custom playlists, PWA support." }
 ];
 
-// --- BRANDING COMPONENT (B&W Friendly) ---
-const PRINT_VNDKLogo = ({ size = 100, vnColor = "#000000", dkColor = "#333333" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width={size} height={size} fill="none" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round">
+const PRINT_COLORS = {
+  primary: '#000000',
+  secondary: '#333333',
+  tertiary: '#666666',
+  accent: '#000000',
+  black: '#000000',
+  white: '#FFFFFF',
+  grey: '#444444',
+  muted: '#666666',
+  lightBg: '#f5f5f5',
+  border: '#cccccc',
+  sidebarBg: '#ffffff',
+  sidebarBorder: '#000000',
+  gradient: 'none'
+};
+
+const VndkLogo = ({ size = 60, vnColor = "#000000", dkColor = PRINT_COLORS.black }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width={size} height={size} fill="none" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round">
     <path stroke={vnColor} d="M 15 25 L 30 45 L 45 25" />
     <path stroke={vnColor} d="M 55 45 L 55 25 L 85 45 L 85 25" />
     <path stroke={dkColor} d="M 15 55 L 30 55 A 10 10 0 0 1 30 75 L 15 75 Z" />
@@ -87,221 +144,259 @@ const PRINT_VNDKLogo = ({ size = 100, vnColor = "#000000", dkColor = "#333333" }
   </svg>
 );
 
-const PRINT_COLORS = {
-  accent: '#222222', // Replaced mint with dark grey for B&W printing
-  black: '#000000',
-  white: '#FFFFFF',
-  grey: '#444444',
-  muted: '#666666',
-  border: '#DDDDDD'
-};
-
 const PRINT_STYLES = {
   container: {
     width: '100%',
     maxWidth: '210mm',
+    minHeight: '297mm',
     background: PRINT_COLORS.white,
-    fontFamily: "'Inter', sans-serif",
-    color: PRINT_COLORS.black,
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+    color: PRINT_COLORS.grey,
     margin: '0 auto',
     boxSizing: 'border-box',
     display: 'flex',
-    flexDirection: 'column',
     position: 'relative',
-    zIndex: 1,
   },
-  documentContainer: {
-    padding: '0',
-    backgroundColor: PRINT_COLORS.white,
+sidebar: {
+    width: '75mm',
+    minHeight: '297mm',
+    background: PRINT_COLORS.white,
+    borderRight: `2px solid ${PRINT_COLORS.black}`,
+    padding: '10mm 8mm',
     display: 'flex',
     flexDirection: 'column',
+    gap: '10mm',
+    position: 'relative',
   },
-  headerWrapper: {
-    backgroundColor: PRINT_COLORS.white, 
-    padding: '16mm 18mm 12mm 18mm',
-    width: '100%',
-    boxSizing: 'border-box',
-    borderTop: `6mm solid ${PRINT_COLORS.black}`,
-    borderBottom: `1px solid ${PRINT_COLORS.border}`,
-    marginBottom: '10mm'
-  },
-  topHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: '10mm',
-  },
-  logoSlot: {
-    border: `2px solid ${PRINT_COLORS.black}`,
-    padding: '2mm',
+  profileImage: {
+    width: '30mm',
+    height: '30mm',
+    margin: '0 auto 5mm',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: PRINT_COLORS.white,
-  },
-  nameTitle: {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: 1,
-    marginLeft: '12mm',
   },
   name: {
-    fontSize: '28pt',
+    fontSize: '15pt',
     fontWeight: 800,
-    letterSpacing: '-0.02em',
     color: PRINT_COLORS.black,
-    marginBottom: '1mm',
+    textAlign: 'center',
+    marginBottom: '1.5mm',
+    letterSpacing: '-0.02em',
+    lineHeight: 1.2,
   },
   title: {
-    fontSize: '12pt',
-    fontWeight: 700,
-    color: PRINT_COLORS.muted,
-    letterSpacing: '0.08em',
-    textTransform: 'uppercase',
-  },
-  contactInfo: {
-    textAlign: 'right',
-    fontSize: '9pt',
+    fontSize: '7pt',
     fontWeight: 600,
-    color: PRINT_COLORS.black,
-    lineHeight: '1.8',
-  },
-  headerLine: {
-    width: '100%',
-    height: '1.5px',
-    backgroundColor: PRINT_COLORS.black,
-    margin: '8mm 0 4mm 0',
-    position: 'relative',
-  },
-  headerLineAccent: {
-    position: 'absolute',
-    right: '0',
-    top: '0',
-    width: '30%',
-    height: '1.5px',
-    backgroundColor: PRINT_COLORS.accent,
-  },
-  summaryHeadline: {
-    fontSize: '22pt',
-    fontWeight: 800,
-    lineHeight: '1.2',
-    marginBottom: '8mm',
-    color: PRINT_COLORS.black,
-    maxWidth: '90%',
-  },
-  summaryParagraph: {
-    fontSize: '11pt',
     color: PRINT_COLORS.grey,
-    marginBottom: '12mm',
-    textAlign: 'justify',
-    lineHeight: '1.7',
-    whiteSpace: 'pre-wrap',
-  },
-  skillsGrid: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(3, 1fr)',
-    gap: '3mm 10mm',
-  },
-  skillItem: {
-    fontSize: '10pt',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '4mm',
-    fontWeight: 600,
-  },
-  skillIcon: {
-    width: '6mm',
-    height: '1.5px',
-    backgroundColor: PRINT_COLORS.accent,
-  },
-  mainBody: {
-    padding: '0 18mm',
-    flex: 1,
-  },
-  sectionHeading: {
-    fontSize: '11pt',
-    fontWeight: 900,
+    textAlign: 'center',
     textTransform: 'uppercase',
-    letterSpacing: '0.2em',
-    marginBottom: '10mm',
+    letterSpacing: '0.1em',
+    lineHeight: 1.4,
+  },
+  contactSection: {
+    borderTop: `1px solid ${PRINT_COLORS.border}`,
+    paddingTop: '5mm',
+  },
+  sectionLabel: {
+    fontSize: '6.5pt',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '0.12em',
     color: PRINT_COLORS.black,
-    borderLeft: `5mm solid ${PRINT_COLORS.accent}`,
-    paddingLeft: '5mm',
-    pageBreakAfter: 'avoid',
-    breakAfter: 'avoid'
+    marginBottom: '3.5mm',
+    borderBottom: `1px solid ${PRINT_COLORS.black}`,
+    paddingBottom: '1.5mm',
   },
-  experienceRow: {
-    display: 'grid',
-    gridTemplateColumns: '1.3fr 2fr',
-    gap: '12mm',
-    marginBottom: '12mm',
+  contactItem: {
+    fontSize: '6.5pt',
+    color: PRINT_COLORS.grey,
+    marginBottom: '1.8mm',
+    wordBreak: 'break-word',
+    lineHeight: 1.4,
   },
-  experienceMeta: {
+  skillTag: {
+    display: 'inline-block',
+    background: PRINT_COLORS.lightBg,
+    border: `1px solid ${PRINT_COLORS.border}`,
+    color: PRINT_COLORS.secondary,
+    padding: '1.5mm 2.5mm',
+    fontSize: '5.5pt',
+    fontWeight: 500,
+    marginBottom: '1.8mm',
+    marginRight: '1.8mm',
+    borderRadius: '0.5mm',
+    fontFamily: "'JetBrains Mono', monospace",
+  },
+  profileInitial: {
+    fontSize: '18pt',
+    fontWeight: 700,
+    color: PRINT_COLORS.primary,
+  },
+  sidebarAccent: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '3mm',
+    height: '100%',
+    background: PRINT_COLORS.black,
+  },
+  mainContent: {
+    flex: 1,
+    padding: '10mm 10mm',
     display: 'flex',
     flexDirection: 'column',
+    gap: '5mm',
+  },
+  mainTitle: {
+    fontSize: '16pt',
+    fontWeight: 800,
+    color: PRINT_COLORS.primary,
+    marginBottom: '2mm',
+    letterSpacing: '-0.02em',
+    lineHeight: 1.2,
+  },
+  subtitle: {
+    fontSize: '9pt',
+    fontWeight: 600,
+    color: PRINT_COLORS.grey,
+    textTransform: 'uppercase',
+    letterSpacing: '0.1em',
+    marginBottom: '5mm',
+  },
+  summaryParagraph: {
+    fontSize: '9pt',
+    lineHeight: 1.6,
+    textAlign: 'justify',
+    color: PRINT_COLORS.grey,
+    marginBottom: '4mm',
+  },
+  sectionHeading: {
+    fontSize: '9pt',
+    fontWeight: 800,
+    textTransform: 'uppercase',
+    letterSpacing: '0.15em',
+    color: PRINT_COLORS.primary,
+    paddingBottom: '2mm',
+    borderBottom: `1.5px solid ${PRINT_COLORS.black}`,
+    marginBottom: '5mm',
+    marginTop: '1mm',
+  },
+  experienceItem: {
+    marginBottom: '5mm',
+  },
+  expHeader: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: '0.5mm',
   },
   expRole: {
-    fontSize: '13pt',
-    fontWeight: 800,
-    marginBottom: '2mm',
-  },
-  expCompany: {
-    fontSize: '10.5pt',
-    fontWeight: 600,
-    color: PRINT_COLORS.muted,
+    fontSize: '9pt',
+    fontWeight: 700,
+    color: PRINT_COLORS.primary,
+    lineHeight: 1.3,
   },
   expPeriod: {
-    fontSize: '9.5pt',
+    fontSize: '6.5pt',
+    fontWeight: 600,
     color: PRINT_COLORS.muted,
-    marginTop: '3mm',
-    fontFamily: 'monospace',
-    fontWeight: 'bold',
+    fontFamily: "'JetBrains Mono', monospace",
+    whiteSpace: 'nowrap',
   },
-  expHighlights: {
+  expCompany: {
+    fontSize: '7.5pt',
+    fontWeight: 600,
+    color: PRINT_COLORS.muted,
+    marginBottom: '1.5mm',
+  },
+  highlightList: {
     margin: 0,
-    paddingLeft: '6mm',
-    listStyleType: 'none',
+    paddingLeft: '4mm',
   },
   highlightItem: {
-    marginBottom: '4mm',
-    textAlign: 'justify',
-    fontSize: '10.5pt',
+    fontSize: '7.5pt',
+    lineHeight: 1.45,
+    color: PRINT_COLORS.grey,
+    marginBottom: '0.8mm',
     position: 'relative',
-    lineHeight: '1.6',
-    pageBreakInside: 'avoid',
-    breakInside: 'avoid'
   },
   highlightBullet: {
     position: 'absolute',
-    left: '-6mm',
-    top: '2.5mm',
-    width: '3.5mm',
-    height: '1px',
-    backgroundColor: PRINT_COLORS.accent,
+    left: '-2.5mm',
+    top: '2mm',
+    width: '1.5mm',
+    height: '1.5mm',
+    borderRadius: '50%',
+    background: PRINT_COLORS.black,
   },
-  techMeta: {
-    fontFamily: 'monospace',
-    fontSize: '10pt',
-    color: PRINT_COLORS.black,
-    backgroundColor: PRINT_COLORS.white,
-    padding: '1.5mm 3mm',
-    borderLeft: `2px solid ${PRINT_COLORS.accent}`,
-    border: `1px solid ${PRINT_COLORS.border}`,
+  techBadge: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '6.5pt',
+    color: PRINT_COLORS.primary,
+    background: PRINT_COLORS.lightBg,
+    padding: '1mm 2mm',
+    borderLeft: `2px solid ${PRINT_COLORS.black}`,
+    marginTop: '2mm',
+    display: 'inline-block',
+  },
+  projectCard: {
+    padding: '2.5mm',
+    marginBottom: '2.5mm',
+    borderLeft: `1.5px solid ${PRINT_COLORS.black}`,
+  },
+  projectTitle: {
+    fontSize: '7.5pt',
+    fontWeight: 700,
+    color: PRINT_COLORS.primary,
+    marginBottom: '0.5mm',
+  },
+  projectDesc: {
+    fontSize: '6pt',
+    color: PRINT_COLORS.grey,
+    lineHeight: 1.45,
+    marginBottom: '1mm',
+  },
+  projectTech: {
+    fontFamily: "'JetBrains Mono', monospace",
+    fontSize: '5pt',
+    color: PRINT_COLORS.secondary,
+    padding: '0.3mm 1mm',
+    display: 'inline-block',
+    fontWeight: 600,
+  },
+  educationSection: {
+    display: 'flex',
+    gap: '4mm',
+    alignItems: 'flex-start',
+  },
+  educationSchool: {
+    fontSize: '8pt',
+    fontWeight: 700,
+    color: PRINT_COLORS.primary,
+  },
+  educationDegree: {
+    fontSize: '7pt',
+    color: PRINT_COLORS.grey,
+  },
+  educationPeriod: {
+    fontSize: '6pt',
+    color: PRINT_COLORS.muted,
+    fontFamily: "'JetBrains Mono', monospace",
+  },
+  awardItem: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '3mm',
+    fontSize: '7pt',
     marginTop: '3mm',
   },
-  footer: {
-    marginTop: '10mm',
-    padding: '10mm 18mm',
-    textAlign: 'center',
-    fontSize: '9pt',
-    color: PRINT_COLORS.muted,
-    borderTop: `1px solid ${PRINT_COLORS.border}`,
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    pageBreakInside: 'avoid',
-    breakInside: 'avoid'
-  }
+  awardDot: {
+    width: '2mm',
+    height: '2mm',
+    background: PRINT_COLORS.black,
+    borderRadius: '50%',
+  },
 };
 
 export default function PrintPortfolio() {
@@ -309,55 +404,73 @@ export default function PrintPortfolio() {
 
   return (
     <div style={PRINT_STYLES.container} className="print-portfolio-content">
-      <div style={PRINT_STYLES.documentContainer}>
-        {/* --- HEADER --- */}
-        <div style={PRINT_STYLES.headerWrapper}>
-          <div style={PRINT_STYLES.topHeader}>
-            <div style={PRINT_STYLES.logoSlot}>
-              <PRINT_VNDKLogo size={64} />
-            </div>
-            <div style={PRINT_STYLES.nameTitle}>
-              <h1 style={PRINT_STYLES.name}>{PRINT_PERSONAL_INFO.name}</h1>
-              <div style={PRINT_STYLES.title}>{PRINT_PERSONAL_INFO.title}</div>
-            </div>
-            <div style={PRINT_STYLES.contactInfo}>
-              <div>{PRINT_PERSONAL_INFO.email}</div>
-              <div>{PRINT_PERSONAL_INFO.phone}</div>
-              <div style={{color: PRINT_COLORS.muted, textDecoration: 'underline'}}>{PRINT_PERSONAL_INFO.portfolio}</div>
-            </div>
+      {/* LEFT SIDEBAR */}
+      <aside style={PRINT_STYLES.sidebar}>
+        <div style={PRINT_STYLES.sidebarAccent}></div>
+        
+        <div style={PRINT_STYLES.profileImage}>
+          <div style={PRINT_STYLES.profileImage}>
+            <VndkLogo size={48} />
           </div>
-          
-          <div style={PRINT_STYLES.headerLine}>
-            <div style={PRINT_STYLES.headerLineAccent}></div>
-          </div>
-          <div style={{...PRINT_STYLES.expPeriod, marginBottom: '10mm', textAlign: 'right'}}>{PRINT_PERSONAL_INFO.location}</div>
+        </div>
+        
+        <div>
+          <h1 style={PRINT_STYLES.name}>{PRINT_PERSONAL_INFO.name}</h1>
+          <div style={PRINT_STYLES.title}>{PRINT_PERSONAL_INFO.title}</div>
+        </div>
 
-          <h2 style={PRINT_STYLES.summaryHeadline}>{PRINT_PERSONAL_INFO.summaryHeadline}</h2>
-          <p style={PRINT_STYLES.summaryParagraph}>{PRINT_PERSONAL_INFO.summaryBody}</p>
+        <div style={PRINT_STYLES.contactSection}>
+          <div style={PRINT_STYLES.sectionLabel}>Contact</div>
+          <div style={PRINT_STYLES.contactItem}>{PRINT_PERSONAL_INFO.email}</div>
+          <div style={PRINT_STYLES.contactItem}>{PRINT_PERSONAL_INFO.phone}</div>
+          <div style={PRINT_STYLES.contactItem}>{PRINT_PERSONAL_INFO.location}</div>
+          <div style={PRINT_STYLES.contactItem}>{PRINT_PERSONAL_INFO.linkedin}</div>
+          <div style={PRINT_STYLES.contactItem}>{PRINT_PERSONAL_INFO.portfolio}</div>
+        </div>
 
-          <div style={{marginBottom: '8mm', fontSize: '10.5pt', fontWeight: 900, textTransform: 'uppercase', color: PRINT_COLORS.black, letterSpacing: '0.15em'}}>Branded Expertise</div>
-          <div style={PRINT_STYLES.skillsGrid}>
+        <div>
+          <div style={PRINT_STYLES.sectionLabel}>Expertise</div>
+          <div style={{display: 'flex', flexWrap: 'wrap'}}>
             {PRINT_SKILLS.map((skill, i) => (
-              <div key={i} style={PRINT_STYLES.skillItem}>
-                <div style={PRINT_STYLES.skillIcon}></div>
-                {skill}
-              </div>
+              <span key={i} style={PRINT_STYLES.skillTag}>{skill}</span>
             ))}
           </div>
         </div>
 
-        {/* --- MAIN CONTENT CONTINUOUS --- */}
-        <div style={PRINT_STYLES.mainBody}>
-          <div style={PRINT_STYLES.sectionHeading}>Experience Journey</div>
+        <div>
+          <div style={PRINT_STYLES.sectionLabel}>Education</div>
+          <div style={PRINT_STYLES.educationSchool}>{PRINT_EDUCATION[0].school}</div>
+          <div style={PRINT_STYLES.educationDegree}>{PRINT_EDUCATION[0].degree}</div>
+          <div style={PRINT_STYLES.educationPeriod}>{PRINT_EDUCATION[0].period}</div>
+        </div>
+
+        <div style={{marginTop: 'auto'}}>
+          <div style={{textAlign: 'center', opacity: 0.5}}>
+            <VndkLogo size={40} />
+          </div>
+        </div>
+      </aside>
+
+      {/* MAIN CONTENT */}
+      <main style={PRINT_STYLES.mainContent}>
+        <div>
+          <h1 style={PRINT_STYLES.mainTitle}>{PRINT_PERSONAL_INFO.summaryHeadline}</h1>
+          <p style={PRINT_STYLES.summaryParagraph}>{PRINT_PERSONAL_INFO.summaryBody}</p>
+        </div>
+
+        <div>
+          <h2 style={PRINT_STYLES.sectionHeading}>Experience Journey</h2>
           
           {PRINT_EXPERIENCES.map((exp, i) => (
-            <div key={i} style={PRINT_STYLES.experienceRow}>
-              <div style={PRINT_STYLES.experienceMeta}>
-                <div style={PRINT_STYLES.expRole}>{exp.role}</div>
-                <div style={PRINT_STYLES.expCompany}>{exp.company}</div>
+            <div key={i} style={PRINT_STYLES.experienceItem}>
+              <div style={PRINT_STYLES.expHeader}>
+                <div>
+                  <div style={PRINT_STYLES.expRole}>{exp.role}</div>
+                  <div style={PRINT_STYLES.expCompany}>{exp.company}</div>
+                </div>
                 <div style={PRINT_STYLES.expPeriod}>{exp.period}</div>
               </div>
-              <ul style={PRINT_STYLES.expHighlights}>
+              <ul style={PRINT_STYLES.highlightList}>
                 {exp.highlights && exp.highlights.map((h, j) => (
                   <li key={j} style={PRINT_STYLES.highlightItem}>
                     <div style={PRINT_STYLES.highlightBullet}></div>
@@ -367,52 +480,52 @@ export default function PrintPortfolio() {
               </ul>
             </div>
           ))}
+        </div>
 
-          <div style={{...PRINT_STYLES.sectionHeading, marginTop: '8mm'}}>Branded Systems & Tech</div>
+        <div>
+          <h2 style={PRINT_STYLES.sectionHeading}>Strategic Projects</h2>
           {PRINT_STRATEGIC_TECH.map((proj, i) => (
-            <div key={i} style={PRINT_STYLES.experienceRow}>
-              <div style={PRINT_STYLES.experienceMeta}>
-                <div style={{...PRINT_STYLES.expRole, fontSize: '12pt'}}>{proj.name}</div>
-                <div style={PRINT_STYLES.techMeta}>{proj.tech}</div>
-              </div>
-              <div style={{fontSize: '11pt', color: PRINT_COLORS.grey, lineHeight: '1.7'}}>
-                {proj.desc}
-              </div>
+            <div key={i} style={PRINT_STYLES.projectCard}>
+              <div style={PRINT_STYLES.projectTitle}>{proj.name}</div>
+              <div style={PRINT_STYLES.projectDesc}>{proj.desc}</div>
+              <span style={PRINT_STYLES.projectTech}>{proj.tech}</span>
             </div>
           ))}
+        </div>
 
-          <div style={{...PRINT_STYLES.sectionHeading, marginTop: '8mm'}}>Foundation & Recognition</div>
-          <div style={PRINT_STYLES.experienceRow}>
-            <div style={PRINT_STYLES.experienceMeta}>
-              <div style={PRINT_STYLES.expRole}>{PRINT_EDUCATION[0].school}</div>
-              <div style={PRINT_STYLES.expPeriod}>{PRINT_EDUCATION[0].period}</div>
-            </div>
-            <div style={{fontSize: '11pt', color: PRINT_COLORS.grey}}>
-              <strong style={{color: PRINT_COLORS.black}}>{PRINT_EDUCATION[0].degree}</strong> ({PRINT_EDUCATION[0].details})<br/>
-              <div style={{marginTop: '6mm', borderTop: `1px solid ${PRINT_COLORS.border}`, paddingTop: '4mm'}}>
-                <div style={{display: 'grid', gridTemplateColumns: '1fr', gap: '3mm'}}>
-                  <div style={{display: 'flex', alignItems: 'center', gap: '3mm'}}>
-                    <div style={{...PRINT_STYLES.skillIcon, width: '4mm'}}></div>
-                    <span>P&G SEA Digital Awards (Best Digital Campaign, 2024)</span>
-                  </div>
-                </div>
+        <div>
+          <div style={PRINT_STYLES.educationSection}>
+            <div style={{flex: 1}}>
+              <div style={PRINT_STYLES.educationSchool}>Recognition & Awards</div>
+              <div style={PRINT_STYLES.awardItem}>
+                <div style={PRINT_STYLES.awardDot}></div>
+                <span>P&G SEA Digital Awards - Best Digital Campaign, 2024</span>
+              </div>
+              <div style={PRINT_STYLES.awardItem}>
+                <div style={PRINT_STYLES.awardDot}></div>
+                <span>RMIT Student Showcase - Best Artistic Work: Hyper-realistic Hand-drawing</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* --- FOOTER --- */}
-        <div style={PRINT_STYLES.footer}>
-          <div style={{display: 'flex', gap: '6mm'}}>
-             <span>{PRINT_PERSONAL_INFO.linkedin}</span>
-             <span>{PRINT_PERSONAL_INFO.portfolio}</span>
+        <div style={{
+          marginTop: 'auto',
+          paddingTop: '3mm',
+          borderTop: `1px solid ${PRINT_COLORS.border}`,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}>
+          <div style={{fontSize: '5.5pt', color: PRINT_COLORS.muted}}>
+            {PRINT_PERSONAL_INFO.email} • {PRINT_PERSONAL_INFO.phone}
           </div>
-          <div style={{display: 'flex', alignItems: 'center', gap: '4mm'}}>
-             <PRINT_VNDKLogo size={24} />
-             <span style={{fontWeight: 900, color: PRINT_COLORS.black}}>VNDK // CV</span>
+          <div style={{display: 'flex', alignItems: 'center', gap: '1.5mm'}}>
+            <VndkLogo size={14} />
+            <span style={{fontSize: '5.5pt', fontWeight: 700, color: PRINT_COLORS.black}}>KHOA.VO</span>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

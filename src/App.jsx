@@ -1384,7 +1384,7 @@ export default function Portfolio() {
         )}
       </AnimatePresence>
 
-      {/* Permanently mount the print portfolio so the browser can natively invoke it */}
+      {/* Print-only portfolio - hidden on screen */}
       <div className="print-portfolio">
         <PrintPortfolio />
       </div>

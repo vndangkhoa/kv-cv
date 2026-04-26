@@ -25,9 +25,13 @@ Personal portfolio website featuring dual personas (Creative & IT), inspired by 
 - **Typography**: Syne (display) + IBM Plex Mono
 - **Default theme**: Light
 
-### Print CV
-- Separate print-optimized A4 format
-- Concise professional journey
+### Print CV (Downloadable PDF)
+- Professional B&W print-friendly A4 format
+- Two-column layout: Sidebar (contact, skills, education) + Main content
+- Includes all 8 job experiences from Graphic Artist to AI Creative Lead
+- Strategic IT Projects section showcasing Full-Stack development skills
+- Awards & Recognition section
+- Clean, minimal design optimized for HR/recruiters
 
 ## Tech Stack
 
@@ -53,6 +57,7 @@ npm run build
 ## Print CV
 
 Press the "Download CV" button or use `window.print()` to generate the PDF CV.
+Select "Save as PDF" in the print dialog.
 
 ## License
 
