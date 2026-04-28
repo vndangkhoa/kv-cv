@@ -543,18 +543,42 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
   const [activeProject, setActiveProject] = useState(null);
   const [visibleProjects, setVisibleProjects] = useState([]);
   const [viewMode, setViewMode] = useState('grid');
+  const [scrollY, setScrollY] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimerRef = useRef(null);
 
   const bgClass = "bg-[var(--bg-primary)]";
   const textClass = "text-[var(--text-primary)]";
   const subTextClass = "text-[var(--text-secondary)]";
   const borderClass = "border-[var(--border)]";
 
+  // Scroll progress (0 to 1)
+  const getScrollProgress = () => {
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    return maxScroll > 0 ? Math.min(scrollY / maxScroll, 1) : 0;
+  };
+
   useEffect(() => {
     const handleScroll = () => {
+      setScrollY(window.scrollY);
       setShowScrollTop(window.scrollY > 400);
+      setIsScrolling(true);
+      
+      // Clear existing timer
+      if (scrollTimerRef.current) {
+        clearTimeout(scrollTimerRef.current);
+      }
+      
+      // Hide letters after 150ms of no scroll
+      scrollTimerRef.current = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
     };
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (scrollTimerRef.current) clearTimeout(scrollTimerRef.current);
+    };
   }, []);
 
   // Keyboard navigation for modal
@@ -626,6 +650,83 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
           </div>
         </div>
       </nav>
+
+      {/* Scroll-based Flying Letters - only show while scrolling */}
+      <div className="fixed inset-0 pointer-events-none z-30 overflow-hidden">
+        {['V', 'N', 'D', 'K'].map((letter, idx) => {
+          const letterColor = ['V', 'N'].includes(letter) 
+            ? (darkMode ? '#FFFFFF' : '#1A1A1A') 
+            : '#00FF94';
+          const progress = getScrollProgress();
+          
+          // Spread amount: 0 at start, max at 50%, back to 0 at end
+          const spreadProgress = Math.sin(progress * Math.PI);
+          const spreadAmount = spreadProgress * 180;
+          
+          // Move down from nav toward footer
+          const moveDown = progress * 280;
+          
+          // Y wave for floating
+          const yWave = Math.sin(progress * Math.PI * 4 + idx * 1.5) * 25;
+          
+          // Only visible while scrolling and during scroll movement
+          const opacity = isScrolling && progress > 0.02 && progress < 0.96 ? 1 : 0;
+          
+          // Original logo positions spread: V leftmost, N rightmost, D leftmost, K rightmost
+          // Move them outward from their origin positions
+          const offsetX = [0, 0, 0, 0]; // No additional X offset, use spread
+          const basePositions = [
+            { x: -spreadAmount - 35, y: -45 + moveDown + yWave },      // V - top left
+            { x: spreadAmount + 35, y: -45 + moveDown - yWave },     // N - top right  
+            { x: -spreadAmount - 35, y: 55 + moveDown + yWave },    // D - bottom left
+            { x: spreadAmount + 35, y: 55 + moveDown - yWave },    // K - bottom right
+          ];
+
+          // Exact paths from VndkLogo
+          const letterPaths = {
+            V: [{ d: "M 15 25 L 30 45 L 45 25", color: letterColor }],
+            N: [{ d: "M 55 45 L 55 25 L 85 45 L 85 25", color: letterColor }],
+            D: [{ d: "M 15 55 L 30 55 A 10 10 0 0 1 30 75 L 15 75 Z", color: letterColor }],
+            K: [
+              { d: "M 55 55 L 55 75", color: letterColor },
+              { d: "M 85 55 L 55 65 L 85 75", color: letterColor },
+            ],
+          };
+
+          return (
+            <motion.div
+              key={letter}
+              className="absolute cursor-pointer pointer-events-auto"
+              style={{
+                left: '50%',
+                x: basePositions[idx].x,
+                y: basePositions[idx].y,
+                opacity: opacity,
+              }}
+              whileHover={{ scale: 1.15 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            >
+              <svg 
+                viewBox="0 0 100 100" 
+                className="w-16 h-16 md:w-20 md:h-20"
+                style={{ filter: 'drop-shadow(0 0 8px currentColor)' }}
+              >
+                {letterPaths[letter].map((pathData, pathIdx) => (
+                  <path 
+                    key={pathIdx}
+                    d={pathData.d}
+                    stroke={pathData.color}
+                    strokeWidth="4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                  />
+                ))}
+              </svg>
+            </motion.div>
+          );
+        })}
+      </div>
 
       {/* Back to Top Button */}
       <AnimatePresence>
@@ -876,6 +977,30 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
 
         {/* Contact */}
         <footer className={`max-w-7xl mx-auto px-6 py-16 border-t ${borderClass}`}>
+          {/* Reconstructed Logo - original size and position */}
+          <div className="flex flex-col items-center mb-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ 
+                opacity: getScrollProgress() > 0.90 ? 1 : 0,
+                scale: getScrollProgress() > 0.90 ? 1 : 0.7,
+              }}
+              transition={{ duration: 0.6 }}
+            >
+              {/* Single full logo: V N top, D K bottom */}
+              <svg viewBox="0 0 100 100" className="w-24 h-24 md:w-28 md:h-28">
+                {/* V - top left */}
+                <path d="M 15 25 L 30 45 L 45 25" stroke={darkMode ? '#FFFFFF' : '#1A1A1A'} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                {/* N - top right */}
+                <path d="M 55 45 L 55 25 L 85 45 L 85 25" stroke={darkMode ? '#FFFFFF' : '#1A1A1A'} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                {/* D - bottom left */}
+                <path d="M 15 55 L 30 55 A 10 10 0 0 1 30 75 L 15 75 Z" stroke="#00FF94" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                {/* K - bottom right */}
+                <path d="M 55 55 L 55 75 M 85 55 L 55 65 L 85 75" stroke="#00FF94" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+              </svg>
+            </motion.div>
+          </div>
+          
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
             <div>
               <h3 className="text-2xl font-serif font-bold mb-2">Let's Create Together</h3>

@@ -1,6 +1,6 @@
 # KHOA.VO Portfolio
 
-Personal portfolio website featuring dual personas (Creative & IT), inspired by Simmonds Ltd design aesthetics.
+Personal portfolio website featuring dual personas (Creative & IT), with animated scroll-based branding experience.
 
 ## Live Site
 
@@ -10,28 +10,24 @@ Personal portfolio website featuring dual personas (Creative & IT), inspired by 
 ## Features
 
 ### Creative Side
+- **Animated VNDK Logo**: Flying letters that deconstruct/reconstruct during scroll
+- **Scroll-triggered animation**: Letters appear while scrolling, disappear when stopped
+- **2.5D floating effect**: Letters wave and spread during scroll
+- **Reconstructed footer**: Full logo appears centered at bottom
 - **Three viewing modes**: Grid, List, Minimal
 - **Image effects**: Grayscale + pixelated + blur → Full color on hover
 - **Enhanced project modal**: Keyboard navigation (ESC, Arrow keys)
-- **Professional Journey**: Longer, more detailed for HR/readability
 
 ### IT Side  
 - **Retro desktop UI**: Draggable windows
 - **CRT screen effects**: Scanlines, vignette
-- **Idle screensaver**: 5s timeout with animated logo
+- **Idle screensaver**: 10s timeout with animated logo
 
 ### Design
-- **Simmonds Ltd inspired**: Dark/light theme, grid patterns, phosphor green accents
-- **Typography**: Syne (display) + IBM Plex Mono
-- **Default theme**: Light
-
-### Print CV (Downloadable PDF)
-- Professional B&W print-friendly A4 format
-- Two-column layout: Sidebar (contact, skills, education) + Main content
-- Includes all 8 job experiences from Graphic Artist to AI Creative Lead
-- Strategic IT Projects section showcasing Full-Stack development skills
-- Awards & Recognition section
-- Clean, minimal design optimized for HR/recruiters
+- **Dual persona**: Creative Portfolio & IT Developer modes
+- **Dark/light theme**: Toggle between modes
+- **Grid patterns**: Subtle background textures
+- **Phosphor green accents**: #00FF94 signature color
 
 ## Tech Stack
 
@@ -54,10 +50,11 @@ npm run dev
 npm run build
 ```
 
-## Print CV
+## Deployment
 
-Press the "Download CV" button or use `window.print()` to generate the PDF CV.
-Select "Save as PDF" in the print dialog.
+The site deploys automatically via Forgejo CI/CD to:
+- **Frontend**: https://khoavo.myds.me
+- **Git**: https://git.khoavo.myds.me/vndangkhoa/kv-cv
 
 ## License
 
