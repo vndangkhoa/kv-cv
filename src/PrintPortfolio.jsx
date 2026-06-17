@@ -2,14 +2,14 @@ import React from 'react';
 
 const PRINT_PERSONAL_INFO = {
   name: "Khoa.vo",
-  title: "CREATIVE MANAGER & AI-POWERED DEVELOPER",
+  title: "CREATIVE MANAGER & DESIGN MANAGER",
   location: "Ho Chi Minh City, Vietnam",
   phone: "0398300340",
   email: "vonguyendangkhoa@gmail.com",
   linkedin: "linkedin.com/in/khoavo93",
   portfolio: "khoavo.myds.me",
-  summaryHeadline: "Creative Leader | AI Innovation | Full-Stack Developer",
-  summaryBody: "With 9+ years at P&G and Phibious, I bridge creative direction with AI automation—building scalable video production workflows for Fortune 500 brands.\n\nAs an AI-Powered Developer, I also build production apps: video streaming platforms (Go, Docker), AI image generators, and Android TV apps."
+  summaryHeadline: "Creative Manager | Design Leader | Visual Strategy",
+  summaryBody: "Creative and design leader with 9+ years of experience building high-impact visual strategies across Southeast Asia. Proven track record in leading cross-functional creative teams, managing end-to-end production workflows, and driving digital brand transformation across eCommerce, editorial, and omnichannel retail.\n\nPassionate about integrating AI-powered tools into creative pipelines to enhance efficiency and scale output while maintaining brand consistency."
 };
 
 const PRINT_EDUCATION = [
@@ -22,10 +22,10 @@ const PRINT_EDUCATION = [
 ];
 
 const PRINT_SKILLS = [
-  "Creative Direction", "Brand Strategy", "Team Mentorship",
-  "GenAI Workflows", "ComfyUI & FLUX", "AI Video Systems",
-  "Adobe Creative Suite", "Motion Graphics", "3D Visualization",
-  "Full-Stack Dev", "Agentic AI", "Automation SOPs"
+  "Creative Direction", "Brand Strategy", "Team Leadership",
+  "Design Systems", "Art Direction", "Visual Identity",
+  "Adobe Creative Suite", "Motion Graphics", "Production Management",
+  "Stakeholder Management", "Cross-functional Collaboration", "Budget Planning"
 ];
 
 const PRINT_EXPERIENCES = [
@@ -113,10 +113,10 @@ const PRINT_EXPERIENCES = [
 ];
 
 const PRINT_STRATEGIC_TECH = [
-  { name: "KV-Tube", tech: "Go, Next.js, Docker, HLS", desc: "Enterprise-grade HLS video streaming platform deployed on Synology NAS. Features: user management, watch history, playlists, PWA support." },
-  { name: "APIx GenAI", tech: "TypeScript, Multi-LLM APIs", desc: "AI image generation portal integrating Google Whisk, Meta AI, Grok. Multi-provider support with prompt library and history." },
-  { name: "KV-Netflix", tech: "Kotlin, Compose Multiplatform", desc: "Full-featured Netflix clone for Android TV + Web. Movie streaming with trailer preview, custom playlists, offline downloads." },
-  { name: "Spotify Clone", tech: "React, Rust (Axum), YouTube API", desc: "Music player with YouTube Music integration, real-time lyrics, custom playlists, PWA support." }
+  { name: "P&G Hair Care eCommerce Design", tech: "Brand Strategy, Visual Identity", desc: "Led visual strategy for P&G's Hair Care portfolio across SEA, managing end-to-end design lifecycles and ensuring brand compliance across regional markets." },
+  { name: "ASIAMARINE Brand Identity", tech: "Art Direction, Design Systems", desc: "Developed the visual identity system that defined ASIAMARINE's premium positioning in the regional marine lifestyle sector." },
+  { name: "AI Video Production Pipeline", tech: "Creative Direction, Workflow Design", desc: "Spearheaded the transformation of video production workflows via AI and automation, achieving a 60% measurable gain in output volume." },
+  { name: "INN SaiGon Production Management", tech: "Production Leadership, Budget Planning", desc: "Directed photography production for food, product, and event projects with 30+ client accounts across hospitality and luxury retail." }
 ];
 
 const PRINT_COLORS = {
@@ -483,7 +483,7 @@ export default function PrintPortfolio() {
         </div>
 
         <div>
-          <h2 style={PRINT_STYLES.sectionHeading}>Strategic Projects</h2>
+          <h2 style={PRINT_STYLES.sectionHeading}>Key Projects</h2>
           {PRINT_STRATEGIC_TECH.map((proj, i) => (
             <div key={i} style={PRINT_STYLES.projectCard}>
               <div style={PRINT_STYLES.projectTitle}>{proj.name}</div>

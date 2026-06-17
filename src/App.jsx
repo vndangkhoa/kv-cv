@@ -9,6 +9,7 @@ import {
   Sun, Moon
 } from 'lucide-react';
 import PrintPortfolio from './PrintPortfolio';
+import { usePortfolioPosts, transformToProject } from './hooks/usePortfolioPosts';
 import './print.css';
 
 // --- SHARED DATA ---
@@ -24,9 +25,9 @@ const PERSONAL_INFO = {
 
 // --- CREATIVE PERSONA DATA ---
 const CREATIVE_DATA = {
-  title: "Creative Manager & AI Innovation Lead",
-  summary: "Visionary Creative Leader with 9+ years of expertise bridging brand strategy, digital design, motion graphics, and cutting-edge generative AI. Currently pioneering AI-augmented creative workflows at Phibious, merging traditional art direction with ComfyUI, Stable Diffusion, and FLUX to redefine what's possible in visual storytelling. Previously led eCommerce design at P&G, shaping digital experiences for millions of consumers across Southeast Asia.",
-  tagline: "Where Design Meets Intelligence",
+  title: "Creative & Design Manager",
+  summary: "Creative and design leader with 9+ years of experience building high-impact visual strategies across Southeast Asia. Proven track record in leading cross-functional creative teams, managing end-to-end production workflows, and driving digital brand transformation across eCommerce, editorial, and omnichannel retail.\n\nPassionate about integrating AI-powered tools into creative pipelines to enhance efficiency and scale output while maintaining brand consistency.",
+  tagline: "Design Leadership & Visual Strategy",
   skills: [
     { category: "AI & Generative Design", items: ["ComfyUI", "Stable Diffusion", "FLUX", "Midjourney", "RunwayML", "Ollama", "LM Studio", "LoRA Training", "ControlNet", "IP-Adapter"] },
     { category: "Design & Creative Tools", items: ["Adobe Creative Suite", "Figma", "After Effects", "Premiere Pro", "Cinema 4D", "Blender", "Photoshop", "Illustrator", "InDesign"] },
@@ -546,6 +547,9 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
   const [scrollY, setScrollY] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimerRef = useRef(null);
+  const { posts: portfolioPosts, loading: portfolioLoading } = usePortfolioPosts({ perPage: 12 });
+  
+  const projects = portfolioPosts.map(transformToProject);
 
   const bgClass = "bg-[var(--bg-primary)]";
   const textClass = "text-[var(--text-primary)]";
@@ -583,8 +587,7 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
 
   // Keyboard navigation for modal
   useEffect(() => {
-    if (!activeProject) return;
-    const projects = CREATIVE_DATA.projects;
+    if (!activeProject || projects.length === 0) return;
     const currentIndex = projects.findIndex(p => p.id === activeProject.id);
     
     const handleKeyDown = (e) => {
@@ -601,19 +604,19 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [activeProject]);
+  }, [activeProject, projects]);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   useEffect(() => {
-    if (isLoading) return;
+    if (isLoading || portfolioLoading) return;
     const timer = setTimeout(() => {
-      setVisibleProjects(CREATIVE_DATA.projects.map(p => p.id));
+      setVisibleProjects(projects.map(p => p.id));
     }, 500);
     return () => clearTimeout(timer);
-  }, [isLoading]);
+  }, [isLoading, portfolioLoading, projects]);
 
   return (
     <>
@@ -805,10 +808,22 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
             </div>
           </motion.div>
 
+          {portfolioLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="animate-pulse">
+                  <div className={`aspect-[4/3] mb-4 ${darkMode ? 'bg-white/10' : 'bg-[#1A1A1A]/10'}`} />
+                  <div className={`h-3 w-20 mb-2 ${darkMode ? 'bg-white/10' : 'bg-[#1A1A1A]/10'}`} />
+                  <div className={`h-5 w-3/4 ${darkMode ? 'bg-white/10' : 'bg-[#1A1A1A]/10'}`} />
+                </div>
+              ))}
+            </div>
+          ) : (
+          <>
           {/* Grid View */}
           {viewMode === 'grid' && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {CREATIVE_DATA.projects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30 }}
@@ -836,7 +851,7 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
           {/* List View */}
           {viewMode === 'list' && (
             <div className="space-y-4">
-              {CREATIVE_DATA.projects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, x: -20 }}
@@ -862,7 +877,7 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
           {/* Minimal View */}
           {viewMode === 'minimal' && (
             <div className="space-y-0">
-              {CREATIVE_DATA.projects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0 }}
@@ -882,6 +897,8 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
                 </motion.div>
               ))}
             </div>
+          )}
+          </>
           )}
         </section>
 
