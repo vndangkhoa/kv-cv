@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import PrintPortfolio from './PrintPortfolio';
 import { usePortfolioPosts, transformToProject } from './hooks/usePortfolioPosts';
+import { useForgejoRepos } from './hooks/useForgejoRepos';
 import './print.css';
 
 // --- SHARED DATA ---
@@ -203,23 +204,25 @@ const CREATIVE_DATA = {
 // --- IT PERSONA DATA ---
 const IT_DATA = {
   title: "Full-Stack Developer & DevOps",
-  summary: "14-month intensive coding journey from zero to production. Built 10+ deployed applications including video streaming platforms, AI tools, and media players. Proficient in modern web frameworks, containerization, and cloud deployment. Self-taught developer with a creative background bringing unique problem-solving perspective.",
+  summary: "2-year intensive coding journey from zero to production. Built 18+ deployed applications including video streaming platforms, AI tools, media players, and privacy-first apps. Proficient in modern web frameworks, containerization, and self-hosted cloud deployment. Self-taught developer with a creative background bringing unique problem-solving perspective.",
   journey: [
-    { month: "MAY '24", title: "The Spark", description: "First deep dive into Next.js. Abandoned manual CSS for Tailwind efficiency." },
-    { month: "JUL '24", title: "First Production App", description: "Built apix AI image generator with multi-provider support (Google Whisk, Meta AI, Grok)." },
+    { month: "PRESENT", title: "Ship & Scale", description: "Refining CI/CD pipelines, containerizing all services, and building a self-hosted ecosystem on Forgejo." },
+    { month: "JUN '26", title: "Privacy-first Apps", description: "Built kv-music (Spotify-like), kv-listen (Go audio streaming), and TypeType (privacy-respecting video frontend)." },
+    { month: "APR '26", title: "Video Downloader", description: "Universal video downloader API supporting multiple platforms with yt-dlp and Go backend." },
+    { month: "FEB '26", title: "TikTok Tooling", description: "Built Douyin/TikTok video download API with Python FastAPI, watermark removal, and batch processing." },
+    { month: "MAR '25", title: "Kotlin & Android TV", description: "Built kv-netflix Android TV + Web app with Kotlin Multiplatform. Cross-platform PWA support." },
+    { month: "DEC '24", title: "Rust & Systems", description: "Built Spotify clone with Rust Axum backend. Explored low-level system architecture." },
     { month: "SEP '24", title: "Full-Stack Mastery", description: "Created KV-Tube YouTube platform with Go backend + Next.js. Dockerized for Synology NAS." },
-    { month: "NOV '24", title: "The AI Pivot", description: "Fully embraced AI coding. Cursor and v0 became primary development engine." },
-    { month: "DEC '24", title: "Rust Exploration", description: "Built Spotify clone with Rust Axum backend. Advanced system architecture." },
-    { month: "MAR '25", title: "Netflix Clone", description: "Built kv-netflix Android TV + Web app with Kotlin Multiplatform." },
-    { month: "PRESENT", title: "Vibe Ascended", description: "Building complex apps through high-level prompting and intuition." }
+    { month: "JUL '24", title: "First Production App", description: "Built apix AI image generator with multi-provider support (Google Whisk, Meta AI, Grok)." },
+    { month: "MAY '24", title: "The Spark", description: "First deep dive into Next.js. Abandoned manual CSS for Tailwind efficiency." }
   ],
   skills: {
-    languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "Kotlin", "HTML/CSS", "SQL"],
+    languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "Kotlin", "HTML/CSS", "SQL", "Bash"],
     frontend: ["React", "Next.js", "Vite", "Tailwind CSS", "Shadcn", "Framer Motion", "Zustand", "PWA", "Jetpack Compose"],
-    backend: ["Node.js", "Go (Gin)", "Rust (Axum)", "Express", "REST APIs", "WebSocket", "Ktor"],
-    ai: ["LLM Integration", "Cursor AI", "v0", "Replit AI", "Ollama", "Prompt Engineering", "Multi-Provider AI APIs", "ComfyUI"],
-    devops: ["Docker", "Docker Compose", "GitHub Actions", "Forgejo CI/CD", "Synology NAS", "Nginx", "SQLite", "Git"],
-    tools: ["Git", "VS Code", "Figma", "Postman", "MongoDB", "Prisma", "ffmpeg", "Android Studio"]
+    backend: ["Node.js", "Go (Gin)", "Rust (Axum)", "Python (FastAPI)", "REST APIs", "WebSocket", "HLS Streaming", "Ktor"],
+    ai: ["LLM Integration", "Cursor AI", "v0", "Ollama", "Prompt Engineering", "Multi-Provider AI APIs"],
+    devops: ["Docker", "Docker Compose", "Forgejo CI/CD", "Synology NAS", "Nginx", "SQLite", "Git"],
+    tools: ["Git", "VS Code", "Figma", "Postman", "Prisma", "ffmpeg", "yt-dlp", "Android Studio"]
   },
   projects: [
     {
@@ -280,6 +283,15 @@ const IT_DATA = {
 };
 
 // --- COMPONENTS ---
+
+const downloadCV = () => {
+  const link = document.createElement('a');
+  link.href = '/resume.pdf';
+  link.download = 'Khoa_Vo_Resume.pdf';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
 
 const VndkLogo = ({ size = 36, vnColor = "#1A1A1A", dkColor = "#00FF94", className = "" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width={size} height={size} fill="none" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" className={className}>
@@ -642,7 +654,7 @@ const CreativeSide = ({ onBack, onSwitch, darkMode, toggleTheme }) => {
           </div>
 
           <div className="flex items-center gap-2 md:gap-3">
-            <button onClick={() => window.print()} className="px-4 py-2 text-[10px] md:text-xs font-bold uppercase tracking-widest bg-[#00FF94] text-black border border-[#00FF94] rounded-full hover:opacity-80 transition-opacity flex items-center gap-2 font-medium">
+            <button onClick={downloadCV} className="px-4 py-2 text-[10px] md:text-xs font-bold uppercase tracking-widest bg-[#00FF94] text-black border border-[#00FF94] rounded-full hover:opacity-80 transition-opacity flex items-center gap-2 font-medium">
               <Download size={14} />
               <span className="hidden md:inline">Download CV</span>
               <span className="md:hidden">CV</span>
@@ -1093,17 +1105,17 @@ const DesktopWindow = ({ children, title, onClose, initialPosition = { x: 20, y:
       initial={{ x: isMobile ? 0 : initialPosition.x, y: isMobile ? 0 : initialPosition.y, opacity: 0, scale: 0.9 }}
       animate={{ x: isMobile ? 0 : initialPosition.x, y: isMobile ? 0 : initialPosition.y, opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      className={`absolute ${isMobile ? 'fixed inset-4 z-50' : 'rounded-lg'} bg-[#0a0a0a] border border-[#00FF94]/30 overflow-hidden shadow-2xl shadow-[#00FF94]/10 flex flex-col`}
+      className={`${isMobile ? 'fixed inset-4 z-50' : 'absolute rounded-lg'} bg-[#0a0a0a] border border-[#00FF94]/30 overflow-hidden shadow-2xl shadow-[#00FF94]/10 flex flex-col`}
       style={{ 
-        width: isMobile ? 'calc(100% - 2rem)' : 'auto',
-        minWidth: isMobile ? 'none' : 320, 
-        maxWidth: isMobile ? 'none' : 500, 
-        height: isMobile ? 'calc(100% - 8rem)' : 'auto', 
+        width: isMobile ? 'calc(100% - 2rem)' : 480,
+        maxWidth: isMobile ? 'none' : 'calc(100vw - 8rem)',
+        height: isMobile ? 'calc(100% - 8rem)' : 'auto',
+        maxHeight: isMobile ? 'none' : 'calc(100dvh - 10rem)',
         zIndex: 100 
       }}
     >
       {/* Window Title Bar */}
-      <div className={`flex items-center justify-between px-3 py-2 bg-[#111] border-b border-[#00FF94]/20 ${!isMobile ? 'cursor-grab active:cursor-grabbing' : ''}`}>
+      <div className={`flex items-center justify-between px-3 py-2 bg-[#111] border-b border-[#00FF94]/20 shrink-0 ${!isMobile ? 'cursor-grab active:cursor-grabbing' : ''}`}>
         <div className="flex items-center gap-2">
           <div className="w-2.5 h-2.5 rounded-full bg-red-500/50" />
           <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/50" />
@@ -1115,7 +1127,7 @@ const DesktopWindow = ({ children, title, onClose, initialPosition = { x: 20, y:
         </button>
       </div>
       {/* Window Content */}
-      <div className="p-4 md:p-6 overflow-y-auto flex-1 custom-scrollbar">
+      <div className="p-4 md:p-6 overflow-y-auto flex-1 min-h-0 custom-scrollbar">
         {children}
       </div>
     </motion.div>
@@ -1130,6 +1142,16 @@ const ITSide = ({ onBack, onSwitch }) => {
   const [activeProject, setActiveProject] = useState(null);
   const [isScreensaver, setIsScreensaver] = useState(false);
   
+  const { repos, languages, stats, loading: reposLoading, error: reposError, refresh: refreshRepos } = useForgejoRepos();
+
+  const forgejoProjects = repos.map(repo => ({
+    name: repo.name,
+    description: repo.description,
+    tech: [repo.language],
+    github: repo.htmlUrl,
+    updatedAt: repo.updatedAt,
+  }));
+
   const fullText = "> whoami\n\nVo Nguyen Dang Khoa\nAI-Powered Developer\n14-month coding journey from zero to production";
 
   const openWindow = (name) => {
@@ -1267,7 +1289,7 @@ const ITSide = ({ onBack, onSwitch }) => {
           </div>
 
           <div className="flex items-center gap-3">
-            <button onClick={() => window.print()} className="px-3 py-1.5 text-[10px] md:text-xs text-[#00FF94] border border-[#00FF94]/30 rounded-sm hover:bg-[#00FF94] hover:text-[#0a0a0a] transition-all font-bold uppercase font-mono">
+            <button onClick={downloadCV} className="px-3 py-1.5 text-[10px] md:text-xs text-[#00FF94] border border-[#00FF94]/30 rounded-sm hover:bg-[#00FF94] hover:text-[#0a0a0a] transition-all font-bold uppercase font-mono">
               CV
             </button>
             <button onClick={onSwitch} className="px-3 py-1.5 text-[10px] md:text-xs text-[#0a0a0a] bg-[#00FF94] border border-[#00FF94] rounded-sm hover:bg-transparent hover:text-[#00FF94] transition-all uppercase font-bold font-mono">
@@ -1277,7 +1299,7 @@ const ITSide = ({ onBack, onSwitch }) => {
         </div>
       </nav>
 
-      <main className="relative min-h-screen overflow-hidden pt-14">
+      <main className="relative min-h-screen overflow-hidden pt-14 custom-scrollbar">
         {/* Sidebar (Desktop) / Bottom Dock (Mobile) - Focused on Window Management */}
         <div className="fixed bottom-0 left-0 right-0 h-16 md:h-auto md:left-0 md:top-14 md:bottom-0 md:w-20 bg-[#0a0a0a]/90 md:bg-[#0a0a0a]/80 backdrop-blur-md border-t md:border-t-0 md:border-r border-[#00FF94]/20 flex md:flex-col items-center justify-around md:justify-start py-2 md:py-8 gap-2 md:gap-8 z-[100]">
           {[
@@ -1326,6 +1348,19 @@ const ITSide = ({ onBack, onSwitch }) => {
                     {IT_DATA.summary}
                   </p>
                 </div>
+
+                {!reposLoading && !reposError && stats.totalRepos > 0 && (
+                  <div className="mt-8 pt-8 border-t border-[#00FF94]/20">
+                    <div className="text-xs text-[#00FF94]/50 mb-2">&gt; forgejo fetch --stats</div>
+                    <div className="text-sm text-slate-300 space-y-1">
+                      <div><span className="text-[#00D9FF]">Repos:</span> {stats.totalRepos} public</div>
+                      <div><span className="text-[#00D9FF]">Languages:</span> {Object.keys(languages).sort().join(', ')}</div>
+                      <div className="text-xs text-[#00FF94]/30 mt-1">
+                        Last synced: {new Date(stats.lastUpdated).toLocaleString()}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </DesktopWindow>
           )}
@@ -1352,26 +1387,37 @@ const ITSide = ({ onBack, onSwitch }) => {
           {openWindows.includes('projects') && (
             <DesktopWindow title="projects/" onClose={() => closeWindow('projects')} initialPosition={{ x: 200, y: 160 }}>
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-                <div className="grid grid-cols-1 gap-3">
-                  {IT_DATA.projects.map((project, i) => (
-                    <div 
-                      key={i} 
-                      onClick={() => setActiveProject(project)}
-                      className="border border-[#00FF94]/20 p-3 hover:border-[#00FF94]/40 hover:bg-[#00FF94]/5 cursor-pointer transition-all group"
-                    >
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-white font-bold group-hover:text-[#00FF94] transition-colors">{project.name}</span>
-                        <Folder size={14} className="text-[#00FF94]/40" />
+                {reposLoading && (
+                  <div className="text-xs text-[#00FF94]/50 animate-pulse">fetching repos from Forgejo...</div>
+                )}
+                {reposError && (
+                  <div className="text-xs text-red-400 mb-4">Failed to fetch repos: {reposError}</div>
+                )}
+                {!reposLoading && forgejoProjects.length > 0 && (
+                  <div className="grid grid-cols-1 gap-3">
+                    {forgejoProjects.map((project, i) => (
+                      <div 
+                        key={i} 
+                        onClick={() => setActiveProject(project)}
+                        className="border border-[#00FF94]/20 p-3 hover:border-[#00FF94]/40 hover:bg-[#00FF94]/5 cursor-pointer transition-all group"
+                      >
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-white font-bold group-hover:text-[#00FF94] transition-colors">{project.name}</span>
+                          <div className="flex items-center gap-2">
+                            <span className="text-[8px] text-[#00FF94]/30">{new Date(project.updatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}</span>
+                            <Folder size={14} className="text-[#00FF94]/40" />
+                          </div>
+                        </div>
+                        <p className="text-xs text-slate-400 mb-2">{project.description}</p>
+                        <div className="flex flex-wrap gap-1">
+                          {project.tech.map((t, j) => (
+                            <span key={j} className="text-[10px] bg-[#00FF94]/10 px-2 py-0.5 text-[#00FF94]">{t}</span>
+                          ))}
+                        </div>
                       </div>
-                      <p className="text-xs text-slate-400 mb-2">{project.description}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {project.tech.slice(0, 6).map((t, j) => (
-                          <span key={j} className="text-[10px] bg-[#00FF94]/10 px-2 py-0.5 text-[#00FF94]">{t}</span>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
+                )}
               </motion.div>
             </DesktopWindow>
           )}
@@ -1423,7 +1469,10 @@ const ITSide = ({ onBack, onSwitch }) => {
             <span className="animate-pulse text-[#00FF94]">▋</span>
           </div>
           <div className="flex items-center gap-2 ml-4">
-            <button onClick={() => window.print()} className="px-2 py-1 text-[10px] text-[#00FF94] border border-[#00FF94]/30 rounded hover:bg-[#00FF94]/10 transition-colors">
+            <button onClick={refreshRepos} disabled={reposLoading} className="px-2 py-1 text-[10px] text-[#00D9FF] border border-[#00D9FF]/30 rounded hover:bg-[#00D9FF]/10 transition-colors disabled:opacity-30">
+              Sync
+            </button>
+            <button onClick={downloadCV} className="px-2 py-1 text-[10px] text-[#00FF94] border border-[#00FF94]/30 rounded hover:bg-[#00FF94]/10 transition-colors">
               CV
             </button>
             <button onClick={onSwitch} className="px-2 py-1 text-[10px] text-[#0a0a0a] bg-[#00FF94] rounded hover:opacity-80 transition-colors">
@@ -1447,17 +1496,17 @@ const ITSide = ({ onBack, onSwitch }) => {
               initial={{ scale: 0.9, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.9, y: 20 }}
-              className="bg-[#0a0a0a] border border-[#00FF94]/30 max-w-2xl w-full rounded-lg overflow-hidden"
+              className="bg-[#0a0a0a] border border-[#00FF94]/30 max-w-2xl w-full rounded-lg overflow-hidden flex flex-col max-h-[90vh]"
               onClick={e => e.stopPropagation()}
             >
               {/* Terminal Header */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-[#111] border-b border-[#00FF94]/20">
+              <div className="flex items-center gap-2 px-4 py-3 bg-[#111] border-b border-[#00FF94]/20 shrink-0">
                 <div className="w-3 h-3 rounded-full bg-red-500/50" />
                 <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
                 <div className="w-3 h-3 rounded-full bg-green-500/50" />
                 <span className="ml-4 text-xs text-[#00FF94]">{activeProject.name}</span>
               </div>
-              <div className="p-6">
+              <div className="p-6 overflow-y-auto flex-1 min-h-0 custom-scrollbar">
                 <div className="text-xs text-[#00D9FF] mb-2 uppercase tracking-wider">Project Details</div>
                 <h3 className="text-xl text-white font-bold mb-3">{activeProject.name}</h3>
                 <p className="text-sm text-slate-300 mb-4">{activeProject.description}</p>
