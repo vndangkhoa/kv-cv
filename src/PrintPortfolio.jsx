@@ -452,7 +452,7 @@ export default function PrintPortfolio() {
       </aside>
 
       {/* MAIN CONTENT */}
-      <main style={PRINT_STYLES.mainContent}>
+      <section style={PRINT_STYLES.mainContent}>
         <div>
           <h1 style={PRINT_STYLES.mainTitle}>{PRINT_PERSONAL_INFO.summaryHeadline}</h1>
           <p style={PRINT_STYLES.summaryParagraph}>{PRINT_PERSONAL_INFO.summaryBody}</p>
@@ -525,7 +525,7 @@ export default function PrintPortfolio() {
             <span style={{fontSize: '5.5pt', fontWeight: 700, color: PRINT_COLORS.black}}>KHOA.VO</span>
           </div>
         </div>
-      </main>
+      </section>
     </div>
   );
 }

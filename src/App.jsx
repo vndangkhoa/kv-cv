@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import EasterEgg from './components/EasterEgg';
 import Marquee from './components/ui/Marquee';
 import PrintPortfolio from './components/PrintPortfolio';
-import { triggerPdfPrint } from './data/personal';
+import { triggerPdfPrint, exportPdfDirectly } from './data/personal';
 import './print.css';
 
 const MARQUEE_ITEMS = [
@@ -32,6 +32,7 @@ export default function App() {
   const [tab, setTab] = useState('creative');
   const [easterEggOpen, setEasterEggOpen] = useState(false);
   const [showPrintPreview, setShowPrintPreview] = useState(false);
+  const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
@@ -50,6 +51,10 @@ export default function App() {
 
   const toggleTheme = () => {
     setDarkMode((prev) => !prev);
+  };
+
+  const handleDownloadPdf = () => {
+    exportPdfDirectly((loading) => setIsGeneratingPdf(loading));
   };
 
   return (
@@ -89,16 +94,23 @@ export default function App() {
             <div className="flex items-center gap-2 font-mono text-xs text-[#00FF87] font-bold">
               <span>📄 KHOA.VO — Printable Portfolio & PDF CV</span>
             </div>
-            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+            <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
+              <button
+                onClick={handleDownloadPdf}
+                disabled={isGeneratingPdf}
+                className="flex-1 sm:flex-none px-4 py-1.5 bg-[#00FF87] hover:bg-[#00E676] disabled:bg-emerald-800 text-[#0A0D0B] rounded-lg text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-md shadow-[#00FF87]/20 transition-all cursor-pointer"
+              >
+                {isGeneratingPdf ? '⏳ Generating PDF...' : '📥 Download PDF'}
+              </button>
               <button
                 onClick={triggerPdfPrint}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-[#00FF87] hover:bg-[#00E676] text-[#0A0D0B] rounded-lg text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-md shadow-[#00FF87]/20 transition-all cursor-pointer"
+                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all border border-slate-700 cursor-pointer"
               >
-                Print / Save PDF
+                🖨️ Print / System PDF
               </button>
               <button
                 onClick={() => setShowPrintPreview(false)}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-700 cursor-pointer"
+                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-800 cursor-pointer"
               >
                 Close Preview
               </button>

@@ -1,10 +1,10 @@
 {
-  "fetchedAt": "2026-08-02T14:38:39.603Z",
+  "fetchedAt": "2026-08-02T14:42:54.147Z",
   "totalRepos": 21,
   "totalLanguages": 9,
   "languages": {
-    "Kotlin": 2,
     "JavaScript": 2,
+    "Kotlin": 2,
     "TypeScript": 8,
     "Shell": 1,
     "Python": 1,
@@ -14,6 +14,23 @@
     "HTML": 1
   },
   "repos": [
+    {
+      "id": 22,
+      "name": "kv-cv",
+      "fullName": "vndangkhoa/kv-cv",
+      "description": "Terminal-style interactive resume with retro desktop UI, draggable windows, CRT effects, and dual creative/IT personas",
+      "htmlUrl": "https://git.khoavo.myds.me/vndangkhoa/kv-cv",
+      "language": "JavaScript",
+      "updatedAt": "2026-08-02T21:40:05+07:00",
+      "createdAt": "2026-04-19T11:06:10+07:00",
+      "mirror": false,
+      "mirrorUpdated": "0001-01-01T00:00:00Z",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "watchers": 1,
+      "releases": 0
+    },
     {
       "id": 42,
       "name": "kv-netflix",
@@ -30,23 +47,6 @@
       "forks": 0,
       "watchers": 1,
       "releases": 5
-    },
-    {
-      "id": 22,
-      "name": "kv-cv",
-      "fullName": "vndangkhoa/kv-cv",
-      "description": "Terminal-style interactive resume with retro desktop UI, draggable windows, CRT effects, and dual creative/IT personas",
-      "htmlUrl": "https://git.khoavo.myds.me/vndangkhoa/kv-cv",
-      "language": "JavaScript",
-      "updatedAt": "2026-08-02T19:54:56+07:00",
-      "createdAt": "2026-04-19T11:06:10+07:00",
-      "mirror": false,
-      "mirrorUpdated": "0001-01-01T00:00:00Z",
-      "topics": [],
-      "stars": 0,
-      "forks": 0,
-      "watchers": 1,
-      "releases": 0
     },
     {
       "id": 5,
