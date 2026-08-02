@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-08-02T14:42:54.147Z",
+  "fetchedAt": "2026-08-02T14:44:45.806Z",
   "totalRepos": 21,
   "totalLanguages": 9,
   "languages": {
@@ -21,7 +21,7 @@
       "description": "Terminal-style interactive resume with retro desktop UI, draggable windows, CRT effects, and dual creative/IT personas",
       "htmlUrl": "https://git.khoavo.myds.me/vndangkhoa/kv-cv",
       "language": "JavaScript",
-      "updatedAt": "2026-08-02T21:40:05+07:00",
+      "updatedAt": "2026-08-02T21:43:04+07:00",
       "createdAt": "2026-04-19T11:06:10+07:00",
       "mirror": false,
       "mirrorUpdated": "0001-01-01T00:00:00Z",
@@ -364,7 +364,7 @@
       "updatedAt": "2026-06-27T09:16:31+07:00",
       "createdAt": "2025-12-20T18:49:58+07:00",
       "mirror": true,
-      "mirrorUpdated": "2026-08-02T21:33:59+07:00",
+      "mirrorUpdated": "2026-08-02T21:43:58+07:00",
       "topics": [],
       "stars": 0,
       "forks": 0,

@@ -9,7 +9,7 @@ import Contact from './components/Contact';
 import EasterEgg from './components/EasterEgg';
 import Marquee from './components/ui/Marquee';
 import PrintPortfolio from './components/PrintPortfolio';
-import { triggerPdfPrint, exportPdfDirectly } from './data/personal';
+import { exportPdfDirectly } from './data/personal';
 import './print.css';
 
 const MARQUEE_ITEMS = [
@@ -103,14 +103,8 @@ export default function App() {
                 {isGeneratingPdf ? '⏳ Generating PDF...' : '📥 Download PDF'}
               </button>
               <button
-                onClick={triggerPdfPrint}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all border border-slate-700 cursor-pointer"
-              >
-                🖨️ Print / System PDF
-              </button>
-              <button
                 onClick={() => setShowPrintPreview(false)}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-800 cursor-pointer"
+                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-700 cursor-pointer"
               >
                 Close Preview
               </button>

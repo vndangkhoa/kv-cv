@@ -91,10 +91,10 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
 
           <button
             onClick={onOpenPdf}
-            title="Export / Print PDF CV"
+            title="Download PDF CV"
             className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#00FF87]/40 bg-[#00FF87]/10 text-[#00FF87] hover:bg-[#00FF87]/25 text-xs font-mono font-bold transition-all shadow-sm"
           >
-            <FileText size={14} /> Print CV
+            <FileText size={14} /> Download CV
           </button>
 
           <button
@@ -149,7 +149,7 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
               onClick={() => { setMenuOpen(false); onOpenPdf(); }}
               className="w-full py-2 rounded-xl bg-[#00FF87]/15 text-[#00FF87] border border-[#00FF87]/30 text-xs font-mono font-bold flex items-center justify-center gap-2"
             >
-              <FileText size={14} /> Print / Save PDF CV
+              <FileText size={14} /> Download PDF CV
             </button>
             <TabSwitch active={tab} onChange={(newTab) => { onTabChange(newTab); setMenuOpen(false); }} size="sm" />
           </div>
