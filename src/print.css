@@ -1,57 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
-.print-portfolio {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  width: 0;
-  height: 0;
-  overflow: hidden;
+/* Hide standalone print mount when viewing webpage on screen */
+.standalone-print-mount {
+  display: none;
 }
 
 @media print {
   @page {
-    size: A4;
+    size: A4 portrait;
     margin: 0;
   }
 
   html, body {
     margin: 0 !important;
     padding: 0 !important;
-    width: 100% !important;
     background: #ffffff !important;
+    color: #000000 !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+    overflow: visible !important;
   }
 
-  body > *:not(#root) {
+  /* Hide all web interface components during print */
+  .no-print,
+  .noise-overlay,
+  header,
+  main,
+  footer,
+  .crt-screen,
+  nav,
+  button {
     display: none !important;
   }
-  
-  #root {
+
+  /* Make modal container static & transparent for paper */
+  .pdf-preview-backdrop {
+    position: static !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    min-height: 0 !important;
+  }
+
+  .pdf-preview-wrapper {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+  }
+
+  /* Show standalone print mount if printed directly without modal */
+  .standalone-print-mount {
     display: block !important;
-    width: 100% !important;
+  }
+
+  /* Force printable CV area to exact A4 dimensions on paper */
+  .printable-cv-area {
+    display: block !important;
+    position: static !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
     margin: 0 !important;
     padding: 0 !important;
-  }
-  
-  #root > *:not(.print-portfolio) {
-    display: none !important;
-  }
-
-  .print-portfolio {
-    position: static !important;
-    left: auto !important;
-    width: 100% !important;
-    height: auto !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
     overflow: visible !important;
-    background: #ffffff;
   }
 
   .print-portfolio-content {
     display: flex !important;
     flex-direction: row !important;
-    width: 100% !important;
-    min-height: 100vh !important;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+  .print-portfolio-content * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
