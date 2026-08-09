@@ -50,11 +50,11 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 left-0 right-0 z-[90] transition-all duration-500 ${
-        scrolled ? 'nav-blur py-3' : 'py-5 bg-transparent'
+        scrolled ? 'py-3 bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm' : 'py-5 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-5 md:px-8 flex items-center justify-between gap-4">
-        {/* Standalone VNDK Brand Logo */}
+        {/* Brand Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="flex items-center justify-center p-1 rounded-xl group transition-transform hover:scale-105"
@@ -63,18 +63,18 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
           <VNDKLogo size="md" />
         </button>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full px-3 py-1 backdrop-blur-md shadow-sm">
+        {/* Desktop Navigation Links */}
+        <nav className="hidden md:flex items-center gap-1 bg-slate-200/60 dark:bg-slate-900/60 border border-slate-300/80 dark:border-slate-800/80 rounded-full px-3 py-1 backdrop-blur-md shadow-inner">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`px-3.5 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 font-medium ${
+                className={`px-3.5 py-1.5 text-xs md:text-sm rounded-full transition-all duration-300 font-semibold cursor-pointer ${
                   isActive
-                    ? 'bg-[#00FF87]/20 text-[#00FF87] font-bold shadow-sm'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--accent-subtle)]'
+                    ? 'bg-slate-900 text-white dark:bg-[#00FF87]/20 dark:text-[#00FF87] font-bold shadow-sm'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-300/50 dark:hover:bg-slate-800/50'
                 }`}
               >
                 {link.label}
@@ -83,71 +83,79 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
           })}
         </nav>
 
-        <div className="flex items-center gap-2 md:gap-3">
-          {/* Persona Switcher visible on md+ */}
-          <div className="hidden md:block">
+        {/* Sleek Control Toolbar Cluster */}
+        <div className="flex items-center gap-2 p-1 rounded-full bg-slate-200/80 dark:bg-slate-900/80 border border-slate-300/80 dark:border-slate-800/80 backdrop-blur-md shadow-sm">
+          {/* Persona Switcher (Creative vs Developer Mode) */}
+          <div className="hidden sm:block">
             <TabSwitch active={tab} onChange={onTabChange} size="sm" />
           </div>
 
+          {/* Download CV Button */}
           <button
             onClick={onOpenPdf}
             title="Download PDF CV"
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#00FF87]/40 bg-[#00FF87]/10 text-[#00FF87] hover:bg-[#00FF87]/25 text-xs font-mono font-bold transition-all shadow-sm"
+            className="hidden sm:inline-flex items-center gap-1.5 h-8 px-3.5 rounded-full border border-emerald-600/30 dark:border-[#00FF87]/40 bg-emerald-500/10 dark:bg-[#00FF87]/15 text-emerald-700 dark:text-[#00FF87] hover:bg-emerald-500/20 dark:hover:bg-[#00FF87]/25 text-xs font-mono font-bold transition-all duration-300 shadow-sm cursor-pointer hover:scale-105 active:scale-95"
           >
-            <FileText size={14} /> Download CV
+            <FileText size={13} />
+            <span>Download CV</span>
           </button>
 
+          {/* Terminal / Easter Egg Button */}
           <button
             onClick={onEasterEgg}
             title="Nostalgic Terminal mode"
-            className="h-9 w-9 flex items-center justify-center rounded-full border border-[var(--border)] text-[var(--text-muted)] hover:text-[#00FF87] hover:border-[#00FF87]/50 transition-all bg-[var(--glass-bg)] backdrop-blur-md"
+            className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-700/80 bg-white dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-[#00FF87] hover:border-emerald-500/50 transition-all duration-300 shadow-sm cursor-pointer hover:scale-105 active:scale-95"
           >
-            <Terminal size={15} />
+            <Terminal size={14} />
           </button>
+
+          {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             title={darkMode ? 'Light mode' : 'Dark mode'}
-            className="h-9 w-9 flex items-center justify-center rounded-full border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:scale-110 transition-all bg-[var(--glass-bg)] backdrop-blur-md"
+            className="h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-700/80 bg-white dark:bg-slate-800/80 text-slate-700 dark:text-slate-300 hover:text-slate-950 dark:hover:text-white transition-all duration-300 shadow-sm cursor-pointer hover:scale-105 active:scale-95"
           >
-            {darkMode ? <Sun size={15} /> : <Moon size={15} />}
+            {darkMode ? <Sun size={14} /> : <Moon size={14} />}
           </button>
+
+          {/* Mobile Hamburger Toggle */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden h-9 w-9 flex items-center justify-center rounded-full border border-[var(--border)] bg-[var(--glass-bg)] backdrop-blur-md"
+            className="md:hidden h-8 w-8 inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-800"
             aria-label="Menu"
           >
-            <div className="space-y-1.5">
-              <span className={`block h-0.5 w-4 bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`block h-0.5 w-4 bg-current transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block h-0.5 w-4 bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+            <div className="space-y-1">
+              <span className={`block h-0.5 w-3.5 bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
+              <span className={`block h-0.5 w-3.5 bg-current transition-all ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-0.5 w-3.5 bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
             </div>
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div className="md:hidden nav-blur mt-2 mx-4 rounded-2xl p-4 space-y-1 shadow-xl">
+        <div className="md:hidden bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl mt-2 mx-4 rounded-2xl p-4 space-y-2 border border-slate-200 dark:border-slate-800 shadow-2xl">
           {NAV_LINKS.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => scrollTo(link.id)}
-                className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm transition-colors ${
+                className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm transition-colors font-semibold ${
                   isActive
-                    ? 'bg-[#00FF87]/20 text-[#00FF87] font-bold'
-                    : 'text-[var(--text-secondary)] hover:bg-[var(--accent-subtle)] hover:text-[var(--text-primary)]'
+                    ? 'bg-slate-900 text-white dark:bg-[#00FF87]/20 dark:text-[#00FF87] font-bold'
+                    : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 hover:text-slate-900 dark:hover:text-white'
                 }`}
               >
                 {link.label}
               </button>
             );
           })}
-          <div className="px-2 pt-3 border-t border-[var(--border)] mt-2 flex flex-col gap-2">
+          <div className="px-2 pt-3 border-t border-slate-200 dark:border-slate-800 mt-2 flex flex-col gap-2">
             <button
               onClick={() => { setMenuOpen(false); onOpenPdf(); }}
-              className="w-full py-2 rounded-xl bg-[#00FF87]/15 text-[#00FF87] border border-[#00FF87]/30 text-xs font-mono font-bold flex items-center justify-center gap-2"
+              className="w-full py-2.5 rounded-xl bg-emerald-500/15 dark:bg-[#00FF87]/15 text-emerald-700 dark:text-[#00FF87] border border-emerald-500/30 dark:border-[#00FF87]/30 text-xs font-mono font-bold flex items-center justify-center gap-2"
             >
               <FileText size={14} /> Download PDF CV
             </button>
