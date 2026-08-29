@@ -1,29 +1,85 @@
 export const IT_DATA = {
   title: "Full-Stack Developer & DevOps",
-  summary: "2-year intensive coding journey from zero to production. Built 18+ deployed applications including video streaming platforms, AI tools, media players, and privacy-first apps. Proficient in modern web frameworks, containerization, and self-hosted cloud deployment. Self-taught developer with a creative background bringing unique problem-solving perspective.",
+  summary: "Full-stack developer and self-hosted infrastructure architect with 2+ years of intensive production engineering. Creator of the KV Synology Community Package Center (pkg.khoavo.myds.me), serving custom SPK packages with GPG signing directly into DSM Package Center. Built 18+ deployed applications including Next.js 15 DSM Web Manager with 42 AI MCP tools, Kotlin Multiplatform Android TV apps, Rust systems utilities, and high-throughput Go streaming backends.",
   journey: [
-    { month: "PRESENT", title: "Ship & Scale", description: "Refining CI/CD pipelines, containerizing all services, and building a self-hosted ecosystem on Forgejo." },
-    { month: "JUN '26", title: "Privacy-first Apps", description: "Built kv-music (Spotify-like), kv-listen (Go audio streaming), and TypeType (privacy-respecting video frontend)." },
-    { month: "APR '26", title: "Video Downloader", description: "Universal video downloader API supporting multiple platforms with yt-dlp and Go backend." },
-    { month: "FEB '26", title: "TikTok Tooling", description: "Built Douyin/TikTok video download API with Python FastAPI, watermark removal, and batch processing." },
-    { month: "MAR '25", title: "Kotlin & Android TV", description: "Built kv-netflix Android TV + Web app with Kotlin Multiplatform. Cross-platform PWA support." },
-    { month: "DEC '24", title: "Rust & Systems", description: "Built Spotify clone with Rust Axum backend. Explored low-level system architecture." },
-    { month: "SEP '24", title: "Full-Stack Mastery", description: "Created KV-Tube YouTube platform with Go backend + Next.js. Dockerized for Synology NAS." },
-    { month: "JUL '24", title: "First Production App", description: "Built apix AI image generator with multi-provider support (Google Whisk, Meta AI, Grok)." },
-    { month: "MAY '24", title: "The Spark", description: "First deep dive into Next.js. Abandoned manual CSS for Tailwind efficiency." }
+    {
+      month: "PRESENT",
+      title: "Synology Package Hub & Ecosystem",
+      description: "Architected and deployed custom Synology Community Package Center server (pkg.khoavo.myds.me) using Flask & PostgreSQL. Built end-to-end SPK packaging toolchain with GPG cryptographic signing for 1-click DSM installations."
+    },
+    {
+      month: "AUG '26",
+      title: "Synology DSM Web Manager & AI MCP",
+      description: "Built kv-synology (Next.js 15, React 19, Tailwind v4) — modern DSM web manager with QuickConnect resolver, services controller (SMB, NFS, SSH, WebDAV), DSM notifications, and 42 MCP tools for AI agent automation."
+    },
+    {
+      month: "AUG '26",
+      title: "Rust Systems & Desktop Tooling",
+      description: "Developed mouse-me — native Linux cursor manager written in Rust with Slint GUI & CLI supporting Hyprland, Omarchy, GTK, Qt, and X11."
+    },
+    {
+      month: "JUL '26",
+      title: "Self-Hosted Media Engine",
+      description: "Built kv-dl & kv-download — high-throughput video processing API in Rust (Axum) and Go with yt-dlp & ffmpeg, deployed on Synology Container Manager."
+    },
+    {
+      month: "MAR '25",
+      title: "Kotlin & Android TV",
+      description: "Built kv-netflix Android TV + Web app with Kotlin Multiplatform and Compose Multiplatform. Cross-platform PWA support."
+    },
+    {
+      month: "DEC '24",
+      title: "Rust & Systems Architecture",
+      description: "Built Spotify clone with Rust Axum backend. Explored low-level system concurrency and streaming protocols."
+    },
+    {
+      month: "SEP '24",
+      title: "Full-Stack Media Streaming",
+      description: "Created KV-Tube YouTube platform with Go (Gin) backend + Next.js frontend with HLS adaptive streaming, containerized for Synology NAS."
+    },
+    {
+      month: "JUL '24",
+      title: "First Production App",
+      description: "Built apix AI image generator with multi-provider support (Google Whisk, Meta AI, Grok) and prompt management."
+    }
   ],
   skills: {
     languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "Kotlin", "HTML/CSS", "SQL", "Bash"],
-    frontend: ["React", "Next.js", "Vite", "Tailwind CSS", "Shadcn", "Framer Motion", "Zustand", "PWA", "Jetpack Compose"],
-    backend: ["Node.js", "Go (Gin)", "Rust (Axum)", "Python (FastAPI)", "REST APIs", "WebSocket", "HLS Streaming", "Ktor"],
-    ai: ["LLM Integration", "Cursor AI", "v0", "Ollama", "Prompt Engineering", "Multi-Provider AI APIs"],
-    devops: ["Docker", "Docker Compose", "Forgejo CI/CD", "Synology NAS", "Nginx", "SQLite", "Git"],
-    tools: ["Git", "VS Code", "Figma", "Postman", "Prisma", "ffmpeg", "yt-dlp", "Android Studio"]
+    frontend: ["React 19", "Next.js 15", "Vite", "Tailwind CSS v4", "Shadcn UI", "Framer Motion", "Zustand", "PWA", "Compose Multiplatform"],
+    backend: ["Node.js", "Go (Gin)", "Rust (Axum)", "Python (FastAPI / Flask)", "REST APIs", "WebSocket", "HLS Streaming", "Ktor"],
+    synology: ["Synology DSM 7.2+", "SPK Package Creation", "GPG Key Signing", "QuickConnect Protocol", "File Station API", "SYNO Core APIs"],
+    ai: ["Model Context Protocol (MCP)", "LLM Agent Tooling (42 Tools)", "Cursor AI", "Ollama", "ComfyUI Node API", "Multi-Provider AI"],
+    devops: ["Docker Multi-arch", "Docker Compose", "Forgejo CI/CD", "Nginx Reverse Proxy", "PostgreSQL", "SQLite", "Hairpin-NAT", "Linux / Bash"],
+    tools: ["Git", "VS Code", "Postman", "ffmpeg", "yt-dlp", "Android Studio", "GnuPG", "Figma"]
   },
   projects: [
     {
+      name: "kv-synology",
+      description: "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver with relay fallback, service toggles (SMB, NFS, SSH, WebDAV), DSM notifications, and 42 AI MCP tools.",
+      tech: ["Next.js 15", "React 19", "TypeScript", "Tailwind v4", "MCP Protocol", "Synology API", "Docker"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/kv-synology"
+    },
+    {
+      name: "spkrepo (KV Package Center)",
+      description: "Synology Community Package Repository Server (pkg.khoavo.myds.me) — serves custom SPK packages for 1-click install in DSM Package Center with GPG signing and automated release pipeline.",
+      tech: ["Python (Flask)", "PostgreSQL", "SPK Toolchain", "GnuPG", "Docker Compose", "Synology DSM 7.2"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/spkrepo"
+    },
+    {
+      name: "mouse-me",
+      description: "Universal cursor manager for Linux desktops (Hyprland, Omarchy, GTK, Qt, X11) with Slint GUI and CLI in a single Rust binary.",
+      tech: ["Rust", "Slint GUI", "Linux Desktop", "Hyprland", "CLI"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/mouse-me"
+    },
+    {
+      name: "kv-dl",
+      description: "Self-hosted YouTube and universal video downloader API — Rust (Axum) API + Next.js static UI with yt-dlp and ffmpeg batch processing.",
+      tech: ["Rust (Axum)", "Next.js", "yt-dlp", "ffmpeg", "Docker"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/kv-dl"
+    },
+    {
       name: "kv-netflix",
-      description: "StreamFlow Netflix - Android TV + Web App built with Kotlin Multiplatform. Movie streaming with trailer preview, custom playlists, and offline download support.",
+      description: "StreamFlow Netflix - Android TV + Web App built with Kotlin Multiplatform. Movie streaming with trailer previews, custom playlists, and offline download support.",
       tech: ["Kotlin", "Compose Multiplatform", "Android TV", "Web", "PWA"],
       github: "https://git.khoavo.myds.me/vndangkhoa/kv-netflix"
     },
@@ -40,39 +96,34 @@ export const IT_DATA = {
       github: "https://git.khoavo.myds.me/vndangkhoa/spotify-clone"
     },
     {
-      name: "neko",
-      description: "Go-based media server with streaming capabilities and user management. Deployed on NAS.",
-      tech: ["Go", "SQLite", "Docker", "HLS"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/neko"
-    },
-    {
-      name: "kv-download",
-      description: "Universal video downloader API supporting multiple platforms with batch processing.",
-      tech: ["Go", "yt-dlp", "Docker"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-download"
-    },
-    {
-      name: "kv-tiktok-download",
-      description: "Douyin/TikTok video download API with batch processing, watermarks removal, and metadata extraction.",
-      tech: ["Python", "FastAPI", "yt-dlp"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-tiktok-download"
-    },
-    {
       name: "apix",
       description: "AI Image Generator powered by Google Whisk, Meta AI, and Grok. Multi-provider support with prompt library and history.",
       tech: ["Next.js 14", "TypeScript", "Tailwind", "Zustand", "Docker"],
       github: "https://git.khoavo.myds.me/vndangkhoa/apix"
-    },
-    {
-      name: "kv-cv",
-      description: "This terminal-style interactive resume with retro desktop UI and draggable windows.",
-      tech: ["React", "Vite", "Tailwind", "Framer Motion", "TypeScript"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-cv"
     }
   ],
   experience: [
-    { role: "Creative Technology", company: "Phibious Vietnam", period: "2025 - Present", highlights: ["Bridge between creative and technical teams", "Develop interactive prototypes and AI-powered tools", "Automate creative workflows with custom scripts", "Build internal tools for design team productivity", "Deploy AI apps on enterprise infrastructure"] },
-    { role: "Freelance Developer", company: "Self-Employed", period: "2024 - Present", highlights: ["Built 10+ production web applications deployed on cloud and NAS", "Integrated AI capabilities (image generation, video processing) into client solutions", "Implemented CI/CD pipelines with GitHub/Forgejo Actions", "Dockerized applications for easy deployment on various platforms"] }
+    {
+      role: "Synology & Infrastructure Engineer",
+      company: "KV Self-Hosted Lab",
+      period: "2024 - Present",
+      highlights: [
+        "Architected and deployed Synology Community Package Center (pkg.khoavo.myds.me) serving custom SPK packages with GPG cryptographic signing",
+        "Built kv-synology web manager with Next.js 15, QuickConnect protocol resolver, real-time DSM service controller, and 42 AI MCP tools",
+        "Configured multi-arch container pipelines on Forgejo Git and Docker Hub (linux/amd64, linux/arm64) with automated CI/CD deployment",
+        "Maintained self-hosted microservices ecosystem (media streaming, video downloaders, AI image generators, Forgejo git server)"
+      ]
+    },
+    {
+      role: "Creative Technology Lead",
+      company: "Phibious Vietnam",
+      period: "2025 - Present",
+      highlights: [
+        "Bridged creative art direction with automated AI engineering and generative pipelines (ComfyUI, FLUX.1)",
+        "Developed internal workflow automation tools, custom API integrations, and prompt engineering frameworks",
+        "Standardized technical SOPs for AI-augmented digital production for global Fortune 500 accounts"
+      ]
+    }
   ],
   github: "https://git.khoavo.myds.me/vndangkhoa",
   forgejo: "https://git.khoavo.myds.me/vndangkhoa"

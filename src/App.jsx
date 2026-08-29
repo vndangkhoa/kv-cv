@@ -26,7 +26,7 @@ export default function App() {
       if (saved) return saved === 'dark';
       return window.matchMedia('(prefers-color-scheme: dark)').matches;
     }
-    return false;
+    return true;
   });
 
   const [tab, setTab] = useState('creative');
@@ -36,6 +36,13 @@ export default function App() {
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.documentElement.classList.add('light');
+    }
     localStorage.setItem('kv-portfolio-theme', darkMode ? 'dark' : 'light');
   }, [darkMode]);
 
@@ -88,32 +95,32 @@ export default function App() {
 
       {/* Live PDF & Printable Portfolio Preview Overlay (Mobile Scroll & Zoom Support) */}
       {showPrintPreview && (
-        <div className="pdf-preview-backdrop fixed inset-0 z-[200] bg-black/85 backdrop-blur-md overflow-y-auto">
+        <div className="pdf-preview-backdrop fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl overflow-y-auto">
           {/* Top Bar (Hidden on paper) */}
-          <div className="no-print p-3 sm:p-4 bg-[#0A0D0B] text-white border-b border-[#00FF87]/30 flex flex-col sm:flex-row items-center justify-between gap-3 sticky top-0 z-[210] shadow-lg">
+          <div className="no-print p-3 sm:p-4 bg-[#0A0D0C]/95 text-white border-b border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sticky top-0 z-[210] shadow-2xl backdrop-blur-md">
             <div className="flex items-center gap-2 font-mono text-xs text-[#00FF87] font-bold">
-              <span>📄 KHOA.VO — Printable Portfolio & PDF CV</span>
+              <span>📄 KHOA.VO — Printable Portfolio &amp; PDF CV</span>
             </div>
             <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
               <button
                 onClick={handleDownloadPdf}
                 disabled={isGeneratingPdf}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-[#00FF87] hover:bg-[#00E676] disabled:bg-emerald-800 text-[#0A0D0B] rounded-lg text-xs font-extrabold flex items-center justify-center gap-1.5 shadow-md shadow-[#00FF87]/20 transition-all cursor-pointer"
+                className="btn-iridescent flex-1 sm:flex-none text-xs font-mono font-extrabold shadow-glow-sm py-2 px-5"
               >
                 {isGeneratingPdf ? '⏳ Generating PDF...' : '📥 Download PDF'}
               </button>
               <button
                 onClick={() => setShowPrintPreview(false)}
-                className="flex-1 sm:flex-none px-4 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-lg text-xs font-semibold transition-all border border-slate-700 cursor-pointer"
+                className="flex-1 sm:flex-none px-4 py-2 bg-white/10 hover:bg-white/15 text-white rounded-full text-xs font-mono font-semibold transition-all border border-white/10 cursor-pointer"
               >
                 Close Preview
               </button>
             </div>
           </div>
 
-          {/* Printable Document Mobile Preview Wrapper (Horizontal Scroll for Mobile) */}
-          <div className="pdf-preview-wrapper py-4 sm:py-8 bg-slate-950/80 min-h-[calc(100vh-60px)] flex justify-start md:justify-center p-3 sm:p-6 overflow-x-auto custom-scrollbar">
-            <div className="printable-cv-area shadow-2xl rounded-xl overflow-hidden bg-white shrink-0 my-0 print:shadow-none print:rounded-none">
+          {/* Printable Document Mobile Preview Wrapper */}
+          <div className="pdf-preview-wrapper py-6 sm:py-10 bg-[#060807] min-h-[calc(100vh-65px)] flex justify-start md:justify-center p-3 sm:p-6 overflow-x-auto custom-scrollbar">
+            <div className="printable-cv-area shadow-2xl rounded-2xl overflow-hidden bg-white shrink-0 my-0 print:shadow-none print:rounded-none">
               <PrintPortfolio />
             </div>
           </div>

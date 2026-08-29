@@ -1,4 +1,5 @@
-import { Mail, MapPin, Phone, Linkedin, Github, Download, ArrowUpRight } from 'lucide-react';
+import { useState } from 'react';
+import { Mail, MapPin, Phone, Linkedin, Github, Download, ArrowUpRight, Copy, Check, Sparkles } from 'lucide-react';
 import MeshBackground from './ui/MeshBackground';
 import Reveal from './ui/Reveal';
 import { PERSONAL_INFO, downloadCV } from '../data/personal';
@@ -6,104 +7,152 @@ import { IT_DATA } from '../data/dev';
 
 export default function Contact({ tab }) {
   const isCreative = tab === 'creative';
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard?.writeText(PERSONAL_INFO.email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2200);
+  };
 
   return (
-    <section id="contact" className="relative min-h-[90svh] sm:min-h-0 flex flex-col justify-center overflow-hidden py-10 sm:py-20 md:py-28">
-      <MeshBackground className="opacity-60" />
+    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 md:py-40 bg-[var(--bg-primary)] text-[var(--text-primary)]">
+      <MeshBackground className="opacity-40 pointer-events-none" />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center flex flex-col justify-center">
-        {/* Header & Title */}
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 md:px-8 text-center flex flex-col items-center justify-center">
+        {/* Glowing Badge */}
         <Reveal>
-          <span className="text-[10px] sm:text-xs uppercase tracking-[0.3em] text-[var(--text-muted)] font-mono font-semibold">Contact</span>
-          <h2 className="font-display font-extrabold tracking-tight leading-[1.1] text-2xl sm:text-4xl md:text-5xl mt-2 sm:mt-4 text-[var(--text-primary)]">
-            Let's build something{' '}
-            <span className="serif-accent italic text-[#00FF87]">that stands out</span>
+          <div className="badge-iridescent px-4 py-1 bg-[var(--glass-bg)] border border-[var(--glass-border)] mb-4 inline-flex items-center gap-2">
+            <Sparkles size={12} className="text-emerald-600 dark:text-[#00FF87]" />
+            <span className="badge-iridescent-text text-[11px] font-mono tracking-widest">
+              05 // INITIATE TRANSMISSION
+            </span>
+          </div>
+
+          <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl tracking-tight text-[var(--text-primary)] max-w-3xl leading-[1.05]">
+            LET'S BUILD SOMETHING <br />
+            <span className="iridescent-text">UNFORGETTABLE</span>
           </h2>
-          <p className="max-w-md mx-auto mt-2 sm:mt-4 text-xs sm:text-base text-[var(--text-secondary)] px-2">
+
+          <p className="max-w-xl mx-auto mt-4 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed font-sans font-normal">
             {isCreative
-              ? 'Hiring a creative lead? Need AI-powered brand work? Let’s talk.'
-              : 'Need an app shipped? Looking for a full-stack builder? Let’s talk.'}
+              ? 'Hiring an AI Creative Lead? Scaling automated visual production? Let’s connect and engineer the future of your brand.'
+              : 'Need scalable cloud microservices, media streaming apps, or custom AI tooling? Let’s ship together.'}
           </p>
         </Reveal>
 
-        {/* Email Button (Normal Clean Color) */}
-        <Reveal delay={0.12}>
-          <div className="mt-4 sm:mt-6 flex justify-center">
-            <a
-              href={`mailto:${PERSONAL_INFO.email}`}
-              className="inline-flex items-center gap-2 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700/80 text-slate-800 dark:text-slate-200 hover:text-slate-950 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 text-xs sm:text-sm font-semibold shadow-sm transition-all duration-300 group"
-            >
-              <Mail size={14} className="text-slate-500 dark:text-slate-400 group-hover:text-slate-900 dark:group-hover:text-white" />
-              <span className="truncate max-w-[220px] sm:max-w-none">{PERSONAL_INFO.email}</span>
-              <ArrowUpRight size={13} className="text-slate-400 opacity-70 group-hover:opacity-100 transition-opacity" />
-            </a>
+        {/* Big Interactive Email Pill with Copy Trigger */}
+        <Reveal delay={0.15}>
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3">
+            <div className="inline-flex items-center p-1.5 rounded-full bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-xl shadow-glow-sm">
+              <a
+                href={`mailto:${PERSONAL_INFO.email}`}
+                className="flex items-center gap-2.5 px-5 py-2 text-xs sm:text-sm font-mono text-[var(--text-primary)] hover:text-emerald-600 dark:hover:text-[#00FF87] transition-colors"
+              >
+                <Mail size={14} className="text-emerald-600 dark:text-[#00FF87]" />
+                <span>{PERSONAL_INFO.email}</span>
+              </a>
+
+              <button
+                onClick={copyEmail}
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-primary)] font-mono text-xs font-semibold transition-all cursor-pointer hover:scale-105 active:scale-95 border border-[var(--border)]"
+                title="Copy email to clipboard"
+              >
+                {copied ? (
+                  <>
+                    <Check size={13} className="text-emerald-600 dark:text-[#00FF87]" />
+                    <span className="text-emerald-600 dark:text-[#00FF87]">Copied!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy size={13} />
+                    <span>Copy</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </Reveal>
 
         {/* Contact Info Cards */}
-        <Reveal delay={0.22}>
-          <div className="mt-5 sm:mt-8 grid gap-2 sm:gap-3 grid-cols-1 sm:grid-cols-3 max-w-sm sm:max-w-none mx-auto">
-            {[
-              { icon: MapPin, label: 'Based in', value: 'Ho Chi Minh City, VN' },
-              { icon: Phone, label: 'Phone', value: PERSONAL_INFO.phone },
-              { icon: Mail, label: 'Email', value: PERSONAL_INFO.email, href: `mailto:${PERSONAL_INFO.email}` },
-            ].map((item, i) => (
-              <a
-                key={i}
-                href={item.href}
-                target={item.href ? '_blank' : undefined}
-                rel="noreferrer"
-                className={`glass-card p-3 sm:p-4 text-left flex sm:flex-col items-center sm:items-start gap-2.5 sm:gap-1 transition-transform duration-300 hover:-translate-y-0.5 ${item.href ? 'hover:border-[#00FF87]/50' : 'pointer-events-none'}`}
-              >
-                <item.icon size={15} className="text-[#00FF87] shrink-0 sm:mb-1.5" />
-                <div className="min-w-0 flex-1">
-                  <div className="text-[10px] uppercase tracking-wider text-[var(--text-muted)] font-semibold">{item.label}</div>
-                  <div className="text-xs sm:text-sm font-semibold truncate sm:break-all">{item.value}</div>
+        <Reveal delay={0.25}>
+          <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-3 w-full max-w-2xl">
+            <div className="p-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-left flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#00FF87]/15 flex items-center justify-center text-emerald-600 dark:text-[#00FF87] shrink-0">
+                <MapPin size={16} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase text-[var(--text-muted)]">Location</div>
+                <div className="text-xs sm:text-sm font-bold text-[var(--text-primary)] truncate">Ho Chi Minh City, VN</div>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-left flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#00E5FF]/15 flex items-center justify-center text-cyan-600 dark:text-[#00E5FF] shrink-0">
+                <Phone size={16} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase text-[var(--text-muted)]">Phone / Telegram</div>
+                <div className="text-xs sm:text-sm font-bold text-[var(--text-primary)] truncate">{PERSONAL_INFO.phone}</div>
+              </div>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] text-left flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-[#D0B2FF]/15 flex items-center justify-center text-purple-600 dark:text-[#D0B2FF] shrink-0">
+                <Sparkles size={16} />
+              </div>
+              <div className="min-w-0">
+                <div className="text-[10px] font-mono uppercase text-[var(--text-muted)]">Status</div>
+                <div className="text-xs sm:text-sm font-bold text-emerald-600 dark:text-[#00FF87] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-[#00FF87] animate-ping" />
+                  Open to Work
                 </div>
-              </a>
-            ))}
+              </div>
+            </div>
           </div>
         </Reveal>
 
-        {/* Highlighted Download CV Button (Moved Down Below Info Cards) */}
-        <Reveal delay={0.32}>
-          <div className="mt-5 sm:mt-8 flex justify-center">
+        {/* Highlighted Glowing Download Button & Social Dock */}
+        <Reveal delay={0.35}>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={downloadCV}
-              className="inline-flex items-center gap-2.5 px-7 py-3 rounded-full bg-[#00FF87] hover:bg-[#00E676] text-slate-950 font-extrabold text-xs sm:text-sm shadow-lg shadow-[#00FF87]/30 transition-all duration-300 hover:scale-105 active:scale-95 cursor-pointer"
+              className="btn-iridescent text-xs sm:text-sm font-extrabold shadow-glow-md group"
             >
-              <Download size={15} />
-              <span>Download CV</span>
+              <Download size={16} className="transition-transform group-hover:-translate-y-0.5" />
+              <span>Download Printable PDF CV</span>
             </button>
-          </div>
-        </Reveal>
 
-        {/* Social Icons Row */}
-        <Reveal delay={0.4}>
-          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-3">
             <a
               href={PERSONAL_INFO.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full glass-card hover:-translate-y-1 hover:text-[#00FF87] transition-all shadow-sm"
-              title="LinkedIn"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] text-xs font-mono font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              <Linkedin size={15} />
+              <Linkedin size={14} className="text-emerald-600 dark:text-[#00FF87]" />
+              <span>LinkedIn</span>
             </a>
+
             <a
               href={IT_DATA.forgejo}
               target="_blank"
               rel="noreferrer"
-              className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full glass-card hover:-translate-y-1 hover:text-[#00FF87] transition-all shadow-sm"
-              title="Forgejo Repos"
+              className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] text-xs font-mono font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
             >
-              <Github size={15} />
+              <Github size={14} className="text-cyan-600 dark:text-[#00E5FF]" />
+              <span>Forgejo Git</span>
             </a>
           </div>
         </Reveal>
 
-        <div className="mt-6 sm:mt-10 text-[10px] sm:text-xs text-[var(--text-muted)] font-medium">
-          © 2026 {PERSONAL_INFO.name} &bull; Crafted with React, Framer Motion &amp; VNDK design system
+        {/* Footer info */}
+        <div className="mt-16 sm:mt-24 pt-8 border-t border-[var(--border)] w-full flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--text-muted)]">
+          <div>
+            © 2026 {PERSONAL_INFO.name} &bull; All Rights Reserved
+          </div>
+          <div className="flex items-center gap-2">
+            <span>Powered by React, Framer Motion &amp; MotionSites DNA</span>
+          </div>
         </div>
       </div>
     </section>
