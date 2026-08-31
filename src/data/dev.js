@@ -57,49 +57,49 @@ export const IT_DATA = {
       name: "kv-synology",
       description: "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver with relay fallback, service toggles (SMB, NFS, SSH, WebDAV), DSM notifications, and 42 AI MCP tools.",
       tech: ["Next.js 15", "React 19", "TypeScript", "Tailwind v4", "MCP Protocol", "Synology API", "Docker"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-synology"
+      github: "https://github.com/vndangkhoa/kv-synology"
     },
     {
       name: "spkrepo (KV Package Center)",
       description: "Synology Community Package Repository Server (pkg.khoavo.myds.me) — serves custom SPK packages for 1-click install in DSM Package Center with GPG signing and automated release pipeline.",
       tech: ["Python (Flask)", "PostgreSQL", "SPK Toolchain", "GnuPG", "Docker Compose", "Synology DSM 7.2"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/spkrepo"
+      github: "https://github.com/vndangkhoa/spkrepo"
     },
     {
       name: "mouse-me",
       description: "Universal cursor manager for Linux desktops (Hyprland, Omarchy, GTK, Qt, X11) with Slint GUI and CLI in a single Rust binary.",
       tech: ["Rust", "Slint GUI", "Linux Desktop", "Hyprland", "CLI"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/mouse-me"
+      github: "https://github.com/vndangkhoa/mouse-me"
     },
     {
       name: "kv-dl",
       description: "Self-hosted YouTube and universal video downloader API — Rust (Axum) API + Next.js static UI with yt-dlp and ffmpeg batch processing.",
       tech: ["Rust (Axum)", "Next.js", "yt-dlp", "ffmpeg", "Docker"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-dl"
+      github: "https://github.com/vndangkhoa/kv-dl"
     },
     {
       name: "kv-netflix",
       description: "StreamFlow Netflix - Android TV + Web App built with Kotlin Multiplatform. Movie streaming with trailer previews, custom playlists, and offline download support.",
       tech: ["Kotlin", "Compose Multiplatform", "Android TV", "Web", "PWA"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-netflix"
+      github: "https://github.com/vndangkhoa/kv-netflix"
     },
     {
       name: "kv-tube",
       description: "YouTube-like video streaming platform with HLS support, subscriptions, watch history, comments, and PWA. Deployed on Synology NAS via Docker.",
       tech: ["Go (Gin)", "Next.js", "TypeScript", "SQLite", "Docker", "HLS.js", "PWA"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/kv-tube"
+      github: "https://github.com/vndangkhoa/kv-tube"
     },
     {
       name: "spotify-clone",
       description: "Full-featured Spotify-like music player with YouTube Music integration, real-time lyrics, custom playlists, and PWA support.",
       tech: ["React (Vite)", "Rust (Axum)", "TailwindCSS", "YouTube API", "PWA"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/spotify-clone"
+      github: "https://github.com/vndangkhoa/spotify-clone"
     },
     {
       name: "apix",
       description: "AI Image Generator powered by Google Whisk, Meta AI, and Grok. Multi-provider support with prompt library and history.",
       tech: ["Next.js 14", "TypeScript", "Tailwind", "Zustand", "Docker"],
-      github: "https://git.khoavo.myds.me/vndangkhoa/apix"
+      github: "https://github.com/vndangkhoa/apix"
     }
   ],
   experience: [
@@ -122,6 +122,16 @@ export const IT_DATA = {
         "Bridged creative art direction with automated AI engineering and generative pipelines (ComfyUI, FLUX.1)",
         "Developed internal workflow automation tools, custom API integrations, and prompt engineering frameworks",
         "Standardized technical SOPs for AI-augmented digital production for global Fortune 500 accounts"
+      ]
+    },
+    {
+      role: "Creator & Maintainer",
+      company: "VietC — Vietnamese IME for Linux",
+      period: "2025 - Present",
+      highlights: [
+        "Built zero-underline Rust IME with direct Wayland virtual keyboard (wtype/zwp_virtual_keyboard_v1) and X11 /dev/uinput, bypassing clipboard race and pre-edit underline",
+        "Implemented Bamboo engine (tone marks, vowel muddles), English auto-restore, hardware filtering for 2.4G dongles, and 151 tests at 100% pass",
+        "Shipped one-line install across 8+ distros (Arch, CachyOS, Fedora, Ubuntu, Pop!_OS), systemd user service rootless, Ctrl+Shift cycle ENG→VNI→TELEX"
       ]
     }
   ],

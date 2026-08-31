@@ -27,7 +27,7 @@ export default function VNDKLogo({ size = 'md', className = '', animated = true 
           strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-[var(--text-primary)] transition-colors"
+          className="text-current transition-colors"
         />
 
         {/* N (Top-Right) */}
@@ -37,7 +37,7 @@ export default function VNDKLogo({ size = 'md', className = '', animated = true 
           strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="text-[var(--text-primary)] transition-colors"
+          className="text-current transition-colors"
         />
 
         {/* D (Bottom-Left) - Brand Neon Green */}

@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  ExternalLink, ArrowUpRight, Star, GitFork, Loader2, AlertTriangle,
+  ExternalLink, ArrowUpRight, Loader2, AlertTriangle,
   LayoutGrid, LayoutList, ChevronDown, ChevronUp, Filter, Copy, Check, Sparkles
 } from 'lucide-react';
 import GlassCard from './ui/GlassCard';
@@ -129,10 +129,14 @@ function CreativeMotionCard({ project, index }) {
   );
 }
 
+/* Featured highlight for vietc & kv-synology */
+const FEATURED_REPOS = new Set(['vietc', 'kv-synology']);
+
 /* MotionSites-style Dev Repo Card */
-function DevMotionCard({ repo, index }) {
+function DevMotionCard({ repo, index, featured = false }) {
   const [copied, setCopied] = useState(false);
   const color = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Unknown;
+  const isFeatured = featured || FEATURED_REPOS.has(repo.name);
 
   const copyUrl = (e) => {
     e.preventDefault();
@@ -149,7 +153,7 @@ function DevMotionCard({ repo, index }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
-      className="prompt-card-hover group flex flex-col h-full cursor-pointer"
+      className={`prompt-card-hover group flex flex-col h-full cursor-pointer ${isFeatured ? 'relative' : ''}`}
     >
       <a
         href={repo.htmlUrl}
@@ -157,28 +161,22 @@ function DevMotionCard({ repo, index }) {
         rel="noreferrer"
         className="block h-full"
       >
-        <div className="h-full p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--glass-bg)] border border-[var(--glass-border)] group-hover:border-[#00FF87]/40 transition-all duration-300 flex flex-col justify-between shadow-lg">
+        <div className={`h-full p-5 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-lg ${isFeatured ? 'bg-gradient-to-br from-[#00FF87]/12 via-[#00E5FF]/8 to-[#D0B2FF]/10 border-2 border-[#00FF87]/50 shadow-[0_0_32px_rgba(0,255,135,0.25)] group-hover:border-[#00FF87] group-hover:shadow-[0_0_40px_rgba(0,255,135,0.35)]' : 'bg-[var(--glass-bg)] border border-[var(--glass-border)] group-hover:border-[#00FF87]/40'}`}>
+          {isFeatured && (
+            <div className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1.5">
+              <span className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#00FF87] to-[#00E5FF] text-[#0A0D0B] text-[10px] font-mono font-black tracking-wider shadow-md">★ FEATURED</span>
+            </div>
+          )}
           <div>
-            {/* Top Language Badge & Meta Metrics */}
-            <div className="flex items-center justify-between gap-2 mb-4">
-              <div className="flex items-center gap-2">
-                <span
-                  className="w-3 h-3 rounded-full shadow-sm"
-                  style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}80` }}
-                />
-                <span className="font-mono text-xs font-bold text-[var(--text-primary)]">
-                  {repo.language || 'Code'}
-                </span>
-              </div>
-
-              <div className="flex items-center gap-3 text-xs font-mono text-[var(--text-muted)]">
-                <span className="flex items-center gap-1">
-                  <Star size={12} className="text-amber-400" /> {repo.stars || 0}
-                </span>
-                <span className="flex items-center gap-1">
-                  <GitFork size={12} /> {repo.forks || 0}
-                </span>
-              </div>
+            {/* Top Language Badge */}
+            <div className="flex items-center gap-2 mb-4">
+              <span
+                className="w-3 h-3 rounded-full shadow-sm"
+                style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}80` }}
+              />
+              <span className="font-mono text-xs font-bold text-[var(--text-primary)]">
+                {repo.language || 'Code'}
+              </span>
             </div>
 
             {/* Repo Name */}
@@ -255,12 +253,6 @@ function CompactListRow({ item, isCreative, index }) {
         </div>
 
         <div className="flex items-center gap-4 shrink-0 text-xs font-mono text-[var(--text-muted)]">
-          {!isCreative && (
-            <div className="hidden sm:flex items-center gap-3">
-              <span className="flex items-center gap-1"><Star size={12} className="text-amber-400" /> {item.stars || 0}</span>
-              <span className="flex items-center gap-1"><GitFork size={12} /> {item.forks || 0}</span>
-            </div>
-          )}
           <span className="inline-flex items-center gap-1 text-xs text-emerald-600 dark:text-[#00FF87] font-semibold group-hover:translate-x-1 transition-transform">
             View <ExternalLink size={13} />
           </span>
@@ -387,6 +379,24 @@ export default function Projects({ tab }) {
             </button>
           </div>
         </div>
+
+        {/* Featured Highlight — vietc & kv-synology pinned on top */}
+        {!isCreative && selectedFilter === 'All' && repos.length > 0 && (
+          <div className="mb-10">
+            <div className="flex items-center gap-2 mb-4">
+              <span className="px-2.5 py-1 rounded-full bg-[#00FF87] text-[#0A0D0B] text-[10px] font-mono font-black tracking-wider">★ PINNED</span>
+              <span className="text-xs font-mono text-[var(--text-muted)]">Highlight — deep-dive below</span>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5 md:gap-6">
+              {(() => {
+                const order = { 'vietc': 0, 'kv-synology': 1 };
+                const featured = repos.filter(r => FEATURED_REPOS.has(r.name)).sort((a,b) => (order[a.name]??99)-(order[b.name]??99));
+                return featured.map((repo, i) => <DevMotionCard key={`feat-${repo.id}`} repo={repo} index={i} featured />);
+              })()}
+            </div>
+            <div className="mt-3 h-px bg-gradient-to-r from-[#00FF87]/30 via-transparent to-transparent" />
+          </div>
+        )}
 
         {/* Showcase Grid / List Content */}
         <AnimatePresence mode="wait">

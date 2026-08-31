@@ -5,7 +5,7 @@ const tabs = [
   { id: 'dev', label: 'Full-Stack & DevOps' },
 ];
 
-export default function TabSwitch({ active, onChange, size = 'md', className = '' }) {
+export default function TabSwitch({ active, onChange, size = 'md', className = '', layoutId = 'tab-pill-segmented' }) {
   const isSm = size === 'sm';
   
   return (
@@ -32,9 +32,10 @@ export default function TabSwitch({ active, onChange, size = 'md', className = '
           >
             {isActive && (
               <motion.span
-                layoutId="tab-pill-segmented"
+                layoutId={layoutId}
                 className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00FF87] via-[#00E5FF] to-[#00FF87] shadow-md shadow-[#00FF87]/30"
-                transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                transition={{ type: 'tween', duration: 0.24, ease: [0.4, 0, 0.2, 1] }}
+                initial={false}
               />
             )}
             <span className="relative z-10">{tab.label}</span>

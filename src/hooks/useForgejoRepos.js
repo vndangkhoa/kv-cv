@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import buildData from '../data/forgejo-repos.json';
 
-const FORGEJO_API = 'https://git.khoavo.myds.me/api/v1';
+const GITHUB_API = 'https://api.github.com';
 const USERNAME = 'vndangkhoa';
 const POLL_INTERVAL = 5 * 60 * 1000;
 
@@ -32,23 +32,41 @@ const initStats = {
   lastUpdated: buildData.fetchedAt || null,
 };
 
-const formatRemoteRepo = (repo) => ({
-  id: repo.id,
-  name: repo.name,
-  fullName: repo.full_name,
-  description: repo.description || `${repo.language || 'Unknown'} project`,
-  htmlUrl: repo.html_url,
-  language: repo.language || 'Unknown',
-  updatedAt: repo.updated_at,
-  createdAt: repo.created_at,
-  mirror: repo.mirror,
-  mirrorUpdated: repo.mirror_updated,
-  topics: repo.topics || [],
-  stars: repo.stars_count || 0,
-  forks: repo.forks_count || 0,
-  watchers: repo.watchers_count || 0,
-  releases: repo.release_counter || 0,
-});
+const FALLBACK_DESCRIPTIONS = {
+  'kv-cv': "Portfolio v2 — React + Vite scrolly video (scrub human_head_turn.mp4), dual Creative/IT personas, glass-morphism, CRT terminal, and one-tap PDF CV export.",
+  'kv-netflix': "StreamFlow — Kotlin Multiplatform Android TV + Web app with trailers, custom playlists, PWA, and offline download queue.",
+  'kv-tiktok': "TikTok/Douyin browser & downloader — watermark-free HD, batch queue, preview, Go + yt-dlp backend.",
+  'Sys-Arc-Visl': "Infra topology visualizer — drag-drop system maps, auto-layout, docs export, and live dependency graph.",
+  'kv-clearnup': "Media hygiene — batch cleanup, duplicate detection, and smart organization for large video libraries (TypeScript/Go).",
+  'kv-download': "Universal mobile-first downloader — Go + yt-dlp, HLS/batch/queue, PWA share-sheet, Synology-ready.",
+};
+
+const formatRemoteRepo = (repo) => {
+  let desc = repo.description || `${repo.language || 'Unknown'} project`;
+  if (FALLBACK_DESCRIPTIONS[repo.name] && (!repo.description || repo.description.length < 50)) {
+    desc = FALLBACK_DESCRIPTIONS[repo.name];
+  }
+  if (repo.name === 'kv-synology') {
+    desc = "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver, services controller (SMB, NFS, SSH, WebDAV), and 42 AI MCP tools";
+  }
+  return {
+    id: repo.id,
+    name: repo.name,
+    fullName: repo.full_name,
+    description: desc,
+    htmlUrl: repo.html_url,
+    language: repo.language || 'Unknown',
+    updatedAt: repo.updated_at,
+    createdAt: repo.created_at,
+    mirror: repo.fork || false,
+    mirrorUpdated: repo.updated_at,
+    topics: repo.topics || [],
+    stars: repo.stargazers_count || 0,
+    forks: repo.forks_count || 0,
+    watchers: repo.watchers_count || 0,
+    releases: 0,
+  };
+};
 
 export function useForgejoRepos() {
   const [repos, setRepos] = useState(initRepos);
@@ -62,7 +80,9 @@ export function useForgejoRepos() {
       setLoading(true);
       setError(null);
 
-      const response = await fetch(`${FORGEJO_API}/users/${USERNAME}/repos?limit=100`);
+      const token = typeof process !== 'undefined' ? process.env.GITHUB_TOKEN : undefined;
+      const headers = token ? { Authorization: `Bearer ${token}` } : {};
+      const response = await fetch(`${GITHUB_API}/users/${USERNAME}/repos?per_page=100&sort=updated`, { headers });
 
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
@@ -71,6 +91,7 @@ export function useForgejoRepos() {
       const data = await response.json();
 
       const formatted = data
+        .filter(r => r.name !== 'vndangkhoa')
         .map(formatRemoteRepo)
         .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -89,7 +110,7 @@ export function useForgejoRepos() {
         lastUpdated: new Date().toISOString(),
       });
     } catch (err) {
-      console.warn('Forgejo live fetch failed, using build-time data:', err.message);
+      console.warn('GitHub live fetch failed, using build-time data:', err.message);
     } finally {
       setLoading(false);
     }
