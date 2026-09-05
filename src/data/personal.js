@@ -1,6 +1,3 @@
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
 export const PERSONAL_INFO = {
   name: "Vo Nguyen Dang Khoa",
   shortName: "Khoa Vo",
@@ -22,37 +19,15 @@ export const triggerPdfPrint = () => {
 
 export const exportPdfDirectly = async (onProgress) => {
   if (typeof window === 'undefined') return;
-  const elem = document.querySelector('.print-portfolio-content');
-  if (!elem) {
-    window.print();
-    return;
-  }
 
   try {
     if (onProgress) onProgress(true);
-    const canvas = await html2canvas(elem, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      logging: false,
-      backgroundColor: '#ffffff',
-    });
 
-    const imgData = canvas.toDataURL('image/jpeg', 0.95);
-    const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4',
-    });
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('Vo_Nguyen_Dang_Khoa_Creative_CV.pdf');
-  } catch (err) {
-    console.error('Direct PDF export error, falling back to window.print():', err);
+    // Use browser's native print - applies @media print CSS for exact layout
+    // This ensures fonts, positioning, and measurements match print preview
     window.print();
+  } catch (err) {
+    console.error('Print error:', err);
   } finally {
     if (onProgress) onProgress(false);
   }

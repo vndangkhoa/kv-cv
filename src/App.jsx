@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
-import ScrollyVideo from './components/ScrollyVideo';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
@@ -67,13 +69,10 @@ export default function App() {
       />
 
       <main>
-        {/* NEW: Scroll-synced video stage — white-space chapters */}
-        <ScrollyVideo tab={tab} onTabChange={setTab} />
-
-        {/* Marquee sits right after scrolly releases */}
+        <Hero tab={tab} onTabChange={setTab} />
         <Marquee items={MARQUEE_ITEMS} />
-
-        {/* Full detail sections — trimmed but kept for depth after the story */}
+        <About tab={tab} />
+        <Skills tab={tab} />
         <Projects tab={tab} />
         <Experience tab={tab} />
         <Contact tab={tab} />

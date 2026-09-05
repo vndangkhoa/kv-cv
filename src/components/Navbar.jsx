@@ -6,7 +6,10 @@ import VNDKLogo from './ui/VNDKLogo';
 import PERSONAL_INFO from '../data/personal';
 
 const NAV_LINKS = [
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
+  { id: 'experience', label: 'Experience' },
   { id: 'contact', label: 'Contact' },
 ];
 
@@ -49,23 +52,25 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
       className={`fixed top-0 left-0 right-0 z-[100] px-3 sm:px-6 py-3 sm:py-4 pointer-events-none transition-opacity ${scrolled ? '' : 'opacity-[0.96]'}`}
     >
       <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
-        {/* Floating Capsule — minimal v2 (thinner, more transparent on scrolly top) */}
-        <div className={`w-full flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2 rounded-full backdrop-blur-xl transition-colors shadow-[0_8px_32px_rgba(0,0,0,0.35)] ${scrolled ? 'bg-black/55' : 'bg-black/40'}`}>
-          {/* Brand Logo & Name — no background, always white */}
+        {/* Floating Capsule Island Navbar */}
+        <div className="w-full flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2 rounded-full nav-island">
+          {/* Brand Logo & Name */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2.5 group cursor-pointer focus:outline-none"
+            className="flex items-center gap-2 group cursor-pointer focus:outline-none"
             title="Khoa Vo — Creative & AI Portfolio"
           >
-            <VNDKLogo size="md" className="shrink-0 drop-shadow-[0_1px_6px_rgba(0,0,0,0.5)] text-white" />
+            <div className="p-1 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] group-hover:border-[#00FF87]/50 group-hover:shadow-glow-sm transition-all duration-300">
+              <VNDKLogo size="sm" />
+            </div>
             <div className="hidden lg:flex flex-col text-left">
-              <span className="font-mono text-xs font-bold tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.6)]">KHOA.VO</span>
-              <span className="text-[10px] text-white/65 font-mono tracking-tight">AI &amp; Tech Lead</span>
+              <span className="font-mono text-xs font-bold tracking-wider text-[var(--text-primary)]">KHOA.VO</span>
+              <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-tight">AI &amp; Tech Lead</span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links — legible on dark */}
-          <nav className="hidden md:flex items-center gap-1 bg-white/10 rounded-full p-1 shadow-inner backdrop-blur-md">
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-1 bg-[var(--accent-subtle)] border border-[var(--border)] rounded-full p-1 shadow-inner">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
               return (
@@ -75,15 +80,14 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
                   className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer select-none ${
                     isActive
                       ? 'text-[#0A0D0B] font-bold'
-                      : 'text-white/80 hover:text-white hover:bg-white/10'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border)]'
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="active-nav-pill"
                       className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00FF87] via-[#00E5FF] to-[#00FF87] shadow-sm shadow-[#00FF87]/40"
-                      transition={{ type: 'tween', duration: 0.24, ease: [0.4, 0, 0.2, 1] }}
-                      initial={false}
+                      transition={{ type: 'spring', stiffness: 450, damping: 32 }}
                     />
                   )}
                   <span className="relative z-10">{link.label}</span>
@@ -94,35 +98,35 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
 
           {/* Controls & Actions Cluster */}
           <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Persona Switch — always visible, single instance avoids layoutId clash */}
+            {/* Persona Switcher (Creative vs Developer Mode) */}
             <div className="hidden sm:block">
-              <TabSwitch active={tab} onChange={onTabChange} size="sm" layoutId="nav-tab-pill" />
+              <TabSwitch active={tab} onChange={onTabChange} size="sm" />
             </div>
 
-            {/* Direct Download CV Button — legible */}
+            {/* Direct Download CV Button */}
             <button
               onClick={onOpenPdf}
               title="Download PDF CV"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00FF87] hover:bg-[#00FF87]/90 text-[#0A0D0B] border border-[#00FF87] text-xs font-mono font-bold transition-all duration-200 hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00FF87]/15 hover:bg-[#00FF87]/25 text-emerald-700 dark:text-[#00FF87] border border-[#00FF87]/35 text-xs font-mono font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-glow-sm cursor-pointer"
             >
               <FileText size={13} />
               <span className="hidden sm:inline">PDF CV</span>
             </button>
 
-            {/* Terminal Mode Icon Trigger — no white border */}
+            {/* Terminal Mode Icon Trigger */}
             <button
               onClick={onEasterEgg}
               title="Nostalgic Terminal OS"
-              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/15 text-white/80 hover:text-white transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 backdrop-blur-md"
+              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-emerald-600 dark:hover:text-[#00FF87] border border-[var(--border)] transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
             >
               <Terminal size={14} />
             </button>
 
-            {/* Theme Toggle Icon Trigger — no white border */}
+            {/* Theme Toggle Icon Trigger */}
             <button
               onClick={toggleTheme}
               title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-white/10 hover:bg-white/15 text-white/80 hover:text-white transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95 backdrop-blur-md"
+              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
             >
               {darkMode ? <Sun size={14} /> : <Moon size={14} />}
             </button>
