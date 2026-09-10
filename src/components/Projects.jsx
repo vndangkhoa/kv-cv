@@ -129,14 +129,11 @@ function CreativeMotionCard({ project, index }) {
   );
 }
 
-/* Featured highlight for vietc & kv-synology */
-const FEATURED_REPOS = new Set(['vietc', 'kv-synology']);
-
 /* MotionSites-style Dev Repo Card */
-function DevMotionCard({ repo, index, featured = false }) {
+function DevMotionCard({ repo, index }) {
   const [copied, setCopied] = useState(false);
   const color = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Unknown;
-  const isFeatured = featured || FEATURED_REPOS.has(repo.name);
+  const isHighlighted = repo.name === 'kv-synology' || repo.name === 'vietc';
 
   const copyUrl = (e) => {
     e.preventDefault();
@@ -153,7 +150,7 @@ function DevMotionCard({ repo, index, featured = false }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
-      className={`prompt-card-hover group flex flex-col h-full cursor-pointer ${isFeatured ? 'relative' : ''}`}
+      className="prompt-card-hover group flex flex-col h-full cursor-pointer"
     >
       <a
         href={repo.htmlUrl}
@@ -161,27 +158,39 @@ function DevMotionCard({ repo, index, featured = false }) {
         rel="noreferrer"
         className="block h-full"
       >
-        <div className={`h-full p-5 sm:p-6 rounded-2xl sm:rounded-3xl backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-lg ${isFeatured ? 'bg-gradient-to-br from-[#00FF87]/12 via-[#00E5FF]/8 to-[#D0B2FF]/10 border-2 border-[#00FF87]/50 shadow-[0_0_32px_rgba(0,255,135,0.25)] group-hover:border-[#00FF87] group-hover:shadow-[0_0_40px_rgba(0,255,135,0.35)]' : 'bg-[var(--glass-bg)] border border-[var(--glass-border)] group-hover:border-[#00FF87]/40'}`}>
-          {isFeatured && (
-            <div className="absolute -top-2.5 -right-2.5 z-10 flex items-center gap-1.5">
-              <span className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#00FF87] to-[#00E5FF] text-[#0A0D0B] text-[10px] font-mono font-black tracking-wider shadow-md">★ FEATURED</span>
-            </div>
+        <div className={`relative overflow-hidden h-full p-5 sm:p-6 rounded-2xl sm:rounded-3xl bg-[var(--glass-bg)] border transition-all duration-300 flex flex-col justify-between shadow-lg ${
+          isHighlighted
+            ? 'border-emerald-500/60 dark:border-[#00FF87]/60 ring-1 ring-emerald-500/30 dark:ring-[#00FF87]/30 shadow-emerald-500/10 dark:shadow-[#00FF87]/15 bg-gradient-to-b from-[#00FF87]/[0.06] via-[var(--glass-bg)] to-[var(--glass-bg)]'
+            : 'border-[var(--glass-border)] group-hover:border-[#00FF87]/40'
+        }`}>
+          {/* Subtle Ambient Corner Glow for Highlighted Works */}
+          {isHighlighted && (
+            <div className="absolute -top-10 -right-10 w-28 h-28 bg-[#00FF87]/15 dark:bg-[#00FF87]/20 rounded-full blur-2xl pointer-events-none" />
           )}
+
           <div>
-            {/* Top Language Badge */}
-            <div className="flex items-center gap-2 mb-4">
-              <span
-                className="w-3 h-3 rounded-full shadow-sm"
-                style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}80` }}
-              />
-              <span className="font-mono text-xs font-bold text-[var(--text-primary)]">
-                {repo.language || 'Code'}
-              </span>
+            {/* Top Language Badge & Highlight Tag */}
+            <div className="flex items-center justify-between gap-2 mb-4">
+              <div className="flex items-center gap-2">
+                <span
+                  className="w-3 h-3 rounded-full shadow-sm"
+                  style={{ backgroundColor: color, boxShadow: `0 0 10px ${color}80` }}
+                />
+                <span className="font-mono text-xs font-bold text-[var(--text-primary)]">
+                  {repo.language || 'Code'}
+                </span>
+
+                {isHighlighted && (
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gradient-to-r from-[#00FF87]/20 to-[#00E5FF]/20 border border-emerald-500/40 dark:border-[#00FF87]/50 text-[10px] font-mono font-extrabold text-emerald-700 dark:text-[#00FF87] uppercase tracking-wider shadow-sm">
+                    <Sparkles size={10} className="animate-pulse" /> HIGHLIGHT
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Repo Name */}
-            <h3 className="font-mono font-bold text-base sm:text-lg text-[var(--text-primary)] group-hover:text-emerald-600 dark:group-hover:text-[#00FF87] transition-colors mb-2 line-clamp-1">
-              {repo.name}
+            <h3 className="font-mono font-bold text-base sm:text-lg text-[var(--text-primary)] group-hover:text-emerald-600 dark:group-hover:text-[#00FF87] transition-colors mb-2 line-clamp-1 flex items-center gap-2">
+              <span>{repo.name}</span>
             </h3>
 
             {/* Repo Description */}
@@ -214,6 +223,7 @@ function DevMotionCard({ repo, index, featured = false }) {
 function CompactListRow({ item, isCreative, index }) {
   const color = !isCreative ? (LANGUAGE_COLORS[item.language] || LANGUAGE_COLORS.Unknown) : '#00FF87';
   const url = isCreative ? item.link : item.htmlUrl;
+  const isHighlighted = !isCreative && (item.name === 'kv-synology' || item.name === 'vietc');
 
   return (
     <motion.div
@@ -227,7 +237,9 @@ function CompactListRow({ item, isCreative, index }) {
         href={url}
         target="_blank"
         rel="noreferrer"
-        className="p-4 rounded-2xl bg-[var(--glass-bg)] border border-[var(--glass-border)] hover:border-[#00FF87]/40 hover:bg-[var(--accent-subtle)] flex items-center justify-between gap-4 transition-all group block shadow-sm"
+        className={`p-4 rounded-2xl bg-[var(--glass-bg)] border hover:border-[#00FF87]/40 hover:bg-[var(--accent-subtle)] flex items-center justify-between gap-4 transition-all group block shadow-sm ${
+          isHighlighted ? 'border-emerald-500/50 dark:border-[#00FF87]/50' : 'border-[var(--glass-border)]'
+        }`}
       >
         <div className="flex items-center gap-3.5 min-w-0 flex-1">
           <span
@@ -242,6 +254,11 @@ function CompactListRow({ item, isCreative, index }) {
               <h4 className={`font-bold text-sm truncate ${isCreative ? 'font-display' : 'font-mono'} text-[var(--text-primary)] group-hover:text-emerald-600 dark:group-hover:text-[#00FF87] transition-colors`}>
                 {isCreative ? item.title : item.name}
               </h4>
+              {isHighlighted && (
+                <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#00FF87]/15 border border-[#00FF87]/40 text-emerald-700 dark:text-[#00FF87] uppercase font-mono font-bold tracking-wider shrink-0">
+                  HIGHLIGHT
+                </span>
+              )}
               <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--accent-subtle)] text-[var(--text-muted)] border border-[var(--border)] uppercase font-mono tracking-wider shrink-0">
                 {isCreative ? item.category : item.language}
               </span>
@@ -379,24 +396,6 @@ export default function Projects({ tab }) {
             </button>
           </div>
         </div>
-
-        {/* Featured Highlight — vietc & kv-synology pinned on top */}
-        {!isCreative && selectedFilter === 'All' && repos.length > 0 && (
-          <div className="mb-10">
-            <div className="flex items-center gap-2 mb-4">
-              <span className="px-2.5 py-1 rounded-full bg-[#00FF87] text-[#0A0D0B] text-[10px] font-mono font-black tracking-wider">★ PINNED</span>
-              <span className="text-xs font-mono text-[var(--text-muted)]">Highlight — deep-dive below</span>
-            </div>
-            <div className="grid md:grid-cols-2 gap-5 md:gap-6">
-              {(() => {
-                const order = { 'vietc': 0, 'kv-synology': 1 };
-                const featured = repos.filter(r => FEATURED_REPOS.has(r.name)).sort((a,b) => (order[a.name]??99)-(order[b.name]??99));
-                return featured.map((repo, i) => <DevMotionCard key={`feat-${repo.id}`} repo={repo} index={i} featured />);
-              })()}
-            </div>
-            <div className="mt-3 h-px bg-gradient-to-r from-[#00FF87]/30 via-transparent to-transparent" />
-          </div>
-        )}
 
         {/* Showcase Grid / List Content */}
         <AnimatePresence mode="wait">

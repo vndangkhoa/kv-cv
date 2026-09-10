@@ -34,6 +34,7 @@
 /* ---------- MotionSites Design System Variables ---------- */
 :root {
   --bg-primary: #0A0D0C;
+  --bg-primary-rgb: 10, 13, 12;
   --bg-secondary: #111614;
   --bg-elevated: #161C19;
   --text-primary: #F2F5F3;
@@ -53,6 +54,7 @@
 
 [data-theme="light"] {
   --bg-primary: #F8FAFA;
+  --bg-primary-rgb: 248, 250, 250;
   --bg-secondary: #EEF2F0;
   --bg-elevated: #FFFFFF;
   --text-primary: #0D1210;
@@ -113,6 +115,9 @@ body {
   align-items: center;
   border-radius: 9999px;
   isolation: isolate;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 4px 20px -2px var(--glass-shadow);
 }
 
 .badge-iridescent::before {
@@ -135,6 +140,26 @@ body {
   color: transparent;
   font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* Light Mode Overrides for maximum legibility */
+[data-theme="light"] .badge-iridescent {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .badge-iridescent::before {
+  background: linear-gradient(135deg, rgba(5, 150, 105, 0.45) 0%, rgba(2, 132, 199, 0.35) 60%, rgba(124, 58, 237, 0.35) 100%);
+}
+
+[data-theme="light"] .badge-iridescent-text {
+  background-image: linear-gradient(135deg, #047857 0%, #0369A1 50%, #4338CA 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
 }
 
 /* ---------- Typography & Gradient Glows ---------- */
@@ -153,12 +178,23 @@ body {
   padding-right: 0.08em;
 }
 
+[data-theme="light"] .serif-accent {
+  background: linear-gradient(120deg, #059669 0%, #0284C7 50%, #7C3AED 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .iridescent-text {
   background-size: 200% 200%;
   background-image: radial-gradient(80.17% 109.2% at 44.373% 35.1526%, rgb(208, 178, 255) 0%, rgb(255, 238, 216) 42.83%, rgb(0, 255, 135) 88.38%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
+}
+
+[data-theme="light"] .iridescent-text {
+  background-image: linear-gradient(135deg, #059669 0%, #0284C7 40%, #7C3AED 85%);
 }
 
 .iridescent-glow-text {
@@ -347,12 +383,15 @@ body {
 /* ---------- Marquee ---------- */
 .marquee {
   position: relative;
+  display: flex;
   overflow: hidden;
-  padding: 1.25rem 0;
+  user-select: none;
+  gap: 2.5rem;
+  padding: 0.65rem 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .marquee-row {
@@ -543,3 +582,182 @@ body {
 .animate-float {
   animation: float 2s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   Details.so Inspired UI Micro-Interactions & Spring Physics
+   ========================================================================== */
+
+/* Universal tactile press scale */
+.btn-press,
+button.btn-press,
+a.btn-press {
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.btn-press:hover {
+  transform: translateY(-1px);
+}
+
+.btn-press:active {
+  transform: scale(0.96) translateY(0px) !important;
+}
+
+/* Details.so High-Contrast Primary Button */
+.btn-details-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background: #00FF87;
+  color: #0A0D0C;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 255, 135, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.btn-details-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-details-primary:hover::before {
+  left: 150%;
+}
+
+.btn-details-primary:hover {
+  box-shadow: 0 4px 28px rgba(0, 255, 135, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.4);
+  transform: translateY(-1.5px) scale(1.02);
+}
+
+.btn-details-primary:active {
+  transform: scale(0.96) !important;
+}
+
+[data-theme="light"] .btn-details-primary {
+  background: #00C853;
+  color: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1), 0 4px 18px rgba(0, 200, 83, 0.35);
+}
+
+[data-theme="light"] .btn-details-primary:hover {
+  box-shadow: 0 4px 24px rgba(0, 200, 83, 0.5), 0 0 0 1px rgba(0, 200, 83, 0.6);
+}
+
+/* Details.so Frosted Ghost Button */
+.btn-details-ghost {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #F2F5F3;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-details-ghost:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(0, 255, 135, 0.4);
+  color: #00FF87;
+  box-shadow: 0 4px 20px rgba(0, 255, 135, 0.15);
+  transform: translateY(-1.5px);
+}
+
+.btn-details-ghost:active {
+  transform: scale(0.96) !important;
+}
+
+[data-theme="light"] .btn-details-ghost {
+  background: rgba(0, 0, 0, 0.04);
+  color: #0D1210;
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="light"] .btn-details-ghost:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 200, 83, 0.6);
+  color: #059669;
+  box-shadow: 0 4px 18px rgba(0, 200, 83, 0.15);
+}
+
+/* Details.so Pill Trigger Badge */
+.details-pill-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: #A1ACA6;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+.details-pill-trigger:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 255, 135, 0.3);
+  color: #FFFFFF;
+}
+
+.details-pill-trigger:active {
+  transform: scale(0.96);
+}
+
+[data-theme="light"] .details-pill-trigger {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #4A5650;
+}
+
+[data-theme="light"] .details-pill-trigger:hover {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 200, 83, 0.4);
+  color: #0D1210;
+}
+
+/* Details.so Card Badge Shimmer text */
+.card-badge-shimmer-text {
+  background: linear-gradient(
+    90deg,
+    var(--text-secondary) 0%,
+    var(--text-primary) 50%,
+    var(--text-secondary) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer-text 3s infinite linear;
+}
+
+@keyframes shimmer-text {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+

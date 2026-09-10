@@ -43,10 +43,10 @@ export default function Skills({ tab }) {
           <h2 className="font-display font-black text-3xl sm:text-5xl md:text-6xl tracking-tight mb-4 text-[var(--text-primary)]">
             TOOLS OF THE <span className="iridescent-text">CRAFT</span>
           </h2>
-          <p className="max-w-xl text-sm sm:text-base text-[var(--text-secondary)] mb-10 sm:mb-14 leading-relaxed font-normal">
+          <p className="max-w-xl text-sm sm:text-base text-[var(--text-secondary)] mb-8 sm:mb-12 leading-relaxed font-normal">
             {isCreative
-              ? 'A hybrid creative toolkit — generative AI systems, ComfyUI workflows, motion graphics, and brand strategy fused into scalable execution.'
-              : 'A production-tested stack spanning reactive frontends, concurrent backend services, containerized pipelines, and self-hosted cloud infrastructure.'}
+              ? 'Generative AI pipelines, motion design, and scalable brand production.'
+              : 'Modern frontends, concurrent backends, and containerized cloud services.'}
           </p>
         </Reveal>
 

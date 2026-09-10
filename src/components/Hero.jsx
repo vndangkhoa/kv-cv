@@ -2,21 +2,29 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowRight, Sparkles, ExternalLink, FileText } from 'lucide-react';
 import TabSwitch from './ui/TabSwitch';
-import { downloadCV, PERSONAL_INFO } from '../data/personal';
+import { downloadCV, exportPdfDirectly, PERSONAL_INFO } from '../data/personal';
 
-export default function Hero({ tab, onTabChange }) {
+export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratingPdf }) {
   const isCreative = tab === 'creative';
 
   const scrollToWork = () => {
     document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleDownload = () => {
+    if (setIsGeneratingPdf) {
+      exportPdfDirectly(setIsGeneratingPdf);
+    } else {
+      downloadCV();
+    }
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] w-full flex flex-col justify-between overflow-hidden px-4 sm:px-8 md:px-12 lg:px-16 pt-28 sm:pt-32 pb-10 bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[#00FF87] selection:text-[#0A0D0B]"
+      className="relative min-h-[85svh] lg:min-h-[90svh] w-full flex flex-col justify-end overflow-hidden px-4 sm:px-8 md:px-12 lg:px-16 pt-20 pb-3 sm:pb-4 bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[#00FF87] selection:text-[#0A0D0B]"
     >
-      {/* Background Video with Dark Vignette & Ambient Mesh Overlays */}
+      {/* Background Video with Ambient Theme Overlays */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <video
           src="/human_head_turn.mp4"
@@ -25,62 +33,27 @@ export default function Hero({ tab, onTabChange }) {
           loop
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover lg:scale-[1.1] opacity-35 dark:opacity-35 mix-blend-luminosity dark:mix-blend-screen transition-opacity duration-700"
+          className="absolute inset-0 h-full w-full object-cover object-[center_32%] opacity-60 dark:opacity-45 mix-blend-luminosity dark:mix-blend-screen transition-opacity duration-700"
         />
-        {/* Radial Vignette & Noise Blend */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-primary)]/90 via-[var(--bg-primary)]/60 to-[var(--bg-primary)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_30%,var(--bg-primary)_90%)]" />
+        {/* Subtle Ambient Vignette & Smooth Bottom Blend */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-primary)]/15 to-[var(--bg-primary)]/95" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_55%,var(--bg-primary)_95%)]" />
       </div>
 
-      {/* Top Section: Glowing Availability Pill & Persona Switcher */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 mb-8">
+      {/* Bottom Hero Content: Concise Headline, Subtitle, & Actions moved close to Bento Cards */}
+      <div className="relative z-10 w-full max-w-6xl mx-auto mt-auto pb-3 sm:pb-4 flex flex-col justify-end">
         <motion.div
-          initial={{ opacity: 0, y: -15 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="badge-iridescent px-4 py-1.5 bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-md shadow-lg">
-            <span className="flex items-center gap-2 text-xs font-mono">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF87] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00FF87]" />
-              </span>
-              <span className="badge-iridescent-text">
-                {isCreative
-                  ? 'AVAILABLE // CREATIVE & AI INNOVATION LEAD'
-                  : 'FORGEJO SYNCED // FULL-STACK & DEVOPS'}
-              </span>
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Floating Persona Switcher Pill */}
-        {onTabChange && (
-          <motion.div
-            initial={{ opacity: 0, y: -15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex items-center"
-          >
-            <TabSwitch active={tab} onChange={onTabChange} size="md" />
-          </motion.div>
-        )}
-      </div>
-
-      {/* Center Hero: High-Impact Motion Headline & Subtitle */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto my-auto py-6 flex flex-col justify-center">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="text-left"
         >
-          <div className="inline-flex items-center gap-2 mb-3 text-xs uppercase tracking-[0.3em] text-emerald-600 dark:text-[#00FF87] font-mono font-semibold">
-            <Sparkles size={14} className="animate-pulse" />
-            <span>Vo Nguyen Dang Khoa &bull; Portfolio 2026</span>
+          <div className="inline-flex items-center gap-2 mb-2 text-[11px] uppercase tracking-[0.25em] text-emerald-600 dark:text-[#00FF87] font-mono font-semibold">
+            <Sparkles size={12} className="animate-pulse" />
+            <span>PORTFOLIO '26</span>
           </div>
 
-          <h1 className="text-[36px] sm:text-[54px] md:text-[68px] lg:text-[80px] font-black uppercase tracking-tight text-[var(--text-primary)] leading-[0.95] sm:leading-[0.92] max-w-5xl">
+          <h1 className="text-[30px] sm:text-[44px] md:text-[54px] lg:text-[62px] font-black uppercase tracking-tight text-[var(--text-primary)] leading-[0.94] max-w-4xl">
             <span>BRINGING THE </span>
             <span
               className="iridescent-text iridescent-glow-text font-black"
@@ -90,47 +63,50 @@ export default function Hero({ tab, onTabChange }) {
             </span>
             <br />
             <span>TO </span>
-            <span className="text-[var(--text-primary)]">AI &amp; DIGITAL </span>
+            <span className="text-[var(--text-primary)]">DIGITAL </span>
             <em className="serif-accent not-italic font-serif">EXPERIENCES</em>
           </h1>
         </motion.div>
 
-        {/* Dynamic Subtitle & Value Proposition */}
-        <motion.p
-          key={tab}
+        {/* Short, punchy subtitle with minimal words */}
+        <div className="mt-2 sm:mt-2.5 flex items-center">
+          <motion.p
+            key={tab}
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="text-xs sm:text-sm md:text-base text-[var(--text-secondary)] font-normal max-w-xl leading-relaxed"
+          >
+            {isCreative
+              ? 'Creative & AI Lead — Generative AI & Digital Experiences.'
+              : 'Full-Stack & DevOps Engineer — AI Systems & Infrastructure.'}
+          </motion.p>
+        </div>
+
+        {/* Primary Action Buttons Bar with concise labels & Persona Switcher */}
+        <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.25 }}
-          className="mt-6 text-sm sm:text-base md:text-lg text-[var(--text-secondary)] font-normal max-w-2xl leading-relaxed"
-        >
-          {isCreative
-            ? 'Visionary Creative & AI Lead with 9+ years architecting visual strategies, motion graphics, and autonomous generative AI pipelines for Fortune 500 global brands.'
-            : 'Full-stack builder and DevOps engineer deploying production streaming platforms, AI tools, and self-hosted microservices with high reliability.'}
-        </motion.p>
-
-        {/* Primary Action Buttons Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.35 }}
-          className="mt-8 flex flex-wrap items-center gap-3 sm:gap-4"
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-3 sm:mt-3.5 flex flex-wrap items-center gap-2.5 sm:gap-3"
         >
           {/* Main Glowing Action Button */}
           <button
-            onClick={downloadCV}
-            className="btn-iridescent text-xs sm:text-sm font-extrabold shadow-glow-md group"
+            onClick={handleDownload}
+            disabled={isGeneratingPdf}
+            className="btn-details-primary btn-press text-xs font-extrabold shadow-glow-md group cursor-pointer py-2 px-4"
           >
-            <Download size={16} className="transition-transform group-hover:-translate-y-0.5" />
-            <span>Download PDF CV</span>
+            <Download size={14} className="transition-transform group-hover:-translate-y-0.5" />
+            <span>{isGeneratingPdf ? 'Generating...' : 'Resume'}</span>
           </button>
 
           {/* Explore Projects Button */}
           <button
             onClick={scrollToWork}
-            className="btn-glass text-xs sm:text-sm font-bold group"
+            className="btn-details-ghost btn-press text-xs font-bold group cursor-pointer py-2 px-4"
           >
-            <span>Explore Selected Work</span>
-            <ArrowRight size={14} className="transition-transform group-hover:translate-x-1 text-emerald-600 dark:text-[#00FF87]" />
+            <span>Work</span>
+            <ArrowRight size={13} className="transition-transform group-hover:translate-x-1 text-emerald-600 dark:text-[#00FF87]" />
           </button>
 
           {/* Secondary Quick External Link */}
@@ -138,20 +114,32 @@ export default function Hero({ tab, onTabChange }) {
             href={isCreative ? PERSONAL_INFO.linkedin : PERSONAL_INFO.forgejo}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] text-xs font-mono transition-all duration-200"
+            className="details-pill-trigger btn-press px-3.5 py-2 text-xs font-mono"
           >
-            <span>{isCreative ? 'LinkedIn Profile' : 'Forgejo Git'}</span>
-            <ExternalLink size={12} className="opacity-70" />
+            <span>{isCreative ? 'LinkedIn' : 'Forgejo'}</span>
+            <ExternalLink size={11} className="opacity-70" />
           </a>
+
+          {/* Persona Switcher Buttons (Creative & IT) right next to the action buttons */}
+          {onTabChange && (
+            <div className="flex items-center">
+              <TabSwitch
+                active={tab}
+                onChange={onTabChange}
+                size="sm"
+                layoutId="hero-action-tab"
+              />
+            </div>
+          )}
         </motion.div>
       </div>
 
-      {/* Bottom Bento Metric Strip (Desktop: 4 columns, Mobile: 2x2 grid) */}
+      {/* Bottom Bento Metric Strip */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.45 }}
-        className="relative z-10 w-full max-w-6xl mx-auto pt-8 border-t border-[var(--border)] grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left"
+        transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full max-w-6xl mx-auto pt-3.5 sm:pt-4 border-t border-[var(--border)] grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-left mb-2 sm:mb-2.5"
       >
         {/* Metric 1 */}
         <div className="p-3 sm:p-4 rounded-2xl bg-[var(--accent-subtle)] border border-[var(--border)] backdrop-blur-sm">
@@ -159,7 +147,7 @@ export default function Hero({ tab, onTabChange }) {
             01 // EXPERIENCE
           </span>
           <div className="font-display font-extrabold text-xl sm:text-2xl text-[var(--text-primary)]">9+ Years</div>
-          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">Creative &amp; Technical Leadership</p>
+          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">Creative &amp; Tech Lead</p>
         </div>
 
         {/* Metric 2 */}
@@ -170,7 +158,7 @@ export default function Hero({ tab, onTabChange }) {
           <div className="font-display font-extrabold text-xl sm:text-2xl text-[var(--text-primary)]">
             {isCreative ? 'ComfyUI & FLUX' : 'Agentic & LLMs'}
           </div>
-          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">Autonomous Prompt Pipelines</p>
+          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">GenAI Workflows</p>
         </div>
 
         {/* Metric 3 */}
@@ -182,7 +170,7 @@ export default function Hero({ tab, onTabChange }) {
             {isCreative ? 'Fortune 500' : '18+ Apps'}
           </div>
           <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">
-            {isCreative ? 'P&G, Phibious, Luxury' : 'Self-Hosted CI/CD & Cloud'}
+            {isCreative ? 'Global Brands' : 'CI/CD & Cloud'}
           </p>
         </div>
 
@@ -192,7 +180,7 @@ export default function Hero({ tab, onTabChange }) {
             04 // REGIONAL REACH
           </span>
           <div className="font-display font-extrabold text-xl sm:text-2xl text-[var(--text-primary)]">SEA Markets</div>
-          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">Omnichannel &amp; Digital Scale</p>
+          <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">Regional Scale</p>
         </div>
       </motion.div>
     </section>

@@ -10,12 +10,12 @@ export default function About({ tab }) {
   const isCreative = tab === 'creative';
   const data = isCreative ? CREATIVE_DATA : IT_DATA;
   const summary = isCreative
-    ? 'Visionary Creative Leader with 9+ years of expertise bridging brand strategy, digital design, motion graphics, and cutting-edge generative AI. Currently pioneering AI-augmented creative workflows, merging traditional art direction with ComfyUI, Stable Diffusion, and FLUX to redefine visual storytelling.'
-    : IT_DATA.summary;
+    ? 'Creative Lead merging 9+ years of art direction, motion design, and generative AI (ComfyUI, FLUX) to craft high-impact digital experiences.'
+    : 'Full-stack engineer with 18+ production apps, self-hosted services, and automated CI/CD pipelines.';
 
   const highlight = isCreative
-    ? 'Currently leading AI-augmented creative production at Phibious, serving global Fortune 500 brands.'
-    : '2-year journey from zero to 18+ production apps — streaming platforms, AI tools, and self-hosted infrastructure.';
+    ? 'Leading AI-augmented creative workflows at Phibious for global Fortune 500 brands.'
+    : '18+ production apps deployed — streaming platforms, AI microservices, and self-hosted infrastructure.';
 
   return (
     <section id="about" className="relative max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-20 sm:py-28 md:py-36 bg-[var(--bg-primary)] text-[var(--text-primary)]">

@@ -60,6 +60,12 @@ export const IT_DATA = {
       github: "https://github.com/vndangkhoa/kv-synology"
     },
     {
+      name: "vietc",
+      description: "Modern Vietnamese Input Method Engine (IME) for Linux with direct Unicode input — no pre-edit buffer, zero flickering, and instant native typing.",
+      tech: ["Rust", "Linux", "IBus / Fcitx5", "Unicode Engine", "Systems Programming"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/vietc"
+    },
+    {
       name: "spkrepo (KV Package Center)",
       description: "Synology Community Package Repository Server (pkg.khoavo.myds.me) — serves custom SPK packages for 1-click install in DSM Package Center with GPG signing and automated release pipeline.",
       tech: ["Python (Flask)", "PostgreSQL", "SPK Toolchain", "GnuPG", "Docker Compose", "Synology DSM 7.2"],

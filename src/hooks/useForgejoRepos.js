@@ -90,10 +90,19 @@ export function useForgejoRepos() {
 
       const data = await response.json();
 
+      const HIGHLIGHT_REPOS = ['kv-synology', 'vietc'];
+
       const formatted = data
         .filter(r => r.name !== 'vndangkhoa')
         .map(formatRemoteRepo)
-        .sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt));
+        .sort((a, b) => {
+          const aIndex = HIGHLIGHT_REPOS.indexOf(a.name);
+          const bIndex = HIGHLIGHT_REPOS.indexOf(b.name);
+          if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+          if (aIndex !== -1) return -1;
+          if (bIndex !== -1) return 1;
+          return new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt);
+        });
 
       const langCount = {};
       formatted.forEach(repo => {

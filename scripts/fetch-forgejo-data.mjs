@@ -66,7 +66,15 @@ async function fetchRepos() {
     })
     .filter(r => r.name !== 'vndangkhoa'); // hide profile README from projects grid
 
-  return fetched.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt));
+  const HIGHLIGHT_REPOS = ['kv-synology', 'vietc'];
+  return fetched.sort((a, b) => {
+    const aIndex = HIGHLIGHT_REPOS.indexOf(a.name);
+    const bIndex = HIGHLIGHT_REPOS.indexOf(b.name);
+    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+    if (aIndex !== -1) return -1;
+    if (bIndex !== -1) return 1;
+    return new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt);
+  });
 }
 
 async function main() {

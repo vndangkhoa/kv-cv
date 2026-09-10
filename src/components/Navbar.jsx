@@ -3,19 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Sun, Moon, Terminal, FileText, Menu, X, ArrowUpRight } from 'lucide-react';
 import TabSwitch from './ui/TabSwitch';
 import VNDKLogo from './ui/VNDKLogo';
+import NavigationDrawer from './NavigationDrawer';
 import PERSONAL_INFO from '../data/personal';
 
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
   { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
-  { id: 'experience', label: 'Experience' },
+  { id: 'experience', label: 'Journey' },
   { id: 'contact', label: 'Contact' },
 ];
 
 export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEasterEgg, onOpenPdf }) {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return new URLSearchParams(window.location.search).get('drawer') === 'open';
+    }
+    return false;
+  });
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
@@ -40,7 +46,7 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
   }, []);
 
   const scrollTo = (id) => {
-    setMenuOpen(false);
+    setDrawerOpen(false);
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -49,35 +55,35 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-[100] px-3 sm:px-6 py-3 sm:py-4 pointer-events-none transition-opacity ${scrolled ? '' : 'opacity-[0.96]'}`}
+      className="fixed top-0 left-0 right-0 z-[100] px-3 sm:px-6 py-3 sm:py-4 pointer-events-none"
     >
-      <div className="max-w-6xl mx-auto flex items-center justify-between pointer-events-auto">
+      <div className="max-w-5xl mx-auto flex items-center justify-between pointer-events-auto">
         {/* Floating Capsule Island Navbar */}
-        <div className="w-full flex items-center justify-between gap-2 sm:gap-4 px-3 sm:px-5 py-2 rounded-full nav-island">
+        <div className="w-full flex items-center justify-between gap-3 sm:gap-6 px-3.5 sm:px-5 py-2 rounded-full nav-island">
           {/* Brand Logo & Name */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="flex items-center gap-2 group cursor-pointer focus:outline-none"
+            className="flex items-center gap-2 group cursor-pointer focus:outline-none shrink-0"
             title="Khoa Vo — Creative & AI Portfolio"
           >
             <div className="p-1 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] group-hover:border-[#00FF87]/50 group-hover:shadow-glow-sm transition-all duration-300">
               <VNDKLogo size="sm" />
             </div>
-            <div className="hidden lg:flex flex-col text-left">
+            <div className="hidden sm:flex flex-col text-left">
               <span className="font-mono text-xs font-bold tracking-wider text-[var(--text-primary)]">KHOA.VO</span>
-              <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-tight">AI &amp; Tech Lead</span>
+              <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-tight hidden md:inline">AI &amp; Tech Lead</span>
             </div>
           </button>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 bg-[var(--accent-subtle)] border border-[var(--border)] rounded-full p-1 shadow-inner">
+          {/* Desktop Navigation Links (shown on desktop >= 1024px where space permits) */}
+          <nav className="hidden lg:flex items-center gap-1 bg-[var(--accent-subtle)] border border-[var(--border)] rounded-full p-1 shadow-inner mx-auto">
             {NAV_LINKS.map((link) => {
               const isActive = activeSection === link.id;
               return (
                 <button
                   key={link.id}
                   onClick={() => scrollTo(link.id)}
-                  className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer select-none ${
+                  className={`relative px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer select-none whitespace-nowrap ${
                     isActive
                       ? 'text-[#0A0D0B] font-bold'
                       : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--border)]'
@@ -97,9 +103,9 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
           </nav>
 
           {/* Controls & Actions Cluster */}
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {/* Persona Switcher (Creative vs Developer Mode) */}
-            <div className="hidden sm:block">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Persona Switcher (visible on tablet where nav links are hidden) */}
+            <div className="hidden sm:flex lg:hidden items-center shrink-0">
               <TabSwitch active={tab} onChange={onTabChange} size="sm" />
             </div>
 
@@ -107,9 +113,9 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
             <button
               onClick={onOpenPdf}
               title="Download PDF CV"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#00FF87]/15 hover:bg-[#00FF87]/25 text-emerald-700 dark:text-[#00FF87] border border-[#00FF87]/35 text-xs font-mono font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-glow-sm cursor-pointer"
+              className="btn-press inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#00FF87]/15 hover:bg-[#00FF87]/25 text-emerald-700 dark:text-[#00FF87] border border-[#00FF87]/35 text-xs font-mono font-bold transition-all duration-300 shadow-glow-sm cursor-pointer shrink-0 whitespace-nowrap"
             >
-              <FileText size={13} />
+              <FileText size={13} className="shrink-0" />
               <span className="hidden sm:inline">PDF CV</span>
             </button>
 
@@ -117,7 +123,7 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
             <button
               onClick={onEasterEgg}
               title="Nostalgic Terminal OS"
-              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-emerald-600 dark:hover:text-[#00FF87] border border-[var(--border)] transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
+              className="btn-press h-8 w-8 hidden md:inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-emerald-600 dark:hover:text-[#00FF87] border border-[var(--border)] transition-all duration-200 cursor-pointer shrink-0"
             >
               <Terminal size={14} />
             </button>
@@ -126,88 +132,37 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
             <button
               onClick={toggleTheme}
               title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
+              className="btn-press h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] transition-all duration-200 cursor-pointer shrink-0"
             >
               {darkMode ? <Sun size={14} /> : <Moon size={14} />}
             </button>
 
-            {/* Mobile Menu Hamburger Button */}
+            {/* Open Navigation Drawer Trigger (Details.so inspired) */}
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden h-8 w-8 inline-flex items-center justify-center rounded-full bg-[var(--accent-subtle)] text-[var(--text-primary)] border border-[var(--border)] ml-1 cursor-pointer"
-              aria-label="Toggle mobile menu"
+              onClick={() => setDrawerOpen(true)}
+              title="Open Navigation Drawer (Index & Quick Actions)"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] hover:border-[#00FF87]/40 text-xs font-mono transition-all duration-200 cursor-pointer btn-press ml-0.5 sm:ml-1 shrink-0 whitespace-nowrap"
+              aria-label="Open Navigation Drawer"
             >
-              {menuOpen ? <X size={16} /> : <Menu size={16} />}
+              <Menu size={14} className="text-[#00FF87] shrink-0" />
+              <span className="hidden sm:inline font-semibold tracking-wide">Menu</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Modern Mobile Slide-Down Blur Drawer */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
-            className="md:hidden mt-2 mx-auto max-w-lg p-5 rounded-3xl bg-[var(--glass-bg)] border border-[var(--glass-border)] backdrop-blur-2xl shadow-2xl space-y-4 pointer-events-auto text-[var(--text-primary)]"
-          >
-            {/* Persona Switcher for Mobile */}
-            <div className="flex justify-center pb-2 border-b border-[var(--border)]">
-              <TabSwitch
-                active={tab}
-                onChange={(newTab) => {
-                  onTabChange(newTab);
-                }}
-                size="md"
-                layoutId="mobile-tab-pill"
-              />
-            </div>
-
-            {/* Navigation Links */}
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              {NAV_LINKS.map((link) => {
-                const isActive = activeSection === link.id;
-                return (
-                  <button
-                    key={link.id}
-                    onClick={() => scrollTo(link.id)}
-                    className={`px-4 py-3 rounded-2xl text-left text-sm font-semibold transition-all ${
-                      isActive
-                        ? 'bg-[#00FF87]/20 text-emerald-700 dark:text-[#00FF87] border border-[#00FF87]/30 font-bold'
-                        : 'bg-[var(--accent-subtle)] text-[var(--text-secondary)] hover:bg-[var(--border)] hover:text-[var(--text-primary)] border border-[var(--border)]'
-                    }`}
-                  >
-                    {link.label}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Mobile Actions */}
-            <div className="pt-2 border-t border-[var(--border)] space-y-2">
-              <button
-                onClick={() => {
-                  setMenuOpen(false);
-                  onOpenPdf();
-                }}
-                className="w-full py-3 rounded-2xl bg-gradient-to-r from-[#00FF87] to-[#00E5FF] text-[#0A0D0B] font-extrabold text-xs font-mono flex items-center justify-center gap-2 shadow-lg shadow-[#00FF87]/20 cursor-pointer"
-              >
-                <FileText size={15} /> Download PDF Resume / CV
-              </button>
-
-              <div className="flex items-center justify-between px-2 pt-2 text-xs text-[var(--text-muted)] font-mono">
-                <span>{PERSONAL_INFO.location}</span>
-                <span className="flex items-center gap-1 text-emerald-600 dark:text-[#00FF87]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-[#00FF87] animate-ping" />
-                  Available for Hire
-                </span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Details.so Open Navigation Drawer Component */}
+      <NavigationDrawer
+        isOpen={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        activeSection={activeSection}
+        tab={tab}
+        onTabChange={onTabChange}
+        darkMode={darkMode}
+        toggleTheme={toggleTheme}
+        onEasterEgg={onEasterEgg}
+        onOpenPdf={onOpenPdf}
+      />
     </motion.header>
   );
 }
