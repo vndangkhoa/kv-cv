@@ -64,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Machine-readable context in `llms.txt`.
   - JSON-LD structured schema metadata in `index.html`.
   - Optimized crawler permissions in `robots.txt`.
-- WordPress REST API hook (`usePortfolioPosts.js`) connecting live creative projects from `portfolio.khoavo.myds.me`.
+- WordPress REST API hook (`usePortfolioPosts.js`) connecting live creative projects from `portfolio.khoavo.vndns.net`.
 
 ### Fixed
 - Fixed viewport jitter during window resize in retro desktop layout.

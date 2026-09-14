@@ -29,8 +29,8 @@ export const SHORT_WORK = [
     category: "AI Video",
     year: "2026",
     desc: "Text prompt → scalable fashion video. End-to-end.",
-    link: "https://portfolio.khoavo.myds.me/2026/04/25/fashion-pipeline-ideas-2-execution/",
-    image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2026/04/Gemini_Generated_Image_vmk4e2vmk4e2vmk4-1-scaled.png",
+    link: "https://portfolio.khoavo.vndns.net/2026/04/25/fashion-pipeline-ideas-2-execution/",
+    image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2026/04/Gemini_Generated_Image_vmk4e2vmk4e2vmk4-1-scaled.png",
   },
   {
     id: "delux",
@@ -38,8 +38,8 @@ export const SHORT_WORK = [
     category: "AI Branding",
     year: "2025",
     desc: "AI mood boards → cinematic launch film.",
-    link: "https://portfolio.khoavo.myds.me/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
-    image: "https://portfolio.khoavo.myds.me/wp-content/uploads/2025/08/Delux-Perfume_red.png",
+    link: "https://portfolio.khoavo.vndns.net/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
+    image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2025/08/Delux-Perfume_red.png",
   },
   {
     id: "kvsyn",

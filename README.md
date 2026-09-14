@@ -79,7 +79,7 @@ The site is served as a high-performance static SPA powered by Vite and Nginx, c
 ### 🎨 Creative & AI Innovation
 * **Audience:** Creative agencies, brand directors, marketing leaders, and design executives.
 * **Aesthetics:** Editorial typography, glassmorphic bento cards, progressive grayscale-to-color reveals on hover, and fluid motion transitions.
-* **Integrations:** Real-time WordPress REST API (`portfolio.khoavo.myds.me/wp-json/wp/v2/posts`) feeding active campaign case studies.
+* **Integrations:** Real-time WordPress REST API (`portfolio.khoavo.vndns.net/wp-json/wp/v2/posts`) feeding active campaign case studies.
 
 ### ⚡ Full-Stack & DevOps Engineering
 * **Audience:** Engineering leads, CTOs, recruiters, and open-source collaborators.

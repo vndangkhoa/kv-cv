@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const API_BASE = 'https://portfolio.khoavo.myds.me/wp-json/wp/v2';
+const API_BASE = 'https://portfolio.khoavo.vndns.net/wp-json/wp/v2';
 
 export function usePortfolioPosts({ perPage = 6, category = null } = {}) {
   const [posts, setPosts] = useState([]);
