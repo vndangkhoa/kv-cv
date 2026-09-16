@@ -102,7 +102,7 @@ export default function App() {
 
         <About tab={tab} />
         <Skills tab={tab} />
-        <Projects tab={tab} />
+        <Projects tab={tab} onTabChange={setTab} />
         <Experience tab={tab} />
         <Contact tab={tab} />
       </main>

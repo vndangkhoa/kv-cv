@@ -2,12 +2,15 @@ import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ExternalLink, ArrowUpRight, Loader2, AlertTriangle,
-  LayoutGrid, LayoutList, ChevronDown, ChevronUp, Filter, Copy, Check, Sparkles
+  LayoutGrid, LayoutList, ChevronDown, ChevronUp, Filter, Copy, Check, Sparkles,
+  RefreshCw, GitBranch
 } from 'lucide-react';
 import GlassCard from './ui/GlassCard';
 import Reveal from './ui/Reveal';
 import { usePortfolioPosts, transformToProject } from '../hooks/usePortfolioPosts';
 import { useForgejoRepos } from '../hooks/useForgejoRepos';
+
+const HIGHLIGHT_REPOS = ['kv-synology', 'vietc', 'kv-file'];
 
 const LANGUAGE_COLORS = {
   JavaScript: '#f7df1e',
@@ -133,7 +136,7 @@ function CreativeMotionCard({ project, index }) {
 function DevMotionCard({ repo, index }) {
   const [copied, setCopied] = useState(false);
   const color = LANGUAGE_COLORS[repo.language] || LANGUAGE_COLORS.Unknown;
-  const isHighlighted = repo.name === 'kv-synology' || repo.name === 'vietc';
+  const isHighlighted = HIGHLIGHT_REPOS.includes(repo.name);
 
   const copyUrl = (e) => {
     e.preventDefault();
@@ -223,7 +226,7 @@ function DevMotionCard({ repo, index }) {
 function CompactListRow({ item, isCreative, index }) {
   const color = !isCreative ? (LANGUAGE_COLORS[item.language] || LANGUAGE_COLORS.Unknown) : '#00FF87';
   const url = isCreative ? item.link : item.htmlUrl;
-  const isHighlighted = !isCreative && (item.name === 'kv-synology' || item.name === 'vietc');
+  const isHighlighted = !isCreative && HIGHLIGHT_REPOS.includes(item.name);
 
   return (
     <motion.div
@@ -279,11 +282,24 @@ function CompactListRow({ item, isCreative, index }) {
   );
 }
 
-export default function Projects({ tab }) {
+export default function Projects({ tab, onTabChange }) {
   const isCreative = tab === 'creative';
 
-  const { posts, loading: wpLoading, error: wpError, hasMore, loadMore } = usePortfolioPosts({ perPage: 12 });
-  const { repos, languages, loading: repoLoading } = useForgejoRepos();
+  const {
+    posts,
+    loading: wpLoading,
+    error: wpError,
+    hasMore,
+    loadMore,
+    refresh: refreshPortfolio,
+  } = usePortfolioPosts({ perPage: 12 });
+
+  const {
+    repos,
+    languages,
+    loading: repoLoading,
+    refresh: refreshGithub,
+  } = useForgejoRepos();
 
   const creativeProjects = posts.map(transformToProject);
   const rawList = isCreative ? creativeProjects : repos;
@@ -345,13 +361,13 @@ export default function Projects({ tab }) {
             <p className="max-w-md text-[var(--text-secondary)] text-xs sm:text-sm leading-relaxed font-normal">
               {isCreative
                 ? 'Live feed synchronized from WordPress portfolio — AI fashion workflows, cinematic video creation, and brand identities.'
-                : 'Production services synchronized from Forgejo — Kotlin Multiplatform, Go streaming engines, Rust backends, and AI image tooling.'}
+                : 'Production services synchronized from GitHub & Forgejo — Kotlin Multiplatform, Go streaming engines, Rust backends, and AI image tooling.'}
             </p>
           </div>
         </Reveal>
 
-        {/* MotionSites-style Filter Capsule Bar & Grid/List Mode Switcher */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8 pb-4 border-b border-[var(--border)]">
+        {/* MotionSites-style Filter Capsule Bar, Fetch Buttons & Grid/List Mode Switcher */}
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 mb-8 pb-4 border-b border-[var(--border)]">
           {/* Scrollable Filter Capsules */}
           <div className="flex items-center gap-1.5 overflow-x-auto custom-scrollbar py-1">
             {filters.map((filter) => {
@@ -374,26 +390,65 @@ export default function Projects({ tab }) {
             })}
           </div>
 
-          {/* View Mode Toggle Switch */}
-          <div className="flex items-center self-end sm:self-auto gap-1 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full p-1 shrink-0">
+          {/* Action Toolbar: Fetch Buttons + View Mode Toggle Switch */}
+          <div className="flex flex-wrap items-center self-end lg:self-auto gap-2 shrink-0">
+            {/* Fetch Portfolio Button */}
             <button
-              onClick={() => setViewMode('grid')}
-              className={`p-1.5 rounded-full transition-colors cursor-pointer ${
-                viewMode === 'grid' ? 'bg-[#00FF87] text-[#0A0D0B]' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
-              }`}
-              title="Grid View (MotionCards)"
+              onClick={() => {
+                if (!isCreative && onTabChange) onTabChange('creative');
+                refreshPortfolio();
+              }}
+              disabled={wpLoading}
+              title="Fetch latest case studies from Portfolio (WordPress API)"
+              className={`btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-200 cursor-pointer border ${
+                isCreative
+                  ? 'bg-[#00FF87]/15 border-emerald-500/50 dark:border-[#00FF87]/50 text-emerald-700 dark:text-[#00FF87] shadow-sm shadow-[#00FF87]/20'
+                  : 'bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[#00FF87]/40'
+              } disabled:opacity-50`}
             >
-              <LayoutGrid size={15} />
+              <RefreshCw size={12} className={wpLoading ? 'animate-spin text-[#00FF87]' : isCreative ? 'text-[#00FF87]' : ''} />
+              <span>{wpLoading ? 'Fetching Portfolio…' : 'Fetch Portfolio'}</span>
             </button>
+
+            {/* Fetch GitHub Button */}
             <button
-              onClick={() => setViewMode('list')}
-              className={`p-1.5 rounded-full transition-colors cursor-pointer ${
-                viewMode === 'list' ? 'bg-[#00FF87] text-[#0A0D0B]' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
-              }`}
-              title="List View"
+              onClick={() => {
+                if (isCreative && onTabChange) onTabChange('dev');
+                refreshGithub();
+              }}
+              disabled={repoLoading}
+              title="Fetch latest repositories from GitHub API"
+              className={`btn-press inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-bold transition-all duration-200 cursor-pointer border ${
+                !isCreative
+                  ? 'bg-[#00FF87]/15 border-emerald-500/50 dark:border-[#00FF87]/50 text-emerald-700 dark:text-[#00FF87] shadow-sm shadow-[#00FF87]/20'
+                  : 'bg-[var(--glass-bg)] border-[var(--glass-border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[#00FF87]/40'
+              } disabled:opacity-50`}
             >
-              <LayoutList size={15} />
+              <RefreshCw size={12} className={repoLoading ? 'animate-spin text-[#00FF87]' : !isCreative ? 'text-[#00FF87]' : ''} />
+              <span>{repoLoading ? 'Fetching GitHub…' : 'Fetch GitHub'}</span>
             </button>
+
+            {/* View Mode Toggle Switch */}
+            <div className="flex items-center gap-1 bg-[var(--glass-bg)] border border-[var(--glass-border)] rounded-full p-1 shrink-0">
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+                  viewMode === 'grid' ? 'bg-[#00FF87] text-[#0A0D0B]' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+                }`}
+                title="Grid View (MotionCards)"
+              >
+                <LayoutGrid size={15} />
+              </button>
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-1.5 rounded-full transition-colors cursor-pointer ${
+                  viewMode === 'list' ? 'bg-[#00FF87] text-[#0A0D0B]' : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
+                }`}
+                title="List View"
+              >
+                <LayoutList size={15} />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -475,36 +530,93 @@ export default function Projects({ tab }) {
           </motion.div>
         </AnimatePresence>
 
-        {/* Expand / Collapse Actions */}
-        {filteredList.length > INITIAL_SHOW_COUNT && (
-          <div className="mt-12 flex flex-col items-center justify-center gap-3">
+        {/* Bottom Actions: Expand/Collapse & Dedicated Fetching Controls */}
+        <div className="mt-12 flex flex-col items-center justify-center gap-4">
+          {filteredList.length > INITIAL_SHOW_COUNT && (
             <button
               onClick={() => setExpanded(!expanded)}
-              className="btn-glass text-xs sm:text-sm font-bold group py-2.5 px-6 shadow-sm"
+              className="btn-glass text-xs sm:text-sm font-bold group py-2.5 px-6 shadow-sm cursor-pointer"
             >
               {expanded ? (
-                <>
+                <span className="flex items-center gap-2">
                   <span>Show less</span>
                   <ChevronUp size={16} className="transition-transform group-hover:-translate-y-0.5 text-emerald-600 dark:text-[#00FF87]" />
-                </>
+                </span>
               ) : (
-                <>
+                <span className="flex items-center gap-2">
                   <span>Expand to view all ({filteredList.length} items)</span>
                   <ChevronDown size={16} className="transition-transform group-hover:translate-y-0.5 text-emerald-600 dark:text-[#00FF87]" />
-                </>
+                </span>
               )}
             </button>
+          )}
 
-            {isCreative && hasMore && expanded && !wpLoading && (
-              <button
-                onClick={loadMore}
-                className="text-xs text-emerald-600 dark:text-[#00FF87] hover:underline mt-2 font-mono flex items-center gap-1.5"
-              >
-                <Sparkles size={12} /> Fetch more from WordPress API
-              </button>
+          {/* Dedicated Fetching Buttons for GitHub and Portfolio */}
+          <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+            {isCreative ? (
+              <>
+                {hasMore && (
+                  <button
+                    onClick={loadMore}
+                    disabled={wpLoading}
+                    className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] border border-emerald-500/40 dark:border-[#00FF87]/40 text-xs font-mono font-bold text-emerald-700 dark:text-[#00FF87] transition-all cursor-pointer disabled:opacity-50"
+                  >
+                    {wpLoading ? <Loader2 size={13} className="animate-spin text-[#00FF87]" /> : <Sparkles size={13} />}
+                    <span>{wpLoading ? 'Fetching more…' : 'Fetch more from WordPress API'}</span>
+                  </button>
+                )}
+
+                <button
+                  onClick={refreshPortfolio}
+                  disabled={wpLoading}
+                  className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--glass-bg)] hover:bg-[var(--accent-subtle)] border border-[var(--border)] text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all cursor-pointer disabled:opacity-50"
+                  title="Re-fetch all Portfolio projects from WordPress API"
+                >
+                  <RefreshCw size={13} className={wpLoading ? 'animate-spin text-[#00FF87]' : ''} />
+                  <span>{wpLoading ? 'Syncing Portfolio…' : 'Re-fetch Portfolio'}</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    if (onTabChange) onTabChange('dev');
+                    refreshGithub();
+                  }}
+                  disabled={repoLoading}
+                  className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--glass-bg)] hover:bg-[var(--accent-subtle)] border border-[var(--border)] text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all cursor-pointer disabled:opacity-50"
+                  title="Switch to IT persona & Fetch GitHub Repos"
+                >
+                  <GitBranch size={13} className={repoLoading ? 'animate-spin text-cyan-400' : ''} />
+                  <span>{repoLoading ? 'Fetching GitHub…' : 'Fetch GitHub Repos'}</span>
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  onClick={refreshGithub}
+                  disabled={repoLoading}
+                  className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-subtle)] hover:bg-[var(--border)] border border-emerald-500/40 dark:border-[#00FF87]/40 text-xs font-mono font-bold text-emerald-700 dark:text-[#00FF87] transition-all cursor-pointer disabled:opacity-50 shadow-sm"
+                  title="Fetch latest repositories from GitHub API"
+                >
+                  <RefreshCw size={13} className={repoLoading ? 'animate-spin text-[#00FF87]' : 'text-[#00FF87]'} />
+                  <span>{repoLoading ? 'Fetching repositories from GitHub…' : 'Fetch latest from GitHub API'}</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    if (onTabChange) onTabChange('creative');
+                    refreshPortfolio();
+                  }}
+                  disabled={wpLoading}
+                  className="btn-press inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--glass-bg)] hover:bg-[var(--accent-subtle)] border border-[var(--border)] text-xs font-mono text-[var(--text-muted)] hover:text-[var(--text-primary)] transition-all cursor-pointer disabled:opacity-50"
+                  title="Switch to Creative persona & Fetch Portfolio Posts"
+                >
+                  <Sparkles size={13} className={wpLoading ? 'animate-spin text-emerald-400' : ''} />
+                  <span>{wpLoading ? 'Fetching Portfolio…' : 'Fetch Portfolio'}</span>
+                </button>
+              </>
             )}
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

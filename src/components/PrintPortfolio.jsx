@@ -13,6 +13,7 @@ const INFO = {
   email: "vonguyendangkhoa@gmail.com",
   linkedin: "linkedin.com/in/khoa-vo-76291236",
   portfolio: "khoavo.myds.me",
+  website: "khoavo.vndns.net",
   github: "github.com/vndangkhoa",
   summary:
     "Multidisciplinary Creative Manager with 9+ years leading high-performance design teams and architecting autonomous AI production workflows across Southeast Asia. Spearheaded regional eCommerce design systems for Fortune 500 brands (P&G SEA Hair Care) and pioneered generative AI video pipelines (ComfyUI, FLUX.1, Runway, LoRA adapters) accelerating commercial asset velocity by 60%. Bridges traditional art direction, brand governance, and full-stack software engineering (React, Go, Docker, Synology DSM).",
@@ -225,21 +226,22 @@ const S = {
     background: C.black,
     display: 'flex',
     alignItems: 'center',
-    gap: '1.8mm',
-    padding: '0 5.5mm',
+    gap: '1.2mm',
+    padding: '0 4mm',
     flexWrap: 'nowrap',
     boxSizing: 'border-box',
+    overflow: 'hidden',
   },
   contactPill: {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '0.8mm',
+    gap: '0.6mm',
     background: C.bg,
     border: `0.25mm solid ${C.black}`,
     color: C.black,
-    fontSize: '5.8pt',
+    fontSize: '5.2pt',
     fontWeight: 700,
-    padding: '0.5mm 2mm',
+    padding: '0.4mm 1.5mm',
     borderRadius: '999px',
     fontFamily: "'JetBrains Mono', monospace",
     whiteSpace: 'nowrap',
@@ -439,8 +441,8 @@ export default function PrintPortfolio() {
         <span style={S.contactPill} className="contactPill">◎ {INFO.location}</span>
         <span style={S.contactPill} className="contactPill">↗ {INFO.linkedin}</span>
         <span style={S.contactPill} className="contactPill">⬢ {INFO.portfolio}</span>
+        <span style={S.contactPill} className="contactPill">🌐 {INFO.website}</span>
         <span style={S.contactPill} className="contactPill">💻 {INFO.github}</span>
-        <span style={S.contactPillRight} className="contactPillRight">1-PAGE A4 EDITORIAL</span>
       </div>
 
       {/* BODY */}
@@ -592,7 +594,7 @@ export default function PrintPortfolio() {
 
       {/* FOOTER (6.5mm) */}
       <div style={S.footer}>
-        <span>{INFO.email} &nbsp;•&nbsp; {INFO.phone} &nbsp;•&nbsp; {INFO.portfolio} &nbsp;•&nbsp; {INFO.github}</span>
+        <span>{INFO.email} &nbsp;•&nbsp; {INFO.phone} &nbsp;•&nbsp; {INFO.portfolio} &nbsp;•&nbsp; {INFO.website} &nbsp;•&nbsp; {INFO.github}</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.5mm', color: C.black, fontWeight: 900 }}>
           <span style={{ width: '2mm', height: '2mm', background: C.black, display: 'inline-block' }} /> {INFO.short} — 1-PAGE CREATIVE CV • 2026
         </span>

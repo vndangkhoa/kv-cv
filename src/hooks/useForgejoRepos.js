@@ -24,7 +24,20 @@ const formatRepo = (repo) => ({
   releases: repo.releases || 0,
 });
 
-const initRepos = (buildData.repos || []).map(formatRepo);
+export const HIGHLIGHT_REPOS = ['kv-synology', 'vietc', 'kv-file'];
+
+const sortRepos = (reposList) => {
+  return [...reposList].sort((a, b) => {
+    const aIndex = HIGHLIGHT_REPOS.indexOf(a.name);
+    const bIndex = HIGHLIGHT_REPOS.indexOf(b.name);
+    if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
+    if (aIndex !== -1) return -1;
+    if (bIndex !== -1) return 1;
+    return new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt);
+  });
+};
+
+const initRepos = sortRepos((buildData.repos || []).map(formatRepo));
 const initLanguages = buildData.languages || {};
 const initStats = {
   totalRepos: buildData.totalRepos || initRepos.length,
@@ -39,6 +52,7 @@ const FALLBACK_DESCRIPTIONS = {
   'Sys-Arc-Visl': "Infra topology visualizer — drag-drop system maps, auto-layout, docs export, and live dependency graph.",
   'kv-clearnup': "Media hygiene — batch cleanup, duplicate detection, and smart organization for large video libraries (TypeScript/Go).",
   'kv-download': "Universal mobile-first downloader — Go + yt-dlp, HLS/batch/queue, PWA share-sheet, Synology-ready.",
+  'kv-file': "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.",
 };
 
 const formatRemoteRepo = (repo) => {
@@ -48,6 +62,9 @@ const formatRemoteRepo = (repo) => {
   }
   if (repo.name === 'kv-synology') {
     desc = "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver, services controller (SMB, NFS, SSH, WebDAV), and 42 AI MCP tools";
+  }
+  if (repo.name === 'kv-file') {
+    desc = "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.";
   }
   return {
     id: repo.id,
@@ -90,19 +107,11 @@ export function useForgejoRepos() {
 
       const data = await response.json();
 
-      const HIGHLIGHT_REPOS = ['kv-synology', 'vietc'];
-
-      const formatted = data
-        .filter(r => r.name !== 'vndangkhoa')
-        .map(formatRemoteRepo)
-        .sort((a, b) => {
-          const aIndex = HIGHLIGHT_REPOS.indexOf(a.name);
-          const bIndex = HIGHLIGHT_REPOS.indexOf(b.name);
-          if (aIndex !== -1 && bIndex !== -1) return aIndex - bIndex;
-          if (aIndex !== -1) return -1;
-          if (bIndex !== -1) return 1;
-          return new Date(b.updatedAt) - new Date(a.updatedAt) || new Date(b.createdAt) - new Date(a.createdAt);
-        });
+      const formatted = sortRepos(
+        data
+          .filter(r => r.name !== 'vndangkhoa')
+          .map(formatRemoteRepo)
+      );
 
       const langCount = {};
       formatted.forEach(repo => {
@@ -120,6 +129,7 @@ export function useForgejoRepos() {
       });
     } catch (err) {
       console.warn('GitHub live fetch failed, using build-time data:', err.message);
+      setError(err.message);
     } finally {
       setLoading(false);
     }

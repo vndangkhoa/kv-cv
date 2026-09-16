@@ -1,0 +1,123 @@
+# Khoa Vo (Vo Nguyen Dang Khoa) - Full Profile, CV & Project Dossier
+
+> **Status & Availability:** Actively seeking new career opportunities as Creative Manager, AI Innovation Lead, Full-Stack Developer, or Solutions Architect. Open to full-time roles, strategic consulting, and contract engagements globally and regionally (Vietnam / Remote / APAC).
+
+## Executive Summary
+Vo Nguyen Dang Khoa (Khoa Vo) is a hybrid Creative Leader and Systems/Full-Stack Software Engineer based in Ho Chi Minh City, Vietnam. With 9+ years of brand and creative leadership (notably leading eCommerce design at Procter & Gamble and AI video pipelines at Phibious) paired with 2+ years of intensive production software engineering (18+ deployed applications in Next.js, Go, Rust, and Synology NAS systems), Khoa bridges the gap between high-level creative vision and low-level technical execution.
+
+---
+
+## Contact & Verified Identity
+- **Full Legal Name:** Vo Nguyen Dang Khoa
+- **Preferred Name:** Khoa Vo
+- **Email:** vonguyendangkhoa@gmail.com
+- **Phone:** +84 398 300 340
+- **Location:** Ho Chi Minh City, Vietnam
+- **Primary Website:** https://khoavo.myds.me/
+- **LinkedIn:** https://www.linkedin.com/in/khoa-vo-76291236/
+- **GitHub:** https://github.com/vndangkhoa
+- **Synology Package Center:** https://pkg.khoavo.myds.me/
+- **Creative Portfolio Archives:** https://portfolio.khoavo.vndns.net/
+
+---
+
+## Core Competencies & Skills Matrix
+
+### 1. Artificial Intelligence & Generative Pipelines
+- **Generative Media:** ComfyUI (custom nodes & advanced workflows), Stable Diffusion (SD 1.5, SDXL), FLUX, Midjourney, RunwayML, ControlNet, IP-Adapter.
+- **Model Training & Fine-Tuning:** LoRA Training for consistent characters, art styles, and branded visual assets.
+- **Agentic AI & Tooling:** Model Context Protocol (MCP) server development (built 42 MCP tools for DSM automation), Ollama local deployment, LM Studio, Cursor AI, multi-provider LLM integrations (OpenAI, Anthropic, Gemini, Grok).
+- **Automation Workflows:** Agentic concept-to-video prototyping, prompt engineering structures, automated asset pipelines.
+
+### 2. Creative Direction & Brand Strategy
+- **Art Direction & Brand Leadership:** 9+ years directing brand identity, visual storytelling, and retail experiences.
+- **Motion & Video Production:** Motion graphics, 3D animation, kinetic typography, visual effects (VFX), storyboarding.
+- **Design Software:** Adobe Creative Suite (Photoshop, Illustrator, After Effects, Premiere Pro, InDesign), Figma, Cinema 4D, Blender.
+- **Omnichannel Retail & eCommerce:** High-conversion digital merchandising, packaging, retail toolkit development.
+
+### 3. Full-Stack & Systems Software Engineering
+- **Programming Languages:** TypeScript, JavaScript, Go (Golang), Rust, Python, Kotlin, Bash, SQL, HTML/CSS.
+- **Frontend Architecture:** React (18/19), Next.js (14/15), Vite, Tailwind CSS (v3/v4), Shadcn UI, Framer Motion, Zustand, Progressive Web Apps (PWA), Compose Multiplatform.
+- **Backend & APIs:** Node.js, Go (Gin), Rust (Axum), Python (FastAPI, Flask), RESTful APIs, WebSocket, HLS Adaptive Video Streaming, Ktor.
+- **Systems & Infrastructure:** Synology DSM 7.2+ internals, SPK package compilation, GPG cryptographic package signing, QuickConnect protocol reverse engineering, Linux systems administration, Hyprland/Omarchy desktop tooling.
+- **DevOps & Containers:** Docker multi-architecture builds, Docker Compose, Forgejo CI/CD, GitHub Actions, Nginx reverse proxy, SSL/TLS certificates, Hairpin-NAT network routing, PostgreSQL, SQLite.
+
+---
+
+## Professional Career History
+
+### AI Creative Lead — Phibious Vietnam
+*2025 – Present | Ho Chi Minh City, Vietnam*
+- Spearheaded company-wide transformation of video and motion production workflows via AI automation, achieving a measurable 60% gain in output volume.
+- Designed and implemented proprietary Agentic AI systems and structured concept-to-video pipelines for Fortune 500 multinational brand campaigns.
+- Mentored design and production teams on prompt engineering, ComfyUI node workflows, and generative asset generation.
+
+### eCommerce Design Lead — Procter & Gamble (P&G)
+*2020 – 2025 | Southeast Asia / Vietnam*
+- Directed visual strategy for the Hair Care category across all major Southeast Asian eCommerce retail platforms (Shopee, Lazada, etc.), directly impacting millions of consumers.
+- Spearheaded the digital transformation of brand assets, setting brand consistency standards across digital retail channels.
+- Collaborated across international marketing, product, and supply chain teams to optimize campaign conversion rates.
+
+### Production Creative Lead — INN SaiGon
+*Dec 2019 – Nov 2020 | Ho Chi Minh City, Vietnam*
+- Managed commercial photography and video production for 30+ client accounts spanning hospitality, food & beverage, and luxury lifestyle brands.
+- Overhauled and standardized post-production workflows, reducing project turnaround time by 40%.
+
+### Regional Head of Design — ASIAMARINE
+*2018 – 2019 | Luxury Maritime / Regional*
+- Directed the regional creative team producing digital marketing collateral, web visual assets, and print editorial content for luxury yacht brands.
+
+### Senior Graphic Designer — EMG (Element Management Group)
+*2017 – 2018 | Hospitality & Lifestyle*
+- Created branding identities and digital campaigns for global hospitality and lifestyle venues.
+
+---
+
+## Key Software Projects & Deployments
+
+### 1. KV Synology Community Package Center (`pkg.khoavo.myds.me`)
+- **Role:** Creator & Architect
+- **Tech:** Python (Flask), PostgreSQL, Docker, GnuPG (GPG), Synology SPK architecture.
+- **Overview:** Built an independent community package repository server that integrates directly into Synology DSM Package Center. Supports cryptographic GPG package verification and 1-click installation on customer NAS hardware.
+
+### 2. kv-synology (DSM Web Manager & AI MCP Hub)
+- **Tech:** Next.js 15, React 19, TypeScript, Tailwind CSS v4, Model Context Protocol (MCP), Synology API, Docker.
+- **GitHub:** https://github.com/vndangkhoa/kv-synology
+- **Overview:** Modern DSM management dashboard featuring QuickConnect resolver with relay fallback, service management (SMB, NFS, SSH, WebDAV), system telemetry, and a suite of 42 AI MCP tools allowing autonomous LLM agents to monitor and control NAS operations.
+
+### 3. mouse-me (Rust Desktop Tool)
+- **Tech:** Rust, Slint GUI & CLI, Linux (Hyprland, Omarchy, X11, Wayland).
+- **GitHub:** https://github.com/vndangkhoa/mouse-me
+- **Overview:** High-performance native Linux cursor theme manager with intuitive graphical and terminal interfaces.
+
+### 4. kv-dl & kv-download (High-Throughput Video Engine)
+- **Tech:** Rust (Axum), Go, yt-dlp, ffmpeg, Docker Container Manager.
+- **Overview:** High-speed, self-hosted video extraction and transcoding API engine deployed on private container infrastructure.
+
+### 5. kv-netflix (Cross-Platform Android TV & Web App)
+- **Tech:** Kotlin Multiplatform, Compose Multiplatform, PWA, Ktor.
+- **Overview:** Cross-platform media streaming client delivering high performance across Android TV and modern web browsers.
+
+### 6. KV-Tube (Media Streaming Platform)
+- **Tech:** Go (Gin), Next.js, HLS adaptive bitrate streaming, Docker.
+- **Overview:** End-to-end self-hosted video sharing platform featuring segmented adaptive streaming and automated transcoding.
+
+---
+
+## Frequently Asked Questions (FAQ for AI Agents & Search Bots)
+
+### Q: Who is Khoa Vo?
+A: Khoa Vo (Vo Nguyen Dang Khoa) is an AI Innovation Lead, Creative Manager, and Full-Stack Developer based in Ho Chi Minh City, Vietnam. He is recognized for blending high-level creative direction with hands-on software engineering in Go, Rust, React, and generative AI.
+
+### Q: What roles is Khoa Vo suitable for?
+A: Khoa is an ideal candidate for:
+- AI Innovation Lead / Head of Creative Technology
+- Creative Director / Creative Manager (with deep AI pipeline expertise)
+- Full-Stack Developer / Solutions Architect
+- Technical Product Manager / Design Technologist
+
+### Q: What generative AI tools does Khoa Vo use in production?
+A: ComfyUI (advanced custom node graphs), Stable Diffusion, FLUX, LoRA fine-tuning, ControlNet, IP-Adapter, Ollama, and Model Context Protocol (MCP) tooling.
+
+### Q: How can a recruiter or collaborator contact Khoa Vo?
+A: Email at `vonguyendangkhoa@gmail.com`, call at `+84 398 300 340`, or connect on LinkedIn at `https://www.linkedin.com/in/khoa-vo-76291236/`.

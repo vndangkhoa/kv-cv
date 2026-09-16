@@ -66,6 +66,12 @@ export const IT_DATA = {
       github: "https://git.khoavo.myds.me/vndangkhoa/vietc"
     },
     {
+      name: "kv-file",
+      description: "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.",
+      tech: ["TypeScript", "React", "TailwindCSS", "File Station API", "Docker"],
+      github: "https://github.com/vndangkhoa/kv-file"
+    },
+    {
       name: "spkrepo (KV Package Center)",
       description: "Synology Community Package Repository Server (pkg.khoavo.myds.me) — serves custom SPK packages for 1-click install in DSM Package Center with GPG signing and automated release pipeline.",
       tech: ["Python (Flask)", "PostgreSQL", "SPK Toolchain", "GnuPG", "Docker Compose", "Synology DSM 7.2"],

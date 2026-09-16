@@ -28,6 +28,7 @@ async function fetchRepos() {
     'vndangkhoa': "Profile — Khoa Vo's GitHub landing, links to khoavo.myds.me, Forgejo, and featured projects.",
     'kv-download': "Universal mobile-first downloader — Go + yt-dlp, HLS/batch/queue, PWA share-sheet, Synology-ready.",
     'kv-music': "Self-hosted music — YouTube Music powered streaming, synced lyrics, playlists, and PWA.",
+    'kv-file': "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.",
   };
 
   const fetched = data
@@ -45,6 +46,9 @@ async function fetchRepos() {
       // Special override for kv-synology to keep rich detail
       if (r.name === 'kv-synology') {
         desc = "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver, services controller (SMB, NFS, SSH, WebDAV), and 42 AI MCP tools";
+      }
+      if (r.name === 'kv-file') {
+        desc = "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.";
       }
       return {
         id: r.id,
@@ -66,7 +70,7 @@ async function fetchRepos() {
     })
     .filter(r => r.name !== 'vndangkhoa'); // hide profile README from projects grid
 
-  const HIGHLIGHT_REPOS = ['kv-synology', 'vietc'];
+  const HIGHLIGHT_REPOS = ['kv-synology', 'vietc', 'kv-file'];
   return fetched.sort((a, b) => {
     const aIndex = HIGHLIGHT_REPOS.indexOf(a.name);
     const bIndex = HIGHLIGHT_REPOS.indexOf(b.name);

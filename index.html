@@ -16,51 +16,158 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://db.onlinewebfonts.com/c/d08bafd725a4cfc309efb5a88e0b63a5?family=basis33" rel="stylesheet">
     
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://khoavo.myds.me/" />
+
     <!-- Open Graph for rich links -->
+    <meta property="og:site_name" content="Khoa Vo Portfolio & CV" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content="Khoa Vo - Creative Manager & AI Innovation Lead" />
-    <meta property="og:description" content="Portfolio of Khoa Vo - Exploring the intersection of design and intelligence." />
+    <meta property="og:description" content="Portfolio of Khoa Vo - Exploring the intersection of design, generative AI, and full-stack software development. Currently open to work." />
     <meta property="og:type" content="profile" />
     <meta property="og:url" content="https://khoavo.myds.me/" />
+    <meta property="og:image" content="https://khoavo.myds.me/character-underwater.jpg" />
+    <meta property="og:image:alt" content="Khoa Vo - Creative Manager & AI Innovation Lead" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
 
-    <!-- Link to LLMs text for AI crawlers searching the head -->
-    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly CV" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Khoa Vo - Creative Manager & AI Innovation Lead" />
+    <meta name="twitter:description" content="Portfolio of Khoa Vo (Vo Nguyen Dang Khoa) - Creative Manager, AI Innovation Lead, and Full-Stack Developer based in Vietnam." />
+    <meta name="twitter:image" content="https://khoavo.myds.me/character-underwater.jpg" />
+
+    <!-- Link to LLMs files for AI crawlers searching the head -->
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly CV Summary" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Full LLM-friendly Dossier" />
 
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org/",
-        "@type": "Person",
-        "name": "Vo Nguyen Dang Khoa",
-        "alternateName": "Khoa Vo",
-        "jobTitle": ["Creative Manager", "AI Innovation Lead", "Full-Stack Developer", "DevOps Engineer"],
-        "url": "https://khoavo.myds.me/",
-        "email": "mailto:vonguyendangkhoa@gmail.com",
-        "telephone": "+84398300340",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Ho Chi Minh City",
-          "addressCountry": "VN"
-        },
-        "sameAs": [
-          "https://www.linkedin.com/in/khoa-vo-76291236/",
-          "https://git.khoavo.myds.me/vndangkhoa"
-        ],
-        "seeks": {
-          "@type": "Demand",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Full-Time Job, Creative Direction, and Technical Development"
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://khoavo.myds.me/#person",
+            "name": "Vo Nguyen Dang Khoa",
+            "alternateName": ["Khoa Vo", "vndangkhoa"],
+            "jobTitle": ["Creative Manager", "AI Innovation Lead", "Full-Stack Developer", "DevOps Engineer"],
+            "image": "https://khoavo.myds.me/character-underwater.jpg",
+            "url": "https://khoavo.myds.me/",
+            "email": "mailto:vonguyendangkhoa@gmail.com",
+            "telephone": "+84398300340",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Ho Chi Minh City",
+              "addressCountry": "VN"
+            },
+            "sameAs": [
+              "https://www.linkedin.com/in/khoa-vo-76291236/",
+              "https://github.com/vndangkhoa",
+              "https://pkg.khoavo.myds.me/",
+              "https://portfolio.khoavo.vndns.net/"
+            ],
+            "worksFor": [
+              {
+                "@type": "Organization",
+                "name": "Phibious Vietnam"
+              }
+            ],
+            "alumniOf": [
+              {
+                "@type": "Organization",
+                "name": "Procter & Gamble"
+              }
+            ],
+            "seeks": {
+              "@type": "Demand",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Full-Time Roles, Creative Direction, AI System Integration, and Full-Stack Development"
+              }
+            },
+            "knowsAbout": [
+              "Generative AI", "ComfyUI", "Stable Diffusion", "FLUX", "LoRA Fine-tuning", 
+              "Brand Strategy", "Art Direction", "Motion Graphics",
+              "Full-Stack Development", "TypeScript", "React", "Next.js", "Go", "Rust", "Python",
+              "Docker", "DevOps", "Synology DSM", "Model Context Protocol (MCP)"
+            ]
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://khoavo.myds.me/#webpage",
+            "url": "https://khoavo.myds.me/",
+            "name": "Khoa Vo - Creative Manager & AI Innovation Lead",
+            "isPartOf": {
+              "@type": "WebSite",
+              "@id": "https://khoavo.myds.me/#website",
+              "url": "https://khoavo.myds.me/",
+              "name": "Khoa Vo Portfolio & CV"
+            },
+            "mainEntity": {
+              "@id": "https://khoavo.myds.me/#person"
+            }
           }
-        },
-        "knowsAbout": [
-          "Brand Strategy", "Generative AI", "ComfyUI", "Stable Diffusion", 
-          "Full-Stack Development", "Go", "React", "Next.js", "Docker", "DevOps"
         ]
       }
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Static Semantic Crawl Fallback for Search Engines & Non-JS AI Bots (Replaced dynamically by React on mount) -->
+      <header>
+        <h1>Vo Nguyen Dang Khoa (Khoa Vo)</h1>
+        <p><strong>Creative Manager &amp; AI Innovation Lead | Full-Stack Developer</strong></p>
+        <p>Location: Ho Chi Minh City, Vietnam | Status: Open to Work</p>
+        <nav>
+          <a href="mailto:vonguyendangkhoa@gmail.com">Email</a> |
+          <a href="https://www.linkedin.com/in/khoa-vo-76291236/">LinkedIn</a> |
+          <a href="https://github.com/vndangkhoa">GitHub</a> |
+          <a href="/llms.txt">llms.txt</a> |
+          <a href="/llms-full.txt">llms-full.txt</a>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <h2>About Khoa Vo</h2>
+          <p>
+            Visionary Creative Leader with 9+ years of expertise in brand strategy, digital design, motion graphics,
+            and cutting-edge generative AI, paired with 2+ years of intensive production software engineering (18+ deployed applications).
+          </p>
+        </section>
+        <section>
+          <h2>Professional Experience</h2>
+          <article>
+            <h3>AI Creative Lead &mdash; Phibious Vietnam (2025 &ndash; Present)</h3>
+            <p>Spearheaded video production workflows via AI automation (60% output gain). Deployed Agentic AI systems for Fortune 500 brand campaigns.</p>
+          </article>
+          <article>
+            <h3>eCommerce Design Lead &mdash; Procter &amp; Gamble (P&amp;G) (2020 &ndash; 2025)</h3>
+            <p>Led visual strategy for Hair Care across Southeast Asia eCommerce platforms, impacting millions of consumers.</p>
+          </article>
+          <article>
+            <h3>Production Creative Lead &mdash; INN SaiGon (2019 &ndash; 2020)</h3>
+            <p>Directed commercial photo &amp; video production for 30+ accounts, reducing turnaround time by 40%.</p>
+          </article>
+        </section>
+        <section>
+          <h2>Core Skills</h2>
+          <ul>
+            <li><strong>Generative AI:</strong> ComfyUI, Stable Diffusion, FLUX, LoRA Training, ControlNet, IP-Adapter, Model Context Protocol (MCP)</li>
+            <li><strong>Creative &amp; Motion:</strong> Art Direction, Brand Strategy, Adobe Suite, Figma, Cinema 4D, Blender, Motion Graphics</li>
+            <li><strong>Full-Stack &amp; Systems:</strong> React 19, Next.js 15, TypeScript, Go (Gin), Rust (Axum), Python, Docker, Synology DSM, Linux</li>
+          </ul>
+        </section>
+        <section>
+          <h2>Featured Projects</h2>
+          <ul>
+            <li><strong>KV Synology Package Center (pkg.khoavo.myds.me):</strong> Custom community package repository with GPG signing for DSM.</li>
+            <li><strong>kv-synology:</strong> DSM Web Manager with 42 AI MCP tools for autonomous agent control.</li>
+            <li><strong>mouse-me:</strong> Linux cursor theme manager in Rust with Slint GUI.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

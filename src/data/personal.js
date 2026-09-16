@@ -6,6 +6,7 @@ export const PERSONAL_INFO = {
   location: "Ho Chi Minh City, Vietnam",
   linkedin: "https://www.linkedin.com/in/khoa-vo-76291236/",
   portfolio: "https://khoavo.myds.me/",
+  website: "https://khoavo.vndns.net/",
   github: "https://github.com/vndangkhoa",
   forgejo: "https://github.com/vndangkhoa",
   availability: "Open to work",

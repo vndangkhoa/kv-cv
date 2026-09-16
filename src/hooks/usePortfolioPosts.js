@@ -8,6 +8,7 @@ export function usePortfolioPosts({ perPage = 6, category = null } = {}) {
   const [error, setError] = useState(null);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
+  const [lastUpdated, setLastUpdated] = useState(null);
 
   const fetchPosts = async (pageNum = 1) => {
     try {
@@ -58,6 +59,7 @@ export function usePortfolioPosts({ perPage = 6, category = null } = {}) {
 
       setHasMore(pageNum < totalPages);
       setPage(pageNum);
+      setLastUpdated(new Date().toISOString());
     } catch (err) {
       setError(err.message);
       console.error('Failed to fetch portfolio posts:', err);
@@ -86,7 +88,8 @@ export function usePortfolioPosts({ perPage = 6, category = null } = {}) {
     error,
     hasMore,
     loadMore,
-    refresh
+    refresh,
+    lastUpdated
   };
 }
 
