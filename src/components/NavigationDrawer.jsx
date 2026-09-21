@@ -318,7 +318,7 @@ export default function NavigationDrawer({
                     <Github size={16} />
                   </a>
                   <a
-                    href="https://www.linkedin.com/in/khoa-vo-76291236/"
+                    href={PERSONAL_INFO.linkedin}
                     target="_blank"
                     rel="noreferrer"
                     className="btn-press p-2 rounded-lg bg-[var(--accent-subtle)] hover:bg-[var(--border)] text-[var(--text-secondary)] hover:text-[#00E5FF] border border-[var(--border)] transition-all cursor-pointer"

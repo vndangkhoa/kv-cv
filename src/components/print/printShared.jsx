@@ -1,0 +1,263 @@
+import React from 'react';
+
+// B&W PALETTE — Zero color, print-optimal
+export const C = {
+  black: '#000000',
+  ink: '#111111',
+  slate: '#222222',
+  muted: '#444444',
+  faint: '#777777',
+  bg: '#FFFFFF',
+  sidebarBg: '#F7F8F7',
+  border: '#CCCCCC',
+  light: '#EEEEEE',
+};
+
+// Monochrome VNDK Logo
+export const MonoVNDK = ({ size = 32 }) => (
+  <svg viewBox="0 0 100 100" width={size} height={size} fill="none" stroke="#000" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+    <path d="M 14 20 L 29 41 L 44 20" />
+    <path d="M 56 41 L 56 20 L 86 41 L 86 20" />
+    <path d="M 14 59 L 28 59 C 41 59 41 80 28 80 L 14 80 Z" />
+    <path d="M 56 59 L 56 80 M 86 59 L 56 69.5 L 86 80" />
+  </svg>
+);
+
+export const S = {
+  page: {
+    width: '210mm',
+    height: '297mm',
+    minHeight: '297mm',
+    maxHeight: '297mm',
+    background: C.bg,
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'hidden',
+    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+    color: C.slate,
+    boxSizing: 'border-box',
+    margin: '0 auto',
+    position: 'relative',
+    padding: 0,
+  },
+
+  // HEADER (19mm)
+  header: {
+    height: '19mm',
+    minHeight: '19mm',
+    background: C.bg,
+    display: 'flex',
+    alignItems: 'center',
+    padding: '3.5mm 5.5mm',
+    boxSizing: 'border-box',
+    borderBottom: `0.45mm solid ${C.black}`,
+    justifyContent: 'space-between',
+  },
+  headerLeft: { display: 'flex', gap: '3.8mm', alignItems: 'center' },
+  logoBox: {
+    width: '12mm',
+    height: '12mm',
+    borderRadius: '2.2mm',
+    background: C.bg,
+    border: `0.7mm solid ${C.black}`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  name: { fontSize: '16pt', fontWeight: 900, color: C.black, letterSpacing: '-0.03em', lineHeight: 1, margin: 0 },
+  role: { fontSize: '7.4pt', fontWeight: 800, color: C.black, letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: '0.6mm', display: 'block' },
+  sub: { fontSize: '5.8pt', fontWeight: 600, color: C.muted, marginTop: '0.35mm', letterSpacing: '0.01em' },
+  headerRight: { textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', justifyContent: 'center' },
+
+  // CONTACT BAR (6.5mm)
+  contactBar: {
+    height: '6.5mm',
+    minHeight: '6.5mm',
+    background: C.black,
+    display: 'flex',
+    alignItems: 'center',
+    gap: '1.2mm',
+    padding: '0 4mm',
+    flexWrap: 'nowrap',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+  },
+  contactPill: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.6mm',
+    background: C.bg,
+    border: `0.25mm solid ${C.black}`,
+    color: C.black,
+    fontSize: '5.2pt',
+    fontWeight: 700,
+    padding: '0.4mm 1.5mm',
+    borderRadius: '999px',
+    fontFamily: "'JetBrains Mono', monospace",
+    whiteSpace: 'nowrap',
+    lineHeight: 1,
+  },
+  contactPillRight: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    color: '#FFFFFF',
+    fontSize: '5.5pt',
+    fontWeight: 700,
+    fontFamily: "'JetBrains Mono', monospace",
+    marginLeft: 'auto',
+    letterSpacing: '0.05em',
+  },
+
+  // BODY
+  body: {
+    flex: 1,
+    display: 'flex',
+    minHeight: 0,
+    boxSizing: 'border-box',
+  },
+
+  // SIDEBAR (67mm)
+  sidebar: {
+    width: '67mm',
+    minWidth: '67mm',
+    maxWidth: '67mm',
+    background: C.sidebarBg,
+    borderRight: `0.35mm solid ${C.black}`,
+    padding: '4.5mm 4.5mm 4.5mm',
+    display: 'flex',
+    flexDirection: 'column',
+    boxSizing: 'border-box',
+    gap: '5.5mm',
+  },
+  sideSectionLabel: {
+    fontSize: '7.2pt',
+    fontWeight: 900,
+    letterSpacing: '0.12em',
+    textTransform: 'uppercase',
+    color: C.black,
+    borderBottom: `0.45mm solid ${C.black}`,
+    paddingBottom: '0.8mm',
+    marginBottom: '2.5mm',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.8mm',
+  },
+  catHead: {
+    fontSize: '6.4pt',
+    fontWeight: 800,
+    letterSpacing: '0.03em',
+    textTransform: 'uppercase',
+    color: C.black,
+    marginBottom: '1.2mm',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.6mm',
+  },
+  pill: {
+    display: 'inline-block',
+    background: C.bg,
+    border: `0.22mm solid ${C.border}`,
+    color: C.ink,
+    padding: '0.65mm 1.6mm',
+    fontSize: '5.6pt',
+    fontWeight: 650,
+    marginRight: '0.8mm',
+    marginBottom: '0.8mm',
+    borderRadius: '0.45mm',
+    fontFamily: "'JetBrains Mono', monospace",
+    lineHeight: 1.15,
+  },
+
+  // MAIN COLUMN (143mm)
+  main: {
+    flex: 1,
+    padding: '4.5mm 6mm 4.5mm',
+    display: 'flex',
+    flexDirection: 'column',
+    boxSizing: 'border-box',
+    background: C.bg,
+    gap: '5mm',
+  },
+  summaryHead: { fontSize: '10.8pt', fontWeight: 900, color: C.black, lineHeight: 1.12, letterSpacing: '-0.02em', margin: 0 },
+  summaryHeadAccent: { fontStyle: 'italic', fontWeight: 800, color: C.black, textDecoration: 'underline', textDecorationThickness: '0.35mm', textUnderlineOffset: '0.6mm' },
+  summaryBody: { fontSize: '6.8pt', lineHeight: 1.4, color: C.slate, textAlign: 'justify', marginTop: '1mm', margin: 0 },
+  
+  metricRow: { display: 'flex', gap: '2.4mm', marginTop: '2.2mm' },
+  metricCard: {
+    flex: 1,
+    background: C.bg,
+    border: `0.25mm solid ${C.black}`,
+    borderRadius: '1.2mm',
+    padding: '1.8mm 2mm',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  metricValue: { fontSize: '12pt', fontWeight: 900, color: C.black, lineHeight: 1, letterSpacing: '-0.02em' },
+  metricLabel: { fontSize: '5.6pt', fontWeight: 800, letterSpacing: '0.05em', textTransform: 'uppercase', color: C.black, borderTop: `0.22mm solid ${C.black}`, paddingTop: '0.55mm', marginTop: '0.5mm' },
+  metricSub: { fontSize: '5pt', color: C.muted, fontWeight: 500, marginTop: '0.25mm' },
+
+  sectionTitle: {
+    fontSize: '7.8pt',
+    fontWeight: 900,
+    letterSpacing: '0.1em',
+    textTransform: 'uppercase',
+    color: C.black,
+    borderBottom: `0.45mm solid ${C.black}`,
+    paddingBottom: '0.8mm',
+    marginBottom: '2.2mm',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  timelineLine: { position: 'absolute', left: '2.2mm', top: '1.2mm', bottom: '0', width: '0.25mm', background: C.black, opacity: 0.8 },
+  expItem: { position: 'relative', paddingLeft: '6.5mm', marginBottom: '2.8mm' },
+  dotOuter: { position: 'absolute', left: 0, top: '0.4mm', width: '4.4mm', height: '4.4mm', borderRadius: '50%', background: C.bg, border: `0.35mm solid ${C.black}`, display: 'flex', alignItems: 'center', justifyContent: 'center' },
+  dotInner: { width: '1.5mm', height: '1.5mm', borderRadius: '50%', background: C.black },
+  expRole: { fontSize: '8.8pt', fontWeight: 900, color: C.black, lineHeight: 1.1 },
+  expCompany: { fontSize: '7.4pt', fontWeight: 700, color: C.muted },
+  expPeriod: {
+    fontSize: '5.6pt',
+    fontWeight: 800,
+    color: C.black,
+    background: C.bg,
+    border: `0.25mm solid ${C.black}`,
+    padding: '0.4mm 1.4mm',
+    borderRadius: '999px',
+    fontFamily: "'JetBrains Mono', monospace",
+    whiteSpace: 'nowrap',
+  },
+  bullet: { fontSize: '6.6pt', lineHeight: 1.38, color: C.slate, marginBottom: '0.7mm', paddingLeft: '0.2mm' },
+
+  projectGrid: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2.4mm' },
+  projectCard: {
+    background: C.bg,
+    border: `0.25mm solid ${C.black}`,
+    borderRadius: '1.2mm',
+    padding: '1.8mm 2.2mm',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '0.5mm',
+    position: 'relative',
+  },
+  projectNum: { position: 'absolute', top: '0.8mm', right: '1.6mm', fontSize: '9pt', fontWeight: 900, color: 'rgba(0,0,0,0.1)', lineHeight: 1 },
+
+  // FOOTER (6.5mm)
+  footer: {
+    height: '6.5mm',
+    minHeight: '6.5mm',
+    background: C.bg,
+    borderTop: `0.45mm solid ${C.black}`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: '0 5.5mm',
+    color: C.black,
+    fontSize: '5.6pt',
+    fontFamily: "'JetBrains Mono', monospace",
+    fontWeight: 700,
+    flexShrink: 0,
+    boxSizing: 'border-box',
+  },
+};

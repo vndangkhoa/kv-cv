@@ -62,7 +62,7 @@ export const SHORT_WORK = [
 ];
 
 export const SHORT_EXPERIENCE = [
-  { period: "2025 — Present", role: "AI Creative Lead", company: "Phibious Vietnam", note: "AI video pipelines for global brands" },
+  { period: "2025 — Present", role: "AI Creative Manager", company: "Phibious Vietnam", note: "Creative Direction, AI pipelines & P&L" },
   { period: "2020 — 2025", role: "eCommerce Design Lead", company: "P&G", note: "SEA Hair Care, millions of shoppers" },
   { period: "2024 — Present", role: "Infra Lab", company: "KV Self-Hosted", note: "Package Center + MCP tools" },
 ];

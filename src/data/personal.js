@@ -4,7 +4,7 @@ export const PERSONAL_INFO = {
   phone: "0398300340",
   email: "vonguyendangkhoa@gmail.com",
   location: "Ho Chi Minh City, Vietnam",
-  linkedin: "https://www.linkedin.com/in/khoa-vo-76291236/",
+  linkedin: "https://www.linkedin.com/in/khoavo93/",
   portfolio: "https://khoavo.myds.me/",
   website: "https://khoavo.vndns.net/",
   github: "https://github.com/vndangkhoa",

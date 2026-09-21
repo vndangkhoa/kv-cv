@@ -103,18 +103,17 @@ export const CREATIVE_DATA = {
   ],
   experience: [
     {
-      role: "AI CREATIVE LEAD",
+      role: "AI CREATIVE MANAGER",
       company: "Phibious Vietnam",
       period: "2025 - Present",
       location: "Ho Chi Minh City, Vietnam",
       highlights: [
-        "Spearheaded the transformation of video production workflows via AI and automation, achieving a 60% measurable gain in output volume across all regional campaigns.",
-        "Acted as a creative multiplier, leading regional stakeholders and cross-functional teams (marketing, digital, and creative) to automate end-to-end content lifecycles from concept to delivery.",
-        "Designed and deployed Agentic AI systems and custom frameworks for rapid concept-to-video prototyping, serving global Fortune 500 brands including premium beauty, fashion, and consumer goods sectors.",
-        "Standardized end-to-end AI video production SOPs—ranging from AI-led scripting and storyboarding to automated localization—ensuring brand compliance across Southeast Asian markets.",
-        "Drove Regional Enablement by establishing SOPs and mentoring 20+ producers on prompt engineering, AI ethics, and workflow standardization.",
-        "Pioneered the integration of ComfyUI, FLUX, and Stable Diffusion into traditional creative workflows, reducing concept-to-execution time by 70%.",
-        "Collaborated with international creative directors to translate brand visions into AI-augmented visual narratives that maintain emotional authenticity while achieving production scale."
+        "Direct end-to-end commercial visual strategy and generative AI production for Fortune 500 brand accounts, driving a 60% gain in asset volume while ensuring strict brand fidelity.",
+        "Own departmental P&L, production budgeting, and GPU/compute resource allocation, directly optimizing project margins and commercial operational profitability.",
+        "Lead the creative-tech roadmap, architecting customized ComfyUI and FLUX.1 LoRA node pipelines that accelerated rapid concept-to-pitch cycles from days to hours.",
+        "Manage and mentor a 20+ cross-functional team of art directors, producers, and motion animators in AI-augmented visual storytelling and production standards.",
+        "Standardized end-to-end AI video production SOPs—from scripting and storyboarding to multi-resolution batch rendering—ensuring brand compliance across SEA markets.",
+        "Pioneered the integration of ComfyUI, FLUX, and Stable Diffusion into traditional creative workflows, reducing concept-to-execution turnaround by 70%."
       ]
     },
     {

@@ -115,7 +115,7 @@ export default function App() {
           {/* Top Bar (Hidden on paper) */}
           <div className="no-print p-3 sm:p-4 bg-[#0A0D0C]/95 text-white border-b border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sticky top-0 z-[210] shadow-2xl backdrop-blur-md">
             <div className="flex items-center gap-2 font-mono text-xs text-[#00FF87] font-bold">
-              <span>📄 KHOA.VO — Printable Portfolio &amp; PDF CV</span>
+              <span>📄 KHOA.VO — Printable Portfolio &amp; PDF CV (2 Pages: Creative &amp; IT)</span>
             </div>
             <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-end">
               <button
@@ -136,7 +136,7 @@ export default function App() {
 
           {/* Printable Document Mobile Preview Wrapper */}
           <div className="pdf-preview-wrapper py-6 sm:py-10 bg-[#060807] min-h-[calc(100vh-65px)] flex justify-start md:justify-center p-3 sm:p-6 overflow-x-auto custom-scrollbar">
-            <div className="printable-cv-area shadow-2xl rounded-2xl overflow-hidden bg-white shrink-0 my-0 print:shadow-none print:rounded-none">
+            <div className="printable-cv-area shrink-0 my-0">
               <PrintPortfolio />
             </div>
           </div>

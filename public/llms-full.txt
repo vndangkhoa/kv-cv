@@ -14,7 +14,7 @@ Vo Nguyen Dang Khoa (Khoa Vo) is a hybrid Creative Leader and Systems/Full-Stack
 - **Phone:** +84 398 300 340
 - **Location:** Ho Chi Minh City, Vietnam
 - **Primary Website:** https://khoavo.myds.me/
-- **LinkedIn:** https://www.linkedin.com/in/khoa-vo-76291236/
+- **LinkedIn:** https://www.linkedin.com/in/khoavo93/
 - **GitHub:** https://github.com/vndangkhoa
 - **Synology Package Center:** https://pkg.khoavo.myds.me/
 - **Creative Portfolio Archives:** https://portfolio.khoavo.vndns.net/
@@ -120,4 +120,4 @@ A: Khoa is an ideal candidate for:
 A: ComfyUI (advanced custom node graphs), Stable Diffusion, FLUX, LoRA fine-tuning, ControlNet, IP-Adapter, Ollama, and Model Context Protocol (MCP) tooling.
 
 ### Q: How can a recruiter or collaborator contact Khoa Vo?
-A: Email at `vonguyendangkhoa@gmail.com`, call at `+84 398 300 340`, or connect on LinkedIn at `https://www.linkedin.com/in/khoa-vo-76291236/`.
+A: Email at `vonguyendangkhoa@gmail.com`, call at `+84 398 300 340`, or connect on LinkedIn at `https://www.linkedin.com/in/khoavo93/`.

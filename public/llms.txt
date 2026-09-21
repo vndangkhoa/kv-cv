@@ -10,7 +10,7 @@ For a comprehensive dossier including deep project case studies, system architec
 - **Phone:** +84 398 300 340
 - **Location:** Ho Chi Minh City, Vietnam
 - **Website:** https://khoavo.myds.me/
-- **LinkedIn:** https://www.linkedin.com/in/khoa-vo-76291236/
+- **LinkedIn:** https://www.linkedin.com/in/khoavo93/
 - **GitHub:** https://github.com/vndangkhoa
 - **Synology Package Hub:** https://pkg.khoavo.myds.me/
 
