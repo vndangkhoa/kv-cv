@@ -276,12 +276,11 @@ export default function ScrollHero({ tab, onTabChange, isGeneratingPdf, setIsGen
 
                 {/* Get Resume Secondary Button with Bright White Typography & Border */}
                 <button
-                  onClick={() => exportPdfDirectly(setIsGeneratingPdf)}
-                  disabled={isGeneratingPdf}
+                  onClick={() => downloadCV()}
                   className="btn-press w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl font-mono text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md transition-all active:scale-95 shadow-lg cursor-pointer"
                 >
                   <Download className="w-4 h-4 text-[#00FF87] stroke-[2.5]" />
-                  <span>{isGeneratingPdf ? 'Exporting...' : 'Get Resume'}</span>
+                  <span>Resume</span>
                 </button>
               </div>
 

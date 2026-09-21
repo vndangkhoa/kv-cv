@@ -12,11 +12,7 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
   };
 
   const handleDownload = () => {
-    if (setIsGeneratingPdf) {
-      exportPdfDirectly(setIsGeneratingPdf);
-    } else {
-      downloadCV();
-    }
+    downloadCV();
   };
 
   return (

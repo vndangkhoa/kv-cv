@@ -143,10 +143,12 @@ export default function App() {
         </div>
       )}
 
-      {/* Fallback Standalone Print Container */}
+      {/* Fallback Standalone Print Container: strictly hidden on screen, active only for @media print */}
       {!showPrintPreview && (
-        <div className="printable-cv-area standalone-print-mount">
-          <PrintPortfolio />
+        <div className="standalone-print-mount hidden print:block" aria-hidden="true">
+          <div className="printable-cv-area">
+            <PrintPortfolio />
+          </div>
         </div>
       )}
     </div>

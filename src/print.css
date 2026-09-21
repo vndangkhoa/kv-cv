@@ -2,7 +2,7 @@
 
 /* Hide standalone print mount when viewing webpage on screen */
 .standalone-print-mount {
-  display: none;
+  display: none !important;
 }
 
 /* On Screen Preview: multi-page card stack */
