@@ -154,7 +154,7 @@ export default function PrintPage2IT() {
         </div>
         <div style={S.headerRight}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '6.2pt', fontWeight: 800, letterSpacing: '0.12em', color: C.black }}>
-            PORTFOLIO CV • PAGE 2 OF 2
+            PORTFOLIO CV • PAGE 2 OF 3
           </div>
           <div style={{ width: '24mm', height: '0.5mm', background: C.black, marginTop: '1mm' }} />
         </div>
@@ -479,7 +479,7 @@ export default function PrintPage2IT() {
           syno.vndns.vn &nbsp;•&nbsp; github.com/vndangkhoa/vietc &nbsp;•&nbsp; vonguyendangkhoa@gmail.com
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.2mm', color: C.black, fontWeight: 900, whiteSpace: 'nowrap', fontSize: '5.4pt' }}>
-          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {IT_INFO.short} — PORTFOLIO CV • PAGE 2 OF 2 (SYSTEMS &amp; CLOUD)
+          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {IT_INFO.short} — PORTFOLIO CV • PAGE 2 OF 3 (SYSTEMS &amp; CLOUD)
         </span>
       </div>
     </div>

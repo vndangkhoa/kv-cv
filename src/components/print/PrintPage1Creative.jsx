@@ -166,7 +166,7 @@ export default function PrintPage1Creative() {
         </div>
         <div style={S.headerRight}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '6.2pt', fontWeight: 800, letterSpacing: '0.12em', color: C.black }}>
-            PORTFOLIO CV • PAGE 1 OF 2
+            PORTFOLIO CV • PAGE 1 OF 3
           </div>
           <div style={{ width: '24mm', height: '0.5mm', background: C.black, marginTop: '1mm' }} />
         </div>
@@ -333,7 +333,7 @@ export default function PrintPage1Creative() {
       <div style={S.footer}>
         <span>{INFO.email} &nbsp;•&nbsp; {INFO.phone} &nbsp;•&nbsp; {INFO.portfolio} &nbsp;•&nbsp; {INFO.website} &nbsp;•&nbsp; {INFO.github}</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.5mm', color: C.black, fontWeight: 900 }}>
-          <span style={{ width: '2mm', height: '2mm', background: C.black, display: 'inline-block' }} /> {INFO.short} — 2-PAGE PORTFOLIO CV • PAGE 1 OF 2 (CREATIVE &amp; AI)
+          <span style={{ width: '2mm', height: '2mm', background: C.black, display: 'inline-block' }} /> {INFO.short} — 3-PAGE PORTFOLIO CV • PAGE 1 OF 3 (CREATIVE &amp; AI)
         </span>
       </div>
     </div>

@@ -19,7 +19,7 @@ LABEL org.opencontainers.image.title="KHOA.VO Portfolio (kv-cv)" \
       org.opencontainers.image.description="Dual-persona interactive portfolio built with React 18, Vite 6, Three.js WebGL, and Nginx" \
       org.opencontainers.image.url="https://khoavo.myds.me" \
       org.opencontainers.image.source="https://github.com/vndangkhoa/kv-cv" \
-      org.opencontainers.image.version="2.0.4" \
+      org.opencontainers.image.version="2.0.5" \
       org.opencontainers.image.licenses="MIT"
 
 # Remove default nginx html files
