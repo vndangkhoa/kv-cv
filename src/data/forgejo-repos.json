@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-28T04:05:12.988Z",
+  "fetchedAt": "2026-10-05T03:33:49.315Z",
   "totalRepos": 16,
   "totalLanguages": 6,
   "languages": {
@@ -51,7 +51,7 @@
         "x11"
       ],
       "stars": 60,
-      "forks": 9,
+      "forks": 10,
       "watchers": 60,
       "releases": 0
     },
@@ -70,6 +70,23 @@
       "stars": 3,
       "forks": 1,
       "watchers": 3,
+      "releases": 0
+    },
+    {
+      "id": 1319820747,
+      "name": "kv-cv",
+      "fullName": "vndangkhoa/kv-cv",
+      "description": "Portfolio v2 — React + Vite scrolly video (scrub human_head_turn.mp4), dual Creative/IT personas, glass-morphism, CRT terminal, and one-tap PDF CV export.",
+      "htmlUrl": "https://github.com/vndangkhoa/kv-cv",
+      "language": "JavaScript",
+      "updatedAt": "2026-09-28T04:07:00Z",
+      "createdAt": "2026-08-02T04:36:32Z",
+      "mirror": false,
+      "mirrorUpdated": "2026-09-28T04:07:00Z",
+      "topics": [],
+      "stars": 0,
+      "forks": 1,
+      "watchers": 0,
       "releases": 0
     },
     {
@@ -138,23 +155,6 @@
       "stars": 3,
       "forks": 1,
       "watchers": 3,
-      "releases": 0
-    },
-    {
-      "id": 1319820747,
-      "name": "kv-cv",
-      "fullName": "vndangkhoa/kv-cv",
-      "description": "Portfolio v2 — React + Vite scrolly video (scrub human_head_turn.mp4), dual Creative/IT personas, glass-morphism, CRT terminal, and one-tap PDF CV export.",
-      "htmlUrl": "https://github.com/vndangkhoa/kv-cv",
-      "language": "JavaScript",
-      "updatedAt": "2026-09-21T05:28:08Z",
-      "createdAt": "2026-08-02T04:36:32Z",
-      "mirror": false,
-      "mirrorUpdated": "2026-09-21T05:28:08Z",
-      "topics": [],
-      "stars": 0,
-      "forks": 1,
-      "watchers": 0,
       "releases": 0
     },
     {

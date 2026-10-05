@@ -1,6 +1,6 @@
 export const IT_DATA = {
-  title: "Full-Stack Developer & DevOps",
-  summary: "Full-stack developer and self-hosted infrastructure architect with 2+ years of intensive production engineering. Creator of the KV Synology Community Package Center (pkg.khoavo.myds.me), serving custom SPK packages with GPG signing directly into DSM Package Center. Built 18+ deployed applications including Next.js 15 DSM Web Manager with 42 AI MCP tools, Kotlin Multiplatform Android TV apps, Rust systems utilities, and high-throughput Go streaming backends.",
+  title: "Security Consultant & Systems Architect",
+  summary: "Security-minded systems and solutions engineer with 9+ years in technology and 4+ years designing security controls into production systems from the ground up: cryptographic licensing (Ed25519), forensic anti-leak DRM (ola), 2FA/TOTP authentication, directory-traversal sandboxing (dunce), and supply-chain verification (GnuPG). Combines hands-on low-level systems engineering (Rust, Go) with enterprise digital asset governance across Southeast Asia (Procter & Gamble).",
   journey: [
     {
       month: "PRESENT",
@@ -44,6 +44,7 @@ export const IT_DATA = {
     }
   ],
   skills: {
+    security: ["Threat Modeling (STRIDE)", "Forensic DRM & Dynamic Watermarking", "Argon2id & RFC 6238 TOTP 2FA", "Ed25519 Cryptographic Licensing", "Filesystem Sandboxing (dunce)", "GnuPG Supply Chain Signing", "Zero-Trust Tunnels (Cloudflared)"],
     languages: ["TypeScript", "JavaScript", "Go", "Rust", "Python", "Kotlin", "HTML/CSS", "SQL", "Bash"],
     frontend: ["React 19", "Next.js 15", "Vite", "Tailwind CSS v4", "Shadcn UI", "Framer Motion", "Zustand", "PWA", "Compose Multiplatform"],
     backend: ["Node.js", "Go (Gin)", "Rust (Axum)", "Python (FastAPI / Flask)", "REST APIs", "WebSocket", "HLS Streaming", "Ktor"],
@@ -53,6 +54,30 @@ export const IT_DATA = {
     tools: ["Git", "VS Code", "Postman", "ffmpeg", "yt-dlp", "Android Studio", "GnuPG", "Figma"]
   },
   projects: [
+    {
+      name: "ola",
+      description: "Forensic Anti-Leak DRM Video Review Platform — Dynamic moving watermark overlay (IP, user ID, timestamp), automated screen-recording/DevTools inspection blanking traps, and zero-port P2P WebSockets.",
+      tech: ["Go", "React 18", "Synology SPK", "DRM / Watermarking", "P2P WebSockets", "SQLite WAL"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/ola"
+    },
+    {
+      name: "kv-file-pro",
+      description: "Military-Grade Secure File Manager — Defense-in-depth authentication (Argon2id + RFC 6238 TOTP 2FA), offline Ed25519 asymmetric cryptographic licensing, and dunce::canonicalize filesystem sandboxing.",
+      tech: ["Rust (Axum)", "SQLite WAL", "Argon2id", "TOTP 2FA", "Ed25519", "Filesystem Sandboxing"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/kv-file-pro"
+    },
+    {
+      name: "SysVis.AI (Sys-Arc-Visl)",
+      description: "System Design & Threat Modeling Visualizer — Interactive architecture diagramming tool for Architecture Review Forums, featuring local-first WebGPU AI (WebLLM Qwen3) to guarantee zero schema data leakage.",
+      tech: ["React 19", "TypeScript", "React Flow", "WebGPU", "WebLLM", "Threat Modeling"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/Sys-Arc-Visl"
+    },
+    {
+      name: "kv-trimui",
+      description: "Embedded Linux Hardening & 13-App Suite — Memory-safe Rust daemons, static Musl linking overcoming legacy GLIBC vulnerabilities, and kv-server with Cloudflare Zero-Trust Tunnels and token auth.",
+      tech: ["Rust 1.85+", "Static Musl", "Linux Evdev", "Cloudflare Zero-Trust", "Framebuffer /dev/fb0"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/kv-trimui"
+    },
     {
       name: "kv-synology",
       description: "Synology DSM Web Manager & AI MCP Hub — Next.js 15, React 19, QuickConnect resolver with relay fallback, service toggles (SMB, NFS, SSH, WebDAV), DSM notifications, and 42 AI MCP tools.",
@@ -116,34 +141,45 @@ export const IT_DATA = {
   ],
   experience: [
     {
-      role: "Synology & Infrastructure Engineer",
-      company: "KV Self-Hosted Lab",
-      period: "2024 - Present",
+      role: "Lead Security Architecture & Infrastructure Consultant",
+      company: "KV Self-Hosted Labs & Security Ecosystem",
+      period: "2023 - Present",
       highlights: [
-        "Architected and deployed Synology Community Package Center (pkg.khoavo.myds.me) serving custom SPK packages with GPG cryptographic signing",
-        "Built kv-synology web manager with Next.js 15, QuickConnect protocol resolver, real-time DSM service controller, and 42 AI MCP tools",
-        "Configured multi-arch container pipelines on Forgejo Git and Docker Hub (linux/amd64, linux/arm64) with automated CI/CD deployment",
-        "Maintained self-hosted microservices ecosystem (media streaming, video downloaders, AI image generators, Forgejo git server)"
+        "Architected and deployed secure self-hosted platforms serving 7+ production packages, integrating GnuPG supply chain signing, Argon2id/TOTP identity verification, and Ed25519 asymmetric cryptographic licensing",
+        "Engineered forensic anti-leak DRM (ola) with dynamic moving watermarks and automated playback blanking traps upon screen capture or DevTools inspection",
+        "Formulated conceptual and logical security architectures for distributed microservices, evaluating non-normative flows and implementing compensating controls for resource-constrained edge environments",
+        "Maintained 99.9% availability across self-hosted infrastructure with automated wildcard SSL rotation, Cloudflare Zero-Trust tunnels, and Btrfs snapshot replication"
       ]
     },
     {
-      role: "Creative Technology Lead",
+      role: "Creative Technology & AI Governance Lead",
       company: "Phibious Vietnam",
       period: "2025 - Present",
       highlights: [
-        "Bridged creative art direction with automated AI engineering and generative pipelines (ComfyUI, FLUX.1)",
-        "Developed internal workflow automation tools, custom API integrations, and prompt engineering frameworks",
-        "Standardized technical SOPs for AI-augmented digital production for global Fortune 500 accounts"
+        "Formulated enterprise technical SOPs, AI governance standards, and data privacy guardrails for generative AI pipelines (ComfyUI, FLUX.1 LoRA) across Fortune 500 accounts",
+        "Established strict input isolation and prompt security protocols to protect proprietary client brand assets and confidential creative IP from unauthorized leakage",
+        "Acted as trusted advisor to regional managing directors, translating technical and compliance trade-offs into commercial business value and achieving a 60% acceleration in production turnaround"
+      ]
+    },
+    {
+      role: "eCommerce Digital Asset Governance & Regional Lead",
+      company: "Procter & Gamble (P&G) Southeast Asia",
+      period: "2020 - 2025",
+      highlights: [
+        "Governed regional digital asset integrity, security compliance, and brand protection across 6 Southeast Asian markets for P&G Hair Care portfolio (Head & Shoulders, Pantene, Rejoice)",
+        "Enforced corporate brand risk policies across 200+ campaign deliverables quarterly, ensuring compliance with regional data, consumer advertising, and digital platform standards",
+        "Designed an enterprise modular design system with 500+ standardized components, enabling 3× faster asset adaptation while eliminating unauthorized design deviations",
+        "Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional marketing, engineering, and product stakeholders"
       ]
     },
     {
       role: "Creator & Maintainer",
-      company: "VietC — Vietnamese IME for Linux",
-      period: "2025 - Present",
+      company: "VietC & KV-TrimUI Open Source",
+      period: "2024 - Present",
       highlights: [
-        "Built zero-underline Rust IME with direct Wayland virtual keyboard (wtype/zwp_virtual_keyboard_v1) and X11 /dev/uinput, bypassing clipboard race and pre-edit underline",
-        "Implemented Bamboo engine (tone marks, vowel muddles), English auto-restore, hardware filtering for 2.4G dongles, and 151 tests at 100% pass",
-        "Shipped one-line install across 8+ distros (Arch, CachyOS, Fedora, Ubuntu, Pop!_OS), systemd user service rootless, Ctrl+Shift cycle ENG→VNI→TELEX"
+        "Built memory-safe Rust Linux IME (vietc) with direct kernel /dev/uinput and /dev/input/by-path isolation, eliminating keystroke sniffing and duplicate injection (<10MB RAM rootless daemon)",
+        "Engineered KV-TrimUI 13-app suite with static Musl cross-compilation, overcoming legacy GLIBC vulnerabilities as a robust platform compensating control",
+        "Integrated Cloudflare Zero-Trust Tunnels (cloudflared) and token-based HTTP authentication in kv-server, eliminating firewall port forwarding"
       ]
     }
   ],

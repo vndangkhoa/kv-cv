@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.6] - 2026-10-05
+
+### Added
+- **Security Consultant & Systems Architect Printable CV (IT Focus)**:
+  - Added dedicated 2-page Information Security & Systems Architect CV tailored for Group Security consulting, threat modeling, and secure systems design.
+  - Aligned with National Australia Bank (NAB) Security Consultant Grade 3 JD: non-normative flow analysis, STRIDE threat modeling, defensive controls, and compensating controls.
+  - Spotlighted cryptographic and forensic controls in `ola` (dynamic watermarking DRM, tamper blanking), `kv-file-pro` (Argon2id, RFC 6238 TOTP, Ed25519 asymmetric licensing, dunce sandboxing), and `kv-trimui` (Musl static toolchain compensating control).
+- **Interactive Multi-Mode PDF Preview & Print Engine**:
+  - Live 3-way toggle switcher inside the PDF preview modal: `[ 🛡️ IT / Security (2p) ]`, `[ 🎨 Design (1p) ]`, and `[ 📑 Full Portfolio (3p) ]`.
+  - Dynamic document naming for browser PDF downloads (`Khoa Vo - Security Consultant & Systems Architect.pdf` / `Khoa Vo - Creative Manager & AI Innovation Lead.pdf`).
+  - Contextual `Security CV` vs `Design CV` trigger buttons across Navbar, Hero, Navigation Drawer, and Contact components.
+
+---
+
 ## [2.0.0] - 2026-09-14
 
 ### Added

@@ -12,7 +12,7 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
   };
 
   const handleDownload = () => {
-    downloadCV();
+    downloadCV(isCreative ? 'design' : 'it');
   };
 
   return (
@@ -75,7 +75,7 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
           >
             {isCreative
               ? 'Creative & AI Lead — Generative AI & Digital Experiences.'
-              : 'Full-Stack & DevOps Engineer — AI Systems & Infrastructure.'}
+              : 'Security Consultant & Systems Architect — Information Security, Risk & Secure Systems Design.'}
           </motion.p>
         </div>
 
@@ -93,7 +93,7 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
             className="btn-details-primary btn-press text-xs font-extrabold shadow-glow-md group cursor-pointer py-2 px-4"
           >
             <Download size={14} className="transition-transform group-hover:-translate-y-0.5" />
-            <span>{isGeneratingPdf ? 'Generating...' : 'Resume'}</span>
+            <span>{isGeneratingPdf ? 'Generating...' : (isCreative ? 'Design CV' : 'Security CV')}</span>
           </button>
 
           {/* Explore Projects Button */}

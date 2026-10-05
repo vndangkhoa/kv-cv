@@ -122,7 +122,7 @@ const TRIMUI_MILESTONES = [
   },
 ];
 
-export default function PrintPage3TrimUI() {
+export default function PrintPage3TrimUI({ pageNum = 2, totalPages = 2 }) {
   return (
     <div style={S.page} className="cv-page print-portfolio-content">
       {/* HEADER (19mm) */}
@@ -139,7 +139,7 @@ export default function PrintPage3TrimUI() {
         </div>
         <div style={S.headerRight}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '6.2pt', fontWeight: 800, letterSpacing: '0.12em', color: C.black }}>
-            PORTFOLIO CV • PAGE 3 OF 3
+            SYSTEMS CV • PAGE {pageNum} OF {totalPages}
           </div>
           <div style={{ width: '24mm', height: '0.5mm', background: C.black, marginTop: '1mm' }} />
         </div>
@@ -349,10 +349,10 @@ export default function PrintPage3TrimUI() {
       {/* FOOTER (6mm) - Single Line Guaranteed */}
       <div style={{ ...S.footer, height: '6mm', minHeight: '6mm', maxHeight: '6mm', padding: '0 4mm' }}>
         <span style={{ whiteSpace: 'nowrap', fontSize: '5.4pt' }}>
-          trimui.vndns.net &nbsp;•&nbsp; github.com/vndangkhoa/kv-trimui &nbsp;•&nbsp; vonguyendangkhoa@gmail.com
+          git.khoavo.myds.me/vndangkhoa/kv-trimui &nbsp;•&nbsp; github.com/vndangkhoa &nbsp;•&nbsp; vonguyendangkhoa@gmail.com
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.2mm', color: C.black, fontWeight: 900, whiteSpace: 'nowrap', fontSize: '5.4pt' }}>
-          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {TRIMUI_INFO.short} — PORTFOLIO CV • PAGE 3 OF 3 (EMBEDDED &amp; HANDHELD OS)
+          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {TRIMUI_INFO.short} — SYSTEMS &amp; EMBEDDED OS ARCHITECT • PAGE {pageNum}
         </span>
       </div>
     </div>

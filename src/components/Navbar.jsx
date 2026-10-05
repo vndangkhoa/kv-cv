@@ -111,12 +111,13 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
 
             {/* Direct Download CV Button */}
             <button
-              onClick={onOpenPdf}
-              title="Download PDF CV"
+              onClick={() => onOpenPdf(tab === 'creative' ? 'design' : 'it')}
+              title={`View & Print ${tab === 'creative' ? 'Creative Design' : 'Security Consultant'} CV`}
               className="btn-press inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-1.5 rounded-full bg-[#00FF87]/15 hover:bg-[#00FF87]/25 text-emerald-700 dark:text-[#00FF87] border border-[#00FF87]/35 text-xs font-mono font-bold transition-all duration-300 shadow-glow-sm cursor-pointer shrink-0 whitespace-nowrap"
             >
               <FileText size={13} className="shrink-0" />
-              <span className="hidden sm:inline">PDF CV</span>
+              <span className="hidden sm:inline">{tab === 'creative' ? 'Design CV' : 'Security CV'}</span>
+              <span className="sm:hidden">CV</span>
             </button>
 
             {/* Terminal Mode Icon Trigger */}

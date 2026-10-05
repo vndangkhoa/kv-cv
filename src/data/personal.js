@@ -4,28 +4,31 @@ export const PERSONAL_INFO = {
   phone: "0398300340",
   email: "vonguyendangkhoa@gmail.com",
   location: "Ho Chi Minh City, Vietnam",
-  linkedin: "https://www.linkedin.com/in/khoavo93/",
+  linkedin: "https://www.linkedin.com/in/khoa-vo-76291236/",
   portfolio: "https://khoavo.myds.me/",
   website: "https://khoavo.vndns.net/",
   github: "https://github.com/vndangkhoa",
-  forgejo: "https://github.com/vndangkhoa",
+  forgejo: "https://git.khoavo.myds.me/vndangkhoa",
   availability: "Open to work",
 };
 
-export const triggerPdfPrint = () => {
+export const triggerPdfPrint = (title = "Khoa Vo - Security Consultant & Systems Architect") => {
   if (typeof window !== 'undefined') {
+    document.title = title;
     window.print();
   }
 };
 
-export const exportPdfDirectly = async (onProgress) => {
+export const exportPdfDirectly = async (onProgress, title = "Khoa Vo - Security Consultant & Systems Architect") => {
   if (typeof window === 'undefined') return;
 
   try {
     if (onProgress) onProgress(true);
 
+    // Set document title so the exported PDF is named appropriately
+    document.title = title;
+
     // Use browser's native print - applies @media print CSS for exact layout
-    // This ensures fonts, positioning, and measurements match print preview
     window.print();
   } catch (err) {
     console.error('Print error:', err);
@@ -34,9 +37,9 @@ export const exportPdfDirectly = async (onProgress) => {
   }
 };
 
-export const downloadCV = () => {
+export const downloadCV = (mode) => {
   if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('open-pdf-preview'));
+    window.dispatchEvent(new CustomEvent('open-pdf-preview', { detail: { mode } }));
   }
 };
 

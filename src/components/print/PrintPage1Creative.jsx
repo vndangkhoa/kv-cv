@@ -12,7 +12,7 @@ const INFO = {
   location: "Ho Chi Minh City, VN",
   phone: "0398300340",
   email: "vonguyendangkhoa@gmail.com",
-  linkedin: "linkedin.com/in/khoavo93",
+  linkedin: "linkedin.com/in/khoa-vo-76291236",
   portfolio: "khoavo.vndns.net",
   github: "github.com/vndangkhoa",
   summary:
@@ -149,7 +149,7 @@ const HONORS_CERTS = [
   { label: "RMIT Best Artistic Graduate Showcase", year: "2016", type: "Award" },
 ];
 
-export default function PrintPage1Creative() {
+export default function PrintPage1Creative({ pageNum = 1, totalPages = 1 }) {
   return (
     <div style={S.page} className="cv-page print-portfolio-content">
       {/* HEADER (19mm) */}
@@ -166,7 +166,7 @@ export default function PrintPage1Creative() {
         </div>
         <div style={S.headerRight}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '6.2pt', fontWeight: 800, letterSpacing: '0.12em', color: C.black }}>
-            PORTFOLIO CV • PAGE 1 OF 3
+            {totalPages === 1 ? 'DESIGN CV • PAGE 1 OF 1' : `PORTFOLIO CV • PAGE ${pageNum} OF ${totalPages}`}
           </div>
           <div style={{ width: '24mm', height: '0.5mm', background: C.black, marginTop: '1mm' }} />
         </div>
@@ -331,9 +331,9 @@ export default function PrintPage1Creative() {
 
       {/* FOOTER (6.5mm) */}
       <div style={S.footer}>
-        <span>{INFO.email} &nbsp;•&nbsp; {INFO.phone} &nbsp;•&nbsp; {INFO.portfolio} &nbsp;•&nbsp; {INFO.website} &nbsp;•&nbsp; {INFO.github}</span>
+        <span>{INFO.email} &nbsp;•&nbsp; {INFO.phone} &nbsp;•&nbsp; {INFO.portfolio} &nbsp;•&nbsp; {INFO.github}</span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.5mm', color: C.black, fontWeight: 900 }}>
-          <span style={{ width: '2mm', height: '2mm', background: C.black, display: 'inline-block' }} /> {INFO.short} — 3-PAGE PORTFOLIO CV • PAGE 1 OF 3 (CREATIVE &amp; AI)
+          <span style={{ width: '2mm', height: '2mm', background: C.black, display: 'inline-block' }} /> {INFO.short} — {totalPages === 1 ? 'CREATIVE & AI PORTFOLIO CV • PAGE 1 OF 1' : `PORTFOLIO CV • PAGE ${pageNum} OF ${totalPages} (CREATIVE & AI)`}
         </span>
       </div>
     </div>

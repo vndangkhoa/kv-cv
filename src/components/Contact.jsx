@@ -116,11 +116,11 @@ export default function Contact({ tab }) {
         <Reveal delay={0.35}>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <button
-              onClick={downloadCV}
-              className="btn-iridescent text-xs sm:text-sm font-extrabold shadow-glow-md group"
+              onClick={() => downloadCV(isCreative ? 'design' : 'it')}
+              className="btn-iridescent text-xs sm:text-sm font-extrabold shadow-glow-md group cursor-pointer"
             >
               <Download size={16} className="transition-transform group-hover:-translate-y-0.5" />
-              <span>Download Printable PDF CV</span>
+              <span>Download {isCreative ? 'Creative Design CV (PDF)' : 'Security Consultant CV (PDF)'}</span>
             </button>
 
             <a

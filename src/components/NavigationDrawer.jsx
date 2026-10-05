@@ -270,14 +270,14 @@ export default function NavigationDrawer({
                     document.body.style.overflow = '';
                     onClose();
                     setTimeout(() => {
-                      if (onOpenPdf) onOpenPdf();
+                      if (onOpenPdf) onOpenPdf(tab === 'creative' ? 'design' : 'it');
                     }, 50);
                   }}
                   className="btn-press py-3 px-4 rounded-xl font-mono text-xs uppercase tracking-wider font-extrabold flex items-center justify-center gap-2 bg-gradient-to-r from-[#00FF87] to-[#00E5FF] text-[#0A0D0B] hover:brightness-110 active:scale-95 transition-all shadow-[0_0_20px_rgba(0,255,135,0.3)] cursor-pointer"
                   title="Open PDF CV & Printable Portfolio"
                 >
                   <FileText size={15} className="stroke-[2.5]" />
-                  <span>Get Resume</span>
+                  <span>{tab === 'creative' ? 'Design CV' : 'Security CV'}</span>
                 </button>
 
                 <button

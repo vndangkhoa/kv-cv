@@ -7,8 +7,8 @@ import { C, S, MonoVNDK } from './printShared';
 const IT_INFO = {
   name: "Vo Nguyen Dang Khoa",
   short: "KHOA.VO",
-  title: "SENIOR FULL-STACK & SYSTEMS ENGINEER",
-  subtitle: "Rust Systems Programming  •  Self-Hosted Cloud Infrastructure  •  DevOps  •  Web Engineering",
+  title: "SECURITY CONSULTANT & SYSTEMS ARCHITECT",
+  subtitle: "Information Security  •  Threat Modeling & DRM  •  Cryptographic Controls  •  Systems Engineering",
   synoSource: "syno.vndns.vn",
   vietcRepo: "github.com/vndangkhoa/vietc",
   github: "github.com/vndangkhoa",
@@ -16,47 +16,47 @@ const IT_INFO = {
   phone: "0398300340",
   location: "Ho Chi Minh City, VN",
   summary:
-    "Systems and software engineer with extensive experience architecting low-level Linux systems software, distributed containerized cloud platforms, and modern full-stack web applications. Architect of the Synology Community Store (syno.vndns.vn)—an automated package distribution platform delivering 7 production applications headlined by flagship manager kv-synology (Next.js 15, React 19) with 1-click DSM 7.2+ installs, automated GnuPG supply chain verification, and zero-loss stateful upgrade lifecycles. Creator of VietC (60+ stars)—a memory-safe, zero-latency Linux input method engine built in pure Rust that eliminated decade-old cursor flickering and autocompletion disruption across Wayland and X11.",
+    "Security-minded systems and solutions engineer with 9+ years in technology and 4+ years designing security controls into production systems from the ground up: cryptographic licensing, forensic anti-leak DRM, multi-factor authentication, directory-traversal sandboxing, and tamper detection. Combines deep hands-on implementation (Go, Rust, TypeScript) with enterprise digital asset governance across Southeast Asia (Procter & Gamble). I approach every system as a consultant would: identify the threat model first, design controls proportional to risk, and document them so technical and non-technical stakeholders alike can make informed decisions.",
 };
 
 const IT_METRICS = [
-  { value: "7 Apps", label: "Production Store Packages", sub: "Synology DSM 7.2+ Ecosystem" },
-  { value: "99.9%", label: "Private Cloud Availability", sub: "Self-Hosted Container Cluster" },
-  { value: "60+ ★", label: "Open Source Adoption", sub: "GitHub Community (vietc)" },
-  { value: "<1ms", label: "Input Dispatch Latency", sub: "Zero Pre-Edit Buffer Overhead" },
+  { value: "7+ Apps", label: "Production Security Packages", sub: "Synology DSM 7.2+ Ecosystem" },
+  { value: "Ed25519", label: "Cryptographic Controls", sub: "Argon2id + TOTP 2FA Sandboxing" },
+  { value: "Zero-Leak", label: "Forensic Anti-Leak DRM", sub: "Dynamic Watermarking & Blanking" },
+  { value: "<10MB", label: "Memory-Safe Rust Daemons", sub: "Rootless /dev/uinput Subsystem" },
 ];
 
 const HR_VALUE_PILLARS = [
   {
-    tag: "Full-Cycle Systems Ownership",
-    desc: "Direct experience architecting software from Linux kernel input event loops (/dev/uinput, wtype) up to distributed cloud microservices and reactive web frontends.",
+    tag: "Threat Modeling & Non-Normative Flows",
+    desc: "Built forensic anti-leak DRM (ola) and kernel input isolation (vietc), designing runtime countermeasures against screen recording, DevTools inspection, and input race conditions.",
   },
   {
-    tag: "Production Release Integrity",
-    desc: "Implements rigorous supply chain security with automated GnuPG cryptographic verification, Container Manager runtime checks, and zero-loss upgrade lifecycles.",
+    tag: "Defense-in-Depth & Cryptography",
+    desc: "Engineered Argon2id password hashing, RFC 6238 TOTP 2FA, Ed25519-signed offline licensing, and dunce::canonicalize filesystem sandboxing in kv-file-pro.",
   },
   {
-    tag: "Modern Full-Stack Architecture",
-    desc: "Engineered kv-synology as an enterprise control plane with Next.js 15, React 19, and Tailwind v4, implementing a resilient QuickConnect relay resolver and live DSM push alerts.",
+    tag: "Compensating Controls & Supply Chain",
+    desc: "Solved legacy GLIBC platform limitations via 100% static Musl cross-compilation in kv-trimui; enforced automated GnuPG package signing and dual-mirror CI/CD release assurance.",
   },
 ];
 
 const IT_SKILL_GROUPS = [
   {
+    label: "Security & Risk",
+    items: ["Threat Modeling", "STRIDE", "Non-Normative Flows", "Forensic DRM", "Watermarking", "GRC", "Policy Enforcement"],
+  },
+  {
+    label: "Cryptography & Controls",
+    items: ["Argon2id", "RFC 6238 TOTP", "Ed25519", "GnuPG", "Sandboxing", "Rate Limiting", "CORS", "Zero-Trust"],
+  },
+  {
     label: "Systems & Low-Level",
-    items: ["Rust 1.85+", "Linux (Arch/Debian)", "Wayland", "X11", "POSIX C", "Bash", "/dev/uinput", "systemd"],
+    items: ["Rust 1.85+", "Linux (Arch/Debian)", "/dev/uinput", "Static Musl", "POSIX C", "Bash", "systemd rootless"],
   },
   {
-    label: "Backend & Cloud Services",
-    items: ["Go (Gin)", "Rust (Axum)", "Python (Flask)", "Docker Multi-Arch", "Nginx", "HLS Streaming", "REST / WS"],
-  },
-  {
-    label: "Full-Stack & Web",
-    items: ["React 19", "Next.js 15", "TypeScript", "Tailwind v4", "Kotlin Multiplatform", "Compose", "PWA"],
-  },
-  {
-    label: "Storage & Security",
-    items: ["Synology DSM 7.2+", "Btrfs RAID", "GnuPG", "JWT Auth", "Cloudflare DDNS", "PostgreSQL", "SQLite"],
+    label: "Cloud & Storage",
+    items: ["Synology DSM 7.2+", "Docker Multi-Arch", "Go (Gin)", "React 19", "Next.js 15", "Btrfs RAID", "SQLite WAL"],
   },
 ];
 
@@ -73,71 +73,71 @@ const INFRA_TOPOLOGY = [
 
 const SECONDARY_STORE_APPS = [
   {
-    name: "kvdownload",
-    tag: "Batch Media Engine",
-    desc: "High-throughput video processing API in Rust (Axum) and Go with automated storage allocation and data retention lifecycle policies.",
-    tech: "Rust (Axum) • Go • yt-dlp",
+    name: "ola",
+    tag: "Forensic Anti-Leak DRM",
+    desc: "Dynamic moving watermark overlay (IP, timestamp, ID) and auto-blank traps upon screen-recording or DevTools inspection.",
+    tech: "Go • React • Synology SPK",
   },
   {
-    name: "kvnetflix",
-    tag: "Streaming Platform",
-    desc: "Enterprise video streaming service featuring persistent JWT session authentication across upgrades and Kotlin Android TV client.",
-    tech: "Kotlin Multiplatform • Compose",
+    name: "kv-file-pro",
+    tag: "Cryptographic Sandboxing",
+    desc: "Argon2id hashing, RFC 6238 TOTP 2FA, Ed25519 asymmetric offline licensing, and dunce::canonicalize path isolation.",
+    tech: "Rust (Axum) • SQLite WAL",
   },
   {
-    name: "kvtube",
-    tag: "Video Platform",
-    desc: "Self-hosted video streaming architecture with Go (Gin) backend, Next.js frontend, and HLS adaptive bitrate streaming.",
+    name: "SysVis.AI",
+    tag: "Threat Model Visualizer",
+    desc: "Architecture topology and threat boundary mapping for Architecture Review Forums with local-first WebGPU AI inference.",
+    tech: "React 19 • WebLLM Qwen3",
+  },
+  {
+    name: "kv-server",
+    tag: "Zero-Trust Tunnel Gateway",
+    desc: "Handheld reverse-proxy enforcing Cloudflare Zero-Trust Tunnels, token-based auth (?auth=token), and loopback port isolation.",
+    tech: "Rust • Musl • Cloudflared",
+  },
+  {
+    name: "kv-tube",
+    tag: "Hardened Media Engine",
+    desc: "Per-IP rate limiting (300 req/min), strict CORS origin allow-lists, and multi-service container network segmentation.",
     tech: "Go (Gin) • Next.js • HLS",
   },
   {
-    name: "kvmusic",
-    tag: "Audio Service",
-    desc: "Self-hosted audio streaming service with real-time background playback, queue synchronization, and responsive player UI.",
-    tech: "TypeScript • Next.js • Audio APIs",
-  },
-  {
-    name: "kvfile",
-    tag: "Storage Management",
-    desc: "High-performance file explorer featuring macOS Miller Columns, Windows tree navigation, and native File Station API sync.",
-    tech: "TypeScript • React • Synology API",
-  },
-  {
-    name: "kvhome",
-    tag: "Operations Launchpad",
-    desc: "Unified management dashboard providing live service health monitoring, port resolution, and single-click access across all workloads.",
-    tech: "JavaScript • Responsive Web",
+    name: "spkrepo",
+    tag: "Supply Chain Packaging",
+    desc: "Automated SPK package distribution platform with GnuPG cryptographic signature verification and container validation.",
+    tech: "GnuPG • Docker • Python",
   },
 ];
 
 const SYSTEMS_MILESTONES = [
   {
-    period: "2025 — PRES",
-    title: "Synology Community Store Distribution Platform",
+    period: "2024 — PRES",
+    title: "Secure Architecture & Forensic DRM (Ola & KV Files PRO)",
     bullets: [
-      "Engineered an automated SPK packaging pipeline with GnuPG signing, Docker runtime validation, dynamic port allocation (20000–59999), and state persistence across upgrades.",
-      "Delivered 7 production containerized applications headlined by flagship DSM management platform kv-synology (Next.js 15, React 19).",
+      "Engineered forensic anti-leak DRM (ola) with dynamic moving watermarks (IP/time/ID) and auto-blank traps upon screen-recording or DevTools inspection.",
+      "Built KV Files PRO with Argon2id password hashing, RFC 6238 TOTP 2FA, offline Ed25519 asymmetric licensing, and dunce::canonicalize filesystem sandboxing.",
     ],
   },
   {
-    period: "2025 — PRES",
-    title: "VietC — Native Linux Input Method Engine",
+    period: "2024 — PRES",
+    title: "Memory Safety & Kernel Defense (VietC & KV-TrimUI)",
     bullets: [
-      "Architected pure Rust 1.85+ Wayland virtual keyboard daemon, eliminating 10+ years of cursor flickering, pre-edit lag, and autocompletion breaks.",
-      "Engineered sub-millisecond Unicode dispatch via zwp_virtual_keyboard_v1 and /dev/uinput with hardware-level input event filtering (<10MB RAM).",
+      "Architected pure Rust 1.85+ input engine (vietc) with direct kernel /dev/uinput and /dev/input/by-path isolation, eliminating keystroke sniffing and duplicate injection (<10MB rootless).",
+      "Engineered KV-TrimUI suite targeting static aarch64-unknown-linux-musl to overcome legacy GLIBC 2.28 vulnerabilities as a platform compensating control.",
     ],
   },
   {
-    period: "2024 — 2025",
-    title: "High-Throughput Cloud & Streaming Systems",
+    period: "2020 — 2025",
+    title: "Regional Digital Asset Governance & Compliance (Procter & Gamble SEA)",
     bullets: [
-      "Architected resilient Go (Gin) & Rust (Axum) media microservices with adaptive HLS video streaming, automated storage tiering, and Btrfs snapshot replication.",
-      "Configured automated reverse proxy routing with wildcard SSL certificate rotation, Hairpin-NAT, and Cloudflare DDNS for 99.9% uptime.",
+      "Governed brand risk policies, asset validation, and regulatory compliance across 6 Southeast Asian regional markets (P&G Hair Care portfolio).",
+      "Architected enterprise modular design system with 500+ master components, accelerating adaptation 3× while eliminating non-compliant asset deviations.",
     ],
   },
 ];
 
-export default function PrintPage2IT() {
+export default function PrintPage2IT({ pageNum = 1, totalPages = 2 }) {
   return (
     <div style={S.page} className="cv-page print-portfolio-content">
       {/* HEADER (19mm) */}
@@ -154,7 +154,7 @@ export default function PrintPage2IT() {
         </div>
         <div style={S.headerRight}>
           <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: '6.2pt', fontWeight: 800, letterSpacing: '0.12em', color: C.black }}>
-            PORTFOLIO CV • PAGE 2 OF 3
+            SECURITY CV • PAGE {pageNum} OF {totalPages}
           </div>
           <div style={{ width: '24mm', height: '0.5mm', background: C.black, marginTop: '1mm' }} />
         </div>
@@ -262,7 +262,7 @@ export default function PrintPage2IT() {
           {/* Executive Summary & Metrics */}
           <div>
             <h2 style={{ ...S.summaryHead, fontSize: '10.2pt', lineHeight: 1.15 }}>
-              <span style={S.summaryHeadAccent}>Senior Systems Engineer</span> | Full-Stack &amp; Cloud Infrastructure Architect
+              <span style={S.summaryHeadAccent}>Security Consultant</span> | Information Risk &amp; Systems Architect
             </h2>
             <p style={{ ...S.summaryBody, fontSize: '6.6pt', lineHeight: 1.36, marginTop: '0.7mm' }}>{IT_INFO.summary}</p>
             <div style={{ ...S.metricRow, marginTop: '1.5mm', gap: '2mm' }}>
@@ -476,10 +476,10 @@ export default function PrintPage2IT() {
       {/* FOOTER (6mm) - Single Line Guaranteed */}
       <div style={{ ...S.footer, height: '6mm', minHeight: '6mm', maxHeight: '6mm', padding: '0 4mm' }}>
         <span style={{ whiteSpace: 'nowrap', fontSize: '5.4pt' }}>
-          syno.vndns.vn &nbsp;•&nbsp; github.com/vndangkhoa/vietc &nbsp;•&nbsp; vonguyendangkhoa@gmail.com
+          git.khoavo.myds.me/vndangkhoa &nbsp;•&nbsp; github.com/vndangkhoa &nbsp;•&nbsp; vonguyendangkhoa@gmail.com
         </span>
         <span style={{ display: 'flex', alignItems: 'center', gap: '1.2mm', color: C.black, fontWeight: 900, whiteSpace: 'nowrap', fontSize: '5.4pt' }}>
-          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {IT_INFO.short} — PORTFOLIO CV • PAGE 2 OF 3 (SYSTEMS &amp; CLOUD)
+          <span style={{ width: '1.8mm', height: '1.8mm', background: C.black, display: 'inline-block' }} /> {IT_INFO.short} — SECURITY CONSULTANT &amp; SYSTEMS ARCHITECT • PAGE {pageNum}
         </span>
       </div>
     </div>
