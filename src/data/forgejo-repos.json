@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-10-09T04:41:18.124Z",
+  "fetchedAt": "2026-10-09T04:46:52.158Z",
   "totalRepos": 16,
   "totalLanguages": 6,
   "languages": {
@@ -79,10 +79,10 @@
       "description": "Portfolio v2 — React + Vite scrolly video (scrub human_head_turn.mp4), dual Creative/IT personas, glass-morphism, CRT terminal, and one-tap PDF CV export.",
       "htmlUrl": "https://github.com/vndangkhoa/kv-cv",
       "language": "JavaScript",
-      "updatedAt": "2026-10-09T04:27:17Z",
+      "updatedAt": "2026-10-09T04:42:00Z",
       "createdAt": "2026-08-02T04:36:32Z",
       "mirror": false,
-      "mirrorUpdated": "2026-10-09T04:27:17Z",
+      "mirrorUpdated": "2026-10-09T04:42:00Z",
       "topics": [],
       "stars": 0,
       "forks": 1,
