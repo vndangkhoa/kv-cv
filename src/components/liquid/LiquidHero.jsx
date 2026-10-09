@@ -41,19 +41,22 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           poster="/human_head_turn_poster.webp"
           className="w-full h-full"
         />
-        {/* Subtle Ambient Radial & Linear Falloff */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-black/60 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_45%,_black_95%)] pointer-events-none" />
+        {/* Ambient Dark Falloffs to guarantee crisp text legibility over animated ASCII */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/75 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,0,0,0.72)_0%,_rgba(0,0,0,0.45)_50%,_black_95%)] pointer-events-none" />
       </div>
 
       {/* Main Center Content */}
       <div className="relative z-10 flex-1 flex flex-col items-center justify-center px-4 sm:px-6 py-10 text-center -translate-y-[4%] sm:-translate-y-[8%]">
+        {/* Soft radial backdrop behind text block */}
+        <div className="absolute -inset-10 -z-10 bg-radial from-black/75 via-black/40 to-transparent blur-3xl pointer-events-none rounded-full" />
+
         {/* Badge / Pill */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full liquid-glass border border-white/10 text-xs font-mono text-white/70"
+          className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-[#0c0c0e]/85 backdrop-blur-xl border border-white/15 text-xs font-mono text-white/90 shadow-md"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
           <span>PORTFOLIO &apos;26 &bull; HO CHI MINH CITY</span>
@@ -64,7 +67,7 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] sm:leading-none break-words max-w-full px-2"
+          className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] sm:leading-none break-words max-w-full px-2 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
         >
           {isCreative ? (
             <>
@@ -85,13 +88,13 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="max-w-md sm:max-w-xl w-full mx-auto mb-4 sm:mb-6 px-2 sm:px-0"
         >
-          <div className="liquid-glass rounded-full pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 shadow-2xl border border-white/15 hover:border-white/30 transition-all">
+          <div className="bg-[#0c0c0e]/90 backdrop-blur-xl rounded-full pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] border border-white/20 hover:border-white/35 transition-all">
             <input
               type="text"
               value={emailInput}
               onChange={(e) => setEmailInput(e.target.value)}
               placeholder="vonguyendangkhoa@gmail.com"
-              className="bg-transparent text-white placeholder:text-white/40 text-xs sm:text-sm font-mono focus:outline-none flex-1 truncate min-w-0"
+              className="bg-transparent text-white placeholder:text-white/70 text-xs sm:text-sm font-mono focus:outline-none flex-1 truncate min-w-0"
             />
             <button
               type="submit"
@@ -105,24 +108,26 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
             <motion.p
               initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-[11px] font-mono text-white/90 mt-2 text-center"
+              className="text-[11px] font-mono text-white/95 mt-2 text-center drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
             >
               ✓ Copied {PERSONAL_INFO.email} to clipboard
             </motion.p>
           )}
         </motion.form>
 
-        {/* Subtitle */}
-        <motion.p
+        {/* Subtitle with frosted dark backdrop for 100% legibility */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-white/70 text-xs sm:text-sm md:text-base leading-relaxed px-2 sm:px-4 max-w-xl font-sans mx-auto"
+          className="max-w-xl mx-auto px-2"
         >
-          {isCreative
-            ? 'Creative Lead & AI Specialist merging 9+ years of motion direction with production diffusion pipelines (ComfyUI, FLUX) for global campaigns.'
-            : 'Security Consultant & Systems Architect with 18+ deployed production services, hardened container environments, and zero-trust design.'}
-        </motion.p>
+          <p className="inline-block text-white/95 text-xs sm:text-sm md:text-base leading-relaxed px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.85)] font-sans drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+            {isCreative
+              ? 'Creative Lead & AI Specialist merging 9+ years of motion direction with production diffusion pipelines (ComfyUI, FLUX) for global campaigns.'
+              : 'Security Consultant & Systems Architect with 18+ deployed production services, hardened container environments, and zero-trust design.'}
+          </p>
+        </motion.div>
 
         {/* Action Buttons */}
         <motion.div
@@ -133,13 +138,13 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
         >
           <button
             onClick={() => onOpenPdf(isCreative ? 'design' : 'it')}
-            className="liquid-glass rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/10 transition-colors border border-white/20 cursor-pointer"
+            className="bg-[#0e0e12]/85 backdrop-blur-md rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/15 transition-all border border-white/20 hover:border-white/35 shadow-[0_4px_20px_rgba(0,0,0,0.6)] cursor-pointer"
           >
             Open Khoa Vo CV
           </button>
           <button
             onClick={onEasterEgg}
-            className="liquid-glass rounded-full px-4 sm:px-6 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/10 transition-colors border border-white/20 cursor-pointer flex items-center gap-1.5 sm:gap-2"
+            className="bg-[#0e0e12]/85 backdrop-blur-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/15 transition-all border border-white/20 hover:border-white/35 shadow-[0_4px_20px_rgba(0,0,0,0.6)] cursor-pointer flex items-center gap-1.5 sm:gap-2"
             title="Launch Retro Terminal OS"
           >
             <Terminal size={14} />
@@ -147,7 +152,7 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           </button>
           <button
             onClick={scrollToAbout}
-            className="liquid-glass rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white/70 hover:text-white text-xs sm:text-sm font-mono transition-colors border border-white/10 cursor-pointer"
+            className="bg-[#0e0e12]/65 backdrop-blur-md rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white/80 hover:text-white text-xs sm:text-sm font-mono transition-all border border-white/15 hover:border-white/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
           >
             Explore Story &darr;
           </button>

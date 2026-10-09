@@ -146,7 +146,7 @@ export default function EcosystemReviewsSection({ tab }) {
   return (
     <section
       id="reviews"
-      className="relative py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden"
+      className="relative scroll-mt-24 sm:scroll-mt-32 py-16 sm:py-24 md:py-32 px-4 sm:px-6 md:px-8 bg-black text-white overflow-hidden"
     >
       {/* Subtle Ambient Radial Glow matching other sections */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(255,255,255,0.03)_0%,_transparent_70%)] pointer-events-none" />
@@ -166,13 +166,13 @@ export default function EcosystemReviewsSection({ tab }) {
               </div>
 
               {/* Headline matching typography across site */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] mb-5">
-                Expanding <em className="italic text-white/60 font-serif">reach</em> <br />
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                Expanding <em className="italic text-white/70 font-serif">reach</em> <br />
                 with every deploy.
               </h2>
 
               {/* Subtitle */}
-              <p className="text-white/60 text-xs sm:text-sm md:text-base leading-relaxed mb-6 font-sans max-w-lg">
+              <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 font-sans max-w-lg">
                 Real feedback streamed directly from production users across{' '}
                 <a
                   href="https://syno.vndns.net"
@@ -353,10 +353,10 @@ export default function EcosystemReviewsSection({ tab }) {
                       onMouseEnter={() => setHoveredCardIdx(index)}
                       onMouseLeave={() => setHoveredCardIdx(null)}
                       onClick={() => setActiveReviewId(isExpanded ? null : item.id)}
-                      className={`relative liquid-glass rounded-2xl sm:rounded-3xl p-5 sm:p-6 border transition-all duration-300 cursor-pointer select-none group shadow-xl ${
+                      className={`relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 border transition-all duration-300 cursor-pointer select-none group shadow-xl ${
                         isCardHovered || isExpanded
-                          ? 'border-white/35 bg-white/[0.07] shadow-2xl shadow-black/80 scale-[1.01]'
-                          : 'border-white/10 hover:border-white/20 bg-white/[0.02]'
+                          ? 'border-white/35 bg-[#141419] shadow-2xl shadow-black/90 scale-[1.01]'
+                          : 'border-white/12 hover:border-white/25 bg-[#0d0d11]/90 backdrop-blur-md'
                       }`}
                     >
                       {/* Ambient inner soft highlight */}

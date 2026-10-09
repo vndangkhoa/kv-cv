@@ -16,7 +16,7 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden bg-black text-white pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20">
+    <section id="contact" className="relative scroll-mt-24 sm:scroll-mt-32 overflow-hidden bg-black text-white pt-16 sm:pt-20 md:pt-24 pb-12 sm:pb-16 md:pb-20">
       {/* Background Kinetic Characters from Khoa's static photo */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 mix-blend-screen">
         <KineticCharacterCanvas

@@ -70,7 +70,7 @@ export default function TestimonialsSection({ tab }) {
     <section
       id="referees"
       ref={ref}
-      className="relative bg-black pt-12 sm:pt-20 md:pt-28 pb-20 sm:pb-32 px-4 sm:px-6 md:px-8 overflow-hidden text-white"
+      className="relative scroll-mt-24 sm:scroll-mt-32 bg-black pt-12 sm:pt-20 md:pt-28 pb-20 sm:pb-32 px-4 sm:px-6 md:px-8 overflow-hidden text-white"
     >
       {/* Anchor aliases for compatibility */}
       <div id="testimonials" className="absolute -top-20" />
@@ -394,7 +394,7 @@ function TestimonialCard({ item, lang, onSelect }) {
   const quoteText = lang === 'vi' && item.quoteVi ? item.quoteVi : item.quote;
 
   return (
-    <div className="relative liquid-glass rounded-3xl p-6 sm:p-8 md:p-9 border border-white/15 hover:border-white/30 transition-all duration-300 flex flex-col justify-between shadow-2xl group w-full h-full min-h-[350px]">
+    <div className="relative bg-[#0d0d11]/85 backdrop-blur-xl rounded-3xl p-6 sm:p-8 md:p-9 border border-white/15 hover:border-white/30 transition-all duration-300 flex flex-col justify-between shadow-2xl group w-full h-full min-h-[350px]">
       <div className="flex-1 flex flex-col justify-start">
         {/* Single classic quotation mark matching Image 2 */}
         <div className="text-4xl sm:text-5xl font-serif text-white/50 group-hover:text-white/80 transition-colors leading-none mb-3 select-none">

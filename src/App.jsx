@@ -7,17 +7,7 @@ import { ZoomIn, ZoomOut, Download, X } from 'lucide-react';
 import './print.css';
 
 export default function App() {
-  const [darkMode, setDarkMode] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      if (params.get('theme') === 'light') return false;
-      if (params.get('theme') === 'dark') return true;
-      const saved = localStorage.getItem('kv-portfolio-theme');
-      if (saved) return saved === 'dark';
-      return true;
-    }
-    return true;
-  });
+  const [darkMode] = useState(true);
 
   const [tab, setTab] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -101,16 +91,15 @@ export default function App() {
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-      document.documentElement.classList.remove('light');
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.documentElement.classList.add('light');
+    document.documentElement.setAttribute('data-theme', 'dark');
+    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('light');
+    try {
+      localStorage.setItem('kv-portfolio-theme', 'dark');
+    } catch {
+      // ignore storage access issues
     }
-    localStorage.setItem('kv-portfolio-theme', darkMode ? 'dark' : 'light');
-  }, [darkMode]);
+  }, []);
 
   // Listen for open-pdf-preview event from downloadCV()
   useEffect(() => {

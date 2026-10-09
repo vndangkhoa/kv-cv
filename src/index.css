@@ -235,44 +235,26 @@
 }
 
 /* ---------- Liquid Innovation Design System Variables ---------- */
-:root {
+:root,
+[data-theme="dark"],
+[data-theme="light"] {
   --bg-primary: #000000;
   --bg-primary-rgb: 0, 0, 0;
-  --bg-secondary: #0A0A0A;
-  --bg-elevated: #111111;
+  --bg-secondary: #0A0A0C;
+  --bg-elevated: #121216;
   --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.72);
-  --text-muted: rgba(255, 255, 255, 0.45);
+  --text-secondary: rgba(255, 255, 255, 0.85);
+  --text-muted: rgba(255, 255, 255, 0.60);
   --accent: #FFFFFF;
   --accent-brand: #FFFFFF;
-  --accent-subtle: rgba(255, 255, 255, 0.06);
-  --border: rgba(255, 255, 255, 0.1);
-  --border-subtle: rgba(255, 255, 255, 0.05);
-  --glass-bg: rgba(255, 255, 255, 0.015);
-  --glass-border: rgba(255, 255, 255, 0.12);
-  --glass-shadow: rgba(0, 0, 0, 0.7);
+  --accent-subtle: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.12);
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(14, 14, 18, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-shadow: rgba(0, 0, 0, 0.75);
   --grid-color: rgba(255, 255, 255, 0.02);
   --iridescent-gradient: radial-gradient(80.17% 109.2% at 44.373% 35.1526%, rgb(208, 178, 255) 0%, rgb(255, 238, 216) 42.83%, rgb(255, 255, 255) 88.38%);
-}
-
-[data-theme="light"] {
-  --bg-primary: #F8FAFA;
-  --bg-primary-rgb: 248, 250, 250;
-  --bg-secondary: #EEF2F0;
-  --bg-elevated: #FFFFFF;
-  --text-primary: #0D1210;
-  --text-secondary: #4A5650;
-  --text-muted: #7E8D86;
-  --accent: #059669;
-  --accent-brand: #00C853;
-  --accent-subtle: rgba(0, 200, 83, 0.08);
-  --border: rgba(0, 0, 0, 0.08);
-  --border-subtle: rgba(0, 0, 0, 0.04);
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(0, 0, 0, 0.08);
-  --glass-shadow: rgba(0, 0, 0, 0.08);
-  --grid-color: rgba(0, 0, 0, 0.03);
-  --iridescent-gradient: radial-gradient(80.17% 109.2% at 44.373% 35.1526%, rgb(147, 51, 234) 0%, rgb(249, 115, 22) 42.83%, rgb(16, 185, 129) 88.38%);
 }
 
 html {
@@ -368,7 +350,7 @@ body {
 
 /* ---------- Typography & Gradient Glows ---------- */
 .font-display { font-family: 'Inter', sans-serif; }
-.font-serif { font-family: 'Newsreader', serif; }
+.font-serif { font-family: 'Instrument Serif', 'Newsreader', Georgia, serif; }
 .font-mono { font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace; }
 
 .serif-accent {

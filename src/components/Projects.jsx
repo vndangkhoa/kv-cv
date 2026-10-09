@@ -334,31 +334,31 @@ export default function Projects({ tab, onTabChange }) {
   const visibleList = expanded ? filteredList : filteredList.slice(0, INITIAL_SHOW_COUNT);
 
   return (
-    <section id="work" className="relative py-16 sm:py-28 md:py-36 bg-black text-white">
+    <section id="work" className="relative scroll-mt-24 sm:scroll-mt-32 py-16 sm:py-28 md:py-36 bg-black text-white">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 md:px-8">
         <Reveal>
           <div className="mb-3 sm:mb-4">
-            <span className="text-white/40 text-[10px] sm:text-xs md:text-sm tracking-widest uppercase font-mono">
+            <span className="text-white/50 text-[10px] sm:text-xs md:text-sm tracking-widest uppercase font-mono">
               Selected Works & Deployments
             </span>
           </div>
 
           <div className="flex flex-wrap items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-14">
             <div>
-              <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white font-serif">
+              <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white font-serif drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
                 {isCreative ? (
                   <>
-                    Creative <em className="italic text-white/60">Case Studies</em>
+                    Creative <em className="italic text-white/70">Case Studies</em>
                   </>
                 ) : (
                   <>
-                    Code, <em className="italic text-white/60">Shipped</em>
+                    Code, <em className="italic text-white/70">Shipped</em>
                   </>
                 )}
               </h2>
             </div>
 
-            <p className="max-w-md text-white/60 text-xs sm:text-sm leading-relaxed font-normal">
+            <p className="max-w-md text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
               {isCreative
                 ? 'Live feed synchronized from portfolio — AI fashion workflows, cinematic video creation, and brand identities.'
                 : 'Production services synchronized from GitHub & Forgejo — Kotlin Multiplatform, Go streaming engines, Rust backends, and AI image tooling.'}
