@@ -38,6 +38,7 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-85">
         <KineticCharacterCanvas
           src="/human_head_turn.mp4"
+          poster="/human_head_turn_poster.webp"
           className="w-full h-full"
         />
         {/* Subtle Ambient Radial & Linear Falloff */}
