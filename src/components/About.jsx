@@ -39,8 +39,8 @@ export default function About({ tab }) {
           <GlassCard className="h-full p-6 sm:p-8 flex flex-col justify-between border-[var(--glass-border)] bg-[var(--glass-bg)]">
             <div>
               <div className="flex items-center justify-between gap-4 mb-6">
-                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] shadow-glow-sm">
-                  <VNDKLogo size="md" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[var(--bg-secondary)] border border-[var(--border)] font-mono font-bold text-lg text-[var(--text-primary)]">
+                  KV
                 </div>
                 <div className="badge-iridescent px-3 py-1 bg-[var(--glass-bg)] border border-[var(--border)] text-[10px] font-mono">
                   <span className="badge-iridescent-text">VERIFIED CREATIVE</span>

@@ -5,7 +5,19 @@
   display: none !important;
 }
 
-/* On Screen Preview: multi-page card stack */
+/* On Screen Preview: multi-page card stack & responsive scaling */
+.pdf-scale-wrapper {
+  position: relative;
+  margin: 0 auto;
+  transition: width 0.2s ease-out, height 0.2s ease-out;
+}
+
+.pdf-scale-stage {
+  transform-origin: top left;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
 .printable-cv-area {
   display: flex;
   flex-direction: column;
@@ -89,6 +101,17 @@
     overflow: visible !important;
     display: block !important;
     justify-content: flex-start !important;
+  }
+
+  .pdf-scale-wrapper,
+  .pdf-scale-stage {
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: block !important;
+    overflow: visible !important;
   }
 
   /* Show standalone print mount if printed directly without modal */

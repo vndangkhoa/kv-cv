@@ -101,7 +101,7 @@ export function transformToProject(post) {
     id: post.id,
     title: post.title,
     category: category,
-    image: post.featuredImage?.medium || post.featuredImage?.large || '',
+    image: post.featuredImage?.large || post.featuredImage?.full || post.featuredImage?.medium || '',
     description: post.excerpt,
     link: post.link,
     year: String(year)

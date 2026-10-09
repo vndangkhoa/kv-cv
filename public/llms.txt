@@ -2,7 +2,7 @@
 
 > Creative Manager, AI Innovation Lead, and Full-Stack Software Engineer based in Ho Chi Minh City, Vietnam. Open to work and seeking new job opportunities.
 
-For a comprehensive dossier including deep project case studies, system architecture, and full work history, see [llms-full.txt](https://khoavo.myds.me/llms-full.txt).
+For a comprehensive profile including deep project case studies, system architecture, and full work history, see [llms-full.txt](https://khoavo.myds.me/llms-full.txt).
 
 ## Core Identity & Contact
 - **Full Name:** Vo Nguyen Dang Khoa (Khoa Vo)
@@ -20,6 +20,6 @@ For a comprehensive dossier including deep project case studies, system architec
 - **Key Skills:** Generative AI (ComfyUI, Stable Diffusion, FLUX, LoRA), TypeScript, React, Next.js, Go, Rust, Python, Docker, Nginx, Linux, Model Context Protocol (MCP).
 
 ## Links & Resources
-- [Full LLM Dossier](https://khoavo.myds.me/llms-full.txt): Complete resume, projects, and FAQ for LLM agents.
+- [Full LLM Profile & CV](https://khoavo.myds.me/llms-full.txt): Complete resume, projects, and FAQ for LLM agents.
 - [GitHub Repositories](https://github.com/vndangkhoa): Open-source projects in Go, Rust, Next.js, and Synology DSM.
 - [Live Portfolio](https://khoavo.myds.me/): Interactive WebGL/Three.js portfolio experience.

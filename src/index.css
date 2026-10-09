@@ -1,8 +1,211 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=JetBrains+Mono:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+}
+
+/* ---------- Smooth Infinite Vertical Stream (Image 1 reference) ---------- */
+@keyframes verticalStream {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-vertical-stream {
+  animation: verticalStream 42s linear infinite;
+  will-change: transform;
+}
+
+.animate-vertical-stream:hover,
+.animate-vertical-stream.paused {
+  animation-play-state: paused;
+}
+
+/* ---------- Orange Horse Sticky Gallery Display for Work ---------- */
+.sticky-gallery {
+  position: relative;
+  width: 100%;
+  padding-top: 4svh;
+  padding-bottom: 24svh;
+}
+
+.sticky-gallery__pagination {
+  position: relative;
+  pointer-events: auto;
+}
+
+.sticky-gallery__pagination ol {
+  display: grid;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sticky-gallery__pagination li {
+  display: grid;
+  gap: 3px;
+}
+
+.sticky-gallery__pagination li:not(:last-child)::after {
+  width: 18px;
+  height: 18px;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.3) 0,
+    rgba(255, 255, 255, 0.3) 1px,
+    transparent 1px,
+    transparent 5px
+  );
+  pointer-events: none;
+  content: '';
+  margin-left: 2px;
+}
+
+.sticky-gallery__page {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  max-width: 190px;
+  padding: 4px 0;
+  border: 0;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: var(--font-mono, 'IBM Plex Mono', monospace);
+  font-size: 11px;
+  text-align: left;
+  background: transparent;
+  cursor: pointer;
+  transition: color 180ms ease-out;
+}
+
+.sticky-gallery__page:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.sticky-gallery__page[aria-current='step'] {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.sticky-gallery__page-line {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background: currentColor;
+  transform-origin: left center;
+  transition: width 240ms ease-out, background-color 180ms ease-out;
+}
+
+.sticky-gallery__page[aria-current='step'] .sticky-gallery__page-line {
+  width: 32px;
+  background: #FFFFFF;
+}
+
+.sticky-gallery__page-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px;
+}
+
+.sticky-gallery__page-number {
+  opacity: 0.85;
+  margin-right: 4px;
+}
+
+.sticky-gallery__stack {
+  display: block;
+  width: 100%;
+  overflow: visible;
+}
+
+.sticky-gallery__anchor {
+  display: block;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.sticky-gallery__card {
+  --gallery-scale: 1;
+  --gallery-rotate: 0deg;
+  --card-height: min(82svh, 800px, calc(100svh - 148px));
+  position: sticky;
+  top: calc(72px + (100svh - 72px - var(--card-height)) / 2);
+  width: min(90vw, calc(var(--card-height) * 0.62), 500px);
+  height: var(--card-height);
+  margin-inline: auto;
+}
+
+@media (max-width: 640px) {
+  .sticky-gallery__card {
+    --card-height: min(74svh, 540px, calc(100svh - 150px));
+    top: calc(64px + (100svh - 64px - 54px - var(--card-height)) / 2);
+    width: min(92vw, 360px);
+  }
+}
+
+.sticky-gallery__visual {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: clamp(24px, 2.5vw, 38px);
+  background: #080A09;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  transform: scale(var(--gallery-scale)) rotate(var(--gallery-rotate));
+  transform-origin: center center;
+  transition: transform 70ms linear, filter 70ms linear, border-color 220ms ease, box-shadow 220ms ease;
+  will-change: transform, filter;
+}
+
+.sticky-gallery__visual[data-active='true'] {
+  border-color: rgba(255, 255, 255, 0.45);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.95),
+              0 0 50px rgba(255, 255, 255, 0.12),
+              inset 0 1px 2px rgba(255, 255, 255, 0.45);
+}
+
 
 @layer utilities {
   .custom-scrollbar {
@@ -31,25 +234,25 @@
   .scrolly-stage .max-w-\[560px\] { max-width: none; }
 }
 
-/* ---------- MotionSites Design System Variables ---------- */
+/* ---------- Liquid Innovation Design System Variables ---------- */
 :root {
-  --bg-primary: #0A0D0C;
-  --bg-primary-rgb: 10, 13, 12;
-  --bg-secondary: #111614;
-  --bg-elevated: #161C19;
-  --text-primary: #F2F5F3;
-  --text-secondary: #A1ACA6;
-  --text-muted: #64706A;
-  --accent: #00FF87;
-  --accent-brand: #00FF87;
-  --accent-subtle: rgba(0, 255, 135, 0.08);
-  --border: rgba(255, 255, 255, 0.08);
+  --bg-primary: #000000;
+  --bg-primary-rgb: 0, 0, 0;
+  --bg-secondary: #0A0A0A;
+  --bg-elevated: #111111;
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.72);
+  --text-muted: rgba(255, 255, 255, 0.45);
+  --accent: #FFFFFF;
+  --accent-brand: #FFFFFF;
+  --accent-subtle: rgba(255, 255, 255, 0.06);
+  --border: rgba(255, 255, 255, 0.1);
   --border-subtle: rgba(255, 255, 255, 0.05);
-  --glass-bg: rgba(14, 19, 17, 0.68);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: rgba(0, 0, 0, 0.5);
-  --grid-color: rgba(0, 255, 135, 0.03);
-  --iridescent-gradient: radial-gradient(80.17% 109.2% at 44.373% 35.1526%, rgb(208, 178, 255) 0%, rgb(255, 238, 216) 42.83%, rgb(0, 255, 135) 88.38%);
+  --glass-bg: rgba(255, 255, 255, 0.015);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: rgba(0, 0, 0, 0.7);
+  --grid-color: rgba(255, 255, 255, 0.02);
+  --iridescent-gradient: radial-gradient(80.17% 109.2% at 44.373% 35.1526%, rgb(208, 178, 255) 0%, rgb(255, 238, 216) 42.83%, rgb(255, 255, 255) 88.38%);
 }
 
 [data-theme="light"] {
@@ -75,6 +278,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: dark;
+  overflow-x: clip;
 }
 
 body {
@@ -84,7 +288,7 @@ body {
   transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .font-pixel {
@@ -92,7 +296,7 @@ body {
 }
 
 ::selection {
-  background: rgba(0, 255, 135, 0.35);
+  background: rgba(255, 255, 255, 0.25);
   color: #FFFFFF;
 }
 
@@ -240,10 +444,10 @@ body {
 }
 
 .glass-card-hover:hover {
-  border-color: rgba(0, 255, 135, 0.35);
-  box-shadow: 0 16px 48px -12px rgba(0, 255, 135, 0.2),
-              0 0 0 1px rgba(0, 255, 135, 0.15),
-              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 16px 48px -12px rgba(0, 0, 0, 0.8),
+              0 0 25px rgba(255, 255, 255, 0.08),
+              inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Motion Card Hover Dynamic (MotionSites Prompt Card Style) */
@@ -502,66 +706,54 @@ body {
   image-rendering: auto;
 }
 
-/* ---------- CRT Screen Effects (Easter egg) ---------- */
+/* ---------- Monochrome Paper-White Terminal Effects (Easter egg) ---------- */
 .crt-screen {
-  text-shadow: 0 0 4px rgba(0, 255, 148, 0.6), 0 0 8px rgba(0, 255, 148, 0.25);
-  animation: crt-flicker 0.15s infinite;
+  text-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
+  position: relative;
+  overflow: hidden;
 }
 
 .crt-screen::before {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.25),
-    rgba(0, 0, 0, 0.25) 1px,
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.35) 1px,
     transparent 1px,
     transparent 2px
   );
   pointer-events: none;
-  z-index: 1000;
+  z-index: 20;
 }
 
 .crt-screen::after {
   content: '';
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.65) 100%);
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(0, 0, 0, 0.5) 100%);
   pointer-events: none;
-  z-index: 1001;
-}
-
-@keyframes crt-flicker {
-  0%, 100% { opacity: 1; }
-  92% { opacity: 1; }
-  93% { opacity: 0.92; }
-  94% { opacity: 1; }
-  98% { opacity: 0.96; }
-}
-
-.crt-flicker {
-  animation: crt-flicker 0.15s infinite;
+  z-index: 21;
 }
 
 @keyframes crt-scanline-sweep {
-  0% { top: -10%; opacity: 0; }
-  5% { opacity: 0.8; }
-  95% { opacity: 0.8; }
-  100% { top: 110%; opacity: 0; }
+  0% { top: -5%; opacity: 0; }
+  10% { opacity: 0.4; }
+  90% { opacity: 0.4; }
+  100% { top: 105%; opacity: 0; }
 }
 
 .crt-scanline::after {
   content: '';
-  position: fixed;
+  position: absolute;
   left: 0;
   right: 0;
-  height: 12px;
-  background: linear-gradient(180deg, transparent, rgba(0, 255, 148, 0.15) 30%, rgba(0, 255, 148, 0.4) 70%, transparent);
-  box-shadow: 0 0 15px rgba(0, 255, 148, 0.35);
-  animation: crt-scanline-sweep 5s linear infinite;
+  height: 8px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+  animation: crt-scanline-sweep 6s linear infinite;
   pointer-events: none;
-  z-index: 1002;
+  z-index: 22;
 }
 
 /* Screensaver animations */

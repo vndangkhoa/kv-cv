@@ -26,10 +26,11 @@ import PERSONAL_INFO from '../data/personal';
 const DRAWER_LINKS = [
   { id: 'hero', index: '00', label: 'Overview', desc: 'Hero & Value Overview' },
   { id: 'about', index: '01', label: 'About', desc: 'Story & Philosophy' },
-  { id: 'skills', index: '02', label: 'Skills', desc: 'Technical & Creative Matrix' },
-  { id: 'work', index: '03', label: 'Work', desc: 'Commercial Projects & Repos' },
-  { id: 'experience', index: '04', label: 'Journey', desc: 'Career Milestones & Roles' },
-  { id: 'contact', index: '05', label: 'Contact', desc: 'Get in Touch & Inquiries' },
+  { id: 'referees', index: '02', label: 'Referees', desc: 'Verified Endorsements' },
+  { id: 'skills', index: '03', label: 'Skills', desc: 'Technical & Creative Matrix' },
+  { id: 'work', index: '04', label: 'Work', desc: 'Commercial Projects & Repos' },
+  { id: 'experience', index: '05', label: 'Journey', desc: 'Career Milestones & Roles' },
+  { id: 'contact', index: '06', label: 'Contact', desc: 'Get in Touch & Inquiries' },
 ];
 
 export default function NavigationDrawer({
@@ -129,9 +130,6 @@ export default function NavigationDrawer({
                 className="btn-press flex items-center gap-3 group cursor-pointer focus:outline-none text-left"
                 title="Khoa Vo — Return to Top"
               >
-                <div className="p-1.5 rounded-xl bg-[var(--accent-subtle)] border border-[var(--border)] group-hover:border-[#00FF87]/50 group-hover:shadow-[0_0_15px_rgba(0,255,135,0.3)] transition-all duration-200">
-                  <VNDKLogo size="sm" />
-                </div>
                 <div>
                   <h2 className="font-mono text-sm font-bold tracking-wider text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                     KHOA.VO

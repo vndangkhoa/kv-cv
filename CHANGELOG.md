@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.0.7] - 2026-10-09
+
+### Added & Optimized
+- **Liquid Glass Layout & Orange Horse Sticky Gallery**:
+  - Implemented editorial scrollytelling landing experience with dynamic dual-persona modes.
+  - Interactive sticky card deck with vertical stacking, scroll scrub navigation, and full mobile responsiveness.
+- **Docked Rounded Footer & Call-to-Action**:
+  - Implemented immersive editorial contact hero with ambient cosmic particle atmosphere and interactive email copy capsule.
+  - Docked rounded liquid glass sheet featuring brand monogram emblem, primary action pills (`Download CV`, `Terminal OS`), and multi-column navigation (`Insights`, `Connect`, `Intel`).
+- **Kinetic Character Engine Performance Architecture**:
+  - Implemented pre-baked offscreen Sprite/Glyph Atlas blitting (`ctx.drawImage`), replacing expensive `ctx.fillText` font rasterization.
+  - Precomputed typed array LUTs (`CHAR_INDEX_LUT`, `CONTRAST_LUT`) for instant $O(1)$ contrast and character mapping.
+  - Integer Manhattan edge detection and spatial mouse bounding box.
+  - Native video rate throttling (24–30 FPS) with `requestVideoFrameCallback` integration.
+  - Clamped DPR (1.0 on low-end, 1.25 max) and adaptive self-tuning cell degradation for low-spec devices.
+- **Verified Referees & Ecosystem Telemetry**:
+  - Added verified client and engineering peer testimonials (Vu Tran - CEO Tam Son Yachting, Dung Bui - Principal Systems Engineer at Nike).
+  - Direct integration of verified feedback and reviews from live Synology Package Hub and TrimUI ecosystems.
+- **Design & Nomenclature Modernization**:
+  - Unified monochrome dark liquid aesthetic with high-contrast editorial typography.
+  - Cleaned navigation and removed legacy naming across documentation and metadata.
+
+---
+
 ## [2.0.6] - 2026-10-05
 
 ### Added

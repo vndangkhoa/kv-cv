@@ -34,7 +34,8 @@ export default {
       fontFamily: {
         sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
         display: ['Inter', 'sans-serif'],
-        serif: ['Newsreader', 'Georgia', 'serif'],
+        serif: ['"Instrument Serif"', 'Newsreader', 'Georgia', 'serif'],
+        instrument: ['"Instrument Serif"', 'serif'],
         mono: ['JetBrains Mono', 'IBM Plex Mono', 'monospace'],
         pixel: ['basis33', 'monospace'],
       },

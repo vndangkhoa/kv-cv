@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, ArrowRight, Sparkles, ExternalLink, FileText } from 'lucide-react';
 import TabSwitch from './ui/TabSwitch';
+import KineticCharacterCanvas from './ui/KineticCharacterCanvas';
 import { downloadCV, exportPdfDirectly, PERSONAL_INFO } from '../data/personal';
 
 export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratingPdf }) {
@@ -20,16 +21,11 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
       id="hero"
       className="relative min-h-[85svh] lg:min-h-[90svh] w-full flex flex-col justify-end overflow-hidden px-4 sm:px-8 md:px-12 lg:px-16 pt-20 pb-3 sm:pb-4 bg-[var(--bg-primary)] text-[var(--text-primary)] selection:bg-[#00FF87] selection:text-[#0A0D0B]"
     >
-      {/* Background Video with Ambient Theme Overlays */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <video
+      {/* Background Kinetic Characters (NO RAW VIDEO) */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-85">
+        <KineticCharacterCanvas
           src="/human_head_turn.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="absolute inset-0 h-full w-full object-cover object-[center_32%] opacity-60 dark:opacity-45 mix-blend-luminosity dark:mix-blend-screen transition-opacity duration-700"
+          className="w-full h-full"
         />
         {/* Subtle Ambient Vignette & Smooth Bottom Blend */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[var(--bg-primary)]/15 to-[var(--bg-primary)]/95" />

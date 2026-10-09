@@ -8,6 +8,7 @@ import PERSONAL_INFO from '../data/personal';
 
 const NAV_LINKS = [
   { id: 'about', label: 'About' },
+  { id: 'referees', label: 'Referees' },
   { id: 'skills', label: 'Skills' },
   { id: 'work', label: 'Work' },
   { id: 'experience', label: 'Journey' },
@@ -66,10 +67,7 @@ export default function Navbar({ darkMode, toggleTheme, tab, onTabChange, onEast
             className="flex items-center gap-2 group cursor-pointer focus:outline-none shrink-0"
             title="Khoa Vo — Creative & AI Portfolio"
           >
-            <div className="p-1 rounded-xl bg-[var(--bg-secondary)] border border-[var(--border)] group-hover:border-[#00FF87]/50 group-hover:shadow-glow-sm transition-all duration-300">
-              <VNDKLogo size="sm" />
-            </div>
-            <div className="hidden sm:flex flex-col text-left">
+            <div className="flex flex-col text-left">
               <span className="font-mono text-xs font-bold tracking-wider text-[var(--text-primary)]">KHOA.VO</span>
               <span className="text-[10px] text-[var(--text-muted)] font-mono tracking-tight hidden md:inline">AI &amp; Tech Lead</span>
             </div>

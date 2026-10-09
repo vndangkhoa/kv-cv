@@ -73,7 +73,7 @@ export default function ScrollyVideo({ tab, onTabChange }) {
                 ))}
               </div>
               <div className="mt-5 flex items-center justify-center gap-3 text-xs font-mono text-white/70">
-                <span className="inline-flex items-center gap-2"><span className="w-7 h-7 rounded-xl bg-white text-[#0A0D0B] grid place-items-center"><VNDKLogo size="sm" className="scale-[0.7]" /></span>Khoa.vo</span><span className="text-white/30">·</span><span>{PERSONAL_INFO.location}</span>
+                <span className="inline-flex items-center gap-2">Khoa.vo</span><span className="text-white/30">·</span><span>{PERSONAL_INFO.location}</span>
               </div>
             </Chapter>
           </motion.div>

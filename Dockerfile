@@ -1,5 +1,5 @@
 # Stage 1: Build the Vite React application
-FROM node:20-alpine AS builder
+FROM node:22-alpine AS builder
 
 WORKDIR /app
 
@@ -19,7 +19,7 @@ LABEL org.opencontainers.image.title="KHOA.VO Portfolio (kv-cv)" \
       org.opencontainers.image.description="Dual-persona interactive portfolio built with React 18, Vite 6, Three.js WebGL, and Nginx" \
       org.opencontainers.image.url="https://khoavo.myds.me" \
       org.opencontainers.image.source="https://github.com/vndangkhoa/kv-cv" \
-      org.opencontainers.image.version="2.0.6" \
+      org.opencontainers.image.version="2.0.7" \
       org.opencontainers.image.licenses="MIT"
 
 # Remove default nginx html files
