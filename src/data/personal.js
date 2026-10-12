@@ -1,6 +1,3 @@
-import html2canvas from 'html2canvas';
-import { jsPDF } from 'jspdf';
-
 export const PERSONAL_INFO = {
   name: "Vo Nguyen Dang Khoa",
   shortName: "Khoa Vo",
@@ -28,97 +25,44 @@ export const exportPdfDirectly = async (
 ) => {
   if (typeof window === 'undefined') return;
 
+  const mode = typeof options === 'object' ? options?.mode : undefined;
+  let filename = "Khoa_Vo_Security_Architect_CV.pdf";
+  if (mode === 'design' || mode === 'creative') {
+    filename = "Khoa_Vo_Creative_AI_Lead_CV.pdf";
+  } else if (mode === 'all') {
+    filename = "Khoa_Vo_Full_Portfolio_CV.pdf";
+  } else if (typeof options === 'object' && options?.filename) {
+    filename = options.filename;
+  }
+
   const title = typeof options === 'string' ? options : options?.title || "Khoa Vo - Security Consultant & Systems Architect";
-  const filename = typeof options === 'object' && options?.filename
-    ? options.filename
-    : `${title.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
 
   try {
-    if (onProgress) onProgress(true, 'Preparing PDF...');
+    if (onProgress) onProgress(true, 'Downloading PDF...');
     document.title = title;
 
-    // Look for CV pages inside the preview modal or standalone mount
-    let pageElements = Array.from(document.querySelectorAll('.pdf-scale-stage .cv-page'));
-    if (!pageElements.length) {
-      pageElements = Array.from(document.querySelectorAll('.standalone-print-mount .cv-page'));
+    // Direct download of the high-fidelity pre-rendered vector PDF
+    const pdfUrl = `/${filename}`;
+    const headCheck = await fetch(pdfUrl, { method: 'HEAD' });
+
+    if (headCheck.ok) {
+      const link = document.createElement('a');
+      link.href = pdfUrl;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      return true;
     }
-
-    if (!pageElements.length) {
-      window.print();
-      return;
-    }
-
-    // Wait for fonts to be ready
-    if (document.fonts && document.fonts.ready) {
-      await document.fonts.ready;
-    }
-
-    const pdf = new jsPDF({
-      orientation: 'portrait',
-      unit: 'mm',
-      format: 'a4',
-      compress: true,
-    });
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = pdf.internal.pageSize.getHeight();
-
-    for (let i = 0; i < pageElements.length; i++) {
-      if (onProgress) {
-        onProgress(true, `Generating page ${i + 1} of ${pageElements.length}...`);
-      }
-      const pageEl = pageElements[i];
-
-      const canvas = await html2canvas(pageEl, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        backgroundColor: '#ffffff',
-        logging: false,
-        scrollX: 0,
-        scrollY: 0,
-        onclone: (clonedDoc) => {
-          // Reset scaling and transforms in cloned document so html2canvas renders at exact 100% resolution
-          const clonedStage = clonedDoc.querySelector('.pdf-scale-stage');
-          if (clonedStage) {
-            clonedStage.style.transform = 'none';
-            clonedStage.style.width = '794px';
-            clonedStage.style.margin = '0';
-            clonedStage.style.padding = '0';
-          }
-          const clonedWrapper = clonedDoc.querySelector('.pdf-scale-wrapper');
-          if (clonedWrapper) {
-            clonedWrapper.style.transform = 'none';
-            clonedWrapper.style.width = '794px';
-            clonedWrapper.style.height = 'auto';
-            clonedWrapper.style.margin = '0';
-            clonedWrapper.style.padding = '0';
-          }
-          const clonedPages = clonedDoc.querySelectorAll('.cv-page');
-          clonedPages.forEach((p) => {
-            p.style.boxShadow = 'none';
-            p.style.margin = '0';
-          });
-        },
-      });
-
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
-      if (i > 0) {
-        pdf.addPage('a4', 'portrait');
-      }
-      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
-    }
-
-    if (onProgress) onProgress(true, 'Downloading...');
-    pdf.save(filename);
-    return true;
   } catch (err) {
-    console.error('Direct PDF export error, falling back to window.print():', err);
-    window.print();
-    return false;
+    console.warn('Direct vector PDF fetch failed, falling back to window.print():', err);
   } finally {
     if (onProgress) onProgress(false, '');
   }
+
+  // Graceful fallback to browser's native vector print
+  window.print();
+  return true;
 };
 
 export const downloadCV = (mode) => {
