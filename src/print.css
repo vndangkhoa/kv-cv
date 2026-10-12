@@ -66,15 +66,13 @@
   }
 
   /* Hide website web UI components during print */
-  .no-print,
+  .liquid-site-wrapper,
   .noise-overlay,
-  .app-main > header,
-  .app-main > main,
-  .app-main > footer,
-  .app-main > nav,
   .crt-screen,
+  .no-print,
   button.no-print,
-  .pdf-preview-backdrop .no-print {
+  .pdf-preview-backdrop .no-print,
+  #root > :not(.pdf-preview-backdrop):not(.standalone-print-mount) {
     display: none !important;
   }
 

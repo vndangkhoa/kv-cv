@@ -74,9 +74,12 @@ docker compose up -d
 
 | Tag | Target Release | Status |
 | :--- | :--- | :--- |
-| `latest` | Points to the latest stable release (`2.0.1`) | Active |
-| `2.0.1` | v2.0.1 (WordPress REST API migration & domain updates) | Current |
-| `2.0.0` | v2.0.0 (Initial Docker containerization & WebGL pipeline) | Stable |
+| `latest` | Points to the latest stable release (`2.1.0`) | Active |
+| `2.1.0` | v2.1.0 (Direct multi-page PDF generation & print isolation) | Current |
+| `2.0.9` | v2.0.9 (Dark theme variables & card contrast enhancements) | Stable |
+| `2.0.8` | v2.0.8 (Self-hosted local fonts for 0ms latency) | Stable |
+| `2.0.7` | v2.0.7 (Liquid glass layout & sticky gallery) | Stable |
+| `2.0.6` | v2.0.6 (Security Consultant & Systems Architect CV) | Stable |
 
 ---
 

@@ -2,8 +2,8 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import EasterEgg from './components/EasterEgg';
 import PrintPortfolio from './components/PrintPortfolio';
 import LiquidLanding from './components/liquid/LiquidLanding';
-import { exportPdfDirectly } from './data/personal';
-import { ZoomIn, ZoomOut, Download, X } from 'lucide-react';
+import { exportPdfDirectly, triggerPdfPrint } from './data/personal';
+import { ZoomIn, ZoomOut, Download, Printer, X } from 'lucide-react';
 import './print.css';
 
 export default function App() {
@@ -29,9 +29,25 @@ export default function App() {
     }
   };
   const [easterEggOpen, setEasterEggOpen] = useState(false);
-  const [showPrintPreview, setShowPrintPreview] = useState(false);
-  const [pdfMode, setPdfMode] = useState(() => (tab === 'creative' ? 'design' : 'it'));
+  const [showPrintPreview, setShowPrintPreview] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('cv') === 'true' || params.get('preview') === 'true' || params.has('cv');
+    }
+    return false;
+  });
+  const [pdfMode, setPdfMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const modeParam = params.get('mode');
+      if (modeParam === 'it' || modeParam === 'dev' || modeParam === 'security') return 'it';
+      if (modeParam === 'design' || modeParam === 'creative') return 'design';
+      if (modeParam === 'all' || modeParam === 'full') return 'all';
+    }
+    return tab === 'creative' ? 'design' : 'it';
+  });
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [pdfStatusText, setPdfStatusText] = useState('');
   const [zoomMode, setZoomMode] = useState('fit'); // 'fit' | '100' | 'custom'
   const [customScale, setCustomScale] = useState(1);
   const [containerWidth, setContainerWidth] = useState(() =>
@@ -118,14 +134,34 @@ export default function App() {
     setShowPrintPreview(true);
   };
 
-  const handleDownloadPdf = () => {
+  const handleDownloadPdf = async () => {
+    let filename = "Khoa_Vo_Security_Architect_CV.pdf";
+    let title = "Khoa Vo - Security Consultant & Systems Architect";
+    if (pdfMode === 'design') {
+      filename = "Khoa_Vo_Creative_AI_Lead_CV.pdf";
+      title = "Khoa Vo - Creative Manager & AI Innovation Lead";
+    } else if (pdfMode === 'all') {
+      filename = "Khoa_Vo_Full_Portfolio_CV.pdf";
+      title = "Khoa Vo - Full Portfolio Dossier";
+    }
+
+    await exportPdfDirectly(
+      (loading, status) => {
+        setIsGeneratingPdf(loading);
+        setPdfStatusText(status || '');
+      },
+      { title, filename, mode: pdfMode }
+    );
+  };
+
+  const handlePrint = () => {
     let title = "Khoa Vo - Security Consultant & Systems Architect";
     if (pdfMode === 'design') {
       title = "Khoa Vo - Creative Manager & AI Innovation Lead";
     } else if (pdfMode === 'all') {
-      title = "Khoa Vo - Full Portfolio CV";
+      title = "Khoa Vo - Full Portfolio Dossier";
     }
-    exportPdfDirectly((loading) => setIsGeneratingPdf(loading), title);
+    triggerPdfPrint(title);
   };
 
   return (
@@ -264,9 +300,19 @@ export default function App() {
                     onClick={handleDownloadPdf}
                     disabled={isGeneratingPdf}
                     className="bg-white hover:bg-white/90 active:scale-95 text-black text-[11px] sm:text-xs font-mono font-extrabold shadow-md py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-all cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shrink-0"
+                    title="Generate and download high-resolution PDF file directly"
                   >
                     <Download size={13} className="shrink-0" />
-                    <span>{isGeneratingPdf ? 'Opening...' : 'Print / PDF'}</span>
+                    <span>{pdfStatusText || (isGeneratingPdf ? 'Generating...' : 'Download PDF')}</span>
+                  </button>
+                  <button
+                    onClick={handlePrint}
+                    disabled={isGeneratingPdf}
+                    className="liquid-glass hover:bg-white/10 active:scale-95 text-white/90 hover:text-white text-[11px] sm:text-xs font-mono font-bold py-1.5 sm:py-2 px-2.5 sm:px-3.5 rounded-full transition-all border border-white/15 cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shrink-0"
+                    title="Open browser print dialog"
+                  >
+                    <Printer size={13} className="shrink-0" />
+                    <span className="hidden xs:inline">Print</span>
                   </button>
                   <button
                     onClick={() => setShowPrintPreview(false)}

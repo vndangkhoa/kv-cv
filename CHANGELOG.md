@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.0] - 2026-10-12
+
+### Fixed & Enhanced
+- **High-Fidelity Client-Side Multi-Page PDF Download Engine**:
+  - Implemented direct PDF generation via `jsPDF` and `html2canvas` pipeline, directly downloading `.pdf` files without relying on browser print dialogs.
+  - Automatically isolates and renders all CV pages per active persona: `Khoa_Vo_Security_Architect_CV.pdf` (IT/Security 2p), `Khoa_Vo_Creative_AI_Lead_CV.pdf` (Design 1p), and `Khoa_Vo_Full_Portfolio_CV.pdf` (Master 3p).
+  - Unscaled offscreen canvas capture in `onclone` rendering sharp, crisp 2x resolution text and graphics.
+- **Print Stylesheet Isolation**:
+  - Fixed print isolation in `print.css` to properly hide `.liquid-site-wrapper`, preventing the landing page sections from leaking into the print output.
+  - Added dedicated **Print** and **Download PDF** buttons with real-time generation progress feedback.
+  - Added deep linking URL support via `?cv=true&mode=it|design|all`.
+
+---
+
 ## [2.0.7] - 2026-10-09
 
 ### Added & Optimized
