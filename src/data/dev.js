@@ -74,7 +74,7 @@ export const IT_DATA = {
     },
     {
       name: "kv-trimui",
-      description: "Embedded Linux Hardening & 13-App Suite — Memory-safe Rust daemons, static Musl linking overcoming legacy GLIBC vulnerabilities, and kv-server with Cloudflare Zero-Trust Tunnels and token auth.",
+      description: "Embedded Linux Hardening & 18-App Suite — Pure Rust 60 FPS /dev/fb0 framebuffer engine (<900KB RAM), dual-arch static Musl toolchains (aarch64 & armv7l) across 6 handheld OS distributions, and kv-server Zero-Trust Tunnels.",
       tech: ["Rust 1.85+", "Static Musl", "Linux Evdev", "Cloudflare Zero-Trust", "Framebuffer /dev/fb0"],
       github: "https://git.khoavo.myds.me/vndangkhoa/kv-trimui"
     },
@@ -156,7 +156,7 @@ export const IT_DATA = {
       company: "Phibious Vietnam",
       period: "2025 - Present",
       highlights: [
-        "Formulated enterprise technical SOPs, AI governance standards, and data privacy guardrails for generative AI pipelines (ComfyUI, FLUX.1 LoRA) across Fortune 500 accounts",
+        "Formulated enterprise technical SOPs, AI governance standards, and data privacy guardrails for generative AI pipelines (ComfyUI, FLUX.1 LoRA) across regional and multi-market brand accounts",
         "Established strict input isolation and prompt security protocols to protect proprietary client brand assets and confidential creative IP from unauthorized leakage",
         "Acted as trusted advisor to regional managing directors, translating technical and compliance trade-offs into commercial business value and achieving a 60% acceleration in production turnaround"
       ]
@@ -168,7 +168,7 @@ export const IT_DATA = {
       highlights: [
         "Governed regional digital asset integrity, security compliance, and brand protection across 6 Southeast Asian markets for P&G Hair Care portfolio (Head & Shoulders, Pantene, Rejoice)",
         "Enforced corporate brand risk policies across 200+ campaign deliverables quarterly, ensuring compliance with regional data, consumer advertising, and digital platform standards",
-        "Designed an enterprise modular design system with 500+ standardized components, enabling 3× faster asset adaptation while eliminating unauthorized design deviations",
+        "Designed an enterprise modular design system with standardized master components, enabling 3× faster asset adaptation while eliminating unauthorized design deviations",
         "Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional marketing, engineering, and product stakeholders"
       ]
     },
@@ -178,7 +178,7 @@ export const IT_DATA = {
       period: "2024 - Present",
       highlights: [
         "Built memory-safe Rust Linux IME (vietc) with direct kernel /dev/uinput and /dev/input/by-path isolation, eliminating keystroke sniffing and duplicate injection (<10MB RAM rootless daemon)",
-        "Engineered KV-TrimUI 13-app suite with static Musl cross-compilation, overcoming legacy GLIBC vulnerabilities as a robust platform compensating control",
+        "Engineered KV-TrimUI 18-app suite with dual-arch static Musl cross-compilation across 6 handheld OS distributions, overcoming legacy GLIBC vulnerabilities as a robust platform compensating control",
         "Integrated Cloudflare Zero-Trust Tunnels (cloudflared) and token-based HTTP authentication in kv-server, eliminating firewall port forwarding"
       ]
     }

@@ -159,10 +159,10 @@ export default function Hero({ tab, onTabChange, isGeneratingPdf, setIsGeneratin
             03 // PRODUCTION
           </span>
           <div className="font-display font-extrabold text-xl sm:text-2xl text-[var(--text-primary)]">
-            {isCreative ? 'Fortune 500' : '18+ Apps'}
+            {isCreative ? '+60% Output' : '18+ Apps'}
           </div>
           <p className="text-[11px] sm:text-xs text-[var(--text-muted)] mt-0.5">
-            {isCreative ? 'Global Brands' : 'CI/CD & Cloud'}
+            {isCreative ? 'AI Acceleration' : 'CI/CD & Cloud'}
           </p>
         </div>
 

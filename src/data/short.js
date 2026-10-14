@@ -7,7 +7,7 @@ export const SHORT_HERO = {
 
 export const SHORT_ABOUT = {
   kicker: "01 — ONE MIND, TWO CRAFTS",
-  titleCreative: "Brand systems for Fortune 500.",
+  titleCreative: "Multi-market brand & AI systems.",
   titleDev: "18 live apps on self-hosted infra.",
   body: "Phibious → P&G: +60% output with ComfyUI & FLUX. Self-lab: pkg.khoavo.myds.me + 42 MCP tools.",
   stats: [
@@ -33,13 +33,13 @@ export const SHORT_WORK = [
     image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2026/04/Gemini_Generated_Image_vmk4e2vmk4e2vmk4-1-scaled.png",
   },
   {
-    id: "delux",
-    title: "Delux Perfume",
-    category: "AI Branding",
-    year: "2025",
-    desc: "AI mood boards → cinematic launch film.",
-    link: "https://portfolio.khoavo.vndns.net/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
-    image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2025/08/Delux-Perfume_red.png",
+    id: "kvtrimui",
+    title: "KV-TrimUI Ecosystem",
+    category: "Embedded OS",
+    year: "2026",
+    desc: "18 native Rust (/dev/fb0 60 FPS) & hybrid apps across 6 handheld OS distros.",
+    link: "https://trimui.vndns.net",
+    image: "",
   },
   {
     id: "kvsyn",

@@ -141,7 +141,7 @@
     height: 297mm !important;
     min-height: 297mm !important;
     max-height: 297mm !important;
-    background: #ffffff !important;
+    background: var(--cv-page-bg, #ffffff) !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
     box-shadow: none !important;

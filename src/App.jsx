@@ -3,12 +3,10 @@ import EasterEgg from './components/EasterEgg';
 import PrintPortfolio from './components/PrintPortfolio';
 import LiquidLanding from './components/liquid/LiquidLanding';
 import { exportPdfDirectly, triggerPdfPrint } from './data/personal';
-import { ZoomIn, ZoomOut, Download, Printer, X } from 'lucide-react';
+import { ZoomIn, ZoomOut, Download, Printer, X, Palette, Shield, Layers } from 'lucide-react';
 import './print.css';
 
 export default function App() {
-  const [darkMode] = useState(true);
-
   const [tab, setTab] = useState(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -135,14 +133,14 @@ export default function App() {
   };
 
   const handleDownloadPdf = async () => {
-    let filename = "Khoa_Vo_Security_Architect_CV.pdf";
-    let title = "Khoa Vo - Security Consultant & Systems Architect";
+    let filename = 'Khoa_Vo_Security_Architect_CV.pdf';
+    let title = 'Khoa Vo - Security Consultant & Systems Architect';
     if (pdfMode === 'design') {
-      filename = "Khoa_Vo_Creative_AI_Lead_CV.pdf";
-      title = "Khoa Vo - Creative Manager & AI Innovation Lead";
+      filename = 'Khoa_Vo_Creative_AI_Lead_CV.pdf';
+      title = 'Khoa Vo - Creative Manager & AI Innovation Lead';
     } else if (pdfMode === 'all') {
-      filename = "Khoa_Vo_Full_Portfolio_CV.pdf";
-      title = "Khoa Vo - Full Portfolio Dossier";
+      filename = 'Khoa_Vo_Full_Portfolio_CV.pdf';
+      title = 'Khoa Vo - Full Portfolio CV';
     }
 
     await exportPdfDirectly(
@@ -155,11 +153,11 @@ export default function App() {
   };
 
   const handlePrint = () => {
-    let title = "Khoa Vo - Security Consultant & Systems Architect";
+    let title = 'Khoa Vo - Security Consultant & Systems Architect';
     if (pdfMode === 'design') {
-      title = "Khoa Vo - Creative Manager & AI Innovation Lead";
+      title = 'Khoa Vo - Creative Manager & AI Innovation Lead';
     } else if (pdfMode === 'all') {
-      title = "Khoa Vo - Full Portfolio Dossier";
+      title = 'Khoa Vo - Full Portfolio CV';
     }
     triggerPdfPrint(title);
   };
@@ -175,26 +173,25 @@ export default function App() {
 
       <EasterEgg open={easterEggOpen} onClose={() => setEasterEggOpen(false)} />
 
-      {/* Live PDF & Printable Portfolio Preview Overlay (Mobile Scroll & Zoom Support) */}
+      {/* Live PDF & Printable Portfolio Preview Overlay */}
       {showPrintPreview && (
         <div className="pdf-preview-backdrop fixed inset-0 z-[200] bg-black/90 backdrop-blur-xl overflow-y-auto">
           {/* Top Bar (Hidden on paper) */}
           <div className="no-print bg-[#0A0D0C]/95 text-white border-b border-white/10 sticky top-0 z-[210] shadow-2xl backdrop-blur-md">
             <div className="max-w-7xl mx-auto p-2 sm:p-3.5 flex flex-col md:flex-row items-center justify-between gap-2.5 sm:gap-3">
-              
-              {/* Row 1 on mobile / Left on desktop: Document Title + Live Badge + Mobile Close */}
+              {/* Left: Document Title + Live Badge + Mobile Close */}
               <div className="flex items-center justify-between w-full md:w-auto gap-3">
                 <div className="flex items-center gap-2 min-w-0">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#1B4DFF] shrink-0" />
                   <span className="font-mono font-bold text-xs sm:text-sm text-white truncate tracking-wide">
-                    {pdfMode === 'it' && '🛡️ SECURITY CONSULTANT CV'}
-                    {pdfMode === 'design' && '🎨 CREATIVE MANAGER CV'}
-                    {pdfMode === 'all' && '📑 COMPLETE KHOA VO CV'}
+                    {pdfMode === 'it' && 'SECURITY CONSULTANT & SYSTEMS CV'}
+                    {pdfMode === 'design' && 'CREATIVE MANAGER & AI LEAD CV'}
+                    {pdfMode === 'all' && 'FULL PORTFOLIO CV'}
                   </span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white/70 font-mono shrink-0">
-                    {pdfMode === 'it' && '2p • ATS Ready'}
-                    {pdfMode === 'design' && '1p • Creative'}
-                    {pdfMode === 'all' && '3p • Master'}
+                    {pdfMode === 'it' && '2p · Swiss Grid'}
+                    {pdfMode === 'design' && '1p · Swiss Grid'}
+                    {pdfMode === 'all' && '3p · Swiss Grid'}
                   </span>
                 </div>
 
@@ -208,42 +205,44 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Row 2: Mode Switcher & Zoom Controls & Actions */}
+              {/* Right: Mode Switcher & Zoom Controls & Actions */}
               <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-3 w-full md:w-auto flex-wrap sm:flex-nowrap">
-                
                 {/* Interactive Mode Switcher */}
                 <div className="flex items-center bg-black/80 p-0.5 sm:p-1 rounded-full border border-white/15 shadow-inner">
                   <button
                     onClick={() => setPdfMode('design')}
-                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                       pdfMode === 'design'
                         ? 'bg-white text-black shadow-md'
                         : 'text-white/70 hover:text-white'
                     }`}
                   >
-                    <span>🎨 Design</span>
+                    <Palette size={12} />
+                    <span>Design</span>
                     <span className="text-[9px] opacity-70 hidden sm:inline">(1p)</span>
                   </button>
                   <button
                     onClick={() => setPdfMode('it')}
-                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                       pdfMode === 'it'
                         ? 'bg-white text-black shadow-md'
                         : 'text-white/70 hover:text-white'
                     }`}
                   >
-                    <span>🛡️ IT</span>
+                    <Shield size={12} />
+                    <span>IT</span>
                     <span className="text-[9px] opacity-70 hidden sm:inline">(2p)</span>
                   </button>
                   <button
                     onClick={() => setPdfMode('all')}
-                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1 ${
+                    className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                       pdfMode === 'all'
                         ? 'bg-white text-black shadow-md'
                         : 'text-white/70 hover:text-white'
                     }`}
                   >
-                    <span>📑 All</span>
+                    <Layers size={12} />
+                    <span>All</span>
                     <span className="text-[9px] opacity-70 hidden sm:inline">(3p)</span>
                   </button>
                 </div>
@@ -300,7 +299,7 @@ export default function App() {
                     onClick={handleDownloadPdf}
                     disabled={isGeneratingPdf}
                     className="bg-white hover:bg-white/90 active:scale-95 text-black text-[11px] sm:text-xs font-mono font-extrabold shadow-md py-1.5 sm:py-2 px-3 sm:px-4 rounded-full transition-all cursor-pointer disabled:opacity-50 flex items-center gap-1.5 shrink-0"
-                    title="Generate and download high-resolution PDF file directly"
+                    title="Download high-resolution vector PDF"
                   >
                     <Download size={13} className="shrink-0" />
                     <span>{pdfStatusText || (isGeneratingPdf ? 'Generating...' : 'Download PDF')}</span>
@@ -321,12 +320,11 @@ export default function App() {
                     Close
                   </button>
                 </div>
-
               </div>
             </div>
           </div>
 
-          {/* Printable Document Mobile Preview Wrapper */}
+          {/* Printable Document Preview Wrapper */}
           <div
             ref={previewScrollRef}
             className="pdf-preview-wrapper py-6 sm:py-10 bg-[#060807] min-h-[calc(100vh-65px)] flex justify-center p-2.5 sm:p-6 overflow-x-auto overflow-y-auto custom-scrollbar"
@@ -356,7 +354,7 @@ export default function App() {
             <div className="no-print fixed bottom-4 left-1/2 -translate-x-1/2 z-[220] pointer-events-none">
               <div className="px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-white/15 text-[10px] font-mono text-white/75 shadow-xl flex items-center gap-1.5">
                 <span>Auto-fitted ({Math.round(effectiveScale * 100)}%)</span>
-                <span>•</span>
+                <span>·</span>
                 <span className="text-emerald-400">Tap 100% to inspect full size</span>
               </div>
             </div>

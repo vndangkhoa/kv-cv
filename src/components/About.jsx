@@ -14,7 +14,7 @@ export default function About({ tab }) {
     : 'Full-stack engineer with 18+ production apps, self-hosted services, and automated CI/CD pipelines.';
 
   const highlight = isCreative
-    ? 'Leading AI-augmented creative workflows at Phibious for global Fortune 500 brands.'
+    ? 'Leading AI-augmented creative workflows and commercial visual strategy at Phibious across Southeast Asia.'
     : '18+ production apps deployed — streaming platforms, AI microservices, and self-hosted infrastructure.';
 
   return (

@@ -41,7 +41,6 @@ export const exportPdfDirectly = async (
     if (onProgress) onProgress(true, 'Downloading PDF...');
     document.title = title;
 
-    // Direct download of the high-fidelity pre-rendered vector PDF
     const pdfUrl = `/${filename}`;
     const headCheck = await fetch(pdfUrl, { method: 'HEAD' });
 
@@ -60,7 +59,6 @@ export const exportPdfDirectly = async (
     if (onProgress) onProgress(false, '');
   }
 
-  // Graceful fallback to browser's native vector print
   window.print();
   return true;
 };

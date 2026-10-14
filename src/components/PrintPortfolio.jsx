@@ -1,18 +1,19 @@
 import React from 'react';
-import PrintPage1Creative from './print/PrintPage1Creative';
-import PrintPage2IT from './print/PrintPage2IT';
-import PrintPage3TrimUI from './print/PrintPage3TrimUI';
+import { V2Page1Creative, V2Page2IT, V2Page3TrimUI } from './print/PrintV2Swiss';
 
-export { PrintPage1Creative, PrintPage2IT, PrintPage3TrimUI };
+export {
+  V2Page1Creative as PrintPage1Creative,
+  V2Page2IT as PrintPage2IT,
+  V2Page3TrimUI as PrintPage3TrimUI,
+};
 
 export default function PrintPortfolio({ mode, tab = 'dev' }) {
-  // Determine effective mode: explicit mode prop takes precedence, otherwise infer from tab
   const activeMode = mode || (tab === 'creative' ? 'design' : 'it');
 
   if (activeMode === 'design' || activeMode === 'creative') {
     return (
       <>
-        <PrintPage1Creative pageNum={1} totalPages={1} />
+        <V2Page1Creative pageNum={1} totalPages={1} />
       </>
     );
   }
@@ -20,9 +21,9 @@ export default function PrintPortfolio({ mode, tab = 'dev' }) {
   if (activeMode === 'all') {
     return (
       <>
-        <PrintPage1Creative pageNum={1} totalPages={3} />
-        <PrintPage2IT pageNum={2} totalPages={3} />
-        <PrintPage3TrimUI pageNum={3} totalPages={3} />
+        <V2Page1Creative pageNum={1} totalPages={3} />
+        <V2Page2IT pageNum={2} totalPages={3} />
+        <V2Page3TrimUI pageNum={3} totalPages={3} />
       </>
     );
   }
@@ -30,8 +31,8 @@ export default function PrintPortfolio({ mode, tab = 'dev' }) {
   // Default: 'it' mode (Security Consultant & Systems Architect CV - 2 Pages)
   return (
     <>
-      <PrintPage2IT pageNum={1} totalPages={2} />
-      <PrintPage3TrimUI pageNum={2} totalPages={2} />
+      <V2Page2IT pageNum={1} totalPages={2} />
+      <V2Page3TrimUI pageNum={2} totalPages={2} />
     </>
   );
 }

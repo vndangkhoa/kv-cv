@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.1] - 2026-10-14
+
+### Added & Refined
+- **V2 Swiss Architectural Grid PDF System**:
+  - Adopted Vignelli / Zurich modular Swiss Grid as the single PDF layout across all export modes.
+  - Implemented continuous 33mm vertical index rail with flush horizontal bands (`/01`–`/05`), International Klein Cobalt accents, and gallery alabaster ground.
+  - Rewrote Executive Theses across all pages with precise metrics and technical benchmarks.
+- **KV-TrimUI Handheld OS & Ecosystem Integration**:
+  - Integrated KV-TrimUI 18-application handheld suite into both web portfolio and PDF dossiers.
+  - Added coverage for pure Rust 60 FPS `/dev/fb0` framebuffer engine, dual-arch static Musl toolchains (`aarch64` & `armv7l`), and 6 handheld OS distributions.
+- **Copy & Branding Cleanup**:
+  - Completely purged legacy "Fortune 500", "500+", "Delux Perfume", and "Dossier" terminology across all components, web data files, and PDF outputs.
+
+---
+
 ## [2.1.0] - 2026-10-12
 
 ### Fixed & Enhanced

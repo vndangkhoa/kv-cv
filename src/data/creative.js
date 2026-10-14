@@ -39,12 +39,12 @@ export const CREATIVE_DATA = {
     },
     {
       id: 4,
-      title: "Delux Perfume – Fineline 2025 Launch",
-      category: "AI Branding & Video",
-      image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2025/08/Delux-Perfume_red.png",
-      description: "End-to-end creative strategy and art direction for premium perfume launch. From AI-generated mood boards and product visuals to cinematic video production for Southeast Asia market.",
-      link: "https://portfolio.khoavo.vndns.net/2025/08/11/giving-art-direction-to-a-brand-a-case-study/",
-      year: "2025"
+      title: "KV-TrimUI – Handheld OS & 18-App Ecosystem",
+      category: "Embedded OS & UI Design",
+      image: "https://portfolio.khoavo.vndns.net/wp-content/uploads/2025/08/537657171_24322581567428756_3673426611845520713_n.jpg",
+      description: "Complete open-source software ecosystem of 18 native Rust (/dev/fb0 60 FPS) and Next.js 15 hybrid apps for TrimUI Smart Pro S, Pro, and Brick across 6 OS distributions with a 1-Click Web Installer.",
+      link: "https://trimui.vndns.net",
+      year: "2026"
     },
     {
       id: 5,
@@ -108,7 +108,7 @@ export const CREATIVE_DATA = {
       period: "2025 - Present",
       location: "Ho Chi Minh City, Vietnam",
       highlights: [
-        "Direct end-to-end commercial visual strategy and generative AI production for Fortune 500 brand accounts, driving a 60% gain in asset volume while ensuring strict brand fidelity.",
+        "Direct end-to-end commercial visual strategy and generative AI production for regional and multi-market brand campaigns, driving a 60% gain in asset volume while ensuring strict brand fidelity.",
         "Own departmental P&L, production budgeting, and GPU/compute resource allocation, directly optimizing project margins and commercial operational profitability.",
         "Lead the creative-tech roadmap, architecting customized ComfyUI and FLUX.1 LoRA node pipelines that accelerated rapid concept-to-pitch cycles from days to hours.",
         "Manage and mentor a 20+ cross-functional team of art directors, producers, and motion animators in AI-augmented visual storytelling and production standards.",
