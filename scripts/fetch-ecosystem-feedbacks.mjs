@@ -26,7 +26,7 @@ const SYNO_PRODUCTION_REVIEWS = [
     category: "review",
     tag: "SPK Repo",
     comment: "Repository server pkg.khoavo.myds.me cài trực tiếp trên Package Center DSM 7.2.2 rất chuẩn. GPG cryptographic key signing pass toàn bộ kiểm tra bảo mật của Synology.",
-    createdAt: "2026-09-18 14:20:10"
+    createdAt: "2026-02-18 14:20:10"
   },
   {
     id: "syno-kv-synology-1",
@@ -40,7 +40,7 @@ const SYNO_PRODUCTION_REVIEWS = [
     category: "review",
     tag: "42 MCP Tools",
     comment: "QuickConnect resolver kèm relay fallback hoạt động ổn định. Bộ 42 công cụ MCP điều khiển service SMB, NFS, SSH qua AI Agent cực kỳ tiện lợi cho tự động hóa.",
-    createdAt: "2026-09-20 10:15:00"
+    createdAt: "2026-02-24 10:15:00"
   },
   {
     id: "syno-kv-home-1",
@@ -54,7 +54,7 @@ const SYNO_PRODUCTION_REVIEWS = [
     category: "review",
     tag: "RFC 6238 TOTP",
     comment: "Bố cục procedural Tetris độc lạ, mở launcher rất nhanh. Đăng nhập bảo mật native RFC 6238 TOTP 2FA không cần cài thêm Authelia hay Authentik cồng kềnh.",
-    createdAt: "2026-09-22 16:45:00"
+    createdAt: "2026-03-02 16:45:00"
   },
   {
     id: "syno-ola-1",
@@ -68,7 +68,7 @@ const SYNO_PRODUCTION_REVIEWS = [
     category: "review",
     tag: "Anti-Leak DRM",
     comment: "Watermark forensic chạy động theo IP và user ID hiển thị mượt mà. Bật DevTools hoặc quay màn hình là tự động che đen khung hình, chống rò rỉ video dựng rất an toàn.",
-    createdAt: "2026-09-25 09:30:00"
+    createdAt: "2026-03-10 09:30:00"
   },
   {
     id: "syno-filepro-1",
@@ -82,7 +82,7 @@ const SYNO_PRODUCTION_REVIEWS = [
     category: "review",
     tag: "Ed25519 & Sandboxing",
     comment: "Xác thực Argon2id kết hợp Ed25519 asymmetric licensing và sandboxing dunce::canonicalize chống triệt để tấn công Path Traversal.",
-    createdAt: "2026-09-28 11:10:00"
+    createdAt: "2026-03-18 11:10:00"
   }
 ];
 

@@ -57,6 +57,42 @@ const bandsContainer = {
   minHeight: 0,
 };
 
+function renderAutoLink(val) {
+  if (!val || typeof val !== 'string') return val;
+  const trimmed = val.trim();
+  if (trimmed.includes('@') && !trimmed.includes(' ')) {
+    return (
+      <a href={`mailto:${trimmed}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+        {val}
+      </a>
+    );
+  }
+  if (/^0\d{9}$/.test(trimmed)) {
+    return (
+      <a href={`tel:+84${trimmed.slice(1)}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+        {val}
+      </a>
+    );
+  }
+  if (
+    trimmed.startsWith('http://') ||
+    trimmed.startsWith('https://') ||
+    trimmed.startsWith('github.com/') ||
+    trimmed.startsWith('linkedin.com/') ||
+    trimmed.endsWith('.vndns.net') ||
+    trimmed.includes('.vndns.net/')
+  ) {
+    const cleanUrl = trimmed.replace(/\s*\(.*\)$/, '');
+    const href = cleanUrl.startsWith('http') ? cleanUrl : `https://${cleanUrl}`;
+    return (
+      <a href={href} target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'none' }}>
+        {val}
+      </a>
+    );
+  }
+  return val;
+}
+
 function SwissMasthead({ docCode, name, title, subtitle, metaLeft, metaRight }) {
   return (
     <header style={{ background: V2.cobaltDeep, color: '#FFFFFF', padding: '5.5mm 8mm 4.5mm', borderBottom: `0.5mm solid ${V2.ink}`, flexShrink: 0 }}>
@@ -82,8 +118,8 @@ function SwissMasthead({ docCode, name, title, subtitle, metaLeft, metaRight }) 
         <div style={{ display: 'grid', gridTemplateColumns: 'auto auto', gap: '0.7mm 4.5mm', fontFamily: V2.mono, fontSize: '5.3pt', lineHeight: 1.35, borderLeft: '0.25mm solid rgba(255,255,255,0.28)', paddingLeft: '4mm', fontVariantNumeric: 'tabular-nums' }}>
           {metaLeft.map((item, idx) => (
             <React.Fragment key={idx}>
-              <div style={{ color: '#93C5FD', fontWeight: 500 }}>{item}</div>
-              <div style={{ color: '#FFFFFF', fontWeight: 600, textAlign: 'right' }}>{metaRight[idx] || ''}</div>
+              <div style={{ color: '#93C5FD', fontWeight: 500 }}>{renderAutoLink(item)}</div>
+              <div style={{ color: '#FFFFFF', fontWeight: 600, textAlign: 'right' }}>{renderAutoLink(metaRight[idx] || '')}</div>
             </React.Fragment>
           ))}
         </div>
@@ -136,9 +172,17 @@ function SwissBand({ index, label, sublabel, children, noBorderBottom = false, b
 }
 
 function SwissFooter({ leftCode, rightCode }) {
+  const parts = typeof leftCode === 'string' ? leftCode.split('  //  ') : [leftCode];
   return (
     <footer style={{ height: '6.2mm', minHeight: '6.2mm', background: V2.ink, color: '#FFFFFF', padding: '0 8mm', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: V2.mono, fontSize: '5.2pt', letterSpacing: '0.05em', fontVariantNumeric: 'tabular-nums' }}>
-      <span>{leftCode}</span>
+      <span>
+        {parts.map((part, idx) => (
+          <React.Fragment key={idx}>
+            {idx > 0 && '  //  '}
+            {renderAutoLink(part)}
+          </React.Fragment>
+        ))}
+      </span>
       <span style={{ color: '#93C5FD', fontWeight: 600 }}>{rightCode}</span>
     </footer>
   );
@@ -163,7 +207,7 @@ export function V2Page1Creative({ pageNum = 1, totalPages = 1 }) {
 
       <div style={bandsContainer}>
         {/* BAND 01: EXECUTIVE THESIS & METRICS MATRIX */}
-        <SwissBand index="01" label="Executive Thesis" sublabel=" Benchmark & Scope" bg={V2.cell}>
+        <SwissBand index="01" label="Executive Thesis" sublabel="Summary & Metrics" bg={V2.cell}>
           <p style={{ fontSize: '6.6pt', lineHeight: 1.4, color: V2.body, margin: '0 0 2.4mm', fontWeight: 500 }}>
             {info.summary}
           </p>
@@ -185,7 +229,7 @@ export function V2Page1Creative({ pageNum = 1, totalPages = 1 }) {
         </SwissBand>
 
         {/* BAND 02: CHRONOLOGICAL LEADERSHIP RECORD */}
-        <SwissBand index="02" label="Career Ledger" sublabel="9+ Yrs SEA Leadership">
+        <SwissBand index="02" label="Work Experience" sublabel="9+ Yrs Leadership">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2.2mm' }}>
             {experiences.map((exp, idx) => (
               <div
@@ -248,7 +292,7 @@ export function V2Page1Creative({ pageNum = 1, totalPages = 1 }) {
         </SwissBand>
 
         {/* BAND 04: 4-COLUMN TECHNICAL & CREATIVE CAPABILITIES TABLE */}
-        <SwissBand index="04" label="Capability Matrix" sublabel="4 Domain Clusters">
+        <SwissBand index="04" label="Core Capabilities" sublabel="Skills & Tooling">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '3mm' }}>
             {skillGroups.map((g, i) => (
               <div key={g.label} style={{ borderLeft: i > 0 ? `0.18mm solid ${V2.gridLine}` : 'none', paddingLeft: i > 0 ? '2.4mm' : 0 }}>
@@ -264,7 +308,7 @@ export function V2Page1Creative({ pageNum = 1, totalPages = 1 }) {
         </SwissBand>
 
         {/* BAND 05: OPEN SOURCE INFRA, EDUCATION & HONORS */}
-        <SwissBand index="05" label="Infra & Credentials" sublabel="OSS · RMIT · Awards" noBorderBottom bg={V2.cell}>
+        <SwissBand index="05" label="Education & Honors" sublabel="RMIT · OSS · Awards" noBorderBottom bg={V2.cell}>
           <div style={{ display: 'grid', gridTemplateColumns: '1.15fr 0.85fr', gap: '4mm' }}>
             {/* Open Source 3 items */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2mm' }}>
@@ -308,7 +352,7 @@ export function V2Page1Creative({ pageNum = 1, totalPages = 1 }) {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// PAGE 2: SECURITY CONSULTANT & SYSTEMS ARCHITECT (V2 SWISS GRID)
+// PAGE 2: SENIOR FULL-STACK, SYSTEMS & SECURITY ARCHITECT (V2 SWISS GRID)
 // ─────────────────────────────────────────────────────────────────────────────
 export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
   const { info, metrics, valuePillars, skillGroups, infraTopology, endpoints, secondaryStoreApps, vietcPillars, milestones } = PAGE2_IT;
@@ -316,17 +360,17 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
   return (
     <div style={pageBase} className="cv-page print-portfolio-content">
       <SwissMasthead
-        docCode={`SPEC-02 // SECURITY & SYSTEMS ARCHITECTURE // P.0${pageNum}-0${totalPages}`}
+        docCode={`SPEC-02 // FULL-STACK, SYSTEMS & SECURITY // P.0${pageNum}-0${totalPages}`}
         name={info.name}
         title={info.title}
         subtitle={info.subtitle}
-        metaLeft={[info.synoSource, info.vietcRepo, info.synoRepo, info.email]}
-        metaRight={[info.phone, info.location, 'STRIDE / GRC', 'RUST / GO']}
+        metaLeft={[info.email, info.portfolio, info.github, info.linkedin]}
+        metaRight={[info.phone, info.location, 'NEXT.JS / GO / RUST', 'OPEN TO WORK']}
       />
 
       <div style={bandsContainer}>
-        {/* BAND 01: SECURITY THESIS, METRICS & VALUE PILLARS */}
-        <SwissBand index="01" label="Threat Posture" sublabel="Risk & Controls" bg={V2.cell}>
+        {/* BAND 01: EXECUTIVE THESIS, METRICS & VALUE PILLARS */}
+        <SwissBand index="01" label="Executive Thesis" sublabel="Architecture & Scope" bg={V2.cell}>
           <p style={{ fontSize: '6.3pt', lineHeight: 1.36, color: V2.body, margin: '0 0 2mm', fontWeight: 500 }}>
             {info.summary}
           </p>
@@ -350,15 +394,15 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
         </SwissBand>
 
         {/* BAND 02: SYNOLOGY COMMUNITY STORE */}
-        <SwissBand index="02" label="Cloud Platform" sublabel="syno.vndns.vn // SPK">
+        <SwissBand index="02" label="Cloud & Web Systems" sublabel="syno.vndns.net // SPK">
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.4mm' }}>
             <div>
               <span style={{ fontSize: '7.4pt', fontWeight: 900, color: V2.ink }}>kv-synology — Flagship DSM Web Control Plane</span>
               <span style={{ fontFamily: V2.mono, fontSize: '5.1pt', color: V2.cobalt, marginLeft: '2mm', fontWeight: 700 }}>
-                [Next.js 15 · React 19 · QuickConnect · GnuPG CI/CD]
+                [Next.js 15 · React 19 · 42 AI MCP Tools · GnuPG CI/CD]
               </span>
             </div>
-            <span style={{ fontFamily: V2.mono, fontSize: '5pt', color: V2.muted }}>https://syno.vndns.vn</span>
+            <span style={{ fontFamily: V2.mono, fontSize: '5pt', color: V2.muted }}>{renderAutoLink('https://syno.vndns.net')}</span>
           </div>
           <div style={{ fontSize: '5.4pt', lineHeight: 1.32, color: V2.body, marginBottom: '1.8mm' }}>
             Automated SPK repository with GnuPG cryptographic signature verification, dynamic port allocation (20000–59999), QuickConnect relay resolver, and live daemon control (SMB, NFS, SSH, WebDAV, AFP).
@@ -385,13 +429,13 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
         </SwissBand>
 
         {/* BAND 03: VIETC RUST LINUX IME */}
-        <SwissBand index="03" label="Kernel Subsystem" sublabel="VietC // Rust 1.85+" bg={V2.cell}>
+        <SwissBand index="03" label="Rust & Kernel Systems" sublabel="VietC // Rust 1.85+" bg={V2.cell}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '1.2mm' }}>
             <span style={{ fontSize: '7.2pt', fontWeight: 900, color: V2.ink }}>
               VietC (Viet+) — Native High-Performance Linux Input Method Engine
             </span>
             <span style={{ fontFamily: V2.mono, fontSize: '5pt', color: V2.cobalt, fontWeight: 700 }}>
-              github.com/vndangkhoa/vietc (60★)
+              {renderAutoLink('github.com/vndangkhoa/vietc')} (60★)
             </span>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5mm' }}>
@@ -405,8 +449,8 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
           </div>
         </SwissBand>
 
-        {/* BAND 04: SYSTEMS MILESTONES */}
-        <SwissBand index="04" label="Milestone Log" sublabel="2020 — Present">
+        {/* BAND 04: WORK EXPERIENCE & SYSTEMS LEADERSHIP */}
+        <SwissBand index="04" label="Work Experience" sublabel="2020 — Present">
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5mm' }}>
             {milestones.map((m) => (
               <div key={m.title} style={{ display: 'grid', gridTemplateColumns: '24mm 1fr', gap: '2.5mm', alignItems: 'baseline' }}>
@@ -426,8 +470,8 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
           </div>
         </SwissBand>
 
-        {/* BAND 05: TECHNICAL MATRIX & TOPOLOGY */}
-        <SwissBand index="05" label="Technical Spec" sublabel="Matrix & Endpoints" noBorderBottom bg={V2.cell}>
+        {/* BAND 05: SKILLS, EDUCATION & ENDPOINTS */}
+        <SwissBand index="05" label="Skills & Credentials" sublabel="Tech Stack & RMIT" noBorderBottom bg={V2.cell}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '2.5mm', marginBottom: '1.8mm' }}>
             {skillGroups.map((g, i) => (
               <div key={g.label} style={{ borderLeft: i > 0 ? `0.18mm solid ${V2.gridLine}` : 'none', paddingLeft: i > 0 ? '2mm' : 0 }}>
@@ -446,7 +490,12 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
             <div>
               <div style={{ fontSize: '5.5pt', fontWeight: 800, color: V2.ink }}>Verified Endpoints</div>
               <div style={{ fontFamily: V2.mono, fontSize: '4.8pt', lineHeight: 1.3, color: V2.cobalt }}>
-                {endpoints.map((e) => e.url).join(' · ')}
+                {endpoints.map((e, idx) => (
+                  <React.Fragment key={e.url}>
+                    {idx > 0 && ' · '}
+                    {renderAutoLink(e.url)}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
           </div>
@@ -454,8 +503,8 @@ export function V2Page2IT({ pageNum = 1, totalPages = 2 }) {
       </div>
 
       <SwissFooter
-        leftCode={`git.khoavo.myds.me/vndangkhoa  //  github.com/vndangkhoa  //  ${info.email}`}
-        rightCode={`KHOA.VO — SECURITY & SYSTEMS ARCHITECT — PAGE 0${pageNum}/0${totalPages}`}
+        leftCode={`${info.email}  //  ${info.phone}  //  ${info.github}`}
+        rightCode={`KHOA.VO — FULL-STACK, SYSTEMS & SECURITY ARCHITECT — PAGE 0${pageNum}/0${totalPages}`}
       />
     </div>
   );
@@ -581,7 +630,7 @@ export function V2Page3TrimUI({ pageNum = 2, totalPages = 2 }) {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5mm', borderTop: `0.18mm solid ${V2.gridLine}`, paddingTop: '1.4mm' }}>
             {endpoints.map((ep) => (
               <div key={ep.url}>
-                <div style={{ fontFamily: V2.mono, fontSize: '5.3pt', fontWeight: 700, color: V2.cobalt }}>{ep.url}</div>
+                <div style={{ fontFamily: V2.mono, fontSize: '5.3pt', fontWeight: 700, color: V2.cobalt }}>{renderAutoLink(ep.url)}</div>
                 <div style={{ fontSize: '4.9pt', color: V2.muted }}>{ep.desc}</div>
               </div>
             ))}

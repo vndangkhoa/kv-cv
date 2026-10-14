@@ -9,15 +9,26 @@ import Experience from '../Experience';
 import Contact from '../Contact';
 import Marquee from '../ui/Marquee';
 
-const MARQUEE_ITEMS = [
-  'Zero Trust Architecture',
-  'ComfyUI & FLUX',
-  'Cloud Systems',
-  'Generative AI',
-  'Docker & CI/CD',
-  'Art Direction',
-  '3D Motion Design',
-  'Vulnerability Assessment',
+const MARQUEE_ITEMS_CREATIVE = [
+  'Art Direction & Brand Systems',
+  'ComfyUI & FLUX.1 Pipelines',
+  'eCommerce Design Leadership',
+  'Generative AI Video',
+  '3D & Motion Direction',
+  'Multi-Market Campaigns (SEA)',
+  'Figma Design Systems',
+  'Commercial Production SOPs',
+];
+
+const MARQUEE_ITEMS_DEV = [
+  'Rust & Go Microservices',
+  'Next.js 15 & React 19',
+  'Embedded Linux (/dev/fb0)',
+  'Cryptographic Controls (Ed25519)',
+  'Docker & CI/CD Pipelines',
+  'Synology DSM SPK Ecosystem',
+  'Zero-Trust Architecture',
+  'Model Context Protocol (MCP)',
 ];
 
 export default function LiquidLanding({
@@ -50,7 +61,7 @@ export default function LiquidLanding({
 
       {/* Ambient Marquee Ribbon */}
       <div className="bg-black/80 py-4 border-y border-white/10">
-        <Marquee items={MARQUEE_ITEMS} />
+        <Marquee items={tab === 'creative' ? MARQUEE_ITEMS_CREATIVE : MARQUEE_ITEMS_DEV} />
       </div>
 
       {/* Section 2: About Manifesto */}

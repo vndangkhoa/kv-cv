@@ -108,42 +108,55 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
                     </div>
 
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white tracking-tight leading-tight">
-                      Engineering then <em className="italic text-white/70">artistry</em>.
+                      {isCreative ? (
+                        <>
+                          Commercial craft meets <em className="italic text-white/70">AI velocity</em>.
+                        </>
+                      ) : (
+                        <>
+                          Production systems built <em className="italic text-white/70">to scale</em>.
+                        </>
+                      )}
                     </h3>
                   </div>
 
-                  <p className="text-xs sm:text-sm font-sans text-white/50 mt-3 sm:mt-3.5 max-w-md leading-relaxed">
-                    Vo Nguyen Dang Khoa &bull; Security Consultant &amp; Systems Architect bridging zero-trust infrastructure with generative AI direction.
+                  <p className="text-xs sm:text-sm font-sans text-white/60 mt-3 sm:mt-3.5 max-w-md leading-relaxed">
+                    {isCreative
+                      ? 'Vo Nguyen Dang Khoa • Creative Manager & AI Innovation Lead (RMIT Honors) with 9+ years scaling regional brand systems and generative AI production.'
+                      : 'Vo Nguyen Dang Khoa • Senior Full-Stack, Systems & Security Architect engineering Rust, Go, and Next.js 15 platforms across cloud and embedded Linux.'}
                   </p>
                 </div>
 
-                {/* Two Action Buttons (matching reference [Join Today] [View Clubs]) */}
-                <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-6 sm:mt-8">
-                  {/* Primary Button */}
+                {/* Action Buttons */}
+                <div className="flex flex-wrap items-center gap-3 sm:gap-3.5 mt-6 sm:mt-8">
                   <button
                     onClick={() => {
-                      if (onOpenPdf) onOpenPdf(isCreative ? 'design' : 'it');
-                      else downloadCV(isCreative ? 'design' : 'it');
+                      if (onOpenPdf) onOpenPdf('design');
+                      else downloadCV('design');
                     }}
-                    className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full bg-white hover:bg-white/90 text-black font-mono text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg cursor-pointer"
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 sm:py-3 rounded-full font-mono text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg cursor-pointer ${
+                      isCreative
+                        ? 'bg-white hover:bg-white/90 text-black'
+                        : 'liquid-glass border border-white/20 hover:bg-white/10 text-white'
+                    }`}
                   >
                     <Download size={14} />
-                    <span>Download CV (PDF)</span>
+                    <span>Creative CV (1p PDF)</span>
                   </button>
 
-                  {/* Secondary Button */}
                   <button
                     onClick={() => {
-                      if (onEasterEgg) {
-                        onEasterEgg();
-                      } else {
-                        document.getElementById('work')?.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      if (onOpenPdf) onOpenPdf('it');
+                      else downloadCV('it');
                     }}
-                    className="inline-flex items-center gap-2 px-5 sm:px-6 py-2.5 sm:py-3 rounded-full liquid-glass border border-white/20 hover:bg-white/10 text-white font-mono text-xs sm:text-sm font-medium transition-all hover:scale-105 active:scale-95 shadow-md cursor-pointer"
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 sm:py-3 rounded-full font-mono text-xs sm:text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-lg cursor-pointer ${
+                      !isCreative
+                        ? 'bg-white hover:bg-white/90 text-black'
+                        : 'liquid-glass border border-white/20 hover:bg-white/10 text-white'
+                    }`}
                   >
-                    <Terminal size={14} className="text-white/70" />
-                    <span>Terminal OS</span>
+                    <Download size={14} />
+                    <span>Engineering CV (2p PDF)</span>
                   </button>
                 </div>
               </div>
@@ -168,12 +181,19 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
                     </li>
                     <li>
                       <a href="#about" className="text-white/70 hover:text-white transition-colors inline-block">
-                        Philosophy &amp; Story
+                        About &amp; Expertise
                       </a>
                     </li>
                     <li>
-                      <a href="#reel" className="text-white/70 hover:text-white transition-colors inline-block">
-                        Showreel &amp; Cinema
+                      <a
+                        href="#contact"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          if (onOpenPdf) onOpenPdf('all');
+                        }}
+                        className="text-white/70 hover:text-white transition-colors inline-block"
+                      >
+                        Full Portfolio CV (3p)
                       </a>
                     </li>
                   </ul>
@@ -187,6 +207,26 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
                   <ul className="space-y-2 sm:space-y-2.5 text-xs sm:text-sm font-sans">
                     <li>
                       <a
+                        href="https://zalo.me/0398300340"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-emerald-400 hover:text-emerald-300 font-medium transition-colors inline-flex items-center gap-1 group/link"
+                      >
+                        <span>Zalo &bull; 0398 300 340</span>
+                        <ArrowUpRight size={12} className="opacity-70 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={`tel:${PERSONAL_INFO.phone}`}
+                        className="text-white/80 hover:text-white transition-colors inline-flex items-center gap-1 group/link"
+                      >
+                        <span>Call &bull; +84 398 300 340</span>
+                        <ArrowUpRight size={12} className="opacity-40 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
+                      </a>
+                    </li>
+                    <li>
+                      <a
                         href={PERSONAL_INFO.linkedin}
                         target="_blank"
                         rel="noreferrer"
@@ -198,32 +238,12 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
                     </li>
                     <li>
                       <a
-                        href={IT_DATA.forgejo}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-1 group/link"
-                      >
-                        <span>Forgejo Git</span>
-                        <ArrowUpRight size={12} className="opacity-40 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
                         href={PERSONAL_INFO.github}
                         target="_blank"
                         rel="noreferrer"
                         className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-1 group/link"
                       >
                         <span>GitHub</span>
-                        <ArrowUpRight size={12} className="opacity-40 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href={`tel:${PERSONAL_INFO.phone}`}
-                        className="text-white/70 hover:text-white transition-colors inline-flex items-center gap-1 group/link"
-                      >
-                        <span>Telegram &bull; Call</span>
                         <ArrowUpRight size={12} className="opacity-40 group-hover/link:opacity-100 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-all" />
                       </a>
                     </li>

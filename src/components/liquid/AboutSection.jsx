@@ -32,19 +32,19 @@ export default function AboutSection({ tab }) {
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.2] tracking-tight font-serif max-w-4xl px-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.18] tracking-tight font-serif max-w-4xl px-2 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]"
         >
           {isCreative ? (
             <>
-              Pioneering then <em className="italic text-white/70">ideas</em> for{' '}
+              Commercial art direction meets{' '}
               <br className="hidden md:inline" />
-              <em className="italic text-white/60">minds that then create, build, and inspire.</em>
+              <em className="italic text-white/70">scalable AI production.</em>
             </>
           ) : (
             <>
-              Pioneering then <em className="italic text-white/70">systems</em> for{' '}
+              Production full-stack systems{' '}
               <br className="hidden md:inline" />
-              <em className="italic text-white/60">minds that then secure, architect, and inspire.</em>
+              <em className="italic text-white/70">engineered from the kernel up.</em>
             </>
           )}
         </motion.h2>
@@ -56,9 +56,9 @@ export default function AboutSection({ tab }) {
           transition={{ duration: 0.8, delay: 0.25 }}
           className="text-white/85 text-xs sm:text-base md:text-lg leading-relaxed max-w-2xl mt-5 sm:mt-8 font-sans px-2"
         >
-          Vo Nguyen Dang Khoa operates at the intersection of zero-trust technical engineering and
-          generative visual intelligence. With 9+ years of design leadership and 18+ deployed production
-          apps, he bridges low-level system resilience with cinematic digital experiences.
+          {isCreative
+            ? 'Vo Nguyen Dang Khoa (RMIT Multimedia Design Honors) brings 9+ years of regional creative leadership across Procter & Gamble SEA and Phibious Vietnam—combining enterprise brand systems, omnichannel eCommerce design, and custom ComfyUI / FLUX.1 video pipelines that accelerate campaign delivery by 60%.'
+            : 'Vo Nguyen Dang Khoa architects high-performance full-stack applications, embedded Linux engines, and defense-in-depth infrastructure. Across 18+ shipped open-source and commercial platforms in Rust, Go, and Next.js 15, he pairs systems-level reliability with refined product design.'}
         </motion.p>
       </div>
     </section>

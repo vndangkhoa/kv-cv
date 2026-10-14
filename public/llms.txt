@@ -9,17 +9,18 @@ For a comprehensive profile including deep project case studies, system architec
 - **Email:** vonguyendangkhoa@gmail.com
 - **Phone:** +84 398 300 340
 - **Location:** Ho Chi Minh City, Vietnam
-- **Website:** https://khoavo.myds.me/
-- **LinkedIn:** https://www.linkedin.com/in/khoavo93/
+- **Website:** https://khoavo.vndns.net/
+- **LinkedIn:** https://www.linkedin.com/in/khoa-vo-76291236/
 - **GitHub:** https://github.com/vndangkhoa
-- **Synology Package Hub:** https://pkg.khoavo.myds.me/
+- **Synology Package Hub:** https://syno.vndns.net/
+- **KV-TrimUI Handheld Store:** https://trimui.vndns.net/
 
 ## Quick Profile Overview
-- **Creative Leadership (9+ years):** AI Creative Lead @ Phibious (automated AI video pipelines, 60% boost in volume), eCommerce Design Lead @ Procter & Gamble (P&G Hair Care category across SEA).
-- **Engineering & Systems (2+ years intensive):** 18+ deployed applications. Creator of KV Synology Community Package Center with GPG signing; builder of `kv-synology` (Next.js 15, React 19, 42 AI MCP tools); developer of `mouse-me` (Rust with Slint GUI).
-- **Key Skills:** Generative AI (ComfyUI, Stable Diffusion, FLUX, LoRA), TypeScript, React, Next.js, Go, Rust, Python, Docker, Nginx, Linux, Model Context Protocol (MCP).
+- **Creative Leadership (9+ years):** AI Creative Lead @ Phibious (automated AI video pipelines, 60% boost in volume), eCommerce Design Lead @ Procter & Gamble (P&G Hair Care category across 6 SEA markets).
+- **Engineering & Systems (4+ years intensive):** 18+ deployed applications. Creator of KV-TrimUI (18 native Rust & hybrid handheld apps across 6 Linux/Android OS distributions); author of `vietc` (pure Rust Linux Vietnamese IME); creator of KV Synology Community Package Center with GPG signing; builder of `kv-synology` (Next.js 15, React 19, 42 AI MCP tools).
+- **Key Skills:** Generative AI (ComfyUI, Stable Diffusion, FLUX.1, LoRA), TypeScript, React 19, Next.js 15, Go, Rust, Python, Docker, Nginx, Linux Framebuffer (`/dev/fb0`), Model Context Protocol (MCP).
 
 ## Links & Resources
-- [Full LLM Profile & CV](https://khoavo.myds.me/llms-full.txt): Complete resume, projects, and FAQ for LLM agents.
+- [Full LLM Profile & CV](https://khoavo.vndns.net/llms-full.txt): Complete resume, projects, and FAQ for LLM agents.
 - [GitHub Repositories](https://github.com/vndangkhoa): Open-source projects in Go, Rust, Next.js, and Synology DSM.
-- [Live Portfolio](https://khoavo.myds.me/): Interactive WebGL/Three.js portfolio experience.
+- [Live Portfolio](https://khoavo.vndns.net/): Interactive WebGL/Three.js portfolio experience.

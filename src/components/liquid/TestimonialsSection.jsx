@@ -362,20 +362,20 @@ export default function TestimonialsSection({ tab }) {
                 </div>
               </div>
 
-              {/* Action: "Gửi yêu cầu viết nhận xét" / Send Reference Request button */}
+              {/* Action: Contact Referee for Reference Check */}
               <div className="flex items-center gap-3">
                 <a
-                  href={`mailto:${selectedReferee.email}?subject=Yêu%20cầu%20xác%20nhận%20thông%20tin%20tham%20khảo%20-%20Võ%20Nguyễn%20Đăng%20Khoa&body=Kính%20gửi%20${encodeURIComponent(selectedReferee.name)},%0D%0A%0D%0AChúng%20tôi%20đang%20tiến%20hành%20xác%20nhận%20thông%20tin%20tham%20khảo%20(reference%20check)%20cho%20Võ%20Nguyễn%20Đăng%20Khoa%20(Khoa%20Vo).%20Rất%20mong%20nhận%20được%20đánh%20giá%20quý%20báu%20từ%20anh.`}
+                  href={`mailto:${selectedReferee.email}?subject=Reference%20Check%20-%20Vo%20Nguyen%20Dang%20Khoa%20(Khoa%20Vo)&body=Dear%20${encodeURIComponent(selectedReferee.name)},%0D%0A%0D%0AWe%20are%20conducting%20a%20reference%20check%20for%20Vo%20Nguyen%20Dang%20Khoa%20(Khoa%20Vo)%20and%20would%20appreciate%20your%20feedback%20on%20working%20with%20him.`}
                   className="flex-1 py-3 px-5 rounded-2xl bg-white hover:bg-white/90 text-black font-mono font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 shadow-lg cursor-pointer text-center"
                 >
                   <Send size={14} />
-                  <span>Gửi yêu cầu viết nhận xét</span>
+                  <span>{lang === 'vi' ? 'Liên hệ xác nhận thông tin tham khảo' : 'Contact Referee (Reference Check)'}</span>
                 </a>
                 <button
                   onClick={() => setSelectedReferee(null)}
                   className="py-3 px-5 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-mono text-xs sm:text-sm transition-all cursor-pointer"
                 >
-                  Đóng
+                  {lang === 'vi' ? 'Đóng' : 'Close'}
                 </button>
               </div>
             </motion.div>
@@ -449,15 +449,15 @@ function TestimonialCard({ item, lang, onSelect }) {
           </div>
         </div>
 
-        {/* Action Button: "Gửi yêu cầu viết nhận xét" (from Image 3) */}
+        {/* Action Button: Verify Reference / Contact */}
         <button
           onClick={onSelect}
           className="px-3 sm:px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/5 hover:bg-white/15 text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex items-center gap-1.5 cursor-pointer shadow-sm group/btn shrink-0"
-          title="Xem thông tin người tham khảo & gửi yêu cầu"
+          title={lang === 'vi' ? 'Xem thông tin liên hệ người tham khảo' : 'View verified referee contact details'}
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 group-hover/btn:scale-125 transition-transform" />
-          <span className="hidden sm:inline">Gửi yêu cầu viết nhận xét</span>
-          <span className="inline sm:hidden">Gửi yêu cầu</span>
+          <span className="hidden sm:inline">{lang === 'vi' ? 'Xác thực tham khảo' : 'Verify Reference'}</span>
+          <span className="inline sm:hidden">{lang === 'vi' ? 'Xác thực' : 'Verify'}</span>
           <ArrowUpRight size={12} className="opacity-60 group-hover/btn:opacity-100 transition-opacity" />
         </button>
       </div>

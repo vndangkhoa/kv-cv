@@ -155,7 +155,7 @@ export const CREATIVE_DATA = {
         "Delegated projects to junior designers while maintaining quality control and brand consistency across all touchpoints.",
         "Collaborated with international teams to localize content for Asian markets, adapting luxury messaging for cultural resonance.",
         "Created multi-channel visual campaigns spanning print, digital, and event activations that elevated ASIAMARINE's regional presence.",
-        "Developed the visual identity system that defined ASIAMARINE's premium positioning in the for regional marine lifestyle sector."
+        "Developed the visual identity system that defined ASIAMARINE's premium positioning in the regional marine lifestyle sector."
       ]
     },
     {
@@ -166,7 +166,7 @@ export const CREATIVE_DATA = {
       highlights: [
         "Created impactful designs for print and digital campaigns for global luxury and lifestyle brands including hospitality, automotive, and premium retail.",
         "Expert in photo sourcing, advanced image retouching, and brand identity development for both regional and international clients.",
-        "Delivered corporate identity packages for multinational clients seekingVietnam market entry.",
+        "Delivered corporate identity packages for multinational clients seeking Vietnam market entry.",
         "Collaborated with international creative directors to adapt global campaigns for local market sensibilities.",
         "Developed production-ready artwork for offset and digital print, ensuring color accuracy across media."
       ]

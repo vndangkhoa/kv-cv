@@ -56,10 +56,10 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="inline-flex items-center gap-2 mb-6 px-4 py-1.5 rounded-full bg-[#0c0c0e]/85 backdrop-blur-xl border border-white/15 text-xs font-mono text-white/90 shadow-md"
+          className="inline-flex items-center gap-2 mb-5 px-4 py-1.5 rounded-full bg-[#0c0c0e]/90 backdrop-blur-xl border border-emerald-500/35 text-xs font-mono text-white/95 shadow-md"
         >
-          <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
-          <span>PORTFOLIO &apos;26 &bull; HO CHI MINH CITY</span>
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span>VO NGUYEN DANG KHOA &bull; HO CHI MINH CITY &bull; OPEN TO WORK</span>
         </motion.div>
 
         {/* Heading in Instrument Serif */}
@@ -67,65 +67,79 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-serif text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] sm:leading-none break-words max-w-full px-2 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
+          className="text-3xl sm:text-6xl md:text-7xl lg:text-8xl font-serif text-white tracking-tight mb-4 sm:mb-6 leading-[1.08] sm:leading-[1.02] break-words max-w-5xl px-2 drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]"
         >
           {isCreative ? (
             <>
-              Innovate then <em className="italic font-serif">artistry</em>.
+              Creative Direction meets <em className="italic font-serif text-white/85">Generative AI</em>.
             </>
           ) : (
             <>
-              Engineering then <em className="italic font-serif">artistry</em>.
+              Systems Architecture &amp; <em className="italic font-serif text-white/85">Full-Stack Engineering</em>.
             </>
           )}
         </motion.h1>
 
-        {/* Liquid-Glass Command / Contact Capsule */}
-        <motion.form
-          onSubmit={handleCopyEmail}
+        {/* Direct Recruiter Contact Capsule (Email + Copy + Phone + Zalo) */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="max-w-md sm:max-w-xl w-full mx-auto mb-4 sm:mb-6 px-2 sm:px-0"
+          className="max-w-2xl w-full mx-auto mb-4 sm:mb-6 px-2 sm:px-0"
         >
-          <div className="bg-[#0c0c0e]/90 backdrop-blur-xl rounded-full pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] border border-white/20 hover:border-white/35 transition-all">
-            <input
-              type="text"
-              value={emailInput}
-              onChange={(e) => setEmailInput(e.target.value)}
-              placeholder="vonguyendangkhoa@gmail.com"
-              className="bg-transparent text-white placeholder:text-white/70 text-xs sm:text-sm font-mono focus:outline-none flex-1 truncate min-w-0"
-            />
-            <button
-              type="submit"
-              className="bg-white hover:bg-white/90 text-black rounded-full p-2 sm:p-2.5 transition-transform hover:scale-105 active:scale-95 flex items-center justify-center shrink-0 cursor-pointer shadow-md"
-              title="Copy email to clipboard"
+          <div className="bg-[#0c0c0e]/90 backdrop-blur-xl rounded-2xl sm:rounded-full px-3 sm:px-5 py-2 sm:py-2 flex flex-wrap items-center justify-center sm:justify-between gap-2 sm:gap-3 shadow-[0_8px_32px_rgba(0,0,0,0.7)] border border-white/20 hover:border-white/35 transition-all">
+            <a
+              href={`mailto:${PERSONAL_INFO.email}`}
+              className="flex items-center gap-2 text-xs sm:text-sm font-mono text-white hover:text-emerald-300 transition-colors truncate"
+              title="Send email"
             >
-              {copied ? <Check size={16} className="text-black" /> : <ArrowRight size={16} />}
-            </button>
+              <Mail size={14} className="text-emerald-400 shrink-0" />
+              <span className="truncate">{PERSONAL_INFO.email}</span>
+            </a>
+
+            <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="bg-white/10 hover:bg-white/20 text-white rounded-full px-3 py-1.5 text-[11px] font-mono font-semibold transition-all cursor-pointer border border-white/15 flex items-center gap-1"
+                title="Copy email to clipboard"
+              >
+                {copied ? <Check size={12} className="text-emerald-400" /> : null}
+                <span>{copied ? 'Copied!' : 'Copy Email'}</span>
+              </button>
+
+              <a
+                href={`tel:${PERSONAL_INFO.phone}`}
+                className="bg-white/10 hover:bg-white/20 text-white rounded-full px-3 py-1.5 text-[11px] font-mono font-semibold transition-all border border-white/15"
+                title="Call directly"
+              >
+                0398 300 340
+              </a>
+
+              <a
+                href="https://zalo.me/0398300340"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white hover:bg-white/90 text-black rounded-full px-3.5 py-1.5 text-[11px] font-mono font-bold transition-transform hover:scale-105 active:scale-95 shadow-md"
+                title="Chat on Zalo (0398300340)"
+              >
+                Zalo Chat &rarr;
+              </a>
+            </div>
           </div>
-          {copied && (
-            <motion.p
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-[11px] font-mono text-white/95 mt-2 text-center drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]"
-            >
-              ✓ Copied {PERSONAL_INFO.email} to clipboard
-            </motion.p>
-          )}
-        </motion.form>
+        </motion.div>
 
         {/* Subtitle with frosted dark backdrop for 100% legibility */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="max-w-xl mx-auto px-2"
+          className="max-w-2xl mx-auto px-2"
         >
-          <p className="inline-block text-white/95 text-xs sm:text-sm md:text-base leading-relaxed px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl bg-black/60 backdrop-blur-md border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.85)] font-sans drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+          <p className="inline-block text-white/95 text-xs sm:text-sm md:text-base leading-relaxed px-4 py-2.5 sm:px-5 sm:py-3 rounded-2xl bg-black/65 backdrop-blur-md border border-white/15 shadow-[0_4px_24px_rgba(0,0,0,0.85)] font-sans drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
             {isCreative
-              ? 'Creative Lead & AI Specialist merging 9+ years of motion direction with production diffusion pipelines (ComfyUI, FLUX) for global campaigns.'
-              : 'Security Consultant & Systems Architect with 18+ deployed production services, hardened container environments, and zero-trust design.'}
+              ? 'Creative Director & AI Innovation Lead with 9+ years leading multi-market visual systems (Procter & Gamble SEA, Phibious) and custom ComfyUI / FLUX.1 production pipelines.'
+              : 'Senior Full-Stack, Systems & Security Architect building production Rust, Go, and Next.js 15 platforms, embedded Linux engines (/dev/fb0), and hardened cloud infrastructure.'}
           </p>
         </motion.div>
 
@@ -134,27 +148,33 @@ export default function LiquidHero({ tab, onOpenPdf, onEasterEgg }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 mt-6 sm:mt-8 px-2"
+          className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3.5 mt-6 sm:mt-8 px-2"
         >
           <button
-            onClick={() => onOpenPdf(isCreative ? 'design' : 'it')}
-            className="bg-[#0e0e12]/85 backdrop-blur-md rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/15 transition-all border border-white/20 hover:border-white/35 shadow-[0_4px_20px_rgba(0,0,0,0.6)] cursor-pointer"
+            onClick={() => onOpenPdf('design')}
+            className={`rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)] ${
+              isCreative
+                ? 'bg-white text-black hover:bg-white/90'
+                : 'bg-[#0e0e12]/85 backdrop-blur-md text-white border border-white/20 hover:bg-white/15'
+            }`}
           >
-            Open Khoa Vo CV
+            Creative &amp; AI CV (1p PDF)
           </button>
           <button
-            onClick={onEasterEgg}
-            className="bg-[#0e0e12]/85 backdrop-blur-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 text-white text-xs sm:text-sm font-mono font-medium hover:bg-white/15 transition-all border border-white/20 hover:border-white/35 shadow-[0_4px_20px_rgba(0,0,0,0.6)] cursor-pointer flex items-center gap-1.5 sm:gap-2"
-            title="Launch Retro Terminal OS"
+            onClick={() => onOpenPdf('it')}
+            className={`rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-mono font-bold transition-all cursor-pointer shadow-[0_4px_20px_rgba(0,0,0,0.6)] ${
+              !isCreative
+                ? 'bg-white text-black hover:bg-white/90'
+                : 'bg-[#0e0e12]/85 backdrop-blur-md text-white border border-white/20 hover:bg-white/15'
+            }`}
           >
-            <Terminal size={14} />
-            <span>Terminal OS</span>
+            Engineering &amp; Systems CV (2p PDF)
           </button>
           <button
             onClick={scrollToAbout}
-            className="bg-[#0e0e12]/65 backdrop-blur-md rounded-full px-5 sm:px-8 py-2.5 sm:py-3 text-white/80 hover:text-white text-xs sm:text-sm font-mono transition-all border border-white/15 hover:border-white/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
+            className="bg-[#0e0e12]/65 backdrop-blur-md rounded-full px-5 sm:px-6 py-2.5 sm:py-3 text-white/80 hover:text-white text-xs sm:text-sm font-mono transition-all border border-white/15 hover:border-white/30 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-pointer"
           >
-            Explore Story &darr;
+            View Selected Work &darr;
           </button>
         </motion.div>
       </div>

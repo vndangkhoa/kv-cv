@@ -308,7 +308,7 @@ export default function Projects({ tab, onTabChange }) {
   // Layout & Filter States
   const [selectedFilter, setSelectedFilter] = useState('All');
   const [expanded, setExpanded] = useState(false);
-  const [viewMode, setViewMode] = useState('stack'); // 'stack' (Orange Horse) | 'grid' | 'list'
+  const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'stack' (Orange Horse) | 'list'
 
   // Available Filters
   const filters = useMemo(() => {
@@ -360,8 +360,8 @@ export default function Projects({ tab, onTabChange }) {
 
             <p className="max-w-md text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
               {isCreative
-                ? 'Live feed synchronized from portfolio — AI fashion workflows, cinematic video creation, and brand identities.'
-                : 'Production services synchronized from GitHub & Forgejo — Kotlin Multiplatform, Go streaming engines, Rust backends, and AI image tooling.'}
+                ? 'Selected brand systems, AI video pipelines, and omnichannel campaigns across Southeast Asia.'
+                : 'Production platforms & open-source repositories — Rust embedded engines, Go streaming backends, and Next.js 15 cloud apps.'}
             </p>
           </div>
         </Reveal>
@@ -392,20 +392,8 @@ export default function Projects({ tab, onTabChange }) {
 
           {/* Action Toolbar: Prominent View Mode Switcher + Sync Button */}
           <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-3 shrink-0">
-            {/* View Mode Toggle Switch (Slide Deck | Grid | List) */}
+            {/* View Mode Toggle Switch (Grid | Slide Deck | List) */}
             <div className="flex items-center gap-1 liquid-glass border border-white/20 rounded-full p-1 bg-black/60 shadow-xl backdrop-blur-xl">
-              <button
-                onClick={() => setViewMode('stack')}
-                className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-mono font-semibold transition-all duration-200 cursor-pointer ${
-                  viewMode === 'stack'
-                    ? 'bg-white text-black shadow-md scale-105'
-                    : 'text-white/60 hover:text-white hover:bg-white/10'
-                }`}
-                title="Orange Horse Slide Deck View"
-              >
-                <Layers size={14} />
-                <span>Deck</span>
-              </button>
               <button
                 onClick={() => setViewMode('grid')}
                 className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-mono font-semibold transition-all duration-200 cursor-pointer ${
@@ -413,10 +401,22 @@ export default function Projects({ tab, onTabChange }) {
                     ? 'bg-white text-black shadow-md scale-105'
                     : 'text-white/60 hover:text-white hover:bg-white/10'
                 }`}
-                title="Grid View (MotionCards)"
+                title="Grid View (Fast Scan)"
               >
                 <LayoutGrid size={14} />
                 <span>Grid</span>
+              </button>
+              <button
+                onClick={() => setViewMode('stack')}
+                className={`inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-1.5 sm:py-2 rounded-full text-[11px] sm:text-xs md:text-sm font-mono font-semibold transition-all duration-200 cursor-pointer ${
+                  viewMode === 'stack'
+                    ? 'bg-white text-black shadow-md scale-105'
+                    : 'text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+                title="Slide Deck View"
+              >
+                <Layers size={14} />
+                <span>Deck</span>
               </button>
               <button
                 onClick={() => setViewMode('list')}
@@ -431,20 +431,6 @@ export default function Projects({ tab, onTabChange }) {
                 <span>List</span>
               </button>
             </div>
-
-            {/* Quick Sync Button */}
-            <button
-              onClick={() => {
-                if (isCreative) refreshPortfolio();
-                else refreshGithub();
-              }}
-              disabled={wpLoading || repoLoading}
-              title={isCreative ? "Sync portfolio feed" : "Sync GitHub feed"}
-              className="liquid-glass inline-flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-mono text-white/70 hover:text-white border border-white/15 hover:border-white/30 hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
-            >
-              <RefreshCw size={13} className={wpLoading || repoLoading ? 'animate-spin text-white' : ''} />
-              <span className="hidden sm:inline">{isCreative ? 'Sync' : 'Sync'}</span>
-            </button>
           </div>
         </div>
 
@@ -493,7 +479,7 @@ export default function Projects({ tab, onTabChange }) {
               )
             ) : repoLoading && repos.length === 0 ? (
               <div className="flex items-center justify-center py-20 text-white/50 font-mono text-sm">
-                <Loader2 className="animate-spin mr-3 text-white" /> Fetching repos from Forgejo…
+                <Loader2 className="animate-spin mr-3 text-white" /> Loading repositories…
               </div>
             ) : visibleList.length === 0 ? (
               <p className="text-center py-20 text-white/50 font-mono text-sm">
@@ -525,7 +511,7 @@ export default function Projects({ tab, onTabChange }) {
             )}
           </div>
 
-        {/* Bottom Actions: Expand/Collapse & Dedicated Fetching Controls */}
+        {/* Bottom Actions: Expand/Collapse & Clean Cross-Track Navigation */}
         <div className="mt-12 flex flex-col items-center justify-center gap-4">
           {filteredList.length > INITIAL_SHOW_COUNT && (
             <button
@@ -534,19 +520,18 @@ export default function Projects({ tab, onTabChange }) {
             >
               {expanded ? (
                 <span className="flex items-center gap-2">
-                  <span>Show less</span>
+                  <span>Show fewer projects</span>
                   <ChevronUp size={16} className="transition-transform group-hover:-translate-y-0.5 text-white" />
                 </span>
               ) : (
                 <span className="flex items-center gap-2">
-                  <span>Expand to view all ({filteredList.length} items)</span>
+                  <span>View all {filteredList.length} projects</span>
                   <ChevronDown size={16} className="transition-transform group-hover:translate-y-0.5 text-white" />
                 </span>
               )}
             </button>
           )}
 
-          {/* Dedicated Fetching Buttons for GitHub and Portfolio */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             {isCreative ? (
               <>
@@ -554,59 +539,43 @@ export default function Projects({ tab, onTabChange }) {
                   <button
                     onClick={loadMore}
                     disabled={wpLoading}
-                    className="liquid-glass inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
+                    className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/25 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
                   >
                     {wpLoading ? <Loader2 size={13} className="animate-spin text-white" /> : <Sparkles size={13} />}
-                    <span>{wpLoading ? 'Fetching more…' : 'Fetch more from WordPress API'}</span>
+                    <span>{wpLoading ? 'Loading more…' : 'Load More Case Studies'}</span>
                   </button>
                 )}
 
                 <button
-                  onClick={refreshPortfolio}
-                  disabled={wpLoading}
-                  className="liquid-glass inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-mono text-white/70 hover:text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
-                  title="Re-fetch all Portfolio projects from WordPress API"
-                >
-                  <RefreshCw size={13} className={wpLoading ? 'animate-spin text-white' : ''} />
-                  <span>{wpLoading ? 'Syncing Portfolio…' : 'Re-fetch Portfolio'}</span>
-                </button>
-
-                <button
                   onClick={() => {
                     if (onTabChange) onTabChange('dev');
-                    refreshGithub();
                   }}
-                  disabled={repoLoading}
-                  className="liquid-glass inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-mono text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
-                  title="Switch to IT persona & Fetch GitHub Repos"
+                  className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-xs font-mono text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
                 >
-                  <GitBranch size={13} className={repoLoading ? 'animate-spin text-white' : ''} />
-                  <span>{repoLoading ? 'Fetching GitHub…' : 'Fetch GitHub Repos'}</span>
+                  <GitBranch size={13} />
+                  <span>Explore Engineering &amp; Open-Source Projects &rarr;</span>
                 </button>
               </>
             ) : (
               <>
-                <button
-                  onClick={refreshGithub}
-                  disabled={repoLoading}
-                  className="liquid-glass inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50 shadow-sm"
-                  title="Fetch latest repositories from GitHub API"
+                <a
+                  href="https://github.com/vndangkhoa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/25 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all cursor-pointer shadow-sm"
                 >
-                  <RefreshCw size={13} className={repoLoading ? 'animate-spin text-white' : ''} />
-                  <span>{repoLoading ? 'Fetching repositories from GitHub…' : 'Fetch latest from GitHub API'}</span>
-                </button>
+                  <GitBranch size={13} />
+                  <span>View Full GitHub Profile (github.com/vndangkhoa)</span>
+                </a>
 
                 <button
                   onClick={() => {
                     if (onTabChange) onTabChange('creative');
-                    refreshPortfolio();
                   }}
-                  disabled={wpLoading}
-                  className="liquid-glass inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-xs font-mono text-white/60 hover:text-white hover:bg-white/10 transition-all cursor-pointer disabled:opacity-50"
-                  title="Switch to Creative persona & Fetch Portfolio Posts"
+                  className="liquid-glass inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/15 text-xs font-mono text-white/75 hover:text-white hover:bg-white/10 transition-all cursor-pointer"
                 >
-                  <Sparkles size={13} className={wpLoading ? 'animate-spin text-white' : ''} />
-                  <span>{wpLoading ? 'Fetching Portfolio…' : 'Fetch Portfolio'}</span>
+                  <Sparkles size={13} />
+                  <span>Explore Creative &amp; AI Case Studies &rarr;</span>
                 </button>
               </>
             )}

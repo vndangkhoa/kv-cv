@@ -3,24 +3,24 @@ export const IT_DATA = {
   summary: "Security-minded systems and solutions engineer with 9+ years in technology and 4+ years designing security controls into production systems from the ground up: cryptographic licensing (Ed25519), forensic anti-leak DRM (ola), 2FA/TOTP authentication, directory-traversal sandboxing (dunce), and supply-chain verification (GnuPG). Combines hands-on low-level systems engineering (Rust, Go) with enterprise digital asset governance across Southeast Asia (Procter & Gamble).",
   journey: [
     {
-      month: "PRESENT",
-      title: "Synology Package Hub & Ecosystem",
-      description: "Architected and deployed custom Synology Community Package Center server (pkg.khoavo.myds.me) using Flask & PostgreSQL. Built end-to-end SPK packaging toolchain with GPG cryptographic signing for 1-click DSM installations."
+      month: "2026",
+      title: "KV-TrimUI 18-App Handheld Ecosystem",
+      description: "Architected 18 native Rust (/dev/fb0 60 FPS) & hybrid apps across 6 handheld Linux/Android OS distributions with dual-arch static Musl toolchains and 1-Click Web Installer (trimui.vndns.net)."
     },
     {
-      month: "AUG '26",
+      month: "late '25",
       title: "Synology DSM Web Manager & AI MCP",
       description: "Built kv-synology (Next.js 15, React 19, Tailwind v4) — modern DSM web manager with QuickConnect resolver, services controller (SMB, NFS, SSH, WebDAV), DSM notifications, and 42 MCP tools for AI agent automation."
     },
     {
-      month: "AUG '26",
-      title: "Rust Systems & Desktop Tooling",
-      description: "Developed mouse-me — native Linux cursor manager written in Rust with Slint GUI & CLI supporting Hyprland, Omarchy, GTK, Qt, and X11."
+      month: "MID '25",
+      title: "VietC Linux IME & Rust Desktop Tooling",
+      description: "Engineered vietc (60★ native Rust Vietnamese input method engine with direct Wayland/uinput injection) and mouse-me universal cursor manager for Linux desktops."
     },
     {
-      month: "JUL '26",
-      title: "Self-Hosted Media Engine",
-      description: "Built kv-dl & kv-download — high-throughput video processing API in Rust (Axum) and Go with yt-dlp & ffmpeg, deployed on Synology Container Manager."
+      month: "Q2 '25",
+      title: "Self-Hosted Media & DRM Engine",
+      description: "Built ola forensic anti-leak DRM platform and kv-dl high-throughput video processing API in Rust (Axum) and Go with yt-dlp & ffmpeg on Synology Container Manager."
     },
     {
       month: "MAR '25",
