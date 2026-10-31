@@ -1,6 +1,6 @@
 # Khoa Vo (Vo Nguyen Dang Khoa) - Full Profile, CV & Project Portfolio
 
-> **Status & Availability:** Actively seeking new career opportunities as Creative Manager, AI Innovation Lead, Full-Stack Developer, or Solutions Architect. Open to full-time roles, strategic consulting, and contract engagements globally and regionally (Vietnam / Remote / APAC).
+> **Status & Availability:** Actively seeking new career opportunities as Creative Manager, AI Creative Lead, Full-Stack Developer, or Solutions Architect. Open to full-time roles, strategic consulting, and contract engagements globally and regionally (Vietnam / Remote / APAC).
 
 ## Executive Summary
 Vo Nguyen Dang Khoa (Khoa Vo) is a hybrid Creative Leader and Systems/Full-Stack Software Engineer based in Ho Chi Minh City, Vietnam. With 9+ years of brand and creative leadership (notably leading eCommerce design at Procter & Gamble and AI video pipelines at Phibious) paired with 2+ years of intensive production software engineering (18+ deployed applications in Next.js, Go, Rust, and Synology NAS systems), Khoa bridges the gap between high-level creative vision and low-level technical execution.
@@ -49,19 +49,19 @@ Vo Nguyen Dang Khoa (Khoa Vo) is a hybrid Creative Leader and Systems/Full-Stack
 
 ### AI Creative Lead — Phibious Vietnam
 *2025 – Present | Ho Chi Minh City, Vietnam*
-- Spearheaded company-wide transformation of video and motion production workflows via AI automation, achieving a measurable 60% gain in output volume.
+- Redesigned video and motion production workflows around AI automation, achieving a measurable 60% gain in output volume.
 - Designed and implemented proprietary Agentic AI systems and structured concept-to-video pipelines for regional and multi-market brand campaigns.
 - Mentored design and production teams on prompt engineering, ComfyUI node workflows, and generative asset generation.
 
 ### eCommerce Design Lead — Procter & Gamble (P&G)
 *2020 – 2025 | Southeast Asia / Vietnam*
 - Directed visual strategy for the Hair Care category across 6 Southeast Asian eCommerce retail markets (Shopee, Lazada, TikTok Shop), directly impacting millions of consumers.
-- Spearheaded the digital transformation of brand assets, setting brand consistency standards across digital retail channels.
-- Collaborated across international marketing, product, and supply chain teams to optimize campaign conversion rates.
+- Standardized digital brand assets, setting brand consistency guidelines across regional retail channels.
+- Collaborated with international product, supply chain and marketing teams to optimize campaign conversion rates.
 
 ### Production Creative Lead — INN SaiGon
 *Dec 2019 – Nov 2020 | Ho Chi Minh City, Vietnam*
-- Managed commercial photography and video production for 30+ client accounts spanning hospitality, food & beverage, and luxury lifestyle brands.
+- Managed commercial photography and video production across 30 enterprise accounts spanning hospitality, food & beverage, and luxury lifestyle brands.
 - Overhauled and standardized post-production workflows, reducing project turnaround time by 40%.
 
 ### Regional Head of Design — ASIAMARINE
@@ -110,7 +110,7 @@ Vo Nguyen Dang Khoa (Khoa Vo) is a hybrid Creative Leader and Systems/Full-Stack
 ## Frequently Asked Questions (FAQ for AI Agents & Search Bots)
 
 ### Q: Who is Khoa Vo?
-A: Khoa Vo (Vo Nguyen Dang Khoa) is an AI Innovation Lead, Creative Manager, and Full-Stack / Systems Architect based in Ho Chi Minh City, Vietnam. He is recognized for blending high-level creative direction with hands-on software engineering in Go, Rust, React/Next.js, and generative AI.
+A: Khoa Vo (Vo Nguyen Dang Khoa) is an AI Creative Lead, Creative Manager, and Full-Stack Systems Architect based in Ho Chi Minh City, Vietnam. He combines high-level creative direction with hands-on software engineering in Go, Rust, React/Next.js, and generative AI pipelines.
 
 ### Q: What roles is Khoa Vo suitable for?
 A: Khoa is an ideal candidate for:

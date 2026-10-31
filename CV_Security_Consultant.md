@@ -12,11 +12,11 @@
 
 | JD Requirement | Evidence from My Work |
 |---|---|
-| **Analyse non-normative flows to identify risks, threats & vulnerabilities** | Built forensic anti-leak DRM ([`ola`](https://git.khoavo.myds.me/vndangkhoa/ola)): threat-modeled screen-recording, window-blur & DevTools inspection as leak vectors; designed runtime countermeasures (auto-blank, dynamic watermarking). Designed kernel input isolation in [`vietc`](https://git.khoavo.myds.me/vndangkhoa/vietc) eliminating keystroke injection and race conditions. |
+| **Analyse non-normative flows to identify risks, threats & vulnerabilities** | Built forensic anti-leak DRM ([`ola`](https://git.khoavo.myds.me/vndangkhoa/ola)): evaluated screen capture, window blur and DevTools inspection as unauthorized exfiltration vectors; designed runtime countermeasures (automatic blanking, dynamic watermarking). Designed kernel input isolation in [`vietc`](https://git.khoavo.myds.me/vndangkhoa/vietc) eliminating keystroke injection and race conditions. |
 | **Design security controls & countermeasures** | Implemented **Argon2id** password hashing, **RFC 6238 TOTP 2FA**, **Ed25519-signed** offline licensing, filesystem sandboxing (`dunce::canonicalize` to eliminate directory traversal), per-IP rate limiting, and CORS origin allow-lists across [`kv-file-pro`](https://git.khoavo.myds.me/vndangkhoa/kv-file-pro) and [`kv-tube`](https://git.khoavo.myds.me/vndangkhoa/kv-tube). |
 | **Manage technical deviations & compensating controls** | Embedded target ([`kv-trimui`](https://git.khoavo.myds.me/vndangkhoa/kv-trimui)) constrained by legacy GLIBC ~2.28 and missing display servers → engineered compensating controls: 100% static Musl cross-compilation pipeline, direct memory-mapped `/dev/fb0` rendering, and process lifecycle containment (`SIGSTOP`/`SIGCONT`) so controls survive platform limitations. |
-| **Leverage & develop control reference patterns** | Auth/security layer abstracted and reused across `kv-file`, `kv-file-pro`, and `ola`; `cook.sh` single-source release pipeline enforcing identical, auditable build & publish controls across 13+ apps. Designed 42-tool Model Context Protocol (MCP) security boundary pattern in [`kv-synology`](https://git.khoavo.myds.me/vndangkhoa/kv-synology). |
-| **Proactively manage risk when designs change posture** | Supply-chain controls: dual-mirror releases (GitHub + Forgejo), automated GnuPG cryptographic package signing ([`spkrepo`](https://git.khoavo.myds.me/vndangkhoa/spkrepo)), exact byte-size checksums in `catalog.json`, smart-sync API dedup, auto-purge of deprecated assets. |
+| **Adopt & develop control reference patterns** | Auth/security layer abstracted and reused across `kv-file`, `kv-file-pro`, and `ola`; `cook.sh` single-source release pipeline enforcing identical, auditable build & publish controls across 13+ apps. Designed 42-tool Model Context Protocol (MCP) security boundary pattern in [`kv-synology`](https://git.khoavo.myds.me/vndangkhoa/kv-synology). |
+| **Proactively manage risk when designs change posture** | Supply chain controls: mirrored releases across GitHub and Forgejo, automated GnuPG cryptographic package signing ([`spkrepo`](https://git.khoavo.myds.me/vndangkhoa/spkrepo)), exact byte length checksums in `catalog.json`, synchronized API deduplication, and automated pruning of deprecated assets. |
 | **Influence & communicate with non-security stakeholders** | Bilingual (EN/VI) technical documentation, "Simple Mode" hiding OS complexity for non-technical users, competitive-matrix documentation translating technical security trade-offs into commercial business value. Directed Fortune 500 brand compliance at **P&G** and enterprise AI SOPs at **Phibious**. |
 | **Governance, audit & assurance** | Audit-log retention policy (90-day prune, SQLite WAL checkpoints every 30 min), session-token handling standards documented (e.g., `cookies.txt` handling rules), Btrfs RAID immutable snapshot replication, and automated CI/CD release assurance. |
 
@@ -41,7 +41,7 @@
 
 ### KV-TrimUI — 13-App Media Suite for Embedded Linux Handhelds *(Rust, Next.js 15, Musl)*
 *Open-source native software ecosystem (GPL-3.0) for TrimUI Smart Pro / Brick Pro (Allwinner A133) ([`kv-trimui`](https://git.khoavo.myds.me/vndangkhoa/kv-trimui)).*
-- **Supply-chain integrity**: dual-mirror release pipeline (GitHub + Forgejo) with exact byte-size verification in `catalog.json`, automated deprecated-asset purging, and retry-safe API publishing.
+- **Supply chain integrity**: mirrored release pipeline across GitHub and Forgejo with exact byte verification in `catalog.json`, automated pruning of deprecated assets, and retry-safe API publishing.
 - **Platform risk engineering**: legacy GLIBC (~2.28) identified as deployment risk → mandated `aarch64-unknown-linux-musl` static linking across all binaries as a compensating control.
 - **Process & resource isolation**: suspend/resume lifecycle control of the stock OS launcher (`SIGSTOP`/`SIGCONT`), static Musl daemons consuming <1–15 MB RAM, and direct `/dev/fb0` rendering with zero third-party telemetry.
 - **Zero-tracking architecture by design**: direct stream extraction, no accounts, no analytics — privacy and attack surface reduction treated as foundational requirements.
@@ -67,9 +67,15 @@
 - Documented **session-token threat handling** (`cookies.txt` = session tokens: never commit, never share, mount writable-only) — embedding secure-handling guidance directly into operational documentation.
 - Proxy support, auto-updating extraction engine, and cron-based cleanup controls.
 
-### Viet+ (VietC) — Vietnamese IME for Linux *(Rust — 60⭐ Community Project)*
+### Viet+ (VietC) — Vietnamese IME for Linux *(Rust, 60⭐ Community Project)*
 - **Rootless privilege design**: systemd user service with minimal uinput permission grant — least-privilege by default.
 - Precise hardware input-device filtering (`/dev/input/by-path/*-event-kbd`) to eliminate input-injection edge cases and keystroke sniffing from rogue USB dongles.
+
+### SlopMonster — Deterministic AI Output Linter & Cleanse Workflow *(Python, Regex, Multi-Model CLI)*
+*Zero-dependency editorial checker and multi-model review workflow ([`SlopMonster`](https://git.khoavo.myds.me/vndangkhoa/SlopMonster)).*
+- Engineered an automated audit engine scoring copy across 5 failure categories (AI vocabulary tell words, machine punctuation cadence, synthetic tricolon rhythms, and unverified proof claims).
+- Implemented strict POSIX exit codes enabling deterministic failure gates in automated CI/CD documentation checks.
+- Orchestrated cross-model cleanse pipelines with structured output boundaries (`<<<SLOPMONSTER-NOTES>>>`) across Codex and Claude CLI tools.
 
 ---
 
@@ -105,12 +111,12 @@
 - Governed regional digital asset integrity, security compliance, and brand protection across 6 Southeast Asian markets for P&G Hair Care portfolio (Head & Shoulders, Pantene, Rejoice).
 - Enforced corporate brand risk policies across 200+ campaign deliverables quarterly, ensuring compliance with regional data, consumer advertising, and digital platform standards.
 - Designed an enterprise modular design system with 500+ standardized components, enabling **3× faster asset adaptation** while eliminating unauthorized design deviations.
-- Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional marketing, engineering, and product stakeholders.
+- Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional technical teams and commercial brand stakeholders.
 
 ### **Earlier Career Experience**
-- **Production Creative Lead** — INN SaiGon *(Dec 2019 – Nov 2020)*: Directed production operations for 30+ enterprise client accounts, implementing strict QA review frameworks and reducing post-production error rates by 40%.
+- **Production Creative Lead** — INN SaiGon *(Dec 2019 – Nov 2020)*: Directed commercial production operations across 30 enterprise accounts, implementing strict QA review frameworks and reducing post-production errors by 40%.
 - **Regional Head of Design** — ASIAMARINE *(2018 – 2019)*: Governed digital collateral, web infrastructure, and brand compliance for a premier luxury marine brokerage across Southeast Asia.
-- **Senior Digital Designer** — EMG (Element Management Group) *(2017 – 2018)*: Produced digital and print campaigns for multinational luxury, automotive, and hospitality brands.
+- **Senior Digital Designer** — EMG (Element Management Group) *(2017 – 2018)*: Produced digital and print campaigns across commercial automotive and luxury hospitality sectors.
 
 ---
 
@@ -118,7 +124,7 @@
 
 - **Bachelor of Multimedia Design** — **RMIT University Vietnam** *(2012 – 2016)*  
   *Accredited Australian University curriculum delivered 100% in English.*  
-  *Honors:* **Best Artistic Graduate Showcase (2016)**.
+  *Honors:* **Best Artistic Graduate Exhibition (2016)**.
 - **Security Certifications & Professional Commitments:**  
   * Currently preparing for and committed to obtaining **CISSP (Certified Information Systems Security Professional)** and **CCSP (Certified Cloud Security Professional)**.  
   * Practical grounding in Threat Modeling (STRIDE, DREAD), OWASP Top 10, NIST Cybersecurity Framework (CSF), and ISO 27001 / APRA CPS 234 control principles.
@@ -132,7 +138,7 @@
 |---|---|
 | **Decision Quality** | Chose offline Ed25519 asymmetric licensing over phone-home SaaS DRM after weighing client-trust risk, air-gapped usability, and sovereignty vs. piracy risk. |
 | **Strategic Mindset** | Positioned `ola` as an on-premises "zero-leak" alternative to Frame.io — transforming security and data residency into a commercial business differentiator rather than a cost center. |
-| **Situational Adaptability** | Seamlessly context-switch between low-level Rust kernel-adjacent code (`/dev/uinput`), containerized distributed microservices, regional Fortune 500 governance, and bilingual stakeholder advisory. |
+| **Situational Adaptability** | Context-switch smoothly between low-level Rust kernel-adjacent code (`/dev/uinput`), containerized distributed microservices, regional Fortune 500 governance, and bilingual stakeholder advisory. |
 | **Communication** | Authored bilingual (EN/VI) READMEs, architecture topology models, and risk decision documents across every major project; experienced in presenting contentious trade-offs to senior leadership. |
 | **Accountability** | Public commit history, auditable issue tracking, open-source licensing compliance (GPL-3.0 / MIT), and self-imposed 90-day audit retention policies. |
 

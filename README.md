@@ -35,7 +35,7 @@ Most developer portfolios fall into one of two traps: sterile white resume templ
 
 **kv-cv** bridges both worlds with a single click:
 
-| Dimension | 🎨 **Creative & AI Innovation** | ⚡ **Full-Stack & DevOps Architect** |
+| Dimension | 🎨 **Creative & Generative AI** | ⚡ **Full-Stack & DevOps Architect** |
 | :--- | :--- | :--- |
 | **Primary Audience** | Brand Directors, Creative Agencies, Product Leaders | CTOs, VP of Engineering, DevOps Teams |
 | **Visual Aesthetic** | Luxury editorial bento, glassmorphic blur, fluid motion | Cyberpunk retro CRT terminal, phosphor-green (`#00FF94`) |

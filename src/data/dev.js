@@ -91,6 +91,12 @@ export const IT_DATA = {
       github: "https://git.khoavo.myds.me/vndangkhoa/vietc"
     },
     {
+      name: "SlopMonster",
+      description: "AI Output Linter & Multi-Model Cleanse Workflow — Zero-dependency Python checker and agent skill scoring writing across 5 failure categories (AI vocabulary, machine punctuation cadence, synthetic rhythms, and unverified claims).",
+      tech: ["Python", "Regex", "Agent Skills", "Codex / Claude CLI", "CI/CD Gates"],
+      github: "https://git.khoavo.myds.me/vndangkhoa/SlopMonster"
+    },
+    {
       name: "kv-file",
       description: "High-performance self-hosted file manager with macOS Miller Columns, Windows Explorer view, and real-time synchronization.",
       tech: ["TypeScript", "React", "TailwindCSS", "File Station API", "Docker"],
@@ -169,7 +175,7 @@ export const IT_DATA = {
         "Governed regional digital asset integrity, security compliance, and brand protection across 6 Southeast Asian markets for P&G Hair Care portfolio (Head & Shoulders, Pantene, Rejoice)",
         "Enforced corporate brand risk policies across 200+ campaign deliverables quarterly, ensuring compliance with regional data, consumer advertising, and digital platform standards",
         "Designed an enterprise modular design system with standardized master components, enabling 3× faster asset adaptation while eliminating unauthorized design deviations",
-        "Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional marketing, engineering, and product stakeholders"
+        "Established automated quality assurance (QA) frameworks that reduced post-launch compliance deviations by 40%, aligning cross-functional technical teams and commercial stakeholders"
       ]
     },
     {
@@ -178,7 +184,7 @@ export const IT_DATA = {
       period: "2024 - Present",
       highlights: [
         "Built memory-safe Rust Linux IME (vietc) with direct kernel /dev/uinput and /dev/input/by-path isolation, eliminating keystroke sniffing and duplicate injection (<10MB RAM rootless daemon)",
-        "Engineered KV-TrimUI 18-app suite with dual-arch static Musl cross-compilation across 6 handheld OS distributions, overcoming legacy GLIBC vulnerabilities as a robust platform compensating control",
+        "Engineered KV-TrimUI 18-app suite with dual-arch static Musl cross-compilation across 6 handheld OS distributions, overcoming legacy GLIBC vulnerabilities as a platform compensating control",
         "Integrated Cloudflare Zero-Trust Tunnels (cloudflared) and token-based HTTP authentication in kv-server, eliminating firewall port forwarding"
       ]
     }

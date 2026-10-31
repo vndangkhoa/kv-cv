@@ -1,8 +1,8 @@
 # Khoa Vo (Vo Nguyen Dang Khoa) - CV & Portfolio
 
-> Creative Manager, AI Innovation Lead, and Full-Stack Software Engineer based in Ho Chi Minh City, Vietnam. Open to work and seeking new job opportunities.
+> Creative Manager, AI Creative Lead, and Full-Stack Software Engineer based in Ho Chi Minh City, Vietnam. Open to work and seeking new job opportunities.
 
-For a comprehensive profile including deep project case studies, system architecture, and full work history, see [llms-full.txt](https://khoavo.myds.me/llms-full.txt).
+For a detailed profile including deep project case studies, system architecture, and full work history, see [llms-full.txt](https://khoavo.myds.me/llms-full.txt).
 
 ## Core Identity & Contact
 - **Full Name:** Vo Nguyen Dang Khoa (Khoa Vo)
@@ -15,7 +15,7 @@ For a comprehensive profile including deep project case studies, system architec
 - **Synology Package Hub:** https://pkg.khoavo.myds.me/
 
 ## Quick Profile Overview
-- **Creative Leadership (9+ years):** AI Creative Lead @ Phibious (automated AI video pipelines, 60% boost in volume), eCommerce Design Lead @ Procter & Gamble (P&G Hair Care category across SEA).
+- **Creative Leadership (9+ years):** AI Creative Lead @ Phibious (automated AI video pipelines, 60% production gain), eCommerce Design Lead @ Procter & Gamble (P&G Hair Care category across SEA).
 - **Engineering & Systems (2+ years intensive):** 18+ deployed applications. Creator of KV Synology Community Package Center with GPG signing; builder of `kv-synology` (Next.js 15, React 19, 42 AI MCP tools); developer of `mouse-me` (Rust with Slint GUI).
 - **Key Skills:** Generative AI (ComfyUI, Stable Diffusion, FLUX, LoRA), TypeScript, React, Next.js, Go, Rust, Python, Docker, Nginx, Linux, Model Context Protocol (MCP).
 

@@ -20,6 +20,7 @@ async function fetchRepos() {
   const data = await res.json();
 
   const FALLBACK_DESCRIPTIONS = {
+    'SlopMonster': "AI Output Linter & Multi-Model Cleanse Workflow — Zero-dependency Python checker and agent skill scoring writing across 5 failure categories.",
     'kv-cv': "Portfolio v2 — React + Vite scrolly video (scrub human_head_turn.mp4), dual Creative/IT personas, glass-morphism, CRT terminal, and one-tap PDF CV export.",
     'kv-netflix': "StreamFlow — Kotlin Multiplatform Android TV + Web app with trailers, custom playlists, PWA, and offline download queue.",
     'kv-tiktok': "TikTok/Douyin browser & downloader — watermark-free HD, batch queue, preview, Go + yt-dlp backend.",
