@@ -138,11 +138,12 @@ Add the following CSS rules to your global stylesheet (`index.css` or `globals.c
 }
 
 /* Real-Time Progressive DOM & Text Spawning States */
+/* IMPORTANT for Chrome/Blink: Do NOT put clip-path: inset(0% 100% 0% 0%) on "pending"
+   elements before they start spawning, because Chrome's IntersectionObserver clips the
+   observed rect by clip-path (yielding 0px width / 0 intersectionRatio). */
 [data-scroll-assembly="pending"] {
   opacity: 0 !important;
   transform: none !important;
-  clip-path: inset(0% 100% 0% 0%);
-  -webkit-clip-path: inset(0% 100% 0% 0%);
   pointer-events: none !important;
   transition: none !important;
 }
@@ -230,8 +231,8 @@ function applyProgressiveDomSpawn(el, phase, mode, marqueeRect, tRect) {
       el.setAttribute('data-scroll-assembly', 'pending');
     }
     el.style.opacity = '0';
-    el.style.clipPath = 'inset(0% 100% 0% 0%)';
-    el.style.webkitClipPath = 'inset(0% 100% 0% 0%)';
+    el.style.clipPath = 'none';
+    el.style.webkitClipPath = 'none';
     el.style.pointerEvents = 'none';
     return;
   }

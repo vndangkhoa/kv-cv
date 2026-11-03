@@ -39,8 +39,8 @@ function applyProgressiveDomSpawn(el, phase, mode, marqueeRect, tRect) {
       el.setAttribute('data-scroll-assembly', 'pending');
     }
     el.style.opacity = '0';
-    el.style.clipPath = 'inset(0% 100% 0% 0%)';
-    el.style.webkitClipPath = 'inset(0% 100% 0% 0%)';
+    el.style.clipPath = 'none';
+    el.style.webkitClipPath = 'none';
     el.style.pointerEvents = 'none';
     return;
   }
@@ -1283,10 +1283,18 @@ export function ScrollSectionCursorStage() {
         const remainingSquads = [];
 
         currentSquads.forEach((squad, squadIdx) => {
-          const elapsed = now - squad.startTime;
+          const squadElapsed = now - squad.startTime;
           const isLatestSquad = squadIdx === currentSquads.length - 1;
+          const vh = window.innerHeight || 800;
 
-          if (elapsed >= SQUAD_END) {
+          // Check if every burst in this section squad has entered the viewport and finished its animation
+          const allBurstsFinished = squad.agentBursts.every(
+            (b) =>
+              b.startedAt !== null &&
+              now - b.startedAt + b.timeOffset >= SQUAD_END
+          );
+
+          if (allBurstsFinished) {
             squad.agentBursts.forEach((b) => {
               if (b.targetEl && !b.isPolishPass) {
                 b.revealed = true;
@@ -1312,10 +1320,83 @@ export function ScrollSectionCursorStage() {
           remainingSquads.push(squad);
 
           // Compute live exact bounding rects for each subordinate agent in the section squad
-          const computedAgents = squad.agentBursts.map((burst) => {
+          const computedAgents = [];
+          squad.agentBursts.forEach((burst) => {
+            if (
+              burst.targetEl &&
+              !burst.targetEl.isConnected &&
+              squad.sectionEl &&
+              burst.targetKey
+            ) {
+              const freshEl = squad.sectionEl.querySelector(
+                `[data-scroll-target="${burst.targetKey}"]`
+              );
+              if (freshEl) burst.targetEl = freshEl;
+            }
+            if (
+              burst.secondaryTargetEl &&
+              !burst.secondaryTargetEl.isConnected &&
+              squad.sectionEl &&
+              burst.secondaryTargetKey
+            ) {
+              const freshSec = squad.sectionEl.querySelector(
+                `[data-scroll-target="${burst.secondaryTargetKey}"]`
+              );
+              if (freshSec) burst.secondaryTargetEl = freshSec;
+            }
+
             const liveRect = burst.targetEl
               ? burst.targetEl.getBoundingClientRect()
               : burst.initialRect;
+
+            // Per-Burst Viewport Gate:
+            // If this target element is still below the visible viewport (`liveRect.top > vh * 0.85`),
+            // hold its cursor burst until the user scrolls it into view so animations never play off-screen!
+            if (burst.startedAt === null) {
+              if (liveRect.bottom < 0) {
+                // Scrolled completely past above viewport -> snap immediately
+                burst.startedAt = now - SQUAD_END;
+                burst.timeOffset = 0;
+                if (!burst.isPolishPass && burst.targetEl) {
+                  burst.revealed = true;
+                  applyProgressiveDomSpawn(
+                    burst.targetEl,
+                    'snapped',
+                    burst.creationMode,
+                    null,
+                    null
+                  );
+                }
+                if (burst.isPolishPass) {
+                  burst.targetEl?.setAttribute('data-aesthetic-polish', 'polished');
+                  burst.secondaryTargetEl?.setAttribute(
+                    'data-aesthetic-polish',
+                    'polished'
+                  );
+                }
+                return;
+              }
+
+              if (liveRect.top <= vh * 0.85) {
+                burst.startedAt = now;
+                burst.timeOffset = 0;
+                squad.lastActiveTime = now;
+              } else {
+                // Still below the viewport fold — keep element hidden (`pending`) and wait for user scroll
+                if (!burst.isPolishPass && burst.targetEl) {
+                  applyProgressiveDomSpawn(
+                    burst.targetEl,
+                    'pending',
+                    burst.creationMode,
+                    null,
+                    null
+                  );
+                }
+                return;
+              }
+            }
+
+            const burstElapsed = now - burst.startedAt + burst.timeOffset;
 
             // EXACT target dimensions — never artificially clamp height to 420px!
             const width = Math.max(16, liveRect.width);
@@ -1354,7 +1435,7 @@ export function ScrollSectionCursorStage() {
               secondaryRect,
               spawnPoint,
               exitPoint,
-              elapsed,
+              elapsed: burstElapsed,
               scatterTime: WORKER_SCATTER,
               endTime: WORKER_END,
               onSnapTarget: () => {
@@ -1392,14 +1473,17 @@ export function ScrollSectionCursorStage() {
               );
             }
 
-            return geom;
+            computedAgents.push(geom);
           });
 
           // Compute Tier 1 Master Orchestrator (`KV-Director`) low-opacity inspection & fix patrol
           // Only display `KV-Director` on the newest active squad and anchor it to its true section position
           // (no `Math.max(76, ...)` clamping that caused directors to pile up at the top of the screen!)
           let masterState = null;
-          if (isLatestSquad) {
+          const hasStartedBurst = squad.agentBursts.some(
+            (b) => b.startedAt !== null
+          );
+          if (isLatestSquad && hasStartedBurst) {
             const headerBurst =
               squad.agentBursts.find(
                 (b) => b.creationMode === CREATION_MODES.TEXT_BASELINE_SWEEP
@@ -1445,6 +1529,7 @@ export function ScrollSectionCursorStage() {
             let rawMasterText = squad.commandLabel;
             let masterStatus = 'COOP';
             let typeRatio = 1;
+            const elapsed = now - (squad.lastActiveTime || squad.startTime);
 
             if (elapsed < 420) {
               const flyT = clamp01(elapsed / 420);
@@ -1530,6 +1615,69 @@ export function ScrollSectionCursorStage() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
+    const skipSectionImmediately = (sectionCfg, sectionEl) => {
+      if (triggeredSectionsRef.current.has(sectionCfg.sectionId)) return;
+      triggeredSectionsRef.current.add(sectionCfg.sectionId);
+      const pairs = resolveSectionTargets(sectionEl, sectionCfg);
+      pairs.forEach(({ primary: tEl, secondary: sEl }) => {
+        if (tEl && tEl.getAttribute('data-scroll-assembly') !== 'snapped') {
+          applyProgressiveDomSpawn(
+            tEl,
+            'snapped',
+            CREATION_MODES.FRAME_OUTLINE,
+            null,
+            null
+          );
+        }
+        tEl?.setAttribute('data-aesthetic-polish', 'polished');
+        sEl?.setAttribute('data-aesthetic-polish', 'polished');
+      });
+    };
+
+    const triggerSectionSquad = (sectionCfg, sectionEl) => {
+      if (triggeredSectionsRef.current.has(sectionCfg.sectionId)) return;
+      triggeredSectionsRef.current.add(sectionCfg.sectionId);
+      const now = performance.now();
+      const pairs = resolveSectionTargets(sectionEl, sectionCfg);
+
+      const agentBursts = sectionCfg.agents.map((ag, idx) => {
+        const targetEl = pairs[idx]?.primary || sectionEl;
+        const secondaryTargetEl = pairs[idx]?.secondary || null;
+        const r = targetEl.getBoundingClientRect();
+        return {
+          ...ag,
+          id: `${ag.id}-${Date.now()}-${idx}`,
+          targetEl,
+          secondaryTargetEl,
+          startedAt: null,
+          timeOffset: 0,
+          initialRect: {
+            left: r.left,
+            top: r.top,
+            width: Math.max(16, r.width),
+            height: Math.max(16, r.height),
+          },
+          revealed: Boolean(ag.isPolishPass),
+        };
+      });
+
+      activeSquadsRef.current = [
+        ...activeSquadsRef.current,
+        {
+          id: `squad-${sectionCfg.sectionId}-${Date.now()}`,
+          sectionEl,
+          startTime: now,
+          lastActiveTime: now,
+          commandLabel: sectionCfg.commandLabel,
+          auditLabel: sectionCfg.auditLabel,
+          commitLabel: sectionCfg.commitLabel,
+          director: sectionCfg.director,
+          agentBursts,
+        },
+      ];
+      startSquadLoop();
+    };
+
     SECTION_SCROLL_CURSORS.forEach((sectionCfg) => {
       const sectionEl = document.getElementById(sectionCfg.sectionId);
       if (!sectionEl) return;
@@ -1569,73 +1717,50 @@ export function ScrollSectionCursorStage() {
 
             // If user jumped past this section (already scrolled above viewport), reveal immediately
             if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
-              triggeredSectionsRef.current.add(sectionCfg.sectionId);
-              const pairs = resolveSectionTargets(sectionEl, sectionCfg);
-              pairs.forEach(({ primary: tEl, secondary: sEl }) => {
-                if (tEl && tEl.getAttribute('data-scroll-assembly') !== 'snapped') {
-                  applyProgressiveDomSpawn(
-                    tEl,
-                    'snapped',
-                    CREATION_MODES.FRAME_OUTLINE,
-                    null,
-                    null
-                  );
-                }
-                tEl?.setAttribute('data-aesthetic-polish', 'polished');
-                sEl?.setAttribute('data-aesthetic-polish', 'polished');
-              });
+              skipSectionImmediately(sectionCfg, sectionEl);
               return;
             }
 
             if (entry.isIntersecting) {
-              triggeredSectionsRef.current.add(sectionCfg.sectionId);
-              const now = performance.now();
-              const pairs = resolveSectionTargets(sectionEl, sectionCfg);
-
-              const agentBursts = sectionCfg.agents.map((ag, idx) => {
-                const targetEl = pairs[idx]?.primary || sectionEl;
-                const secondaryTargetEl = pairs[idx]?.secondary || null;
-                const r = targetEl.getBoundingClientRect();
-                return {
-                  ...ag,
-                  id: `${ag.id}-${Date.now()}-${idx}`,
-                  targetEl,
-                  secondaryTargetEl,
-                  initialRect: {
-                    left: r.left,
-                    top: r.top,
-                    width: Math.max(16, r.width),
-                    height: Math.max(16, r.height),
-                  },
-                  revealed: Boolean(ag.isPolishPass),
-                };
-              });
-
-              activeSquadsRef.current = [
-                ...activeSquadsRef.current,
-                {
-                  id: `squad-${sectionCfg.sectionId}-${Date.now()}`,
-                  startTime: now,
-                  commandLabel: sectionCfg.commandLabel,
-                  auditLabel: sectionCfg.auditLabel,
-                  commitLabel: sectionCfg.commitLabel,
-                  director: sectionCfg.director,
-                  agentBursts,
-                },
-              ];
-              startSquadLoop();
+              triggerSectionSquad(sectionCfg, sectionEl);
             }
           });
         },
-        { threshold: 0.08, rootMargin: '0px 0px -8% 0px' }
+        { threshold: 0.01, rootMargin: '0px 0px -8% 0px' }
       );
 
-      io.observe(resolvedPairs[0]?.primary || sectionEl);
+      // IMPORTANT for Chrome/Blink: Always observe the unclipped `<section>` element (`sectionEl`),
+      // NEVER an inner target that has `opacity: 0` or `clip-path`, otherwise Chrome computes a 0x0 intersection rect!
+      io.observe(sectionEl);
       observers.push(io);
     });
 
+    // Passive scroll & resize check for Chrome/Blink to guarantee every section triggers
+    // the instant its top crosses into the viewport (`rect.top < vh * 0.88`).
+    const checkVisibleSections = () => {
+      const vh = window.innerHeight || 800;
+      SECTION_SCROLL_CURSORS.forEach((sectionCfg) => {
+        if (triggeredSectionsRef.current.has(sectionCfg.sectionId)) return;
+        const sectionEl = document.getElementById(sectionCfg.sectionId);
+        if (!sectionEl) return;
+        const rect = sectionEl.getBoundingClientRect();
+        if (rect.bottom < 0) {
+          skipSectionImmediately(sectionCfg, sectionEl);
+        } else if (rect.top < vh * 0.88 && rect.bottom > 60) {
+          triggerSectionSquad(sectionCfg, sectionEl);
+        }
+      });
+    };
+
+    window.addEventListener('scroll', checkVisibleSections, { passive: true });
+    window.addEventListener('resize', checkVisibleSections, { passive: true });
+    // Run an initial check on mount in case page was reloaded while scrolled partway down
+    checkVisibleSections();
+
     return () => {
       observers.forEach((io) => io.disconnect());
+      window.removeEventListener('scroll', checkVisibleSections);
+      window.removeEventListener('resize', checkVisibleSections);
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
         rafRef.current = null;

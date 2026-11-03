@@ -961,8 +961,6 @@ a.btn-press {
 [data-scroll-assembly="pending"] {
   opacity: 0 !important;
   transform: none !important;
-  clip-path: inset(0% 100% 0% 0%);
-  -webkit-clip-path: inset(0% 100% 0% 0%);
   pointer-events: none !important;
   transition: none !important;
 }

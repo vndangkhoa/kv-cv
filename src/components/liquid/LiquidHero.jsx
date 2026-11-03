@@ -76,10 +76,7 @@ export default function LiquidHero({
       };
     }
 
-    const isSnapped = Boolean(snappedMap[targetKey] || assemblyDone);
-    return {
-      dataScrollAssembly: isSnapped ? 'snapped' : 'pending',
-    };
+    return {};
   };
 
   // Listen for keyboard '/' shortcut to launch terminal
@@ -177,7 +174,6 @@ export default function LiquidHero({
           {/* 1. Badge / Pill (Assigned to Tier 3 `Status-Node` #A855F7 — CENTER_SPLIT_PILL) */}
           <motion.div
             data-cursor-target="hero-badge"
-            data-scroll-assembly={badgeMotion.dataScrollAssembly}
             data-aesthetic-polish={getPolishState('hero-badge')}
             initial={badgeMotion.initial}
             animate={badgeMotion.animate}
@@ -191,7 +187,6 @@ export default function LiquidHero({
           {/* 2. Heading in Instrument Serif (Assigned to Tier 3 `Type-Bot` #00E599 — TEXT_BASELINE_SWEEP) */}
           <motion.h1
             data-cursor-target="hero-title"
-            data-scroll-assembly={titleMotion.dataScrollAssembly}
             data-aesthetic-polish={getPolishState('hero-title')}
             initial={titleMotion.initial}
             animate={titleMotion.animate}
@@ -208,7 +203,6 @@ export default function LiquidHero({
           {/* 3. Direct Recruiter Contact Capsule (Assigned to Tier 3 `UI-Craft` #FF4444 — RIGHT_TO_LEFT_DOCK) */}
           <motion.div
             data-cursor-target="hero-contact"
-            data-scroll-assembly={contactMotion.dataScrollAssembly}
             data-aesthetic-polish={getPolishState('hero-contact')}
             initial={contactMotion.initial}
             animate={contactMotion.animate}
@@ -262,7 +256,6 @@ export default function LiquidHero({
           {/* 4. Subtitle with frosted dark backdrop (Assigned to Tier 3 `Comfy-Node` #FFB800 — BOTTOM_UP_SHADER) */}
           <motion.div
             data-cursor-target="hero-subtitle"
-            data-scroll-assembly={subtitleMotion.dataScrollAssembly}
             data-aesthetic-polish={getPolishState('hero-subtitle')}
             initial={subtitleMotion.initial}
             animate={subtitleMotion.animate}
@@ -277,7 +270,6 @@ export default function LiquidHero({
           {/* 5. Action Buttons (Assigned to Tier 3 `Sys-Arch` #06B6D4 — MULTI_POINT_STAMP Waypoints 1-3) */}
           <motion.div
             data-cursor-target="hero-cta"
-            data-scroll-assembly={ctaMotion.dataScrollAssembly}
             data-aesthetic-polish={getPolishState('hero-cta')}
             initial={ctaMotion.initial}
             animate={ctaMotion.animate}
@@ -317,7 +309,6 @@ export default function LiquidHero({
       {/* 6. Social Icons Footer (Assigned to Tier 3 `Sys-Arch` #06B6D4 — MULTI_POINT_STAMP Waypoint 4) */}
       <motion.div
         data-cursor-target="hero-social"
-        data-scroll-assembly={socialMotion.dataScrollAssembly}
         data-aesthetic-polish={getPolishState('hero-social')}
         initial={socialMotion.initial}
         animate={socialMotion.animate}
