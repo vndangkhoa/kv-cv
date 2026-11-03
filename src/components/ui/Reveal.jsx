@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-export default function Reveal({ children, delay = 0, y = 40, className = '', as = 'div' }) {
+export default function Reveal({ children, delay = 0, y = 40, className = '', as = 'div', ...rest }) {
   const Tag = motion[as];
   return (
     <Tag
@@ -9,6 +9,7 @@ export default function Reveal({ children, delay = 0, y = 40, className = '', as
       viewport={{ once: true, margin: '-80px' }}
       transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
+      {...rest}
     >
       {children}
     </Tag>

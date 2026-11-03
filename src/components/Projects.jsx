@@ -10,6 +10,7 @@ import Reveal from './ui/Reveal';
 import StickyProjectsGallery from './StickyProjectsGallery';
 import { usePortfolioPosts, transformToProject } from '../hooks/usePortfolioPosts';
 import { useForgejoRepos } from '../hooks/useForgejoRepos';
+import { DYNAMIC_COPY } from '../data/dynamicCopy';
 
 const HIGHLIGHT_REPOS = ['kv-synology', 'vietc', 'kv-file'];
 
@@ -44,12 +45,7 @@ function CreativeMotionCard({ project, index }) {
   };
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
+    <div
       className="prompt-card-hover group flex flex-col cursor-pointer"
     >
       <a
@@ -129,7 +125,7 @@ function CreativeMotionCard({ project, index }) {
           </p>
         </div>
       </a>
-    </motion.div>
+    </div>
   );
 }
 
@@ -148,12 +144,7 @@ function DevMotionCard({ repo, index }) {
   };
 
   return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.35, delay: (index % 4) * 0.05 }}
+    <div
       className="prompt-card-hover group flex flex-col h-full cursor-pointer"
     >
       <a
@@ -219,7 +210,7 @@ function DevMotionCard({ repo, index }) {
           </div>
         </div>
       </a>
-    </motion.div>
+    </div>
   );
 }
 
@@ -332,42 +323,40 @@ export default function Projects({ tab, onTabChange }) {
 
   // Sliced items
   const visibleList = expanded ? filteredList : filteredList.slice(0, INITIAL_SHOW_COUNT);
+  const workCopy = isCreative ? DYNAMIC_COPY.work.creative : DYNAMIC_COPY.work.dev;
 
   return (
     <section id="work" className="relative scroll-mt-24 sm:scroll-mt-32 py-16 sm:py-28 md:py-36 bg-black text-white">
       <div className="max-w-6xl mx-auto px-3 sm:px-6 md:px-8">
-        <Reveal>
-          <div className="mb-3 sm:mb-4">
-            <span className="text-white/50 text-[10px] sm:text-xs md:text-sm tracking-widest uppercase font-mono">
-              Selected Works & Deployments
-            </span>
-          </div>
-
-          <div className="flex flex-wrap items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-14">
-            <div>
-              <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white font-serif drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                {isCreative ? (
-                  <>
-                    Creative <em className="italic text-white/70">Case Studies</em>
-                  </>
-                ) : (
-                  <>
-                    Code, <em className="italic text-white/70">Shipped</em>
-                  </>
-                )}
-              </h2>
+        <div className="flex flex-wrap items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-14">
+          {/* 1. Section Header (`Type-Bot` #00E599 — TEXT_BASELINE_SWEEP) */}
+          <div data-scroll-target="work-header" className="w-fit">
+            <div className="mb-3 sm:mb-4">
+              <span className="text-white/50 text-[10px] sm:text-xs md:text-sm tracking-widest uppercase font-mono">
+                {DYNAMIC_COPY.work.eyebrow}
+              </span>
             </div>
 
-            <p className="max-w-md text-white/80 text-xs sm:text-sm leading-relaxed font-normal">
-              {isCreative
-                ? 'Selected brand systems, AI video pipelines, and omnichannel campaigns across Southeast Asia.'
-                : 'Production platforms & open-source repositories — Rust embedded engines, Go streaming backends, and Next.js 15 cloud apps.'}
-            </p>
+            <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tight text-white font-serif drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+              {workCopy.titleLead}{' '}
+              <em className="italic text-white/70">{workCopy.titleAccent}</em>
+            </h2>
           </div>
-        </Reveal>
 
-        {/* Liquid-Glass Filter Capsule Bar & Prominent View Mode Switcher */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 mb-6 sm:mb-8 pb-3 sm:pb-4 border-b border-white/10">
+          {/* 2. Right-Side Subtitle (`Comfy-Node` #FFB800 — BOTTOM_UP_SHADER) */}
+          <p
+            data-scroll-target="work-subtitle"
+            className="max-w-md text-white/80 text-xs sm:text-sm leading-relaxed font-normal"
+          >
+            {workCopy.subtitle}
+          </p>
+        </div>
+
+        {/* 3. Liquid-Glass Filter Capsule Bar & Prominent View Mode Switcher (`UI-Craft` #FF4444 — RIGHT_TO_LEFT_DOCK) */}
+        <div
+          data-scroll-target="work-toolbar"
+          className="flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 mb-6 sm:gap-4 sm:mb-8 pb-3 sm:pb-4 border-b border-white/10"
+        >
           {/* Scrollable Filter Capsules */}
           <div className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto custom-scrollbar py-1">
             {filters.map((filter) => {
@@ -390,7 +379,7 @@ export default function Projects({ tab, onTabChange }) {
             })}
           </div>
 
-          {/* Action Toolbar: Prominent View Mode Switcher + Sync Button */}
+          {/* Action Toolbar: Prominent View Mode Switcher */}
           <div className="flex items-center justify-between md:justify-end gap-2 sm:gap-3 shrink-0">
             {/* View Mode Toggle Switch (Grid | Slide Deck | List) */}
             <div className="flex items-center gap-1 liquid-glass border border-white/20 rounded-full p-1 bg-black/60 shadow-xl backdrop-blur-xl">
@@ -434,11 +423,12 @@ export default function Projects({ tab, onTabChange }) {
           </div>
         </div>
 
-        {/* Showcase Grid / List / Stack Content */}
-        <div
-          key={`${tab}-${selectedFilter}-${viewMode}`}
-          className="w-full transition-opacity duration-300"
-        >
+        {/* 4. Showcase Grid / List / Stack Content (`Arch-Frame` #3B82F6 + `Aesthetic-UI` #EC4899) */}
+        <div data-scroll-target="work-grid" className="w-full">
+          <div
+            key={`${tab}-${selectedFilter}-${viewMode}`}
+            className="w-full transition-opacity duration-300"
+          >
             {isCreative ? (
               wpLoading && creativeProjects.length === 0 ? (
                 <div className="flex items-center justify-center py-20 text-white/50 font-mono text-sm">
@@ -510,9 +500,13 @@ export default function Projects({ tab, onTabChange }) {
               </div>
             )}
           </div>
+        </div>
 
-        {/* Bottom Actions: Expand/Collapse & Clean Cross-Track Navigation */}
-        <div className="mt-12 flex flex-col items-center justify-center gap-4">
+        {/* 5. Bottom Actions: Expand/Collapse & Clean Cross-Track Navigation (`Sys-Arch` #06B6D4 — MULTI_POINT_STAMP) */}
+        <div
+          data-scroll-target="work-footer"
+          className="mt-12 flex flex-col items-center justify-center gap-4 w-fit mx-auto"
+        >
           {filteredList.length > INITIAL_SHOW_COUNT && (
             <button
               onClick={() => setExpanded(!expanded)}

@@ -74,8 +74,9 @@ docker compose up -d
 
 | Tag | Target Release | Status |
 | :--- | :--- | :--- |
-| `latest` | Points to the latest stable release (`2.1.1`) | Active |
-| `2.1.1` | v2.1.1 (V2 Swiss Grid PDF, KV-TrimUI ecosystem, clean branding) | Current |
+| `latest` | Points to the latest stable release (`2.1.2`) | Active |
+| `2.1.2` | v2.1.2 (Cooperative Multi-Cursor Canvas Assembly & Dynamic Per-Reload AI Copy) | Current |
+| `2.1.1` | v2.1.1 (V2 Swiss Grid PDF, KV-TrimUI ecosystem, clean branding) | Stable |
 | `2.1.0` | v2.1.0 (Direct multi-page PDF generation & print isolation) | Stable |
 | `2.0.9` | v2.0.9 (Dark theme variables & card contrast enhancements) | Stable |
 | `2.0.8` | v2.0.8 (Self-hosted local fonts for 0ms latency) | Stable |

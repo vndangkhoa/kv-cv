@@ -8,6 +8,7 @@ import Projects from '../Projects';
 import Experience from '../Experience';
 import Contact from '../Contact';
 import Marquee from '../ui/Marquee';
+import { ScrollSectionCursorStage } from '../effects/CursorBuilder';
 
 const MARQUEE_ITEMS_CREATIVE = [
   'Art Direction & Brand Systems',
@@ -37,6 +38,8 @@ export default function LiquidLanding({
   onOpenPdf,
   onEasterEgg,
 }) {
+  const [heroAssemblyDone, setHeroAssemblyDone] = useState(false);
+
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -48,16 +51,25 @@ export default function LiquidLanding({
   }, []);
   return (
     <div className="liquid-site-wrapper min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-x-clip font-sans">
+      {/* Scroll-Triggered Secondary Multi-Cursor Assembly Overlay */}
+      <ScrollSectionCursorStage />
+
       {/* Top Floating Glass Navigation */}
       <LiquidNavbar
         tab={tab}
         onTabChange={setTab}
         onOpenPdf={onOpenPdf}
         onEasterEgg={onEasterEgg}
+        revealed={heroAssemblyDone}
       />
 
       {/* Section 1: Hero */}
-      <LiquidHero tab={tab} onOpenPdf={onOpenPdf} onEasterEgg={onEasterEgg} />
+      <LiquidHero
+        tab={tab}
+        onOpenPdf={onOpenPdf}
+        onEasterEgg={onEasterEgg}
+        onAssemblyComplete={() => setHeroAssemblyDone(true)}
+      />
 
       {/* Ambient Marquee Ribbon */}
       <div className="bg-black/80 py-4 border-y border-white/10">

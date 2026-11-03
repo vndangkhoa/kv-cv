@@ -3,9 +3,13 @@ import { Mail, MapPin, Download, ArrowUpRight, Copy, Check, Terminal, Sparkles }
 import KineticCharacterCanvas from './ui/KineticCharacterCanvas';
 import { PERSONAL_INFO, downloadCV } from '../data/personal';
 import { IT_DATA } from '../data/dev';
+import { DYNAMIC_COPY } from '../data/dynamicCopy';
 
 export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
   const isCreative = tab === 'creative';
+  const contactCopy = isCreative
+    ? DYNAMIC_COPY.contact.creative
+    : DYNAMIC_COPY.contact.dev;
   const [copied, setCopied] = useState(false);
 
   const copyEmail = (e) => {
@@ -32,30 +36,38 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
       </div>
 
       <div className="relative z-10 w-full flex flex-col items-center">
-        {/* 1. UPPER HERO / CALL-TO-ACTION (similar to reference top area) */}
+        {/* 1. UPPER HERO / CALL-TO-ACTION */}
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center flex flex-col items-center">
-          {/* Eyebrow Badge */}
-          <div className="mb-2.5 sm:mb-3">
-            <span className="text-white/40 text-[10px] sm:text-xs tracking-widest uppercase font-mono">
-              Get In Touch &bull; Open For Collaborations
-            </span>
+          {/* 1A. Eyebrow + Headline (`Type-Bot` #00E599 — TEXT_BASELINE_SWEEP) */}
+          <div data-scroll-target="contact-header" className="w-fit mx-auto">
+            <div className="mb-2.5 sm:mb-3">
+              <span className="text-white/40 text-[10px] sm:text-xs tracking-widest uppercase font-mono">
+                {DYNAMIC_COPY.contact.eyebrow}
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] px-2">
+              {DYNAMIC_COPY.contact.headline.titleLead} <br />
+              <em className="italic text-white/60">
+                {DYNAMIC_COPY.contact.headline.titleAccent}
+              </em>
+              .
+            </h2>
           </div>
 
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] px-2">
-            Let&apos;s build something <br />
-            <em className="italic text-white/60">unforgettable</em>.
-          </h2>
-
-          {/* Subtitle */}
-          <p className="max-w-xl mx-auto mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-white/60 leading-relaxed font-sans px-2">
-            {isCreative
-              ? 'Hiring an AI Creative Lead? Scaling automated visual production? Let’s connect and engineer the future of your brand.'
-              : 'Need scalable cloud microservices, media streaming apps, or custom AI tooling? Let’s ship together.'}
+          {/* 1B. Subtitle (`Comfy-Node` #FFB800 — BOTTOM_UP_SHADER) */}
+          <p
+            data-scroll-target="contact-subtitle"
+            className="max-w-xl mx-auto mt-3 sm:mt-4 text-xs sm:text-sm md:text-base text-white/60 leading-relaxed font-sans px-2"
+          >
+            {contactCopy.subtitle}
           </p>
 
-          {/* Centered Interactive Email Pill Button */}
-          <div className="mt-5 sm:mt-7 flex items-center justify-center max-w-full px-2">
+          {/* 1C. Centered Interactive Email Pill Button (`Status-Node` #A855F7 — CENTER_SPLIT_PILL) */}
+          <div
+            data-scroll-target="contact-content"
+            className="mt-5 sm:mt-7 flex items-center justify-center max-w-full px-2"
+          >
             <div className="liquid-glass rounded-full pl-4 sm:pl-6 pr-1.5 sm:pr-2 py-1.5 sm:py-2 flex items-center justify-between gap-2 sm:gap-3 border border-white/20 shadow-2xl hover:border-white/40 transition-all max-w-full">
               <a
                 href={`mailto:${PERSONAL_INFO.email}`}
@@ -86,8 +98,11 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
           </div>
         </div>
 
-        {/* 2. DOCKED ROUNDED FOOTER CARD (similar to bottom sheet card of reference) */}
-        <div className="mt-12 sm:mt-16 md:mt-20 max-w-6xl mx-auto px-3 sm:px-6 w-full">
+        {/* 2. DOCKED ROUNDED FOOTER CARD (`Arch-Frame` #3B82F6 + `Aesthetic-UI` #EC4899) */}
+        <div
+          data-scroll-target="contact-footer"
+          className="mt-12 sm:mt-16 md:mt-20 max-w-6xl mx-auto px-3 sm:px-6 w-full"
+        >
           <div className="relative rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-9 md:p-12 liquid-glass border border-white/15 shadow-[0_25px_60px_rgba(0,0,0,0.8)] backdrop-blur-2xl overflow-hidden group">
             {/* Ambient inner soft highlight */}
             <div className="absolute inset-0 bg-gradient-to-b from-white/[0.04] to-transparent pointer-events-none" />
@@ -96,7 +111,7 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
               {/* Left Column: Brand Logo + Title side-by-side, then Action Buttons underneath */}
               <div className="lg:col-span-6 flex flex-col justify-between h-full">
                 <div>
-                  {/* Brand Monogram Icon + Title on the same line (matching reference dumbbell + title) */}
+                  {/* Brand Monogram Icon + Title on the same line */}
                   <div className="flex items-center gap-3.5 sm:gap-4">
                     <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl liquid-glass border border-white/25 flex items-center justify-center shadow-lg shrink-0 group-hover:border-white/40 transition-colors">
                       <svg viewBox="0 0 100 100" className="w-5 h-5 sm:w-6 sm:h-6 stroke-white" fill="none" strokeWidth="8" strokeLinecap="round" strokeLinejoin="round">
@@ -108,22 +123,16 @@ export default function Contact({ tab, onEasterEgg, onOpenPdf }) {
                     </div>
 
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-serif text-white tracking-tight leading-tight">
-                      {isCreative ? (
-                        <>
-                          Commercial craft meets <em className="italic text-white/70">AI velocity</em>.
-                        </>
-                      ) : (
-                        <>
-                          Production systems built <em className="italic text-white/70">to scale</em>.
-                        </>
-                      )}
+                      {contactCopy.footerTitleLead}{' '}
+                      <em className="italic text-white/70">
+                        {contactCopy.footerTitleAccent}
+                      </em>
+                      .
                     </h3>
                   </div>
 
                   <p className="text-xs sm:text-sm font-sans text-white/60 mt-3 sm:mt-3.5 max-w-md leading-relaxed">
-                    {isCreative
-                      ? 'Vo Nguyen Dang Khoa • Creative Manager & AI Innovation Lead (RMIT Honors) with 9+ years scaling regional brand systems and generative AI production.'
-                      : 'Vo Nguyen Dang Khoa • Senior Full-Stack, Systems & Security Architect engineering Rust, Go, and Next.js 15 platforms across cloud and embedded Linux.'}
+                    {contactCopy.footerBio}
                   </p>
                 </div>
 

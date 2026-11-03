@@ -19,10 +19,11 @@ import {
   FileCheck2,
 } from 'lucide-react';
 import { TESTIMONIALS_DATA } from '../../data/testimonials';
+import { DYNAMIC_COPY } from '../../data/dynamicCopy';
 
 export default function TestimonialsSection({ tab }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const copy = DYNAMIC_COPY.referees;
 
   // Current slide index (shows 2 cards on desktop, 1 on mobile)
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -81,27 +82,25 @@ export default function TestimonialsSection({ tab }) {
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Top Header Row matching Reference Image 2 */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.7 }}
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14"
-        >
-          {/* Left: Section Title */}
-          <div>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-14">
+          {/* Left: Section Title (`Type-Bot` #00E599 — TEXT_BASELINE_SWEEP) */}
+          <div data-scroll-target="referees-header" className="w-fit">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-white/50 text-[11px] sm:text-xs tracking-widest uppercase font-mono">
-                Verified Endorsements &amp; Referees
+                {copy.eyebrow}
               </span>
             </div>
             <h2 className="text-3xl sm:text-5xl md:text-6xl font-serif text-white tracking-tight leading-[1.1]">
-              What builders say
+              {copy.title}
             </h2>
           </div>
 
-          {/* Right: Clutch / Verified Rating Indicator */}
-          <div className="flex items-center sm:flex-col sm:items-end gap-3 sm:gap-1.5 self-start sm:self-auto">
+          {/* Right: Clutch / Verified Rating Indicator (`Status-Node` #A855F7 — CENTER_SPLIT_PILL) */}
+          <div
+            data-scroll-target="referees-rating"
+            className="flex items-center sm:flex-col sm:items-end gap-3 sm:gap-1.5 self-start sm:self-auto px-3.5 py-2 rounded-2xl border border-white/10 bg-white/[0.02]"
+          >
             {/* 5 Stars */}
             <div className="flex items-center gap-1 text-white">
               {[...Array(5)].map((_, i) => (
@@ -113,15 +112,18 @@ export default function TestimonialsSection({ tab }) {
               ))}
             </div>
             <div className="flex items-center gap-2 font-mono text-xs sm:text-sm text-white/70">
-              <span className="font-bold text-white tracking-wide">Clutch / Referees</span>
+              <span className="font-bold text-white tracking-wide">{copy.ratingLabel}</span>
               <span className="text-white/40">|</span>
-              <span className="text-emerald-400 font-semibold">5/5 Verified</span>
+              <span className="text-emerald-400 font-semibold">{copy.ratingBadge}</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Carousel Grid (2 cards on desktop, 1 on mobile) */}
-        <div className="relative min-h-[380px] sm:min-h-[340px]">
+        {/* Carousel Grid (2 cards on desktop, 1 on mobile) (`Arch-Frame` #3B82F6 + `Aesthetic-UI` #EC4899) */}
+        <div
+          data-scroll-target="referees-content"
+          className="relative min-h-[380px] sm:min-h-[340px]"
+        >
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={currentIndex}
@@ -151,8 +153,11 @@ export default function TestimonialsSection({ tab }) {
           </AnimatePresence>
         </div>
 
-        {/* Bottom Navigation & Controls Row matching Image 2 */}
-        <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-5 pt-4 border-t border-white/10">
+        {/* Bottom Navigation & Controls Row (`Sys-Arch` #06B6D4 — MULTI_POINT_STAMP) */}
+        <div
+          data-scroll-target="referees-controls"
+          className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-center justify-between gap-5 pt-4 border-t border-white/10"
+        >
           {/* Left: Circular Arrow Controls */}
           <div className="flex items-center gap-3">
             <button

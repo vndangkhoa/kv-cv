@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+## [2.1.2] - 2026-11-03
+
+### Added & Enhanced
+- **Hierarchical Multi-Cursor Dynamic Canvas Assembly Engine**:
+  - Implemented 3-tier autonomous cursor swarm (`KV-Director`, `Arch-Frame`, `Status-Node`, `Type-Bot`, `UI-Craft`, `Comfy-Node`, `Sys-Arch`, and `Aesthetic-UI`) across the Hero stage and all 6 scroll sections.
+  - Added 6 specialized directional creation modes (`FRAME_OUTLINE`, `CENTER_SPLIT_PILL`, `TEXT_BASELINE_SWEEP`, `RIGHT_TO_LEFT_DOCK`, `BOTTOM_UP_SHADER`, `MULTI_POINT_STAMP`) and `AESTHETIC_POLISH` (corner-radius curving & Figma-style smart alignment crosshairs).
+  - Added cooperative `⏳ AWAIT` dependency handoffs, live typewriter fake-typing bubbles, and real-time progressive DOM/text spawning via directional `clip-path`.
+- **Dynamic Per-Reload AI Copy Variations (`dynamicCopy.js`)**:
+  - Added 5 curated copy variants per persona (`creative` & `dev`) across all 7 sections plus randomized per-reload session telemetry (`commitHash`, `fluxSeed`, `cfgScale`, `samplerName`).
+
+---
+
 ## [2.1.1] - 2026-10-14
 
 ### Added & Refined

@@ -935,3 +935,106 @@ a.btn-press {
   100% { background-position: -100% 0; }
 }
 
+/* ==========================================================================
+   Multi-Cursor Dynamic Canvas Assembly Stage & Wireframe Blueprint
+   ========================================================================== */
+.cursor-stage {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.cursor-blueprint-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-size: 48px 48px;
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.055) 1px, transparent 1px);
+  -webkit-mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 40%, transparent 95%);
+  mask-image: radial-gradient(ellipse 85% 80% at 50% 45%, #000 40%, transparent 95%);
+}
+
+[data-scroll-assembly="pending"] {
+  opacity: 0 !important;
+  transform: none !important;
+  clip-path: inset(0% 100% 0% 0%);
+  -webkit-clip-path: inset(0% 100% 0% 0%);
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+[data-scroll-assembly="spawning"] {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  pointer-events: none !important;
+  transition: none !important;
+}
+
+[data-scroll-assembly="snapped"] {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  -webkit-clip-path: none !important;
+  filter: blur(0px) !important;
+  pointer-events: auto !important;
+}
+
+/* Cooperative Aesthetic-UI (#EC4899) Corner-Radius Curving & Smart-Alignment Polish States */
+[data-aesthetic-polish="raw"],
+[data-aesthetic-polish="raw"] .rounded-full,
+[data-aesthetic-polish="raw"] .rounded-2xl,
+[data-aesthetic-polish="raw"] .rounded-3xl,
+[data-aesthetic-polish="raw"] .rounded-\[2rem\],
+[data-aesthetic-polish="raw"] .rounded-\[2\.5rem\] {
+  border-radius: 4px !important;
+  transition: border-radius 0.52s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.52s ease !important;
+}
+
+@keyframes aestheticPolishFlash {
+  0% {
+    box-shadow: 0 0 0 1.5px rgba(236, 72, 153, 0.75), 0 0 26px rgba(236, 72, 153, 0.38);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(236, 72, 153, 0), 0 0 0px rgba(236, 72, 153, 0);
+  }
+}
+
+[data-aesthetic-polish="polished"],
+[data-aesthetic-polish="polished"] .rounded-full,
+[data-aesthetic-polish="polished"] .rounded-2xl,
+[data-aesthetic-polish="polished"] .rounded-3xl,
+[data-aesthetic-polish="polished"] .rounded-\[2rem\],
+[data-aesthetic-polish="polished"] .rounded-\[2\.5rem\] {
+  transition: border-radius 0.55s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.55s ease;
+}
+
+[data-aesthetic-polish="polished"] {
+  animation: aestheticPolishFlash 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor-stage,
+  .cursor-blueprint-grid {
+    display: none !important;
+  }
+  [data-scroll-assembly="pending"],
+  [data-scroll-assembly="spawning"],
+  [data-scroll-assembly="snapped"],
+  [data-aesthetic-polish="raw"],
+  [data-aesthetic-polish="polished"] {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    -webkit-clip-path: none !important;
+    filter: none !important;
+    animation: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+

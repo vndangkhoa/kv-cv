@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import FEEDBACKS_DATA from '../../data/ecosystem-feedbacks.json';
 import ProgressiveBlur from '../ui/ProgressiveBlur';
+import { DYNAMIC_COPY } from '../../data/dynamicCopy';
 
 const getInitials = (name) => {
   if (!name) return 'US';
@@ -157,71 +158,82 @@ export default function EcosystemReviewsSection({ tab }) {
           {/* ================= LEFT COLUMN: HERO & PINNED TELEMETRY STATS ================= */}
           <div className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start flex flex-col space-y-6">
             <div>
-              {/* Eyebrow Status Badge matching TestimonialsSection */}
-              <div className="flex items-center gap-2 mb-3">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-white/50 text-[11px] sm:text-xs tracking-widest uppercase font-mono">
-                  Live Production Telemetry {isLiveOnline && <span className="text-emerald-400 font-semibold">• Online</span>}
-                </span>
+              {/* 1. Header (`Type-Bot` #00E599 — TEXT_BASELINE_SWEEP) */}
+              <div data-scroll-target="reviews-header" className="w-fit mb-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="text-white/50 text-[11px] sm:text-xs tracking-widest uppercase font-mono">
+                    {DYNAMIC_COPY.reviews.eyebrow}{' '}
+                    {isLiveOnline && <span className="text-emerald-400 font-semibold">• Online</span>}
+                  </span>
+                </div>
+
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
+                  {DYNAMIC_COPY.reviews.titleLead}{' '}
+                  <em className="italic text-white/70 font-serif">
+                    {DYNAMIC_COPY.reviews.titleAccent}
+                  </em>{' '}
+                  <br />
+                  {DYNAMIC_COPY.reviews.titleTrail}
+                </h2>
               </div>
 
-              {/* Headline matching typography across site */}
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif text-white tracking-tight leading-[1.1] mb-5 drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)]">
-                Expanding <em className="italic text-white/70 font-serif">reach</em> <br />
-                with every deploy.
-              </h2>
+              {/* 2. Lead Subtitle + Action Buttons (`Comfy-Node` #FFB800 — BOTTOM_UP_SHADER) */}
+              <div data-scroll-target="reviews-lead">
+                <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 font-sans max-w-lg">
+                  {DYNAMIC_COPY.reviews.subtitleLead}{' '}
+                  <a
+                    href="https://syno.vndns.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white hover:text-emerald-400 transition-colors font-mono underline underline-offset-4"
+                  >
+                    syno.vndns.net
+                  </a>{' '}
+                  {DYNAMIC_COPY.reviews.subtitleMid}{' '}
+                  <a
+                    href="https://trimui.vndns.net"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-white hover:text-emerald-400 transition-colors font-mono underline underline-offset-4"
+                  >
+                    trimui.vndns.net
+                  </a>{' '}
+                  {DYNAMIC_COPY.reviews.subtitleTail}
+                </p>
 
-              {/* Subtitle */}
-              <p className="text-white/80 text-xs sm:text-sm md:text-base leading-relaxed mb-6 font-sans max-w-lg">
-                Real feedback streamed directly from production users across{' '}
-                <a
-                  href="https://syno.vndns.net"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-white hover:text-emerald-400 transition-colors font-mono underline underline-offset-4"
-                >
-                  syno.vndns.net
-                </a>{' '}
-                (Synology DSM Package Hub) and{' '}
-                <a
-                  href="https://trimui.vndns.net"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-white hover:text-emerald-400 transition-colors font-mono underline underline-offset-4"
-                >
-                  trimui.vndns.net
-                </a>{' '}
-                (TrimUI Smart Pro OS &amp; OTA Store).
-              </p>
+                {/* Action Buttons using Liquid Glass Pills */}
+                <div className="flex flex-wrap items-center gap-3">
+                  <a
+                    href="https://syno.vndns.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="liquid-glass rounded-full px-5 py-2.5 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all border border-white/15 hover:border-white/30 flex items-center gap-2 shadow-lg cursor-pointer hover:scale-105 active:scale-95"
+                  >
+                    <Server size={13} className="text-white/70" />
+                    <span>Launch Syno Hub</span>
+                    <ArrowUpRight size={12} className="opacity-60" />
+                  </a>
 
-              {/* Action Buttons using Liquid Glass Pills */}
-              <div className="flex flex-wrap items-center gap-3">
-                <a
-                  href="https://syno.vndns.net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="liquid-glass rounded-full px-5 py-2.5 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all border border-white/15 hover:border-white/30 flex items-center gap-2 shadow-lg cursor-pointer hover:scale-105 active:scale-95"
-                >
-                  <Server size={13} className="text-white/70" />
-                  <span>Launch Syno Hub</span>
-                  <ArrowUpRight size={12} className="opacity-60" />
-                </a>
-
-                <a
-                  href="https://trimui.vndns.net"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="liquid-glass rounded-full px-5 py-2.5 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all border border-white/15 hover:border-white/30 flex items-center gap-2 shadow-lg cursor-pointer hover:scale-105 active:scale-95"
-                >
-                  <Gamepad2 size={13} className="text-emerald-400" />
-                  <span>Explore TrimUI</span>
-                  <ArrowUpRight size={12} className="opacity-60" />
-                </a>
+                  <a
+                    href="https://trimui.vndns.net"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="liquid-glass rounded-full px-5 py-2.5 text-xs font-mono font-medium text-white hover:bg-white/10 transition-all border border-white/15 hover:border-white/30 flex items-center gap-2 shadow-lg cursor-pointer hover:scale-105 active:scale-95"
+                  >
+                    <Gamepad2 size={13} className="text-emerald-400" />
+                    <span>Explore TrimUI</span>
+                    <ArrowUpRight size={12} className="opacity-60" />
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Pinned Telemetry Proof Block */}
-            <div className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4">
+            {/* 3. Pinned Telemetry Proof Block (`Status-Node` #A855F7 — CENTER_SPLIT_PILL) */}
+            <div
+              data-scroll-target="reviews-stats"
+              className="pt-6 border-t border-white/10 grid grid-cols-2 gap-4"
+            >
               {/* Verified Count */}
               <div>
                 <div className="text-[10px] font-mono tracking-widest text-white/40 uppercase mb-1">
@@ -268,8 +280,11 @@ export default function EcosystemReviewsSection({ tab }) {
           {/* ================= RIGHT COLUMN: SEAMLESS VERTICAL STREAM WITH PROGRESSIVE BLUR ================= */}
           <div className="lg:col-span-7 flex flex-col space-y-3">
             
-            {/* Filter Bar with Counts & Action Button */}
-            <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
+            {/* 4. Filter Bar with Counts & Action Button (`UI-Craft` #FF4444 — RIGHT_TO_LEFT_DOCK) */}
+            <div
+              data-scroll-target="reviews-toolbar"
+              className="flex flex-wrap items-center justify-between gap-3 pb-2"
+            >
               <div className="liquid-glass rounded-full p-1 flex items-center gap-1 border border-white/10">
                 <button
                   onClick={() => setFilter('all')}
@@ -317,7 +332,8 @@ export default function EcosystemReviewsSection({ tab }) {
               </button>
             </div>
 
-            {/* Vertical Sliding Stream Container (No Scrollbar, Progressive Blur Top & Bottom) */}
+            {/* 5. Vertical Sliding Stream Container + Footer Toolbar (`Arch-Frame` #3B82F6 + `Aesthetic-UI` #EC4899) */}
+            <div data-scroll-target="reviews-stream" className="flex flex-col space-y-3">
             <div className="relative h-[580px] sm:h-[620px] rounded-3xl overflow-hidden border border-white/15 liquid-glass bg-black/40 backdrop-blur-xl shadow-2xl">
               
               {/* Top Progressive Blur & Edge Mask */}
@@ -471,6 +487,7 @@ export default function EcosystemReviewsSection({ tab }) {
                   )}
                 </button>
               </div>
+            </div>
             </div>
           </div>
 

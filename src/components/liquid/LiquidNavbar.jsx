@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Terminal, FileText, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Terminal, FileText, Menu, X } from 'lucide-react';
+import { useCursorAssemblyMode } from '../effects/CursorBuilder';
 
 const NAV_ITEMS = [
   { id: 'about', label: 'About' },
@@ -11,10 +12,18 @@ const NAV_ITEMS = [
   { id: 'contact', label: 'Contact' },
 ];
 
-export default function LiquidNavbar({ tab, onTabChange, onOpenPdf, onEasterEgg }) {
+export default function LiquidNavbar({
+  tab,
+  onTabChange,
+  onOpenPdf,
+  onEasterEgg,
+  revealed = true,
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('about');
+  const assemblyMode = useCursorAssemblyMode();
+  const isNavVisible = assemblyMode !== 'swarm' || revealed || scrolled;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,9 +56,24 @@ export default function LiquidNavbar({ tab, onTabChange, onOpenPdf, onEasterEgg 
   const isCreative = tab === 'creative';
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-6 py-2.5 sm:py-5 transition-all duration-300 pointer-events-none">
+    <motion.header
+      initial={
+        assemblyMode === 'swarm'
+          ? { opacity: 0, y: -16 }
+          : { opacity: 1, y: 0 }
+      }
+      animate={
+        isNavVisible
+          ? { opacity: 1, y: 0 }
+          : { opacity: 0, y: -16 }
+      }
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed top-0 left-0 right-0 z-50 px-2 sm:px-6 py-2.5 sm:py-5 pointer-events-none"
+    >
       <nav
-        className={`liquid-glass rounded-full max-w-5xl mx-auto px-3 sm:px-6 py-1.5 sm:py-3 flex items-center justify-between pointer-events-auto transition-all duration-300 ${
+        className={`liquid-glass rounded-full max-w-5xl mx-auto px-3 sm:px-6 py-1.5 sm:py-3 flex items-center justify-between transition-all duration-300 ${
+          isNavVisible ? 'pointer-events-auto' : 'pointer-events-none'
+        } ${
           scrolled ? 'shadow-2xl shadow-black/90 bg-black/85 backdrop-blur-md' : 'bg-black/50'
         }`}
       >
@@ -173,6 +197,6 @@ export default function LiquidNavbar({ tab, onTabChange, onOpenPdf, onEasterEgg 
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
